@@ -1,0 +1,7 @@
+# these values identify the release and patchlevel represented by these sources.
+
+# unless mainline is being shipped, leave RELEASE = 2004.2 ;
+RELEASE = 2004.2 ;
+PATCHLEVEL = 72642 ;
+SUPPDATE = 2004 12 13 ; 
+

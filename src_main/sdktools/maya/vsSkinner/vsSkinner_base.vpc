@@ -1,0 +1,41 @@
+//-----------------------------------------------------------------------------
+//	VSSKINNER_MAYA7.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya"
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE wsock32.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"vsSkinnerBoneNode.cpp"
+		$File	"vsSkinnerCmd.cpp"
+		$File	"vsSkinnerInit.cpp"
+		$File	"vsSkinnerNode.cpp"
+		$File	"vsSkinnerNode.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+	}
+}

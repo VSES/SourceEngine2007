@@ -1,0 +1,41 @@
+ZENVALID.C SAMPLE
+-----------------
+
+This sample demonstrates usage of the Parsifal's validation
+interface. This is good example of how DTD validation simplifies
+the SAX parsing when compared to the ZENSTORY sample.
+
+Zenvalid format is same as for zenstory sample, so the DTD looks
+like this:
+
+<!ELEMENT stories (story*)>
+<!ELEMENT story (title,author,body)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT body (#PCDATA|b)*>
+<!ELEMENT b (#PCDATA)>
+
+Specifying DTD simplifies our SAX parsing task considerably,
+expecially validation of sequences like in story element declaration
+are hard to write "by hand" (not to mention more complex rules like optional
+elements). Also #PCDATA elements and mixed element contents (body) are 
+correctly interpreted as having only significant whitespace - no ignorable 
+whitespace there.
+
+See also zenstory README for more info. Note that you don't have to understand
+the zenstory.c state handling code if you decide to use Parsifal in validating
+mode. I recommend using validation whenever possible since it simplifies
+things a lot in the SAX handling side.
+
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+    zenvalid < stories.xml > stories.txt
+
+UNIX
+
+    make
+    make install
+    zenvalid < stories.xml > stories.txt

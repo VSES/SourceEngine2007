@@ -1,0 +1,57 @@
+//-----------------------------------------------------------------------------
+//	BSPPACK.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_dll_x360_base.vpc"		[$X360]
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions		"$BASE;WIN_ERROR;_USRDLL;BSPPACK_EXPORTS"						[$WIN32]
+		$PreprocessorDefinitions		"$BASE;WIN_ERROR;_USRDLL;BSPPACK_EXPORTS;BSP_USE_LESS_MEMORY"	[$X360]
+		$AdditionalIncludeDirectories	"..\common;$BASE"
+	}
+}
+
+$Project "bsppack"
+{
+	$Folder	"Source Files"
+	{
+		$File	"..\common\bsplib.cpp"
+		$File	"bsppack.cpp"
+		$File	"..\common\cmdlib.cpp"
+		$File	"$SRCDIR\public\filesystem_helpers.cpp"
+		$File	"$SRCDIR\public\filesystem_helpers.h"
+		$File	"$SRCDIR\public\filesystem_init.cpp"
+		$File	"..\common\filesystem_tools.cpp"
+		$File	"..\common\filesystem_tools.h"
+		$File	"$SRCDIR\public\lumpfiles.cpp"
+		$File	"..\common\scriplib.cpp"
+		$File	"$SRCDIR\public\zip_utils.cpp"
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\Public\ibsppack.h"
+		$File	"$SRCDIR\Public\bspfile.h"
+	}
+
+	$Folder	"Link Libraries" [$WIN32]
+	{
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+	}
+
+	$Folder	"Link Libraries" [$X360]
+	{
+		$File	"$SRCDIR\lib\public\mathlib_360.lib"
+		$File	"$SRCDIR\lib\public\tier2_360.lib"
+	}
+}

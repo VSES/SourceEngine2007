@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\winurl\winurl.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="dir">#include &lt;stdio.h&gt;</span>
+<span class="dir">#include</span> <span class="dstr">&quot;windows.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;urlmon.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/parsifal.h&quot;</span><span class="dir"></span>
+
+<span class="dir">#define MAX_URILEN 512</span>
+XMLCH gbase<span class="sym">[</span>MAX_URILEN<span class="sym">] = {</span><span class="str">'</span><span class="esc">\0</span><span class="str">'</span><span class="sym">};</span> <span class="com">/* base uri - global for clarity */</span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">PI</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>target<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>data<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">Characters</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">Comment</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">CharactersWide</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">StartCData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">EndCData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">DoctypeDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicID<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemID<span class="sym">,</span> <span class="kwb">int</span> hasInternalSubset<span class="sym">);</span>
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">ResolveEntity</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">,</span> LPBUFFEREDISTREAM reader<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">FreeInputData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">,</span> LPBUFFEREDISTREAM reader<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">SkippedEntity</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">urlstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">);</span>
+<span class="com">/* see samples/misc/helper.c for comments of the following routines: */</span>
+<span class="kwb">size_t</span> <span class="kwd">GetBaseDir</span><span class="sym">(</span>XMLCH <span class="sym">*</span>dst<span class="sym">,</span> XMLCH <span class="sym">*</span>src<span class="sym">);</span>
+XMLCH <span class="sym">*</span><span class="kwd">ResolveBaseUri</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> XMLCH <span class="sym">*</span>systemID<span class="sym">,</span> XMLCH <span class="sym">*</span>base<span class="sym">);</span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwa">if</span> <span class="sym">(*</span>uri<span class="sym">)</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Start tag: %s uri: %s localName: %s&quot;</span><span class="sym">,</span> qName<span class="sym">,</span> uri<span class="sym">,</span> localName<span class="sym">);</span>
+  <span class="kwa">else</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Start tag: %s&quot;</span><span class="sym">,</span> qName<span class="sym">);</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>atts<span class="sym">-&gt;</span>length<span class="sym">) {</span>
+    <span class="kwb">int</span> i<span class="sym">;</span>
+    LPXMLRUNTIMEATT att<span class="sym">;</span>
+
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">has %d attributes:&quot;</span><span class="sym">,</span> atts<span class="sym">-&gt;</span>length<span class="sym">);</span>
+    <span class="kwa">for</span> <span class="sym">(</span>i<span class="sym">=</span><span class="num">0</span><span class="sym">;</span> i<span class="sym">&lt;</span>atts<span class="sym">-&gt;</span>length<span class="sym">;</span> i<span class="sym">++) {</span>
+      att <span class="sym">= (</span>LPXMLRUNTIMEATT<span class="sym">)</span><span class="kwd">XMLVector_Get</span><span class="sym">(</span>atts<span class="sym">,</span> i<span class="sym">);</span>
+
+      <span class="kwa">if</span> <span class="sym">(*</span>att<span class="sym">-&gt;</span>uri<span class="sym">)</span>
+        <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span>  <span class="str">Name: %s Value: %s Prefix: %s LocalName: %s Uri: %s&quot;</span><span class="sym">,</span>
+          att<span class="sym">-&gt;</span>qname<span class="sym">,</span> att<span class="sym">-&gt;</span>value<span class="sym">,</span>
+              att<span class="sym">-&gt;</span>prefix<span class="sym">,</span> att<span class="sym">-&gt;</span>localName<span class="sym">,</span>
+                att<span class="sym">-&gt;</span>uri<span class="sym">);</span>
+      <span class="kwa">else</span>
+        <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span>  <span class="str">Name: %s Value: {%s}&quot;</span><span class="sym">,</span>
+          att<span class="sym">-&gt;</span>qname<span class="sym">,</span> att<span class="sym">-&gt;</span>value<span class="sym">);</span>
+    <span class="sym">}</span>
+
+    <span class="com">/* this demonstrates XMLParser_GetNamedItem and XML_ABORT, just</span>
+<span class="com">      change the name &quot;findthis&quot; here to abort parsing when</span>
+<span class="com">      this attribute is encountered: */</span>
+
+    <span class="kwa">if</span> <span class="sym">(</span>att <span class="sym">=</span> <span class="kwd">XMLParser_GetNamedItem</span><span class="sym">(</span>UserData<span class="sym">,</span> <span class="str">&quot;findthis&quot;</span><span class="sym">)) {</span>
+      <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;FOUND ATTRIBUTE %s value: %s</span><span class="esc">\n</span><span class="str">Aborting...</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> att<span class="sym">-&gt;</span>qname<span class="sym">,</span> att<span class="sym">-&gt;</span>value<span class="sym">);</span>
+      <span class="kwa">return</span> XML_ABORT<span class="sym">;</span>
+    <span class="sym">}</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">End tag: %s&quot;</span><span class="sym">,</span> qName<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">Characters</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Text (%d bytes): {&quot;</span><span class="sym">,</span> cbChars<span class="sym">);</span>
+  <span class="kwa">for</span> <span class="sym">(;</span> cbChars<span class="sym">;</span> cbChars<span class="sym">--,</span> chars<span class="sym">++)</span> <span class="kwd">putc</span><span class="sym">(*</span>chars<span class="sym">,</span> stdout<span class="sym">);</span>
+  <span class="kwd">putc</span><span class="sym">(</span><span class="str">'}'</span><span class="sym">,</span> stdout<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">SkippedEntity</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">skipped entity: %s&quot;</span><span class="sym">,</span> name<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">DoctypeDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicID<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemID<span class="sym">,</span> <span class="kwb">int</span> hasInternalSubset<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">DOCTYPE Name: %s&quot;</span><span class="sym">,</span> name<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>publicID<span class="sym">)</span> <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot; publicID: %s&quot;</span><span class="sym">,</span> publicID<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>systemID<span class="sym">)</span> <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot; systemID: %s&quot;</span><span class="sym">,</span> systemID<span class="sym">);</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot; hasInternalSubset: %d&quot;</span><span class="sym">,</span> hasInternalSubset<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">StartCData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Start CData tag</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">);</span>
+  <span class="com">/* will call Characters to report CDATA contents */</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EndCData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">End CData tag&quot;</span><span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">Comment</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Comment (%d bytes): {&quot;</span><span class="sym">,</span> cbChars<span class="sym">);</span>
+  <span class="kwa">for</span> <span class="sym">(;</span> cbChars<span class="sym">;</span> cbChars<span class="sym">--,</span> chars<span class="sym">++)</span> <span class="kwd">putc</span><span class="sym">(*</span>chars<span class="sym">,</span> stdout<span class="sym">);</span>
+  <span class="kwd">putc</span><span class="sym">(</span><span class="str">'}'</span><span class="sym">,</span> stdout<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">PI</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>target<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>data<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">PI tag - target: %s data: %s&quot;</span><span class="sym">,</span> target<span class="sym">, ((*</span>data<span class="sym">)</span> ? data <span class="sym">:</span> <span class="str">&quot;no data&quot;</span><span class="sym">));</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="com">/* you should treat ERR_XMLP_ABORT as &quot;user error&quot; and give somekind of</span>
+<span class="com">    description before returning from callbacks, otherwise we present parser error: */</span>
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>ErrorCode <span class="sym">!=</span> ERR_XMLP_ABORT<span class="sym">) {</span>
+    XMLCH <span class="sym">*</span>SystemID <span class="sym">=</span> <span class="kwd">XMLParser_GetSystemID</span><span class="sym">(</span>parser<span class="sym">);</span>
+    LPXMLENTITY curEnt <span class="sym">=</span> <span class="kwd">XMLParser_GetCurrentEntity</span><span class="sym">(</span>parser<span class="sym">);</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Parsing Error: %s</span><span class="esc">\n</span><span class="str">Code: %d&quot;</span><span class="sym">,</span>
+      parser<span class="sym">-&gt;</span>ErrorString<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorCode<span class="sym">);</span>
+    <span class="kwa">if</span> <span class="sym">(</span>curEnt <span class="sym">&amp;&amp; !</span>curEnt<span class="sym">-&gt;</span>systemID<span class="sym">)</span> <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">in entity: '%s'&quot;</span><span class="sym">,</span> curEnt<span class="sym">-&gt;</span>name<span class="sym">);</span>
+    <span class="kwa">if</span> <span class="sym">(</span>SystemID<span class="sym">)</span> <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">SystemID: '%s'&quot;</span><span class="sym">,</span> SystemID<span class="sym">);</span>
+  <span class="sym">}</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Line: %d</span><span class="esc">\n</span><span class="str">Column: %d&quot;</span><span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorLine<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorColumn<span class="sym">);</span>
+<span class="sym">}</span>
+
+<span class="com">/*</span>
+<span class="com">  Converts UTF-8 string to wchar_t string</span>
+<span class="com">  and shows converted string in MessageBoxW</span>
+<span class="com"></span>
+<span class="com">  Set charactersHandler = CharactersWide if</span>
+<span class="com">  you want to test UTF-8 to wchar_t conversion for</span>
+<span class="com">  text content, you shouldn't run large documents with</span>
+<span class="com">  CharactersWide because those MessageBoxes can get annoying...</span>
+<span class="com">*/</span>
+<span class="kwb">int</span> <span class="kwd">CharactersWide</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwb">wchar_t</span> wstr<span class="sym">[</span><span class="num">1024</span><span class="sym">];</span>
+  <span class="kwb">int</span> size<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>cbChars <span class="sym">&gt;</span> <span class="num">1023</span><span class="sym">)</span> cbChars <span class="sym">=</span> <span class="num">1024</span><span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">((</span>size <span class="sym">=</span> <span class="kwd">MultiByteToWideChar</span><span class="sym">(</span>CP_UTF8<span class="sym">,</span> <span class="num">0</span><span class="sym">,</span> chars<span class="sym">,</span> cbChars<span class="sym">,</span> wstr<span class="sym">,</span> <span class="num">1024</span><span class="sym">))) {</span>
+    <span class="sym">*(</span>wstr<span class="sym">+</span>size<span class="sym">) =</span> L<span class="str">'</span><span class="esc">\0</span><span class="str">'</span><span class="sym">;</span>
+    <span class="kwd">MessageBoxW</span><span class="sym">(</span>NULL<span class="sym">,</span> wstr<span class="sym">,</span> L<span class="str">&quot;WinUrl sample&quot;</span><span class="sym">,</span> MB_OK<span class="sym">);</span>
+  <span class="sym">}</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Unicode conversion error!&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> XML_ABORT<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">size_t</span> <span class="kwd">GetBaseDir</span><span class="sym">(</span>XMLCH <span class="sym">*</span>dst<span class="sym">,</span> XMLCH <span class="sym">*</span>src<span class="sym">)</span>
+<span class="sym">{</span>
+  XMLCH <span class="sym">*</span>s <span class="sym">=</span> <span class="kwd">strrchr</span><span class="sym">(</span>src<span class="sym">,</span> <span class="str">'/'</span><span class="sym">);</span>
+<span class="dir">#ifdef _WIN32</span>
+  <span class="kwa">if</span> <span class="sym">(!</span>s<span class="sym">)</span> s <span class="sym">=</span> <span class="kwd">strrchr</span><span class="sym">(</span>src<span class="sym">,</span> <span class="str">'</span><span class="esc">\\</span><span class="str">'</span><span class="sym">);</span>
+<span class="dir">#endif</span>
+  <span class="kwa">if</span> <span class="sym">(</span>s<span class="sym">) {</span>
+    <span class="kwb">size_t</span> i <span class="sym">= (</span>s<span class="sym">-</span>src<span class="sym">)+</span><span class="num">1</span><span class="sym">;</span>
+    <span class="kwd">memcpy</span><span class="sym">(</span>dst<span class="sym">,</span> src<span class="sym">,</span> i<span class="sym">);</span>
+    dst<span class="sym">[</span>i<span class="sym">] =</span> <span class="str">'</span><span class="esc">\0</span><span class="str">'</span><span class="sym">;</span>
+    <span class="kwa">return</span> i<span class="sym">;</span>
+  <span class="sym">}</span>
+  dst<span class="sym">[</span><span class="num">0</span><span class="sym">] =</span> <span class="str">'</span><span class="esc">\0</span><span class="str">'</span><span class="sym">;</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+XMLCH <span class="sym">*</span><span class="kwd">ResolveBaseUri</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> XMLCH <span class="sym">*</span>systemID<span class="sym">,</span> XMLCH <span class="sym">*</span>base<span class="sym">)</span>
+<span class="sym">{</span>
+  XMLCH <span class="sym">*</span>s<span class="sym">=</span>systemID<span class="sym">;</span>
+  <span class="kwa">for</span> <span class="sym">(; *</span>s<span class="sym">;</span> s<span class="sym">++) {</span>
+    <span class="kwa">if</span> <span class="sym">(*</span>s <span class="sym">==</span> <span class="str">':'</span><span class="sym">)</span> <span class="kwa">return</span> systemID<span class="sym">;</span> <span class="com">/* probably absolute */</span>
+    <span class="kwa">if</span> <span class="sym">(*</span>s <span class="sym">==</span> <span class="str">'/'</span> <span class="sym">|| *</span>s <span class="sym">==</span> <span class="str">'</span><span class="esc">\\</span><span class="str">'</span><span class="sym">)</span> <span class="kwa">break</span><span class="sym">;</span>
+  <span class="sym">}</span>
+  s <span class="sym">=</span> <span class="kwd">XMLParser_GetPrefixMapping</span><span class="sym">(</span>parser<span class="sym">,</span> <span class="str">&quot;xml:base&quot;</span><span class="sym">);</span>
+  <span class="kwa">return</span> <span class="sym">(</span>s<span class="sym">)</span> ? s <span class="sym">:</span> base<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">ResolveEntity</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">,</span> LPBUFFEREDISTREAM reader<span class="sym">)</span>
+<span class="sym">{</span>
+  IStream <span class="sym">*</span>pStm <span class="sym">=</span> NULL<span class="sym">;</span> <span class="com">/* pointer to COM stream */</span>
+  HRESULT hr<span class="sym">;</span>
+  XMLCH r<span class="sym">[</span>MAX_URILEN<span class="sym">];</span>
+  XMLCH <span class="sym">*</span>uri <span class="sym">=</span> <span class="kwd">ResolveBaseUri</span><span class="sym">((</span>LPXMLPARSER<span class="sym">)</span>UserData<span class="sym">,</span> entity<span class="sym">-&gt;</span>systemID<span class="sym">,</span> gbase<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>uri <span class="sym">!=</span> entity<span class="sym">-&gt;</span>systemID<span class="sym">) {</span>
+    <span class="kwd">strcpy</span><span class="sym">(</span>r<span class="sym">,</span> uri<span class="sym">);</span>
+    uri <span class="sym">=</span> <span class="kwd">strcat</span><span class="sym">(</span>r<span class="sym">,</span> entity<span class="sym">-&gt;</span>systemID<span class="sym">);</span>
+  <span class="sym">}</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Loading external entity: %s uri: %s&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>name<span class="sym">,</span> uri<span class="sym">);</span>
+  hr <span class="sym">=</span> <span class="kwd">URLOpenBlockingStream</span><span class="sym">(</span><span class="num">0</span><span class="sym">,</span> uri<span class="sym">, &amp;</span>pStm<span class="sym">,</span> <span class="num">0</span><span class="sym">,</span><span class="num">0</span><span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">SUCCEEDED</span><span class="sym">(</span>hr<span class="sym">)) {</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">Error opening url '%s'&quot;</span><span class="sym">,</span> uri<span class="sym">);</span>
+    <span class="kwa">if</span> <span class="sym">(</span>pStm<span class="sym">)</span> pStm<span class="sym">-&gt;</span>lpVtbl<span class="sym">-&gt;</span><span class="kwd">Release</span><span class="sym">(</span>pStm<span class="sym">);</span>
+    <span class="kwa">return</span> XML_ABORT<span class="sym">;</span>
+  <span class="sym">}</span>
+
+  reader<span class="sym">-&gt;</span>inputData <span class="sym">=</span> pStm<span class="sym">;</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">FreeInputData</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">,</span> LPBUFFEREDISTREAM reader<span class="sym">)</span>
+<span class="sym">{</span>
+  IStream <span class="sym">*</span>pStm <span class="sym">= (</span>IStream<span class="sym">*)</span>reader<span class="sym">-&gt;</span>inputData<span class="sym">;</span>
+  <span class="kwa">if</span> <span class="sym">(</span>pStm<span class="sym">)</span> pStm<span class="sym">-&gt;</span>lpVtbl<span class="sym">-&gt;</span><span class="kwd">Release</span><span class="sym">(</span>pStm<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">urlstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="com">/* calls IStream.Read in C COM way: */</span>
+  HRESULT hr <span class="sym">= ((</span>IStream<span class="sym">*)</span>inputData<span class="sym">)-&gt;</span>lpVtbl<span class="sym">-&gt;</span><span class="kwd">Read</span><span class="sym">((</span>IStream<span class="sym">*)</span>inputData<span class="sym">,</span> buf<span class="sym">,</span> cBytes<span class="sym">,</span> cBytesActual<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="sym">(*</span>cBytesActual <span class="sym">&lt;</span> cBytes <span class="sym">|| !</span><span class="kwd">SUCCEEDED</span><span class="sym">(</span>hr<span class="sym">));</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">main</span><span class="sym">(</span><span class="kwb">int</span> argc<span class="sym">,</span> <span class="kwb">char</span><span class="sym">*</span> argv<span class="sym">[])</span>
+<span class="sym">{</span>
+  LPXMLPARSER parser<span class="sym">;</span>
+  IStream <span class="sym">*</span>pStm <span class="sym">=</span> NULL<span class="sym">;</span> <span class="com">/* pointer to COM stream */</span>
+  HRESULT hr<span class="sym">;</span>
+  <span class="kwb">char</span> szUrl<span class="sym">[</span>MAX_URILEN<span class="sym">];</span>
+
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;</span><span class="esc">\n</span><span class="str">WINURL Parsifal sample</span><span class="esc">\n\n</span><span class="str">Url to parse: &quot;</span><span class="sym">);</span>
+  <span class="kwd">gets</span><span class="sym">(</span>szUrl<span class="sym">);</span>
+
+  <span class="com">/* open the url stream: */</span>
+  hr <span class="sym">=</span> <span class="kwd">URLOpenBlockingStream</span><span class="sym">(</span><span class="num">0</span><span class="sym">,</span> szUrl<span class="sym">, &amp;</span>pStm<span class="sym">,</span> <span class="num">0</span><span class="sym">,</span><span class="num">0</span><span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">SUCCEEDED</span><span class="sym">(</span>hr<span class="sym">)) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error opening url!&quot;</span><span class="sym">);</span>
+    <span class="kwa">if</span> <span class="sym">(</span>pStm<span class="sym">)</span> pStm<span class="sym">-&gt;</span>lpVtbl<span class="sym">-&gt;</span><span class="kwd">Release</span><span class="sym">(</span>pStm<span class="sym">);</span>
+    <span class="kwd">exit</span><span class="sym">(</span><span class="num">1</span><span class="sym">);</span>
+  <span class="sym">}</span>
+
+  <span class="kwd">GetBaseDir</span><span class="sym">(</span>gbase<span class="sym">,</span> szUrl<span class="sym">);</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLParser_Create</span><span class="sym">(&amp;</span>parser<span class="sym">)) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating parser!&quot;</span><span class="sym">);</span>
+    <span class="kwd">exit</span><span class="sym">(</span><span class="num">1</span><span class="sym">);</span>
+  <span class="sym">}</span>
+
+  parser<span class="sym">-&gt;</span>startElementHandler <span class="sym">=</span> StartElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>endElementHandler <span class="sym">=</span> EndElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>charactersHandler <span class="sym">=</span> Characters<span class="sym">;</span> <span class="com">/* set to CharactersWide</span>
+<span class="com">    to convert UTF-8 -&gt; wchar_t */</span>
+  parser<span class="sym">-&gt;</span>processingInstructionHandler <span class="sym">=</span> PI<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>commentHandler <span class="sym">=</span> Comment<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>startCDATAHandler <span class="sym">=</span> StartCData<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>endCDATAHandler <span class="sym">=</span> EndCData<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>errorHandler <span class="sym">=</span> ErrorHandler<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>startDTDHandler <span class="sym">=</span> DoctypeDecl<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>skippedEntityHandler <span class="sym">=</span> SkippedEntity<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>resolveEntityHandler <span class="sym">=</span> ResolveEntity<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>externalEntityParsedHandler <span class="sym">=</span> FreeInputData<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>UserData <span class="sym">=</span> parser<span class="sym">;</span>
+
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFlags:</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">);</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_NAMESPACES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_NAMESPACES<span class="sym">));</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_NAMESPACE_PREFIXES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_NAMESPACE_PREFIXES<span class="sym">));</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_EXTERNAL_GENERAL_ENTITIES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_EXTERNAL_GENERAL_ENTITIES<span class="sym">));</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_PRESERVE_GENERAL_ENTITIES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_PRESERVE_GENERAL_ENTITIES<span class="sym">));</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_UNDEF_GENERAL_ENTITIES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_UNDEF_GENERAL_ENTITIES<span class="sym">));</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;XMLFLAG_PRESERVE_WS_ATTRIBUTES: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> <span class="kwd">_XMLParser_GetFlag</span><span class="sym">(</span>parser<span class="sym">,</span>XMLFLAG_PRESERVE_WS_ATTRIBUTES<span class="sym">));</span>
+
+  <span class="kwd">XMLParser_Parse</span><span class="sym">(</span>parser<span class="sym">,</span> urlstream<span class="sym">,</span> pStm<span class="sym">,</span> NULL<span class="sym">);</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>pStm<span class="sym">)</span> pStm<span class="sym">-&gt;</span>lpVtbl<span class="sym">-&gt;</span><span class="kwd">Release</span><span class="sym">(</span>pStm<span class="sym">);</span>
+  <span class="kwd">XMLParser_Free</span><span class="sym">(</span>parser<span class="sym">);</span>
+
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

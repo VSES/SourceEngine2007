@@ -1,0 +1,38 @@
+//-----------------------------------------------------------------------------
+//	TIER1TEST.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\unittests"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"		[$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;TIER1TEST_EXPORTS"
+	}
+}
+
+$Project "tier1test"
+{
+	$Folder	"Source Files"
+	{
+		$File	"commandbuffertest.cpp"
+		$File	"processtest.cpp"
+		$File	"tier1test.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+	}
+	
+	$Folder "Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\unitlib.lib"
+	}
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\elements\elements.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="dir">#include &lt;stdio.h&gt;</span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/parsifal.h&quot;</span><span class="dir"></span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">);</span>
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">) {}</span> <span class="com">/* dummy, only for switching ErrorString etc. on */</span>
+
+<span class="kwb">int</span> <span class="kwd">cstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">);</span>
+
+<span class="kwb">int</span> <span class="kwd">cstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="sym">*</span>cBytesActual <span class="sym">=</span> <span class="kwd">fread</span><span class="sym">(</span>buf<span class="sym">,</span> <span class="num">1</span><span class="sym">,</span> cBytes<span class="sym">, (</span><span class="kwb">FILE</span><span class="sym">*)</span>inputData<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="sym">(*</span>cBytesActual <span class="sym">&lt;</span> cBytes<span class="sym">);</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwb">int</span> i<span class="sym">;</span>
+    <span class="kwb">int</span> <span class="sym">*</span>depthPtr <span class="sym">=</span> UserData<span class="sym">;</span>
+    <span class="kwa">for</span> <span class="sym">(</span>i <span class="sym">=</span> <span class="num">0</span><span class="sym">;</span> i <span class="sym">&lt; *</span>depthPtr<span class="sym">;</span> i<span class="sym">++)</span>
+      <span class="kwd">putchar</span><span class="sym">(</span><span class="str">'</span><span class="esc">\t</span><span class="str">'</span><span class="sym">);</span>
+    <span class="kwd">puts</span><span class="sym">(</span>qName<span class="sym">);</span>
+    <span class="sym">*</span>depthPtr <span class="sym">+=</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwb">int</span> <span class="sym">*</span>depthPtr <span class="sym">=</span> UserData<span class="sym">;</span>
+  <span class="sym">*</span>depthPtr <span class="sym">-=</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">main</span><span class="sym">(</span><span class="kwb">int</span> argc<span class="sym">,</span> <span class="kwb">char</span><span class="sym">*</span> argv<span class="sym">[])</span>
+<span class="sym">{</span>
+  LPXMLPARSER parser<span class="sym">;</span>
+  <span class="kwb">int</span> depth <span class="sym">=</span> <span class="num">0</span><span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLParser_Create</span><span class="sym">(&amp;</span>parser<span class="sym">)) {</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Error creating parser!</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  parser<span class="sym">-&gt;</span>errorHandler <span class="sym">=</span> ErrorHandler<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>startElementHandler <span class="sym">=</span> StartElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>endElementHandler <span class="sym">=</span> EndElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>UserData <span class="sym">= &amp;</span>depth<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLParser_Parse</span><span class="sym">(</span>parser<span class="sym">,</span> cstream<span class="sym">,</span> stdin<span class="sym">,</span> <span class="num">0</span><span class="sym">))</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Error: %s</span><span class="esc">\n</span><span class="str">Line: %d Col: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span>
+      parser<span class="sym">-&gt;</span>ErrorString<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorLine<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorColumn<span class="sym">);</span>
+
+  <span class="kwd">XMLParser_Free</span><span class="sym">(</span>parser<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

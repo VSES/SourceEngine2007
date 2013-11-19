@@ -1,0 +1,13 @@
+This directory contains Dev-C++ project for building
+static parsifal library.
+
+Dev-Cpp IDE: http://www.bloodshed.net (huh?)
+MinGW info:  http://www.mingw.org
+
+
+files:
+
+libparsifal.a     pre-compiled library for mingw projects
+libparsifal.dev   dev-cpp workspace
+Makefile.win      makefile for mingw. contains some hard-coded paths but
+                  should be trivial to change to any mingw environment

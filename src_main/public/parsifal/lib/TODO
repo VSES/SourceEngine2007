@@ -1,0 +1,24 @@
+TODO for parsifal
+-----------------
+
+* Memory allocation could be "heaps better", string interning, smart heap to
+  avoid memory fragmentation etc...
+* More profiler runs and optimizations...
+* Maybe internal widechar support (wchar_t) by conditional compilation? maybe not.
+* There's lot of room for improvement in optimization department.
+
+FOR VALIDATION
+--------------
+
+* Validation of advanced attribute types: DONE (EnumeratedType and NotationType)
+  (still no ID att handling - no. uniqueness checks etc. and no testing for NOTATIONS -
+  wrong side of the 80/20 perhaps?)
+  [56] TokenizedType ::= 'ID' | 'IDREF' | 'IDREFS' | 'ENTITY' | 'ENTITIES'| 'NMTOKEN' | 'NMTOKENS'
+  [57] EnumeratedType ::= NotationType | Enumeration
+  [58] NotationType ::= 'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'
+  [59] Enumeration ::= '(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')'
+* Checking of non-deterministic content models
+* Testing/better handling of duplicate attribute declarations (for bsearch)
+* Feature to allow validation errors to be reported in WarningHandler (maybe implement
+  optionally compiled and separate more complete validation module) DONE
+* DTD caching (already designed)

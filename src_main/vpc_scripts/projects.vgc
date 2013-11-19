@@ -1,0 +1,1496 @@
+//-----------------------------------------------------------------------------
+//	PROJECTS.VGC
+//
+//	Project Configurations for all Source(TM) Projects
+//-----------------------------------------------------------------------------
+
+/////////////////////////
+// Project definitions //
+/////////////////////////
+
+$Project "actbusy"
+{
+	"tools\actbusy\actbusy.vpc" [$WIN32]
+}
+
+$Project "AdminServer"
+{
+	"Tracker\AdminServer\AdminServer.vpc" [$WIN32]
+}
+
+$Project "AppChooser"
+{
+	"utils\xbox\AppChooser\AppChooser.vpc" 	[$WIN32||$X360]
+}
+
+$Project "AppInstaller"
+{
+	"utils\xbox\AppInstaller\AppInstaller.vpc" 	[$X360]
+}
+
+$Project "appframework"
+{
+	"appframework\appframework.vpc" 	[$WIN32||$X360]
+}
+
+$Project "autorun"
+{
+	"shell\autorun\autorun.vpc" [$WIN32]
+}
+
+$Project "avitest"
+{
+	"unittests\avitest\avitest.vpc" [$WIN32]
+}
+
+$Project "bitmap"
+{
+	"bitmap\bitmap.vpc" [$WIN32||$X360]
+}
+
+$Project "Browser"
+{
+	"Tracker\Browser\Browser.vpc" [$WIN32]
+}
+
+$Project "bsppack"
+{
+	"utils\bsppack\bsppack.vpc" [$WIN32||$X360]
+}
+
+$Project "bspzip"
+{
+	"utils\bspzip\bspzip.vpc" [$WIN32]
+}
+
+$Project "bugreporter"
+{
+	"utils\bugreporter\bugreporter.vpc" [$WIN32]
+}
+
+$Project "bugreporter_public"
+{
+	"utils\bugreporter_public\bugreporter_public.vpc" [$WIN32]
+}
+
+$Project "bugreporter_text"
+{
+	"utils\bugreporter_text\bugreporter_text.vpc" [$WIN32]
+}
+
+$Project "bugreporter_filequeue"
+{
+	"utils\bugreporter_filequeue\bugreporter_filequeue.vpc" [$WIN32]
+}
+
+$Project "bzip2"
+{
+	"utils\bzip2\bzip2.vpc" [$WIN32||$X360]
+}
+
+$Project "captioncompiler"
+{
+	"utils\captioncompiler\captioncompiler.vpc" [$WIN32]
+}
+
+$Project "cardstats"
+{
+	"utils\videocardstats\cardstats.vpc" [$WIN32]
+}
+
+$Project "choreoobjects"
+{
+	"choreoobjects\choreoobjects.vpc" [$WIN32||$X360]
+}
+
+$Project "classcheck"
+{
+	"utils\classcheck\classcheck.vpc" [$WIN32]
+}
+
+$Project "client"
+{
+	"game\client\client_hl2.vpc"		[($WIN32||$X360) && $HL2]
+	"game\client\client_dod.vpc"		[($WIN32) && $DOD]
+	"game\client\client_episodic.vpc"	[($WIN32||$X360) && $EPISODIC]
+	"game\client\client_lostcoast.vpc"	[($WIN32) && $LOSTCOAST]
+	"game\client\client_tf.vpc"			[($WIN32||$X360) && $TF]
+	"game\client\client_cstrike.vpc"	[($WIN32) && $CSTRIKE]
+	"game\client\client_portal.vpc"		[($WIN32||$X360) && $PORTAL]
+	"game\client\client_hl2mp.vpc"		[($WIN32) && $HL2MP]
+	"game\client\client_hl1.vpc"		[($WIN32) && $HL1]
+}
+
+$Project "client_sdk"
+{
+	"game\client\client_sdk.vpc" [$WIN32]
+}
+
+$Project "client_sdk_hl2"
+{
+	"game\client\client_sdk_hl2.vpc" [$WIN32]
+}
+
+$Project "client_sdk_hl2mp"
+{
+	"game\client\client_sdk_hl2mp.vpc" [$WIN32]
+}
+
+$Project "commedit"
+{
+	"tools\commedit\commedit.vpc" [$WIN32]
+}
+
+$Project "cubelight"
+{
+	"utils\cubelight\cubelight.vpc" [$WIN32]
+}
+
+$Project "datacache"
+{
+	"datacache\datacache.vpc" [$WIN32||$X360]
+}
+
+$Project "datamodel"
+{
+	"datamodel\datamodel.vpc" [$WIN32]
+}
+
+$Project "dbmon"
+{
+	"devtools\dbmon\dbmon.vpc" [$WIN32]
+}
+
+$Project "dedicated"
+{
+	"dedicated\dedicated.vpc" [$WIN32]
+}
+
+$Project "dedicated_main"
+{
+	"dedicated_main\dedicated_main.vpc" [$WIN32]
+}
+
+$Project "demoinfo"
+{
+	"utils\demoinfo\demoinfo.vpc" [$WIN32]
+}
+
+$Project "depcheck"
+{
+	"utils\depcheck\depcheck.vpc" [$WIN32]
+}
+
+$Project "dist2alpha"
+{
+	"utils\dist2alpha\dist2alpha.vpc" [$WIN32]
+}
+
+$Project "dme_controls"
+{
+	"vgui2\dme_controls\dme_controls.vpc" [$WIN32]
+}
+
+$Project "dmserializers"
+{
+	"dmserializers\dmserializers.vpc" [$WIN32]
+}
+
+$Project "dmxconvert"
+{
+	"utils\dmxconvert\dmxconvert.vpc" [$WIN32]
+}
+
+$Project "dmxedit"
+{
+	"utils\dmxedit\dmxedit.vpc" [$WIN32]
+}
+
+$Project "dmxloader"
+{
+	"dmxloader\dmxloader.vpc" [$WIN32||$X360]
+}
+
+$Project "dmxtest"
+{
+	"unittests\dmxtest\dmxtest.vpc" [$WIN32]
+}
+
+$Project "dumpmatsyshelp"
+{
+	"utils\dumpmatsyshelp\dumpmatsyshelp.vpc" [$WIN32]
+}
+
+$Project "dumpobj"
+{
+	"utils\xbox\dumpobj\dumpobj.vpc" [$WIN32]
+}
+
+$Include "utils\dx_proxy\dx_proxy_all.vgc"
+
+$Project "elementviewer"
+{
+	"utils\elementviewer\elementviewer.vpc" [$WIN32]
+}
+
+$Project "engine"
+{
+	"engine\engine.vpc" [$WIN32||$X360]
+}
+
+$Project "entcount"
+{
+	"utils\entcount\entcount.vpc" [$WIN32]
+}
+
+$Project "ep2_deathmap"
+{
+	"devtools\ep2_deathmap\ep2_deathmap.vpc" [$WIN32]
+}
+
+
+$Project "fgdlib"
+{
+	"fgdlib\fgdlib.vpc" [$WIN32]
+}
+
+$Project "FileSystemOpenDialog"
+{
+	"utils\FileSystemOpenDialog\FileSystemOpenDialog.vpc" [$WIN32]
+}
+
+$Project "filesystem_stdio"
+{
+        "filesystem\filesystem_stdio.vpc" [$WIN32||$X360]
+}
+
+$Project "filesystem_steam"
+{
+        "filesystem\filesystem_steam.vpc" [$WIN32]
+}
+
+$Project "finddbgdll"
+{
+	"utils\finddbgdll\finddbgdll.vpc" [$WIN32]
+}
+
+$Project "floatbm"
+{
+	"floatbm\floatbm.vpc" [$WIN32]
+}
+
+$Project "fontmaker"
+{
+	"utils\xbox\FontMaker\fontmaker.vpc" [$WIN32]
+}
+
+$Project "foundry"
+{
+	"tools\foundry\foundry.vpc" [$WIN32]
+}
+
+$Project "gamestats_reader"
+{
+	"utils\gamestats_reader\gamestats_reader.vpc" [$WIN32]
+}
+
+$Project "GameUI"
+{
+	"gameui\GameUI.vpc" [$WIN32||$X360]
+}
+
+$Project "game_shader_generic_advanced"
+{
+	"sdkshaders\advanced\game_shader_generic_advanced.vpc" [$WIN32]
+}
+
+$Project "game_shader_generic_sample"
+{
+	"sdkshaders\game_shader_generic_sample.vpc" [$WIN32]
+}
+
+$Project "genrandomvectors"
+{
+	"utils\genrandomvectors\genrandomvectors.vpc" [$WIN32]
+}
+
+$Project "getbugs"
+{
+	"utils\getbugs\getbugs.vpc" [$WIN32]
+}
+
+$Project "getmirror"
+{
+	"devtools\getmirror\getmirror.vpc" [$WIN32]
+}
+
+$Project "glview"
+{
+	"utils\glview\glview.vpc" [$WIN32]
+}
+
+$Project "hammer_dll"
+{
+	"hammer\hammer_dll.vpc" [$WIN32]
+}
+
+$Project "hammer_launcher"
+{
+	"hammer_launcher\hammer_launcher.vpc" [$WIN32]
+}
+
+$Project "havana_constraints"
+{
+	"ivp\havana\havana_constraints.vpc" [$WIN32||$X360]
+}
+
+$Project "height2normal"
+{
+	"utils\height2normal\height2normal.vpc" [$WIN32]
+}
+
+$Project "height2ssbump"
+{
+	"utils\height2ssbump\height2ssbump.vpc" [$WIN32]
+}
+
+$Project "hk_base"
+{
+	"ivp\havana\havok\hk_base\hk_base.vpc" [$WIN32||$X360]
+}
+
+$Project "hk_math"
+{
+	"ivp\havana\havok\hk_math\hk_math.vpc" [$WIN32||$X360]
+}
+
+$Project "Particles"
+{
+	"particles\particles.vpc" [$WIN32||$X360]
+}
+
+$Project "server"
+{
+	"game\server\server_hl2.vpc"		[($WIN32||$X360) && $HL2]
+	"game\server\server_dod.vpc"		[($WIN32) && $DOD]
+	"game\server\server_episodic.vpc"	[($WIN32||$X360) && $EPISODIC]
+	"game\server\server_lostcoast.vpc"	[($WIN32) && $LOSTCOAST]
+	"game\server\server_tf.vpc"			[($WIN32||$X360) && $TF]
+	"game\server\server_cstrike.vpc"	[($WIN32) && $CSTRIKE]
+	"game\server\server_portal.vpc"		[($WIN32||$X360) && $PORTAL]
+	"game\server\server_hl2mp.vpc"		[($WIN32) && $HL2MP]
+	"game\server\server_hl1.vpc"		[($WIN32) && $HL1]
+}
+
+$Project "simdtest"
+{
+	"utils\simdtest\simdtest.vpc" [$WIN32||$X360]
+}
+
+$Project "hlfaceposer"
+{
+	"utils\hlfaceposer\hlfaceposer.vpc" [$WIN32]
+}
+
+$Project "hlmv"
+{
+	"utils\hlmv\hlmv.vpc" [$WIN32]
+}
+
+$Project "hl_res_us"
+{
+	"shell\hl_res\hl_res_us\hl_res_us.vpc" [$WIN32]
+}
+
+$Project "hl_sdk"
+{
+	"game\server\hl_sdk.vpc" [$WIN32]
+}
+
+$Project "hl_sdk_hl2"
+{
+	"game\server\hl_sdk_hl2.vpc" [$WIN32]
+}
+
+$Project "hl_sdk_hl2mp"
+{
+	"game\server\hl_sdk_hl2mp.vpc" [$WIN32]
+}
+
+$Project "ifm"
+{
+	"tools\ifm\ifm.vpc" [$WIN32]
+}
+
+$Project "ihvtest1"
+{
+	"unittests\ihvtest1\ihvtest1.vpc" [$WIN32]
+}
+
+$Project "inputsystem"
+{
+	"inputsystem\inputsystem.vpc" [$WIN32||$X360]
+}
+
+$Project "inputtest"
+{
+	"unittests\inputtest\inputtest.vpc" [$WIN32]
+}
+
+$Project "ivp_compactbuilder"
+{
+	"ivp\ivp_compact_builder\ivp_compactbuilder.vpc" [$WIN32||$X360]
+}
+
+$Project "ivp_physics"
+{
+	"ivp\ivp_physics\ivp_physics.vpc" [$WIN32||$X360]
+}
+
+$Project "jpeglib"
+{
+	"utils\jpeglib\jpeglib.vpc" [$WIN32]
+}
+
+$Project "kvc"
+{
+	"utils\kvc\kvc.vpc" [$WIN32]
+}
+
+$Project "launcher"
+{
+	"launcher\launcher.vpc" [$WIN32||$X360]
+}
+
+$Project "launcher_main"
+{
+	"launcher_main\launcher_main.vpc" [$WIN32||$X360]
+}
+
+$Project "LicenseViewed"
+{
+	"devtools\WiseInstallerHelpers\LicenseViewed.vpc" [$WIN32]
+}
+
+$Project "localization_check"
+{
+	"utils\localization_check\localization_check.vpc" [$WIN32]
+}
+
+$Project "localresource"
+{
+	"shell\localresource\localresource.vpc" [$WIN32]
+}
+
+$Project "lua"
+{
+	"lua\lua.vpc" [$WIN32]
+}
+
+$Project "lzma"
+{
+	"utils\lzma\lzma.vpc" [$WIN32]
+}
+
+$Project "MakeGameData"
+{
+	"utils\xbox\MakeGameData\MakeGameData.vpc" [$WIN32]
+}
+
+$Project "makephx"
+{
+	"utils\xbox\makephx\makephx.vpc" [$WIN32]
+}
+
+$Project "makexcs"
+{
+	"utils\xbox\makexcs\makexcs.vpc" [$WIN32]
+}
+
+$Project "makextf"
+{
+	"utils\xbox\makextf\makextf.vpc" [$WIN32]
+}
+
+$Project "makexvcd"
+{
+	"utils\xbox\makexvcd\makexvcd.vpc" [$WIN32]
+}
+
+$Project "makexzip"
+{
+	"utils\xbox\makexzip\makexzip.vpc" [$WIN32]
+}
+
+$Project "materialsystem"
+{
+	"materialsystem\materialsystem.vpc" [$WIN32||$X360]
+}
+
+$Project "materialsystemtest"
+{
+	"unittests\materialsystemtest\materialsystemtest.vpc" [$WIN32]
+}
+
+$Project "mathlib"
+{
+	"mathlib\mathlib.vpc" [$WIN32||$X360]
+}
+
+$Project "matsys_controls"
+{
+	"vgui2\matsys_controls\matsys_controls.vpc" [$WIN32||$X360]
+}
+
+$Project "matsys_regressiontest"
+{
+	"utils\matsys_regressiontest\matsys_regressiontest.vpc" [$WIN32]
+}
+
+$Project "mdlcheck"
+{
+	"utils\mdlcheck\mdlcheck.vpc" [$WIN32]
+}
+
+$Project "mdmpRipper"
+{
+	"utils\mdmpRipper\mdmpRipper.vpc" [$WIN32]
+}
+
+$Project "mksheet"
+{
+	"utils\mksheet\mksheet.vpc" [$WIN32]
+}
+
+$Project "modelbrowser"
+{
+	"utils\modelbrowser\modelbrowser.vpc" [$WIN32]
+}
+
+$Project "modelcheckin"
+{
+	"utils\modelcheckin\modelcheckin.vpc" [$WIN32]
+}
+
+$Project "motionmapper"
+{
+	"utils\motionmapper\motionmapper.vpc" [$WIN32]
+}
+
+$Project "movieobjects"
+{
+	"movieobjects\movieobjects.vpc" [$WIN32]
+}
+
+$Project "mxtoolkitwin32"
+{
+	"utils\mxtk\mxtoolkitwin32.vpc" [$WIN32]
+}
+
+$Project "mysql_wrapper"
+{
+	"utils\vmpi_private\mysql_wrapper\mysql_wrapper.vpc" [$WIN32]
+}
+
+$Project "networksystem"
+{
+	"networksystem\networksystem.vpc" [$WIN32]
+}
+
+$Project "networktest"
+{
+	"unittests\networktest\networktest.vpc" [$WIN32]
+}
+
+$Project "newdat"
+{
+	"utils\newdat\newdat.vpc" [$WIN32]
+}
+
+$Project "normal2ssbump"
+{
+	"utils\normal2ssbump\normal2ssbump.vpc" [$WIN32]
+}
+
+$Project "nvtristriplib"
+{
+	"utils\nvtristriplib\nvtristriplib.vpc" [$WIN32]
+}
+
+$Project "p4lib"
+{
+	"p4lib\p4lib.vpc" [$WIN32]
+}
+
+$Project "mdllib"
+{
+	"mdllib\mdllib.vpc" [$WIN32]
+}
+
+$Project "paginate"
+{
+	"utils\paginate\paginate.vpc" [$WIN32]
+}
+
+$Project "panel_zoo"
+{
+	"utils\vgui_panel_zoo\panel_zoo.vpc" [$WIN32]
+}
+
+$Project "parsifal"
+{
+	"libparsifal-0.8.3\win32\vc6\parsifal.vpc" [$WIN32]
+}
+
+$Project "pcffix"
+{
+	"utils\pcffix\pcffix.vpc" [$WIN32]
+}
+
+
+$Project "perftest"
+{
+	"vphysics\perftest\perftest.vpc" [$WIN32]
+}
+
+$Project "pet"
+{
+	"tools\pet\pet.vpc" [$WIN32]
+}
+
+$Project "pfmcomp"
+{
+	"utils\pfmcomp\pfmcomp.vpc" [$WIN32]
+}
+
+$Project "pfm2tgas"
+{
+	"utils\pfm2tgas\pfm2tgas.vpc" [$WIN32]
+}
+
+$Project "phonemeextractor"
+{
+	"utils\phonemeextractor\phonemeextractor.vpc" [$WIN32]
+}
+
+$Project "phonemeextractor_ims"
+{
+	"utils\phonemeextractor\phonemeextractor_ims.vpc" [$WIN32]
+}
+
+$Project "printbones"
+{
+	"utils\printbones\printbones.vpc" [$WIN32]
+}
+
+$Project "processgamestats"
+{
+	"devtools\processgamestats\processgamestats.vpc" [$WIN32]
+}
+
+$Project "psdinfo"
+{
+	"utils\psdinfo\psdinfo.vpc" [$WIN32]
+}
+
+$Project "QCGenerator_Launcher"
+{
+	"utils\QCGenerator\QCGenerator_Launcher.vpc" [$WIN32]
+}
+
+$Project "QC_Eyes"
+{
+	"utils\QC_Eyes\QC_Eyes.vpc" [$WIN32]
+}
+
+$Project "quantize"
+{
+	"quantize\quantize.vpc" [$WIN32]
+}
+
+$Project "raytrace"
+{
+	"raytrace\raytrace.vpc" [$WIN32||$X360]
+}
+
+$Project "res2c"
+{
+	"utils\tfstats\res2c\res2c.vpc" [$WIN32]
+}
+
+$Project "rpt"
+{
+	"utils\rpt\rpt.vpc" [$WIN32]
+}
+
+$Project "rt_test"
+{
+	"unittests\rt_test\rt_test.vpc" [$WIN32]
+}
+
+$Project "runme"
+{
+	"utils\runme\runme.vpc" [$WIN32]
+}
+
+$Project "sampletool"
+{
+	"tools\sampletool\sampletool.vpc" [$WIN32]
+}
+
+$Project "scenefilecache"
+{
+	"scenefilecache\scenefilecache.vpc" [$WIN32||$X360]
+}
+
+$Project "scenemanager"
+{
+	"utils\scenemanager\scenemanager.vpc" [$WIN32]
+}
+
+$Project "sceneviewer"
+{
+	"utils\sceneviewer\sceneviewer.vpc" [$WIN32]
+}
+
+$Project "scratchpad3dviewer"
+{
+	"utils\scratchpad3dviewer\scratchpad3dviewer.vpc" [$WIN32]
+}
+
+$Project "SDKLauncher"
+{
+	"sdklauncher\SDKLauncher.vpc" [$WIN32]
+}
+
+$Project "ServerBrowser"
+{
+	"ServerBrowser\ServerBrowser.vpc" [$WIN32||$X360]
+}
+
+$Project "ServerMonitor"
+{
+	"Tracker\ServerMonitor\ServerMonitor.vpc" [$WIN32]
+}
+
+$Project "serverplugin_empty"
+{
+	"utils\serverplugin_sample\serverplugin_empty.vpc" [$WIN32]
+}
+
+$Project "sfmgen"
+{
+	"utils\sfmgen\sfmgen.vpc" [$WIN32]
+}
+
+$Project "sfmobjects"
+{
+	"sfmobjects\sfmobjects.vpc" [$WIN32]
+}
+
+$Project "shadercompile_dll"
+{
+	"utils\shadercompile\shadercompile_dll.vpc" [$WIN32]
+}
+
+$Project "shadercompile_launcher"
+{
+	"utils\shadercompile_launcher\shadercompile_launcher.vpc" [$WIN32]
+}
+
+$Project "shaderapidx9"
+{
+	"materialsystem\shaderapidx9\shaderapidx9.vpc" [$WIN32||$X360]
+}
+
+$Project "shaderapidx10"
+{
+	"materialsystem\shaderapidx9\shaderapidx10.vpc" [$WIN32]
+}
+
+$Project "shaderapiempty"
+{
+	"materialsystem\shaderapiempty\shaderapiempty.vpc" [$WIN32]
+}
+
+$Project "shaderapitest"
+{
+	"unittests\shaderapitest\shaderapitest.vpc" [$WIN32]
+}
+
+$Project "shaderinfo"
+{
+	"utils\shaderinfo\shaderinfo.vpc" [$WIN32]
+}
+
+$Project "shaderlib"
+{
+	"materialsystem\shaderlib\shaderlib.vpc" [$WIN32||$X360]
+}
+
+$Project "shader_nvfx"
+{
+	"materialsystem\stdshaders\shader_nvfx.vpc" [$WIN32]
+}
+
+$Project "shader_test"
+{
+	"materialsystem\stdshaders\shader_test.vpc" [$WIN32]
+}
+
+$Project "SMDExportMP"
+{
+	"utils\xsi\SMDExportMP\SMDExportMP.vpc" [$WIN32]
+}
+
+$Project "smdlexp"
+{
+	"utils\smdlexp\smdlexp.vpc" [$WIN32]
+}
+
+$Project "smp"
+{
+	"utils\smp\smp.vpc" [$WIN32]
+}
+
+$Project "smtpmail"
+{
+	"devtools\smtpmail\smtpmail.vpc" [$WIN32]
+}
+
+$Project "socket_tests"
+{
+	"utils\socket_tests\socket_tests.vpc" [$WIN32]
+}
+
+$Project "soundemittersystem"
+{
+	"soundemittersystem\soundemittersystem.vpc" [$WIN32||$X360]
+}
+
+$Project "soundsystem"
+{
+	"soundsystem\soundsystem.vpc" [$WIN32]
+}
+
+$Project "soundtest"
+{
+	"unittests\soundtest\soundtest.vpc" [$WIN32]
+}
+
+$Project "speex"
+{
+	"engine\voice_codecs\speex\speex.vpc" [$WIN32]
+}
+
+//$Project "splitskybox"
+//{
+//	"splitskybox\splitskybox.vpc" [$WIN32]
+//}
+
+$Project "splitskybox"
+{
+	"utils\splitskybox\splitskybox.vpc" [$WIN32]
+}
+
+$Project "sqldb_mysql"
+{
+	"Tracker\sqldb_mysql\sqldb_mysql.vpc" [$WIN32]
+}
+
+$Project "sqlwrapper"
+{
+	"utils\sqlwrapper\sqlwrapper.vpc" [$WIN32]
+}
+
+$Project "standalonedatatabletest"
+{
+	"utils\standalonedatatabletest\standalonedatatabletest.vpc" [$WIN32]
+}
+
+$Project "Status"
+{
+	"status\Status.vpc" [$WIN32]
+}
+
+$Project "stdshader_dbg"
+{
+	"materialsystem\stdshaders\stdshader_dbg.vpc" [$WIN32||$X360]
+}
+
+$Project "stdshader_dx6"
+{
+	"materialsystem\stdshaders\stdshader_dx6.vpc" [$WIN32]
+}
+
+$Project "stdshader_dx7"
+{
+	"materialsystem\stdshaders\stdshader_dx7.vpc" [$WIN32]
+}
+
+$Project "stdshader_dx8"
+{
+	"materialsystem\stdshaders\stdshader_dx8.vpc" [$WIN32]
+}
+
+$Project "stdshader_dx9"
+{
+	"materialsystem\stdshaders\stdshader_dx9.vpc" [$WIN32||$X360]
+}
+
+$Project "SteamBackup"
+{
+	"SteamBackup\SteamBackup.vpc" [$WIN32]
+}
+
+$Project "SteamDebugHelper"
+{
+	"utils\SteamDebugHelper\SteamDebugHelper.vpc" [$WIN32]
+}
+
+$Project "SteamUI"
+{
+	"SteamUI\SteamUI.vpc" [$WIN32]
+}
+
+$Project "studiomdl"
+{
+	"utils\studiomdl\studiomdl.vpc" [$WIN32]
+}
+
+$Project "studiorender"
+{
+	"studiorender\studiorender.vpc" [$WIN32||$X360]
+}
+
+$Project "SymbolStoreUpdate"
+{
+	"utils\SymbolStoreUpdate\SymbolStoreUpdate.vpc" [$WIN32]
+}
+
+$Project "syncfrommirror"
+{
+	"devtools\syncfrommirror\syncfrommirror.vpc" [$WIN32]
+}
+
+$Project "tagbuild"
+{
+	"devtools\tagbuild\tagbuild.vpc" [$WIN32]
+}
+
+$Project "tagxzppreload"
+{
+	"utils\xbox\tagxzppreload\tagxzppreload.vpc" [$WIN32]
+}
+
+$Project "test"
+{
+	"shell\uninstall\uninstalltester\test.vpc" [$WIN32]
+}
+
+$Project "test_binaries"
+{
+	"devtools\test_binaries\test_binaries.vpc" [$WIN32]
+}
+
+$Project "testprocess"
+{
+	"unittests\testprocess\testprocess.vpc" [$WIN32]
+}
+
+$Project "texturecompile_dll"
+{
+	"utils\texturecompile\texturecompile_dll.vpc" [$WIN32]
+}
+
+$Project "texturecompile_launcher"
+{
+	"utils\texturecompile_launcher\texturecompile_launcher.vpc" [$WIN32]
+}
+
+$Project "texturesynth"
+{
+	"utils\Texturesynth\texturesynth.vpc" [$WIN32]
+}
+
+$Project "tfstats"
+{
+	"utils\tfstats\tfstats.vpc" [$WIN32]
+}
+
+$Project "tgadiff"
+{
+	"utils\tgadiff\tgadiff.vpc" [$WIN32]
+}
+
+$Project "tgamse"
+{
+	"utils\tgamse\tgamse.vpc" [$WIN32]
+}
+
+$Project "tier0"
+{
+	"tier0\tier0.vpc" 	[$WIN32 || $X360]
+}
+
+$Project "tier1"
+{
+	"tier1\tier1.vpc" 	[$WIN32 || $X360]
+}
+
+$Project "tier2"
+{
+	"tier2\tier2.vpc" 	[$WIN32||$X360]
+}
+
+$Project "tier3"
+{
+	"tier3\tier3.vpc" 	[$WIN32||$X360]
+}
+
+$Project "tier1test"
+{
+	"unittests\tier1test\tier1test.vpc" 	[$WIN32]
+}
+
+$Project "tier2test"
+{
+	"unittests\tier2test\tier2test.vpc" 	[$WIN32]
+}
+
+$Project "tier3test"
+{
+	"unittests\tier3test\tier3test.vpc" 	[$WIN32]
+}
+
+$Project "toolutils"
+{
+	"tools\toolutils\toolutils.vpc" [$WIN32]
+}
+
+$Project "traceperf"
+{
+	"vphysics\traceperf\traceperf.vpc"
+}
+
+$Project "TrackerDBG"
+{
+	"Tracker\TrackerDBG\TrackerDBG.vpc" [$WIN32]
+}
+
+$Project "TrackerNET"
+{
+	"Tracker\TrackerNET\TrackerNET.vpc" [$WIN32]
+}
+
+$Project "TrackerServer"
+{
+	"Tracker\TrackerServer\TrackerServer.vpc" [$WIN32]
+}
+
+$Project "TrackerSRV"
+{
+	"Tracker\TrackerSRV\TrackerSRV.vpc" [$WIN32]
+}
+
+$Project "TrackerTest"
+{
+	"Tracker\TrackerTest\TrackerTest.vpc" [$WIN32]
+}
+
+$Project "TrackerUI"
+{
+	"Tracker\TrackerUI\TrackerUI.vpc" [$WIN32]
+}
+
+$Project "ui"
+{
+	"utils\tfstats\ui\ui.vpc" [$WIN32]
+}
+
+$Project "unicode"
+{
+	"unicode\unicode.vpc" [$WIN32]
+}
+
+$Project "uninstall"
+{
+	"shell\uninstall\uninstall.vpc" [$WIN32]
+}
+
+$Project "unitlib"
+{
+	"unitlib\unitlib.vpc" [$WIN32]
+}
+
+$Project "unittest"
+{
+	"utils\unittest\unittest.vpc" [$WIN32]
+}
+
+$Project "unusedcontent"
+{
+	"utils\unusedcontent\unusedcontent.vpc" [$WIN32]
+}
+
+$Project "UpdateProgress"
+{
+	"devtools\WiseInstallerHelpers\UpdateProgress\UpdateProgress.vpc" [$WIN32]
+}
+
+$Project "valvelib"
+{
+	"utils\valvelib\valvelib.vpc" [$WIN32]
+}
+
+$Project "valve_avi"
+{
+	"avi\valve_avi.vpc" [$WIN32]
+}
+
+$Project "valvemaya_maya7"
+{
+	"sdktools\maya\valveMaya\valveMaya_Maya7.vpc" [$WIN32]
+}
+
+$Project "valvemaya_maya8"
+{
+	"sdktools\maya\valveMaya\valveMaya_Maya8.vpc" [$WIN32]
+}
+
+$Project "vaudio_miles"
+{
+	"engine\voice_codecs\miles\vaudio_miles.vpc" [$WIN32]
+}
+
+$Project "vbsp"
+{
+	"utils\vbsp\vbsp.vpc" [$WIN32]
+}
+
+$Project "vbspinfo"
+{
+	"utils\vbspinfo\vbspinfo.vpc" [$WIN32]
+}
+
+$Project "vcd_sound_check"
+{
+	"utils\vcd_sound_check\vcd_sound_check.vpc" [$WIN32]
+}
+
+$Project "vcdblock"
+{
+	"tools\vcdblock\vcdblock.vpc" [$WIN32]
+}
+
+$Project "vcdimport"
+{
+	"utils\vcdimport\vcdimport.vpc" [$WIN32]
+}
+
+$Project "vcdupdate"
+{
+	"utils\vcdupdate\vcdupdate.vpc" [$WIN32]
+}
+
+$Project "vconfig"
+{
+	"utils\vconfig\vconfig.vpc" [$WIN32]
+}
+
+$Project "vcrtrace"
+{
+	"utils\vcrtrace\vcrtrace.vpc" [$WIN32]
+}
+
+$Project "vguimatsurface"
+{
+	"vguimatsurface\vguimatsurface.vpc" [$WIN32||$X360]
+}
+
+$Project "vgui_controls"
+{
+	"vgui2\vgui_controls\vgui_controls.vpc" [$WIN32||$X360]
+}
+
+$Project "vgui_dll"
+{
+	"vgui2\src\vgui_dll.vpc" [$WIN32||$X360]
+}
+
+$Project "vgui_surfacelib"
+{
+	"vgui2\vgui_surfacelib\vgui_surfacelib.vpc" [$WIN32||$X360]
+}
+
+$Project "vice"
+{
+	"utils\vice\vice.vpc" [$WIN32]
+}
+
+$Project "vkeyedit"
+{
+	"utils\vkeyedit\vkeyedit.vpc" [$WIN32]
+}
+
+$Project "vlocalize"
+{
+	"vgui2\vlocalize\vlocalize.vpc" [$WIN32]
+}
+
+$Project "vmf_tweak"
+{
+	"utils\vmf_tweak\vmf_tweak.vpc" [$WIN32]
+}
+
+$Project "vmpi"
+{
+	"utils\vmpi\vmpi.vpc" [$WIN32]
+}
+
+$Project "vmpi_job_search"
+{
+	"utils\vmpi\vmpi_job_search\vmpi_job_search.vpc" [$WIN32]
+}
+
+$Project "vmpi_job_watch"
+{
+	"utils\vmpi\vmpi_job_watch\vmpi_job_watch.vpc" [$WIN32]
+}
+
+$Project "vmpi_services_watch"
+{
+	"utils\vmpi\vmpi_services_watch\vmpi_services_watch.vpc" [$WIN32]
+}
+
+$Project "vmpi_service"
+{
+	"utils\vmpi\vmpi_service\vmpi_service.vpc" [$WIN32]
+}
+
+$Project "vmpi_transfer"
+{
+	"utils\vmpi\vmpi_transfer\vmpi_transfer.vpc" [$WIN32]
+}
+
+$Project "vmpi_service_install"
+{
+	"utils\vmpi\vmpi_service_install\vmpi_service_install.vpc" [$WIN32]
+}
+
+$Project "vmpi_service_ui"
+{
+	"utils\vmpi\vmpi_service_ui\vmpi_service_ui.vpc" [$WIN32]
+}
+
+$Project "vmt"
+{
+	"tools\vmt\vmt.vpc" [$WIN32]
+}
+
+$Project "vmtcheck"
+{
+	"utils\vmtcheck\vmtcheck.vpc" [$WIN32]
+}
+
+$Project "vmtedit"
+{
+	"utils\vmtedit\vmtedit.vpc" [$WIN32]
+}
+
+$Project "voice_tweak"
+{
+	"utils\voice_tweak\voice_tweak.vpc" [$WIN32]
+}
+
+$Project "vp4"
+{
+	"utils\vp4\vp4.vpc" [$WIN32]
+}
+
+$Project "vp4mutex"
+{
+	"utils\vp4mutex\vp4mutex.vpc" [$WIN32]
+}
+
+$Project "vpc"
+{
+	"utils\vpc\vpc.vpc"	[$WIN32]
+}
+
+
+$Project "vphysics"
+{
+	"vphysics\vphysics.vpc"  [$WIN32||$X360]
+}
+
+$Project "vprojtomake"
+{
+	"utils\vprojtomake\vprojtomake.vpc" [$WIN32]
+}
+
+$Project "vrad_dll"
+{
+	"utils\vrad\vrad_dll.vpc" [$WIN32]
+}
+
+$Project "vrad_launcher"
+{
+	"utils\vrad_launcher\vrad_launcher.vpc" [$WIN32]
+}
+
+$Project "vsdmxio_maya7"
+{
+	"sdktools\maya\vsdmxio\vsdmxio_Maya7.vpc" [$WIN32]
+}
+
+$Project "vsdmxio_maya8"
+{
+	"sdktools\maya\vsdmxio\vsdmxio_Maya8.vpc" [$WIN32]
+}
+
+$Project "vsmaster_maya7"
+{
+	"sdktools\maya\vsmaster\vsmaster_maya7.vpc"	[$WIN32]
+}
+
+$Project "vsmaster_maya8"
+{
+	"sdktools\maya\vsmaster\vsmaster_maya8.vpc"	[$WIN32]
+}
+
+$Project "vsmdlpreview_maya7"
+{
+	"sdktools\maya\vsmdlpreview\vsmdlpreview_maya7.vpc"	[$WIN32]
+}
+
+$Project "vsmdlpreview_maya8"
+{
+	"sdktools\maya\vsmdlpreview\vsmdlpreview_maya8.vpc"	[$WIN32]
+}
+
+$Project "vsskinner_maya7"
+{
+	"sdktools\maya\vsskinner\vsskinner_Maya7.vpc" [$WIN32]
+}
+
+$Project "vsskinner_maya8"
+{
+	"sdktools\maya\vsskinner\vsskinner_Maya8.vpc" [$WIN32]
+}
+
+$Project "vstdlib"
+{
+	"vstdlib\vstdlib.vpc"		[$WIN32 || $X360]
+}
+
+$Project "vstutils_maya7"
+{
+	"sdktools\maya\vstutils\vstutils_maya7.vpc"	[$WIN32]
+}
+
+$Project "vstutils_maya8"
+{
+	"sdktools\maya\vstutils\vstutils_maya8.vpc"	[$WIN32]
+}
+
+$Project "vsvmfio_maya7"
+{
+	"sdktools\maya\vsvmfio\vsvmfio_maya7.vpc"	[$WIN32]
+}
+
+$Project "vsvmfio_maya8"
+{
+	"sdktools\maya\vsvmfio\vsvmfio_maya8.vpc"	[$WIN32]
+}
+
+$Project "vtaexp"
+{
+	"utils\vtaexp\vtaexp.vpc" [$WIN32]
+}
+
+$Project "vtex_dll"
+{
+	"utils\vtex\vtex_dll.vpc" [$WIN32]
+}
+
+$Project "vtex_launcher"
+{
+	"utils\vtex\vtex_launcher.vpc" [$WIN32]
+}
+
+$Project "vtf"
+{
+	"vtf\vtf.vpc" [$WIN32||$X360]
+}
+
+$Project "vtf2tga"
+{
+	"utils\vtf2tga\vtf2tga.vpc" [$WIN32]
+}
+
+$Project "vtfdiff"
+{
+	"utils\vtfdiff\vtfdiff.vpc" [$WIN32]
+}
+
+$Project "vtfscrew"
+{
+	"utils\vtfscrew\vtfscrew.vpc" [$WIN32]
+}
+
+$Project "vvis_dll"
+{
+	"utils\vvis\vvis_dll.vpc" [$WIN32]
+}
+
+$Project "vvis_launcher"
+{
+	"utils\vvis_launcher\vvis_launcher.vpc" [$WIN32]
+}
+
+$Project "vweightexp"
+{
+	"utils\vweightexp\vweightexp.vpc" [$WIN32]
+}
+
+$Project "vxbdm"
+{
+	"utils\xbox\vxbdm\vxbdm.vpc" [$X360]
+}
+
+$Project "vxconsole"
+{
+	"utils\xbox\vxconsole\vxconsole.vpc" [$WIN32]
+}
+
+$Project "WaitAndRestart"
+{
+	"utils\vmpi\WaitAndRestart\WaitAndRestart.vpc" [$WIN32]
+}
+
+$Project "xbox_loader"
+{
+	"utils\xbox\xbox_loader\xbox_loader.vpc" [$WIN32]
+}
+
+$Project "xbspinfo"
+{
+	"utils\xbox\xbspinfo\xbspinfo.vpc" [$WIN32]
+}
+
+$Project "xcompress"
+{
+	"utils\xbox\xcompress\xcompress.vpc" [$WIN32]
+}
+
+$Project "xwad"
+{
+	"utils\xwad\xwad.vpc" [$WIN32]
+}
+
+$Project "ZipAlign"
+{
+	"utils\zipalign\ZipAlign.vpc" [$WIN32]
+}
+

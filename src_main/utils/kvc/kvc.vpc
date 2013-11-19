@@ -1,0 +1,46 @@
+//-----------------------------------------------------------------------------
+//	KVC.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_con_win32_base.vpc" [$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"..\common;$BASE"
+	}
+}
+
+$Project "kvc"
+{
+	$Folder	"Source Files"
+	{
+		$File	"kvc.cpp"
+	}
+	
+	$Folder "Common Source Files"
+	{
+		$File	"$SRCDIR\public\kevvaluescompiler.cpp"
+		$File	"..\common\filesystem_tools.cpp"
+		$File	"..\common\pacifier.cpp"
+	}	
+
+	$Folder "Common Header Files"
+	{
+		$File	"$SRCDIR\public\keyvaluescompiler.h"
+		$File	"filesystem_tools.h"
+		$File	"pacifier.h"
+	}
+	
+	$Folder	"Link Libraries" [$WIN32]
+	{
+		$File	"$SRCDIR\lib\public\appframework.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+	}
+}

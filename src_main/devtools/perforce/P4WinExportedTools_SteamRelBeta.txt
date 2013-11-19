@@ -1,0 +1,5 @@
+P4Win Tools File from chrisn
+>>Steam Rel\Beta Mutex				0	0	0	1	0
+>>Lock Steam/rel/beta	p4mutex.exe	lock steam_relbeta 3 $u $p	c:\	1	0	1	0	0
+>>Release Steam/rel/beta	p4mutex.exe	release steam_relbeta 3 $u $p	c:\	1	0	1	0	0
+>>Query Steam/rel/beta	p4mutex.exe	query steam_relbeta 3 $u $p	c:\	1	0	1	0	0

@@ -1,0 +1,61 @@
+//-----------------------------------------------------------------------------
+//	BITMAP.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+	$BuildForLinux 1
+}
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\dx9sdk\include"			[$WIN32]
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\x360xdk\include\win32\vs2005"
+	}
+}
+
+$Project "bitmap"
+{
+	$Folder	"Source Files"
+	{
+		$File	"ImageByteSwap.cpp"
+		$File	"colorconversion.cpp"
+		$File	"float_bm.cpp"
+		$File	"float_bm2.cpp"
+		$File	"float_bm3.cpp"
+		$File	"float_bm4.cpp"					[$WIN32]
+		$File	"float_bm_bilateral_filter.cpp"
+		$File	"float_cube.cpp"
+		$File	"imageformat.cpp"
+		$File	"psd.cpp"
+		$File	"resample.cpp"
+		$File	"tgaloader.cpp"
+		$File	"tgawriter.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\bitmap\bitmap.h"
+		$File	"$SRCDIR\public\bitmap\float_bm.h"
+		$File	"$SRCDIR\public\bitmap\imageformat.h"
+		$File	"$SRCDIR\public\bitmap\psd.h"
+		$File	"$SRCDIR\public\bitmap\tgaloader.h"
+		$File	"$SRCDIR\public\bitmap\tgawriter.h"
+	}
+
+	$Folder "Link Libraries" [$WIN32]
+	{
+		$File	"$SRCDIR\lib\public\nvtc.lib"
+		$File	"$SRCDIR\lib\public\ATI_Compress_MT_VC8.lib"
+	}
+}

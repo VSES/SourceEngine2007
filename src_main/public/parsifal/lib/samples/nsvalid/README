@@ -1,0 +1,38 @@
+NSVALID.C SAMPLE
+----------------
+
+This sample demonstrates filtered validation, external DTD loading 
+by using XMLParser_SetExternalSubset function and also basic 
+base directory handling for DTDs and external entities.
+
+Nsvalid makes possible to selectively validate elements that are
+in namespace specified by URI parameter. Example usage:
+nsvalid document.xml /URI:mynamespace
+
+so for example the following document will be valid:
+
+<!DOCTYPE doc [
+<!ELEMENT doc (#PCDATA)>
+]>
+<doc xmlns="mynamespace" xmlns:x="anotherns" x:att="val">
+  <x:node/>
+</doc>
+
+You can also specify external DTD to be loaded by using
+/DTD parameter. This can be useful when the document itself
+doesn't contain reference to DTD or you want to override
+some declarations. See XMLParser_SetExternalSubset in
+the documentation.
+
+/URI and /DTD parameters for nsvalid are both optional.
+Without them nsvalid works as simple validator.
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+
+UNIX
+
+    make
+    make install

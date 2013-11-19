@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE stories [
+<!ELEMENT stories (story*)>
+<!ELEMENT story (title,author,body)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT body (#PCDATA|b)*>
+<!ELEMENT b (#PCDATA)>
+]>
+<stories>
+<story>
+	<title>Maybe</title>
+	<author>Taoism oriented farmer</author>
+	<body>
+	There is a Taoist story of an old farmer who had worked his crops for many years.
+	One day his horse ran away. Upon hearing the news, his neighbors came to visit. 
+	"Such bad luck," they said sympathetically. "May be," the farmer replied.
+	The next morning the horse returned, bringing with it three other wild horses. 
+	"How wonderful," the neighbors exclaimed. "May be,"
+	replied the old man. The following day, his son tried to ride one of the untamed
+	horses, was thrown, and broke his leg. The neighbors again came to offer their
+	sympathy on his misfortune. "May be," answered the farmer. The day after, military
+	<b>officials came to the village</b> to draft young men into the army. Seeing that the
+	son's leg was broken, they passed him by. The neighbors congratulated the farmer
+	on how well things had turned out. "May be," said the farmer.
+	</body>
+</story>
+<story>
+	<title>Chasing Two Rabbits</title>
+	<author>the guru</author>
+	<body>
+	A martial arts student approached his teacher with a question. "I'd like to
+	improve my knowledge of the <b>martial arts</b>. In addition to learning from you, I'd like
+	to study with another teacher in order to learn another style. What do you think of
+	this idea?" 
+	"The hunter who chases two rabbits," answered the master, "catches neither one."
+	</body>
+</story>
+<story>
+	<title>Prosperity</title>
+	<author>Zen master</author>
+	<body>
+	A rich man asked a <b>Zen master</b> to write something down that could encourage the prosperity of his family
+	for years to come. It would be something that the family could cherish for generations. On a large piece
+	of paper, the master wrote, <b>"Father dies, son dies, grandson dies."</b>
+	The rich man became angry when he saw the master's work. "I asked you to write something down that could
+	bring happiness and prosperity to my family. Why do you give me something depressing like this?"
+	"if your son should die before you," the master answered, "this would bring unbearable grief to your
+	family. If your grandson should die before your son, this also would bring great sorrow. If your
+	family, generation after generation, disappears in the order I have described, it will be the natural
+	course of life. <b>This is true happiness and prosperity.</b>"
+	</body>
+</story>
+</stories>

@@ -1,0 +1,67 @@
+//-----------------------------------------------------------------------------
+//	VSDMXIO_MAYA7.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro OUTBINDIR	"$SRCDIR\..\game\sdktools\maya\7.0\modules\valvesource\plug-ins\valvesource"
+
+$Include "vsDmxIO_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya;$SRCDIR\common\maya\7.0"
+	}
+}
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					"Debug_Maya7"
+		$IntermediateDirectory				"Debug_Maya7"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Debug_Maya7\vsDmxIO.mll"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					"Release_Maya7"
+		$IntermediateDirectory				"Release_Maya7"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Release_Maya7\vsDmxIO.mll"
+	}
+}
+
+$Project "VsDmxIO_Maya7"
+{
+	// Source files in vsDmxIO_base.vpc
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\maya\7.0\valveMaya.lib"
+
+		$Folder	"Maya"
+		{
+			$File	"$SRCDIR\lib\common\maya\7.0\Foundation.lib"
+			$File	"$SRCDIR\lib\common\maya\7.0\OpenMaya.lib"
+			$File	"$SRCDIR\lib\common\maya\7.0\OpenMayaAnim.lib"
+		}
+	}
+
+	$Folder	"mel"
+	{
+		$File	"$SRCDIR\..\game\sdktools\maya\7.0\modules\valveSource\scripts\vsDmxIOTranslatorOptions.mel"
+	}
+}

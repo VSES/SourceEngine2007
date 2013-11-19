@@ -1,0 +1,71 @@
+//-----------------------------------------------------------------------------
+//	VSTSMDIO_MAYA8.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro OUTBINDIR	"$SRCDIR\..\game\sdktools\maya\8.0\modules\utilities\plug-ins"
+
+$Include "vstSmdIO_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya;$SRCDIR\common\maya\8.0"
+	}
+}
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					"Debug_Maya8"
+		$IntermediateDirectory				"Debug_Maya8"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Debug_Maya8\vstSmdIO.mll"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					"Release_Maya8"
+		$IntermediateDirectory				"Release_Maya8"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Release_Maya8\vstSmdIO.mll"
+	}
+}
+
+$Project "VstSmdIO_Maya8"
+{
+	// Source files in vstSmdIO_base.vpc
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\maya\8.0\valveMaya.lib"
+
+		$Folder	"Maya"
+		{
+			$File	"$SRCDIR\lib\common\maya\8.0\Foundation.lib"
+			$File	"$SRCDIR\lib\common\maya\8.0\OpenMaya.lib"
+			$File	"$SRCDIR\lib\common\maya\8.0\OpenMayaAnim.lib"
+			$File	"$SRCDIR\lib\common\maya\8.0\OpenMayaUI.lib"
+		}
+	}
+
+	$Folder	"mel"
+	{
+		$File	"$SRCDIR\..\game\sdktools\maya\8.0\modules\utilities\scripts\vstSmdAnimationTranslatorOptions.mel"
+		$File	"$SRCDIR\..\game\sdktools\maya\8.0\modules\utilities\scripts\vstSmdModelTranslatorOptions.mel"
+		$File	"$SRCDIR\..\game\sdktools\maya\8.0\modules\utilities\scripts\vstSmdPhysicsTranslatorOptions.mel"
+		$File	"$SRCDIR\..\game\sdktools\maya\8.0\modules\utilities\scripts\vstSmdIOOptions.mel"
+	}
+}

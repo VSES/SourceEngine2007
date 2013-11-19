@@ -1,0 +1,48 @@
+//-----------------------------------------------------------------------------
+//	VTF2TGA.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_con_win32_base.vpc"
+
+$Project "Vtf2tga"
+{
+	$Folder	"Source Files"
+	{
+		$File	"vtf2tga.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\Public\mathlib\amd3dx.h"
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\Public\commonmacros.h"
+		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\public\tier0\fasttimer.h"
+		$File	"$SRCDIR\Public\mathlib\MATHLIB.H"
+		$File	"$SRCDIR\public\tier0\memdbgon.h"
+		$File	"$SRCDIR\public\tier0\platform.h"
+		$File	"$SRCDIR\public\protected_things.h"
+		$File	"$SRCDIR\Public\s3_intrf.h"
+		$File	"$SRCDIR\public\string_t.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\Public\mathlib\vector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+		$File	"$SRCDIR\public\vtf\vtf.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\bitmap.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\vtf.lib"
+	}
+}

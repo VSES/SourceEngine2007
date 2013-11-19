@@ -1,0 +1,24 @@
+//	DYNAMIC: "ALPHACLIP"					"0..1"
+
+const float g_AlphaThreshold : register( c0 );
+
+struct PS_INPUT
+{
+#if ALPHACLIP
+	float2 texCoord0	:	TEXCOORD0;
+#endif
+};
+
+sampler BaseTextureSampler	: register( s0 );
+
+float4 main( PS_INPUT i ) : COLOR
+{
+	float4 color = float4( 1, 0, 0, 1 );	// opaque alpha....the color doesn't matter for this shader
+
+#if ALPHACLIP
+	color = tex2D( BaseTextureSampler, i.texCoord0 );
+	clip( color.a - g_AlphaThreshold );
+#endif
+
+	return color;
+}

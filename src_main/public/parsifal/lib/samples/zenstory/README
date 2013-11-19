@@ -1,0 +1,54 @@
+ZENSTORY.C SAMPLE
+-----------------
+
+This sample demonstrates some SAX parsing techniques:
+
+- Parsing fixed STORIES.XML format
+- Mixed content (tags and character data mixed) and container tag
+  (just allow other tags) validation etc.
+- Parsing into application data structure (in this case into STORY structs in XMLVector)
+- Using XMLStringbuf to collect data
+- Using XMLNormalizeBuf utility function to normalize character data (STORIES.XML 
+  has some extra tabs and indentation on purpose)
+
+I suggest you to examine the sample carefully, it deals with basic framework
+for SAX parsing with Parsifal XML Parser.
+
+STORIES.XML has the following format:
+
+<stories>
+    <story>
+        <title/>AAA</title>
+        <author>BBB</author>
+        <body>CCC<bold>CCC</bold></body>
+    </story>
+</stories>
+
+- where "title" and "author" tag doesn't allow mixed content but simple char data
+- "body" tag allows mixed content (mixed content tags are excluded from the output though)
+- "stories" and "story" tags are just containers, don't allow any character data 
+  (this will trigger an error)
+
+NOTE: STORIES.XML format would have been cleaner if it'd use attributes instead of "title"
+and "author" tags (since they don't allow mixed content would be good enough reason to use
+attributes!) but I decided to use tags here 'cos it demostrates state handling better.
+
+i.e. more wiser STORIES.XML format could be:
+
+<stories>
+  <story title="AAA" author="BBB">
+  	   body goes here...
+  </story>
+</stories>
+
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+
+UNIX
+
+    make
+    make install
+    zenstory < stories.xml > stories.txt

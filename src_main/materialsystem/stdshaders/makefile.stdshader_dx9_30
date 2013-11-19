@@ -1,0 +1,120 @@
+default:  fxctmp9_tmp\cloak_vs30.inc fxctmp9_tmp\cloak_ps30.inc fxctmp9_tmp\cloak_blended_pass_vs30.inc fxctmp9_tmp\cloak_blended_pass_ps30.inc fxctmp9_tmp\debugmorphaccumulator_vs30.inc fxctmp9_tmp\debugmorphaccumulator_ps30.inc fxctmp9_tmp\decalmodulate_ps30.inc fxctmp9_tmp\emissive_scroll_blended_pass_vs30.inc fxctmp9_tmp\emissive_scroll_blended_pass_ps30.inc fxctmp9_tmp\eye_refract_vs30.inc fxctmp9_tmp\eye_refract_ps30.inc fxctmp9_tmp\eyes_vs30.inc fxctmp9_tmp\eyes_ps30.inc fxctmp9_tmp\eyes_flashlight_vs30.inc fxctmp9_tmp\eyes_flashlight_ps30.inc fxctmp9_tmp\morphaccumulate_vs30.inc fxctmp9_tmp\morphaccumulate_ps30.inc fxctmp9_tmp\morphweight_vs30.inc fxctmp9_tmp\morphweight_ps30.inc fxctmp9_tmp\skin_vs30.inc fxctmp9_tmp\skin_ps30.inc shaders\fxc\skin_ps30.vcs fxctmp9_tmp\teeth_vs30.inc fxctmp9_tmp\teeth_ps30.inc fxctmp9_tmp\teeth_bump_vs30.inc fxctmp9_tmp\teeth_bump_ps30.inc fxctmp9_tmp\teeth_flashlight_vs30.inc fxctmp9_tmp\teeth_flashlight_ps30.inc fxctmp9_tmp\vertexlit_and_unlit_generic_vs30.inc shaders\fxc\vertexlit_and_unlit_generic_vs30.vcs fxctmp9_tmp\vertexlit_and_unlit_generic_ps30.inc fxctmp9_tmp\vertexlit_and_unlit_generic_bump_vs30.inc fxctmp9_tmp\vertexlit_and_unlit_generic_bump_ps30.inc fxctmp9_tmp\vortwarp_vs30.inc fxctmp9_tmp\vortwarp_ps30.inc fxctmp9_tmp\depthwrite_ps30.inc fxctmp9_tmp\depthwrite_vs30.inc
+
+fxctmp9_tmp\cloak_vs30.inc :  cloak_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." cloak_vs20.fxc-----cloak_vs30
+
+fxctmp9_tmp\cloak_ps30.inc :  cloak_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h shader_constant_register_map.h common_ps_fxc.h common_vertexlitgeneric_dx9.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." cloak_ps2x.fxc-----cloak_ps30
+
+fxctmp9_tmp\cloak_blended_pass_vs30.inc :  cloak_blended_pass_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." cloak_blended_pass_vs20.fxc-----cloak_blended_pass_vs30
+
+fxctmp9_tmp\cloak_blended_pass_ps30.inc :  cloak_blended_pass_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h common_vertexlitgeneric_dx9.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." cloak_blended_pass_ps2x.fxc-----cloak_blended_pass_ps30
+
+fxctmp9_tmp\debugmorphaccumulator_vs30.inc :  debugmorphaccumulator_vs30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." debugmorphaccumulator_vs30.fxc-----debugmorphaccumulator_vs30
+
+fxctmp9_tmp\debugmorphaccumulator_ps30.inc :  debugmorphaccumulator_ps30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." debugmorphaccumulator_ps30.fxc-----debugmorphaccumulator_ps30
+
+fxctmp9_tmp\decalmodulate_ps30.inc :  decalmodulate_ps2x.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." decalmodulate_ps2x.fxc-----decalmodulate_ps30
+
+fxctmp9_tmp\emissive_scroll_blended_pass_vs30.inc :  emissive_scroll_blended_pass_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." emissive_scroll_blended_pass_vs20.fxc-----emissive_scroll_blended_pass_vs30
+
+fxctmp9_tmp\emissive_scroll_blended_pass_ps30.inc :  emissive_scroll_blended_pass_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h common_vertexlitgeneric_dx9.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." emissive_scroll_blended_pass_ps2x.fxc-----emissive_scroll_blended_pass_ps30
+
+fxctmp9_tmp\eye_refract_vs30.inc :  eye_refract_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eye_refract_vs20.fxc-----eye_refract_vs30
+
+fxctmp9_tmp\eye_refract_ps30.inc :  eye_refract_ps2x.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eye_refract_ps2x.fxc-----eye_refract_ps30
+
+fxctmp9_tmp\eyes_vs30.inc :  eyes_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eyes_vs20.fxc-----eyes_vs30
+
+fxctmp9_tmp\eyes_ps30.inc :  eyes_ps2x.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eyes_ps2x.fxc-----eyes_ps30
+
+fxctmp9_tmp\eyes_flashlight_vs30.inc :  eyes_flashlight_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eyes_flashlight_vs20.fxc-----eyes_flashlight_vs30
+
+fxctmp9_tmp\eyes_flashlight_ps30.inc :  eyes_flashlight_ps2x.fxc common_fxc.h shader_constant_register_map.h common_vertexlitgeneric_dx9.h common_ps_fxc.h common_pragmas.h common_hlsl_cpp_consts.h common_flashlight_fxc.h eyes_flashlight_inc.fxc
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." eyes_flashlight_ps2x.fxc-----eyes_flashlight_ps30
+
+fxctmp9_tmp\morphaccumulate_vs30.inc :  morphaccumulate_vs30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." morphaccumulate_vs30.fxc-----morphaccumulate_vs30
+
+fxctmp9_tmp\morphaccumulate_ps30.inc :  morphaccumulate_ps30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." morphaccumulate_ps30.fxc-----morphaccumulate_ps30
+
+fxctmp9_tmp\morphweight_vs30.inc :  morphweight_vs30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." morphweight_vs30.fxc-----morphweight_vs30
+
+fxctmp9_tmp\morphweight_ps30.inc :  morphweight_ps30.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." morphweight_ps30.fxc-----morphweight_ps30
+
+fxctmp9_tmp\skin_vs30.inc :  skin_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." skin_vs20.fxc-----skin_vs30
+
+fxctmp9_tmp\skin_ps30.inc shaders\fxc\skin_ps30.vcs: skin_ps20b.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl   -source "..\.." skin_ps20b.fxc-----skin_ps30
+	echo skin_ps20b.fxc>> filestocopy.txt
+	echo common_fxc.h>> filestocopy.txt
+	echo shader_constant_register_map.h>> filestocopy.txt
+	echo common_hlsl_cpp_consts.h>> filestocopy.txt
+	echo common_pragmas.h>> filestocopy.txt
+	echo common_flashlight_fxc.h>> filestocopy.txt
+	echo common_vertexlitgeneric_dx9.h>> filestocopy.txt
+	echo common_ps_fxc.h>> filestocopy.txt
+
+fxctmp9_tmp\teeth_vs30.inc :  teeth_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_vs20.fxc-----teeth_vs30
+
+fxctmp9_tmp\teeth_ps30.inc :  teeth_ps2x.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_ps2x.fxc-----teeth_ps30
+
+fxctmp9_tmp\teeth_bump_vs30.inc :  teeth_bump_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_bump_vs20.fxc-----teeth_bump_vs30
+
+fxctmp9_tmp\teeth_bump_ps30.inc :  teeth_bump_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h shader_constant_register_map.h common_ps_fxc.h common_vertexlitgeneric_dx9.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_bump_ps2x.fxc-----teeth_bump_ps30
+
+fxctmp9_tmp\teeth_flashlight_vs30.inc :  teeth_flashlight_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_flashlight_vs20.fxc-----teeth_flashlight_vs30
+
+fxctmp9_tmp\teeth_flashlight_ps30.inc :  teeth_flashlight_ps2x.fxc common_fxc.h shader_constant_register_map.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." teeth_flashlight_ps2x.fxc-----teeth_flashlight_ps30
+
+fxctmp9_tmp\vertexlit_and_unlit_generic_vs30.inc shaders\fxc\vertexlit_and_unlit_generic_vs30.vcs: vertexlit_and_unlit_generic_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl   -source "..\.." vertexlit_and_unlit_generic_vs20.fxc-----vertexlit_and_unlit_generic_vs30
+	echo vertexlit_and_unlit_generic_vs20.fxc>> filestocopy.txt
+	echo common_fxc.h>> filestocopy.txt
+	echo common_hlsl_cpp_consts.h>> filestocopy.txt
+	echo common_pragmas.h>> filestocopy.txt
+	echo common_vs_fxc.h>> filestocopy.txt
+
+fxctmp9_tmp\vertexlit_and_unlit_generic_ps30.inc :  vertexlit_and_unlit_generic_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." vertexlit_and_unlit_generic_ps2x.fxc-----vertexlit_and_unlit_generic_ps30
+
+fxctmp9_tmp\vertexlit_and_unlit_generic_bump_vs30.inc :  vertexlit_and_unlit_generic_bump_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." vertexlit_and_unlit_generic_bump_vs20.fxc-----vertexlit_and_unlit_generic_bump_vs30
+
+fxctmp9_tmp\vertexlit_and_unlit_generic_bump_ps30.inc :  vertexlit_and_unlit_generic_bump_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." vertexlit_and_unlit_generic_bump_ps2x.fxc-----vertexlit_and_unlit_generic_bump_ps30
+
+fxctmp9_tmp\vortwarp_vs30.inc :  vortwarp_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h vortwarp_vs20_helper.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." vortwarp_vs20.fxc-----vortwarp_vs30
+
+fxctmp9_tmp\vortwarp_ps30.inc :  vortwarp_ps2x.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_flashlight_fxc.h common_vertexlitgeneric_dx9.h common_ps_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." vortwarp_ps2x.fxc-----vortwarp_ps30
+
+fxctmp9_tmp\depthwrite_ps30.inc :  depthwrite_ps2x.fxc 
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." depthwrite_ps2x.fxc-----depthwrite_ps30
+
+fxctmp9_tmp\depthwrite_vs30.inc :  depthwrite_vs20.fxc common_fxc.h common_hlsl_cpp_consts.h common_pragmas.h common_vs_fxc.h
+	perl ..\..\devtools\bin\fxc_prep.pl -novcs   -source "..\.." depthwrite_vs20.fxc-----depthwrite_vs30
+

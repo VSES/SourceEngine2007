@@ -1,0 +1,21 @@
+CANONXML.C
+----------
+
+This program turns input XML file into canonical XML (linefeeds turned into 
+character references, attributes sorted etc.). This is used by xmltest 
+OASIS XML testsuite parser (XMLTEST.C). 
+
+TODO: proper NOTATION handling, proper sorting of namespace declaration attributes etc.
+
+Usage: CANONXML INPUTFILE.XML OUTPUTFILE.XML OPTIONALBASEDIR
+
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+
+UNIX
+
+    make
+    make install

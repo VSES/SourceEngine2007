@@ -1,0 +1,162 @@
+SPDL
+Version = "2.0.0.1";
+Reference = "{64AA5BEB-10A6-49A5-8622-CFAEDBD92850}";
+
+BEGIN PROPERTIES
+PropertySet "customparamset"
+{
+	Parameter "Name"
+	{
+		Name	= "Name";
+		Guid	= "{2B91C031-677A-11D1-B0CF-00A024C79287}";
+		Type	= VT_LPWSTR;
+		Caps	= Persistable;
+		Class	= MetaData;
+	}
+
+	Parameter "Custom parameter instance ID"
+	{
+		Name	= "Custom parameter instance ID";
+		Guid	= "{29347CF0-1EA1-11D3-A612-00A0C9EC5EF7}";
+		Type	= VT_CLSID;
+		Caps	= Persistable, UnInspectable;
+		Class	= Unknown;
+	}
+
+	Parameter "Filename"
+	{
+		Name	= "Filename";
+		Guid	= "{AB8E30A7-7D57-49CE-AFB0-ACC3B4F851A9}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+	}
+
+	Parameter "SMDType"
+	{
+		Name	= "File Type";
+		Guid	= "{E63C5CC2-7E59-4731-AC60-5F0AF29A7005}";
+		Type	= VT_I4;
+		Range	= 0 to 3;
+		Caps	= Persistable;
+		Class	= Unknown;
+	}
+
+	Parameter "HRC" input
+	{
+		title = "Optimize Chains and Compensate";
+		guid = "{648DDD96-8364-420a-838D-A14D6972B3C2}";
+		type = boolean;
+		value = 1;
+		texturable = off;
+		flags = 0;
+		animatable = off;
+	}
+
+	Parameter "RemoveRigRoot" input
+	{
+		title = "Remove Top-Level Bone on Character Rig";
+		guid = "{64AADD96-8364-420a-838D-A14D6972B3C2}";
+		type = boolean;
+		value = 1;
+		texturable = off;
+		flags = 0;
+		animatable = off;
+	}
+
+	Parameter "RemoveUnusedBones" input
+	{
+		title = "Remove all unused bones";
+		guid = "{64AADD96-8364-420a-8DDD-A14D6972B3C2}";
+		type = boolean;
+		value = 1;
+		texturable = off;
+		flags = 0;
+		animatable = off;
+	}
+
+}
+END
+
+BEGIN "{24810490-56FF-11d2-BF23-00A0C982CE5D}"
+Defaults
+{
+	"Name"
+	{
+		UIType	= "String";
+	}
+
+	"Custom parameter instance ID"
+	{
+	}
+
+	"Filename"
+	{
+		UIType = "dscontrol"
+		{
+			 Class = "edit";
+			 Caption = ";file=1;initialdir=project;filefilter=Valve SMD Files (*.smd)|*.smd|Vertex Animation Files (*.vta)|*.vta|All Files (*.*)|*.*||";
+		}
+	}
+
+	"SMDType"
+	{
+		UIType		= "Combo";
+		Items
+		{
+			"Model (.SMD)" = 0,
+			"Physbox (.SMD)" = 1
+			"Skeletal Animation (.SMD)" = 2
+			"Vertex Animation (.VTA)" = 3
+		}
+	}
+
+	"HRC"
+	{
+		Name = "Optimize Chains and Compensate";
+		Description = "Removes roots and effectors from chains and perform hierarchical compensation";
+	}
+
+	"RemoveRigRoot"
+	{
+		Name = "Remove Top-Level Bone on Character Rig";
+		Description = "Removes the top-level bones on character rigs";
+	}
+
+	"RemoveUnusedBones"
+	{
+		Name = "Remove Unused Bones";
+		Description = "Remove bones that do not affect the envelope";
+	}
+
+}
+
+Logic {
+Sub OnInit()
+
+End Sub
+
+
+}
+
+
+Layout "Default"
+{
+	Tab "File Output" {
+		"Name";
+		"Custom parameter instance ID";
+		Group "File" {
+			"Filename";
+			"SMDType",aligncenter;
+		}
+
+		Group "Options" {
+			"HRC", aligncenter;
+			"RemoveRigRoot", aligncenter;
+			"RemoveUnusedBones", aligncenter;
+		}
+
+	}
+
+}
+END

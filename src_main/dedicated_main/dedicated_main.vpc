@@ -1,0 +1,48 @@
+//-----------------------------------------------------------------------------
+//	DEDICATED_MAIN.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTBINDIR	"$SRCDIR\..\game"
+$Macro OUTBINNAME	"srcds"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_win_win32_base.vpc"
+
+$Linux
+{
+	$BuildForLinux	1
+}
+
+$Configuration
+{
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE Advapi32.lib"
+	}
+}
+
+$Project "Dedicated_main"
+{
+	$Folder	"Source Files"
+	{
+		$File	"main.cpp"
+		$File	"$SRCDIR\common\SteamAppStartup.cpp"
+		$File	"$SRCDIR\common\SteamAppStartup.h"
+		-$File	"$SRCDIR\public\tier0\memoverride.cpp"
+	}
+
+	$Folder	"Resources"
+	{
+		$File	"$SRCDIR\launcher\res\launcher.ico"
+		$File	"dedicated_main.rc"
+	}
+	
+	$Folder "Link Libraries"
+	{
+		-$file	"$SRCDIR\lib\public\tier0.lib"
+		-$file	"$SRCDIR\lib\public\tier1.lib"
+		-$file	"$SRCDIR\lib\public\vstdlib.lib"
+	}
+}

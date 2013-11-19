@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st April 2002), see www.w3.org">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Parsifal XML parser</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<br>
+<h2 style="margin-left: 0px;">OASIS XML testsuite results for Parsifal XML Parser</h2>
+<br>
+<p>
+<a href="xmlconf_results.html">Here</a> are the results of running <a href="http://www.w3.org/XML/Test/" target="_top">OASIS XML testsuite</a>.
+  Results of some Parsifal specific tests and issues can be found <a href="parsifal_results.html">Here</a>.
+</p>
+<p>
+XMLconf test results for validating mode are <a href="xmlconf_results_valid.html">here</a> and Parsifal specific
+tests are <a href="parsifal_results_valid.html">here</a>. Note that validation support and testing is
+currently work in progress although already <b>very stable</b> and all tests are passed
+w/o any memory leaks.
+</p>
+<br>
+<p>Tests prove several things about the parser:</p>
+<ul>
+<li>It is very loyal to XML specification and to well-formedness rules - though not yet perfect (surprise!)</li>
+<li>It passes testsuite without any memory leaks - it is essential for parser to handle erroneous conditions gracefully. There's also extra stress test because tests reuse the same parser.</li>
+</ul>
+<br>
+<br>
+<p>
+There are some things you should consider when checking the results though:
+</p>
+<p>
+<ul>
+<li>Sometimes "red results" just indicate EXPECTED BEHAVIOUR, for example when test document uses name containing ':' char (that is XML namespaces 1.0 prefix separator)</li>
+<li>Some ERROR results are reported as success "green FAIL results" but for wrong reason for example: ibm-not-wf-P13-ibm13n01.xml is reported green but since parsifal doesn't fully test publicID legal chars - error isn't catched - parsing fails in second error which is using DTD file as an entity.</li>
+<li>Tests of type INVALID must be passed valid by non-validating parser.</li>
+<li>Japanese (e.g. euc-jp) encoded test files report success because test parser uses libiconv!</li>
+</ul>
+</p>
+<br>
+<br>
+<p><b>New:</b> XMLDiff diffgram is generated when test output differs. There is <b>diff</b> link to diffgram file following 
+output links.</p>
+<br>
+<br>
+<p>
+Description of the result format:
+</p>
+<table><tr>
+<td align="center"><img src="pics/testsuite.gif"></td>
+</tr></table>
+<br>
+<br>
+<p>
+Samples directory contains XMLTEST project with README which describes details on running the testsuite or any tests in XMLCONF format.
+</p>
+<br>
+<hr>
+<p><font color="#004040">Copyright &copy; 2002-2005 Toni
+Uusitalo.<br>
+Send mail, suggestions and bug reports to<br><img src="pics/semail.gif"><br>
+Last modified: 17.02.2005 16:20</font></p>
+</body>
+</html>
+

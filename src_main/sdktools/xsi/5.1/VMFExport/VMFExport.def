@@ -1,0 +1,13 @@
+EXPORTS
+	XSIOnInit		@1 PRIVATE
+	XSIOnTerminate  @2 PRIVATE
+	XSILoadPlugin	@3 PRIVATE
+	XSIUnloadPlugin	@4 PRIVATE
+	VMFExportProperty_DefineLayout	@5 PRIVATE
+	VMFExportProperty_Define		@6 PRIVATE
+	VMFExport_Init	@7 PRIVATE
+	VMFExport_Execute @8 PRIVATE
+	VMFExportMenu_Init	@9 PRIVATE
+	OnVMFExportMenu		@10 PRIVATE
+	ShowConcaveEdges_Init		@11 PRIVATE
+	ShowConcaveEdges_Execute	@12 PRIVATE

@@ -1,0 +1,106 @@
+README file for Parsifal
+========================
+
+This is cross platform release including makefiles
+for linux/unix and VC6 project files for WIN32 platform.
+
+
+FILES
+=====
+
+Shared files (for all platforms):
+
+    README
+    COPYING
+    INSTALL
+    AUTHORS
+    NEWS
+    VERSION
+    ChangeLog
+
+All other files in the root directory and all Makefiles (.am 
+.in or plain Makefiles) in subdirectories are linux/unix makefiles
+and files for building distribution packages, none of them are 
+used on WIN32 platform.
+
+
+Shared directories (for all platforms):
+
+    Directory           Description
+    -------------------------------
+    doc                 Documentation. Start here by opening INDEX.HTML
+    src                 source files
+    include             include files
+    samples             contain sample sources, Makefiles for linux/unix and 
+                        build.bat for WIN32 (see README in each directory)
+
+
+WIN32 directories:
+
+    Directory           Description
+    -------------------------------
+    win32\vc6           VC6 project files for building windows dll
+                        (win32\bin\parsifal.dll)
+    win32\bin           WIN32 binaries. All sample executables go here 
+                        by default too
+    win32\lib           parsifal.lib to be used with windows dll
+    win32\mingw         mingw specific project/makefiles and libraries
+
+UNIX directories:
+
+    Directory           Description
+    -------------------------------
+    conf                Configuration files for installing unix build.
+    
+
+BUILDING
+========
+
+On WIN32: 
+
+    Open VC6 workspace file win32\vc6\parsifal.dsw and Build All (note that 
+    win32\bin contains dll so if you aren't making any changes to source etc. 
+    building isn't necessary)
+    
+    Each sample directory contains build.bat files that build sample exe's and
+    put them into win32\bin directory.
+
+
+On Linux/Unix:
+    
+    tar xzf libparsifal-0.X.X.tar.gz
+    cd libparsifal-0.X.X
+    ./configure
+    make
+    make install
+    
+    (installs shared library in to /usr/lib and include files to 
+    /usr/include/libparsifal by default so you must have su permissions
+    for that)
+    
+    Each sample directory contains Makefile that build sample exe's and 
+    installs them to /usr/local/bin by default, build samples 
+    by executing:
+    
+    make
+    make install (optional, you can place executables in to directory of 
+        your choice of course)
+
+    Samples aren't build when installing shared library. Library must be build and installed
+    before making sample files of course.
+    
+
+Compiling options: See doc/index.html and MANUAL/BUILDING for more info
+
+    
+Questions or Comments
+=====================
+
+If you have any questions, comments or you want to report bugs send mail to author
+email address you can find at http://www.saunalahti.fi/~samiuus/toni/xmlproc/
+
+Bug reports should include minimal source code that produces the bug and
+minimal xml document used if its relevant for producing the buggy behaviour.
+
+
+ 

@@ -1,0 +1,122 @@
+//-----------------------------------------------------------------------------
+//	VGUI_DLL.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+$Macro OUTBINNAME	"vgui2"
+
+$include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_dll_x360_base.vpc"		[$X360]
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;..\include"
+		$PreprocessorDefinitions		"$BASE;DONT_PROTECT_FILEIO_FUNCTIONS"
+//		$TreatWchar_tAsBuiltinType		"No"
+	}
+
+	$Linker [$WIN32]
+	{
+		$AdditionalDependencies			"$BASE Imm32.lib Shlwapi.lib odbc32.lib odbccp32.lib winmm.lib"
+	}
+}
+
+$Project "vgui2"
+{
+	$Folder	"Source Files"
+	{
+		$File	"Bitmap.cpp"
+		$File	"Border.cpp"
+		$File	"fileimage.cpp"
+		$File	"$SRCDIR\public\filesystem_helpers.cpp"
+		$File	"$SRCDIR\public\filesystem_init.cpp"
+		$File	"HtmlWindow.cpp"				[$WIN32]
+		$File	"InputWin32.cpp"
+		$File	"LocalizedStringTable.cpp"
+		$File	"MemoryBitmap.cpp"
+		$File	"Memorybitmap.h"
+		$File	"MessageListener.cpp"
+		$File	"Scheme.cpp"
+		$File	"Surface.cpp"					[$WIN32]
+		$File	"System.cpp"
+		$File	"$SRCDIR\public\UnicodeFileHelpers.cpp"
+		$File	"vgui.cpp"
+		$File	"vgui_internal.cpp"
+		$File	"vgui_key_translation.cpp"
+		$File	"VPanel.cpp"
+		$File	"VPanelWrapper.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"bitmap.h"
+		$File	"fileimage.h"
+		$File	"IMessageListener.h"
+		$File	"vgui_internal.h"
+		$File	"vgui_key_translation.h"
+		$File	"VPanel.h"
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\public\Color.h"
+		$File	"$SRCDIR\public\vgui\Cursor.h"
+		$File	"$SRCDIR\Public\FileSystem.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\FontAmalgam.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\FontManager.h"
+		$File	"$SRCDIR\common\vgui\HtmlWindow.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"$SRCDIR\public\vgui\KeyCode.h"
+		$File	"$SRCDIR\common\SteamBootStrapper.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\UnicodeFileHelpers.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utllinkedlist.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlpriorityqueue.h"
+		$File	"$SRCDIR\public\tier1\utlrbtree.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"$SRCDIR\public\vgui\VGUI.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\Win32Font.h"
+	}
+
+	$Folder	"Interfaces"
+	{
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\public\vgui\IBorder.h"
+		$File	"$SRCDIR\public\vgui\IClientPanel.h"
+		$File	"$SRCDIR\public\vgui\IHTML.h"
+		$File	"$SRCDIR\public\vgui\IImage.h"
+		$File	"$SRCDIR\public\vgui\IInput.h"
+		$File	"$SRCDIR\public\vgui\ILocalize.h"
+		$File	"$SRCDIR\public\vgui\IPanel.h"
+		$File	"$SRCDIR\public\vgui\IScheme.h"
+		$File	"$SRCDIR\public\vgui\ISurface.h"
+		$File	"$SRCDIR\public\vgui\ISystem.h"
+		$File	"$SRCDIR\public\vgui\IVGui.h"
+		$File	"$SRCDIR\public\vgui\IVguiMatInfo.h"
+		$File	"$SRCDIR\public\vgui\IVguiMatInfoVar.h"
+		$File	"VGUI_Border.h"
+	}
+
+	$Folder "Link Libraries" [$WIN32]
+	{
+		$File	"$SRCDIR\lib\public\vgui_surfacelib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+	}
+
+	$Folder "Link Libraries" [$X360]
+	{
+		$File	"$SRCDIR\lib\public\tier2_360.lib"
+		$File	"$SRCDIR\lib\public\tier3_360.lib"
+	}
+}

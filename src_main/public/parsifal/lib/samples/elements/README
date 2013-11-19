@@ -1,0 +1,17 @@
+ELEMENTS.C SAMPLE
+-----------------
+
+This sample is rip off from Expat XML parser elements sample.
+It reads XML document from stdin and reports tag names with
+some indentation into stdout.
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+
+UNIX
+
+    make
+    make install
+    elements < document.xml

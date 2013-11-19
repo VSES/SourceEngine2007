@@ -1,0 +1,233 @@
+/* Document Defaults */
+
+        a:active  { color: #0000CC}
+        a:hover   { color: #CC0033}
+        a:link    { color: #3366CC}
+        a:visited { color: #9999CC}
+
+        body
+          { background-color: #FFFFFF;
+            background-image: url(images/backgrnd.gif);
+            color: #000000;
+            font-family: Verdana, Arial, Helvetica, sans-serif }
+        table, caption, tr, th, td, ol, ul, h1, h2, h3, h4, h5, p, div
+          { color: #000000;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px }
+        .Body
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .BodyRelative
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .CellBody
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .CellHeading
+          { color: #003366;
+            font-size: 12px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: center; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .GroupTitlesIX
+          { color: #003366;
+            font-size: 22px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Heading1
+          { color: #003366;
+            font-size: 25px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Heading2
+          { color: #003366;
+            font-size: 20px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Heading3
+          { color: #003366;
+            font-size: 16px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Heading4
+          { color: #003366;
+            font-size: 13px; font-style: italic; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Indented1
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 2.5em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Indented2
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 5em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Indented3
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 7.5em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Indented4
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 10em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Indented5
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 12.5em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .IndentedRelative
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 2.5em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Level1IX
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 2.5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Level2IX
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Level3IX
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 7.5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Level4IX
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 10em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Level5IX
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 12.5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .NewHTMLPage
+          { color: #003366;
+            font-size: 24px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: center; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Preformatted
+          { color: #000000;
+            font-family: monospace;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: pre }
+        .PreformattedRelative
+          { color: #000000;
+            font-family: monospace;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: pre }
+        .SmartList1
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .SmartList2
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .SmartList3
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .SmartList4
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .SmartList5
+          { color: #000000;
+            font-size: 12px; font-style: normal; font-weight: normal;
+            margin-left: 0em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TableTitle
+          { color: #000000;
+            font-size: 12px; font-style: italic; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: center; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .Title
+          { color: #003366;
+            font-size: 24px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.5em; margin-bottom: 0.5em;
+            text-align: center; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TOC1
+          { color: #000000;
+            font-size: 17px; font-style: normal; font-weight: bold;
+            margin-left: 0em; margin-top: 0.25em; margin-bottom: 0.25em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TOC2
+          { color: #000000;
+            font-size: 15px; font-style: normal; font-weight: normal;
+            margin-left: 2.5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TOC3
+          { color: #000000;
+            font-size: 13px; font-style: normal; font-weight: normal;
+            margin-left: 5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TOC4
+          { color: #000000;
+            font-size: 11px; font-style: normal; font-weight: normal;
+            margin-left: 7.5em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+        .TOC5
+          { color: #000000;
+            font-size: 10px; font-style: normal; font-weight: normal;
+            margin-left: 10em; margin-top: 0em; margin-bottom: 0em;
+            text-align: left; text-indent: 0em; text-decoration: none;
+            white-space: normal }
+
+/* Footnote Marker Style */
+        .Footnote
+          { font-size: 8px; vertical-align: super }
+

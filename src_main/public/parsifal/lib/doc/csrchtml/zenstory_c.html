@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\zenstory\zenstory.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="dir">#include &lt;stdio.h&gt;</span>
+<span class="dir">#include &lt;string.h&gt;</span>
+<span class="dir">#include &lt;stdlib.h&gt;</span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/parsifal.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;zenstory.h&quot;</span><span class="dir"></span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">)</span>
+<span class="sym">{</span>
+  STORYPARSER <span class="sym">*</span>parser <span class="sym">= (</span>STORYPARSER<span class="sym">*)</span>UserData<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">) {</span>
+    parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">++;</span>
+    <span class="com">/* could call mixed content legal tag check routine here e.g.</span>
+<span class="com">    if (!isvalidmixedcontenttag(qName, parser-&gt;state)) return sin(); */</span>
+    <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="kwb">int</span> <span class="sym">*</span>pstate <span class="sym">=</span> <span class="kwd">STACK_PEEK</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>stateStack<span class="sym">);</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">= (</span>pstate<span class="sym">)</span> ? <span class="sym">*</span>pstate <span class="sym">:</span> NONE<span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>state <span class="sym">==</span> NONE <span class="sym">&amp;&amp; !</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;stories&quot;</span><span class="sym">)) {</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">=</span> STORIES<span class="sym">;</span> <span class="com">/* set initial state (root element) */</span>
+  <span class="sym">}</span>
+  <span class="kwa">else if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>state <span class="sym">==</span> STORIES <span class="sym">&amp;&amp; !</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;story&quot;</span><span class="sym">)) {</span>
+    <span class="com">/* initialize new story: */</span>
+    parser<span class="sym">-&gt;</span>curStory <span class="sym">=</span> <span class="kwd">XMLVector_Append</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>stories<span class="sym">,</span> NULL<span class="sym">);</span>
+    <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>curStory<span class="sym">);</span>
+    parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>title <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>author <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>body <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">=</span> STORY<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="com">/* these would normally be done with a little more short circuiting: */</span>
+  <span class="kwa">else if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>state <span class="sym">==</span> STORY <span class="sym">&amp;&amp; !</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;title&quot;</span><span class="sym">)) {</span>
+    parser<span class="sym">-&gt;</span>inContent<span class="sym">++;</span> <span class="com">/* STORY_TITLE tag allows normal content */</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">=</span> STORY_TITLE<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">else if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>state <span class="sym">==</span> STORY <span class="sym">&amp;&amp; !</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;author&quot;</span><span class="sym">)) {</span>
+    parser<span class="sym">-&gt;</span>inContent<span class="sym">++;</span> <span class="com">/* STORY_AUTHOR tag allows normal content */</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">=</span> STORY_AUTHOR<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">else if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>state <span class="sym">==</span> STORY <span class="sym">&amp;&amp; !</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;body&quot;</span><span class="sym">)) {</span>
+    parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">++;</span> <span class="com">/* STORY_BODY tag allows mixed content */</span>
+    parser<span class="sym">-&gt;</span>state <span class="sym">=</span> STORY_BODY<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Unexpected tag: %s</span><span class="esc">\n</span><span class="str">File is not in zen story format!</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> qName<span class="sym">);</span>
+    <span class="kwa">return</span> XML_ABORT<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="com">/* push the new state: */</span>
+  <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span><span class="kwd">STACK_PUSH</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>stateStack<span class="sym">, &amp;</span>parser<span class="sym">-&gt;</span>state<span class="sym">));</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">)</span>
+<span class="sym">{</span>
+  STORYPARSER <span class="sym">*</span>parser <span class="sym">= (</span>STORYPARSER<span class="sym">*)</span>UserData<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>inContent<span class="sym">)</span>
+    parser<span class="sym">-&gt;</span>inContent <span class="sym">=</span> <span class="num">0</span><span class="sym">;</span>
+  <span class="kwa">else if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">) {</span>
+    <span class="com">/* if this is last mixed content tag (the tag</span>
+<span class="com">    that put us in mixed content), we POP the state,</span>
+<span class="com">    otherwise we just decrement the counter and return OK: */</span>
+    <span class="kwa">if</span> <span class="sym">((--</span>parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">) &gt;</span> <span class="num">0</span><span class="sym">)</span> <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span><span class="kwd">STACK_POP</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>stateStack<span class="sym">, &amp;</span>parser<span class="sym">-&gt;</span>state<span class="sym">)) {</span>
+    <span class="com">/* test the endTag here by popping and testing parser-&gt;state</span>
+<span class="com">    (which is the state that is ending) */</span>
+    XMLCH <span class="sym">*</span>s <span class="sym">= (</span>XMLCH<span class="sym">*)</span>NULL<span class="sym">;</span>
+
+    <span class="kwa">switch</span><span class="sym">(</span>parser<span class="sym">-&gt;</span>state<span class="sym">) {</span>
+      <span class="kwa">case</span> STORY_TITLE<span class="sym">:</span> <span class="com">/* you should check duplicate title etc. here */</span>
+        s <span class="sym">=</span> <span class="kwd">strdup</span><span class="sym">(</span><span class="kwd">XMLStringbuf_ToString</span><span class="sym">(&amp;</span>parser<span class="sym">-&gt;</span>textBuf<span class="sym">));</span>
+        <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span>s<span class="sym">);</span>
+        parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>title <span class="sym">=</span> s<span class="sym">;</span>
+        <span class="kwa">break</span><span class="sym">;</span>
+      <span class="kwa">case</span> STORY_AUTHOR<span class="sym">:</span>
+        s <span class="sym">=</span> <span class="kwd">strdup</span><span class="sym">(</span><span class="kwd">XMLStringbuf_ToString</span><span class="sym">(&amp;</span>parser<span class="sym">-&gt;</span>textBuf<span class="sym">));</span>
+        <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span>s<span class="sym">);</span>
+        parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>author <span class="sym">=</span> s<span class="sym">;</span>
+        <span class="kwa">break</span><span class="sym">;</span>
+      <span class="kwa">case</span> STORY_BODY<span class="sym">:</span>
+        s <span class="sym">=</span> <span class="kwd">strdup</span><span class="sym">(</span><span class="kwd">XMLStringbuf_ToString</span><span class="sym">(&amp;</span>parser<span class="sym">-&gt;</span>textBuf<span class="sym">));</span>
+        <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span>s<span class="sym">);</span>
+        parser<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>body <span class="sym">=</span> s<span class="sym">;</span>
+        <span class="kwa">break</span><span class="sym">;</span>
+    <span class="sym">}</span>
+    <span class="kwa">if</span> <span class="sym">(</span>s<span class="sym">) {</span>
+      <span class="com">/* normalize buffer, note that XMLNormalizeBuf doesn't nul terminate the</span>
+<span class="com">      buffer: */</span>
+      <span class="kwb">int</span> len <span class="sym">=</span> <span class="kwd">XMLNormalizeBuf</span><span class="sym">(</span>s<span class="sym">,</span> parser<span class="sym">-&gt;</span>textBuf<span class="sym">.</span>len<span class="sym">);</span>
+      <span class="kwa">if</span> <span class="sym">(</span>len <span class="sym">&lt;</span> parser<span class="sym">-&gt;</span>textBuf<span class="sym">.</span>len<span class="sym">)</span> s<span class="sym">[</span>len<span class="sym">] =</span> <span class="str">'</span><span class="esc">\0</span><span class="str">'</span><span class="sym">;</span>
+      <span class="com">/* we'll reuse Stringbuf just setting its length to 0: */</span>
+      <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span><span class="kwd">XMLStringbuf_SetLength</span><span class="sym">(&amp;</span>parser<span class="sym">-&gt;</span>textBuf<span class="sym">,</span> <span class="num">0</span><span class="sym">));</span>
+    <span class="sym">}</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">Characters</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>Chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">)</span>
+<span class="sym">{</span>
+  STORYPARSER <span class="sym">*</span>parser <span class="sym">= (</span>STORYPARSER<span class="sym">*)</span>UserData<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>inContent <span class="sym">||</span> parser<span class="sym">-&gt;</span>inMixedContent<span class="sym">) {</span>
+    <span class="com">/* if either inContent or inMixedContent is set,</span>
+<span class="com">       append data into Stringbuf: */</span>
+    <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span><span class="kwd">XMLStringbuf_Append</span><span class="sym">(&amp;</span>parser<span class="sym">-&gt;</span>textBuf<span class="sym">,</span>
+      <span class="sym">(</span>XMLCH<span class="sym">*)</span>Chars<span class="sym">,</span> cbChars<span class="sym">));</span>
+  <span class="sym">}</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="com">/* this tag cannot contain character data: */</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Character data was not expected here!&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> XML_ABORT<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>ErrorCode <span class="sym">!=</span> ERR_XMLP_ABORT<span class="sym">)</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Parsing error: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorString<span class="sym">);</span>
+  <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;ErrorLine: %d ErrorColumn: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorLine<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorColumn<span class="sym">);</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">cstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="sym">*</span>cBytesActual <span class="sym">=</span> <span class="kwd">fread</span><span class="sym">(</span>buf<span class="sym">,</span> <span class="num">1</span><span class="sym">,</span> cBytes<span class="sym">, (</span><span class="kwb">FILE</span><span class="sym">*)</span>inputData<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="sym">(*</span>cBytesActual <span class="sym">&lt;</span> cBytes<span class="sym">);</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">main</span><span class="sym">(</span><span class="kwb">int</span> argc<span class="sym">,</span> <span class="kwb">char</span><span class="sym">*</span> argv<span class="sym">[])</span>
+<span class="sym">{</span>
+  STORYPARSER sparser<span class="sym">;</span>
+  LPXMLPARSER parser<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLParser_Create</span><span class="sym">(&amp;</span>parser<span class="sym">)) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating parser!&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLVector_Create</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>stateStack<span class="sym">,</span> <span class="num">6</span><span class="sym">,</span> <span class="kwa">sizeof</span><span class="sym">(</span><span class="kwb">int</span><span class="sym">))) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating stateStack in main()&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLVector_Create</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>stories<span class="sym">,</span> <span class="num">6</span><span class="sym">,</span> <span class="kwa">sizeof</span><span class="sym">(</span>ZENSTORY<span class="sym">))) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating stories vector in main()&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="com">/* init Stringbuf: blockSize 256, no pre-allocation: */</span>
+  <span class="kwd">XMLStringbuf_Init</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>textBuf<span class="sym">,</span> <span class="num">256</span><span class="sym">,</span> <span class="num">0</span><span class="sym">);</span>
+
+  sparser<span class="sym">.</span>parser <span class="sym">=</span> parser<span class="sym">;</span>
+  sparser<span class="sym">.</span>inMixedContent <span class="sym">=</span> sparser<span class="sym">.</span>inContent <span class="sym">=</span> <span class="num">0</span><span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>UserData <span class="sym">= &amp;</span>sparser<span class="sym">;</span>
+
+  parser<span class="sym">-&gt;</span>errorHandler <span class="sym">=</span> ErrorHandler<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>startElementHandler <span class="sym">=</span> StartElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>endElementHandler <span class="sym">=</span> EndElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>charactersHandler <span class="sym">=</span> Characters<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span><span class="kwd">XMLParser_Parse</span><span class="sym">(</span>parser<span class="sym">,</span> cstream<span class="sym">,</span> stdin<span class="sym">,</span> <span class="num">0</span><span class="sym">)) {</span>
+
+    <span class="com">/* present the stories (we'll free the strings in the same loop) : */</span>
+    <span class="kwb">int</span> i<span class="sym">;</span>
+    ZENSTORY <span class="sym">*</span>story<span class="sym">;</span>
+    <span class="kwa">for</span> <span class="sym">(</span>i<span class="sym">=</span><span class="num">0</span><span class="sym">;</span> i<span class="sym">&lt;</span>sparser<span class="sym">.</span>stories<span class="sym">-&gt;</span>length<span class="sym">;</span> i<span class="sym">++) {</span>
+      story <span class="sym">=</span> <span class="kwd">XMLVector_Get</span><span class="sym">(</span>sparser<span class="sym">.</span>stories<span class="sym">,</span> i<span class="sym">);</span>
+      <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">) {</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>title<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;title: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> story<span class="sym">-&gt;</span>title<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>title<span class="sym">);</span>
+        <span class="sym">}</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>author<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;author: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> story<span class="sym">-&gt;</span>author<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>author<span class="sym">);</span>
+        <span class="sym">}</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>body<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;story: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span>story<span class="sym">-&gt;</span>body<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>body<span class="sym">);</span>
+        <span class="sym">}</span>
+      <span class="sym">}</span>
+    <span class="sym">}</span>
+  <span class="sym">}</span>
+
+  <span class="kwd">XMLParser_Free</span><span class="sym">(</span>parser<span class="sym">);</span>
+  <span class="kwd">XMLStringbuf_Free</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>textBuf<span class="sym">);</span>
+  <span class="kwd">XMLVector_Free</span><span class="sym">(</span>sparser<span class="sym">.</span>stories<span class="sym">);</span>
+  <span class="kwd">XMLVector_Free</span><span class="sym">(</span>sparser<span class="sym">.</span>stateStack<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

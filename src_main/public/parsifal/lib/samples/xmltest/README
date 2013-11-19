@@ -1,0 +1,20 @@
+XMLCONF TESTSUITE PARSER
+========================
+
+Needed components (in this directory):
+* download test suite from http://www.w3.org/XML/Test/ (current version 20031210)
+  extract all contents of subdirectory XMLCONF into THIS directory - XMLCONF.XML 
+  should be in this dir and tests in their respective directories called IBM, SUN etc.
+* XMLTEST executable
+* CANONXML executable for output tests
+* PARSIFAL library should be in search path of course
+
+Usage: 
+  XMLTEST XMLCONF.XML RESULTS.HTML
+Or:
+  Run debug/release version of PARSIFAL.DLL and XMLTEST.EXE in VC++ IDE
+  (just load dsw project file and click run). Running debug version gives you 
+  chance to monitor memory leaks etc.
+
+File XMLCONF.XML can be any file in XMLCONF format (see TESTCASES.DTD for
+description of testsuite format).

@@ -1,0 +1,788 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LANGUAGE            "GERMAN"
+    IDS_BORDERLESS_REGFAIL  "Die Half-Life EDIT-CONTROL-Klasse konnte nicht registriert werden."
+    IDS_CHAT_IGNORE_MISLINKED "Falsch verknüpfter Chat-Raum wird ignoriert."
+    IDS_CHAT_IGNORE_UNLINKED "Nicht verknüpfter Chat-Raum wird ignoriert."
+    IDS_CREATE_MAPSCHANGED  "Die Anzahl der Karten im Karten-Verzeichnis hat sich geändert."
+    IDS_CREATE_LIBLISTBAD   "Die Datei 'liblist.gam' im Spielverzeichnis hat ein falsches Format. In der Datei '/valve/liblist.gam' finden Sie Informationen über das Format."
+    IDS_SOCKET_CONNECTIONFAILURE 
+                            "Ihre Netzwerkverbindung ist möglicherweise misslungen, fahre trotzdem fort ..."
+    IDS_PLAYERINFO_NOMEM    "Es steht kein Speicher für die Spielerinformation zur Verfügung."
+    IDS_CHAT_NOCONNECTION   "Die Chatserver-Verbindung konnte nicht erstellt werden."
+    IDS_CHAT_NOSTREAM       "Der Chatserver-Data-Stream konnte nicht erstellt werden."
+    IDS_CHAT_NOSELECT       "Der Client des Chat-Servers konnte für die Verbindung nicht vorbereitet werden."
+    IDS_CONTROLS_DELETE_LINKED "Lösche Aktion für verknüpfte Taste."
+    IDS_CONTROLS_KBLIST_EMPTY 
+                            "Die Tastaturverknüpfungsdatei 'kb_act.lst' ist leer."
+    IDS_CONTROLS_KBLIST_PARSEERROR 
+                            "Fehler beim Parsen der Tastaturverknüpfungsdatei 'kb_act.lst'."
+    IDS_CONTROLS_KBKEYS_EMPTY 
+                            "Die Tastaturverknüpfungsdatei 'kb_keys.lst' ist leer."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONTROLS_KBKEYS_PARSEERROR 
+                            "Fehler beim Parsen der Datei 'kb_keys.lst'."
+    IDS_CONTROLS_KBKEYS_OVERFLOW 
+                            "Zu viele Aktionen in der Datei 'kb_keys.lst'."
+    IDS_PROFILE_COLOR       "Farben"
+    IDS_MAIN_NOCAPS         "Die Eigenschaften der Grafikkarte konnten nicht abgefragt werden."
+    IDS_MAIN_INSUFFICIENTCAPS 
+                            "Ihre Grafikkarte unterstützt eine benötigte Rasteroperation nicht."
+    IDS_MAIN_REGWNDCLSFAIL  "Die Half-Life WINDOW-Klasse konnte nicht registriert werden."
+    IDS_MAIN_INSUFFICIENTSOCKETS 
+                            "Ungenügende Anzahl von Windows-Sockets, die Netzwerkfunktionen funktionieren möglicherweise nicht richtig."
+    IDS_MAIN_MEMMAPFAILURE  "Die Initialisierung der speichergebundenen Datei-Ein/Ausgabe ist fehlgeschlagen."
+    IDS_PROFILE_NOMEM       "Es steht kein Speicher für das Spielerprofil zur Verfügung. Das Programm wird beendet."
+    IDS_BTN_STRANGESIZE     "Die Dateigrößen der Schaltflächengrafiken scheinen ungültig zu sein."
+    IDS_MAIN_NOUSERMSGS     "Die User-Nachrichten konnten nicht registriert werden."
+    IDS_MAIN_NOFILEMAPPING  "Das Datei-Mapping der Engine konnte nicht erstellt werden."
+    IDS_MAIN_NOMEMMAPCONNECT 
+                            "Die Verbindung zum Server '%s' konnte nicht hergestellt werden."
+    IDS_MSG_OVERFLOW        "SZ_GETSPACE-Überlauf ohne M_BALLOWOVERFLOW gesetzt."
+    IDS_MSG_REQTOOBIG       "Die von SZ_GETSPACE angeforderte Länge ist größer als die zur Verfügung stehende Puffergröße."
+    IDS_MULTI_NOROOMSTATIC  "Die ROOM-STATIC-TEXT-CONTROL konnte nicht reserviert werden."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_NOROOMTAB     "Die ROOM-TAB-CONTROL konnte nicht reserviert werden."
+    IDS_MULTI_NOCHATWINDOW  "Die CHAT-DISPLAY-WINDOW-CONTROL konnte nicht reserviert werden."
+    IDS_MULTI_NOCHATINPUT   "Die CHAT-TEXT-INPUT-CONTROL konnte nicht reserviert werden."
+    IDS_MULTI_NOUSERLIST    "Die CHAT-USER-LIST-CONTROL konnte nicht reserviert werden."
+    IDS_MULTI_NOSERVERLIST  "Die SERVER-BROWSER-LIST-CONTROL konnte nicht reserviert werden."
+    IDS_MULTI_NOSELECTION   "Kein Server ausgewählt."
+    IDS_MULTI_NOARCHIVE     "Half-Life konnte die Archivlistendatei des Servers nicht öffnen: '%s'."
+    IDS_CHAT_USER_NOMEM     "Es konnte kein Speicher für neue Chat-Raum-Benutzer reserviert werden."
+    IDS_MULTI_SERVER_NOMEM  "Es konnte kein Speicher für einen neuen Server reserviert werden."
+    IDS_MULTI_MASTER_BADLISTFILE 
+                            "Die Listendatei des Hauptservers konnte nicht geöffnet werden."
+    IDS_MULTI_NODIALOG      "SETDIALOG ohne Dialog!"
+    IDS_PROFILE_REQUIRED    "Sie müssen ein Spielerprofil erstellen oder auswählen, bevor Sie weitermachen können."
+    IDS_ODCOMBO_REGFAIL     "Die Half-Life COMBOBOX-Klasse konnte nicht registriert werden."
+    IDS_ODEDIT_REGFAIL      "Die Half-Life EDIT-CONTROL-Klasse konnte nicht registriert werden."
+    IDS_ODLIST_REGFAIL      "Die Half-Life LIST-CONTROL-Klasse konnte nicht registriert werden."
+    IDS_ODSCROLL_REGFAIL    "Die Half-Life SCROLLBAR-Klasse konnte nicht registriert werden."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ODSLIDER_REGFAIL    "Die Half-Life SLIDER-Klasse konnte nicht registriert werden."
+    IDS_ODTAB_REGFAIL       "Die Half-Life TAB-CONTROL-Klasse konnte nicht registriert werden."
+    IDS_PROFILE_NICKREMOVEFAIL 
+                            "Die Chat-Namen konnten nicht entfernt werden."
+    IDS_PROFILE_NOPROFILE   "Kein Profil ausgewählt."
+    IDS_QUICK_NOSERVERS     "Es konnten keine aktiven %s-Server mit freien Plätzen gefunden werden."
+    IDS_QUICK_NOACTIVE      "Es konnte keine Verbindung zu einem aktiven %s-Server erstellt werden."
+    IDS_README_NOMEM        "Es konnte kein Speicher für die Readme-Datei reserviert werden:  %i Bytes."
+    IDS_ROOM_BADNAME        "Der Raumname war ungültig."
+    IDS_SINGLE_NOSELECTION  "Sie müssen aus den verfügbaren Plätzen einen SAVEGAME-Platz auswählen."
+    IDS_SINGLE_CANTSAVE     "Sie müssen ein Einzelspiel spielen, um abspeichern zu können."
+    IDS_ODLISTBOX_REGFAIL   "Die Half-Life LISTBOX-Klasse konnte nicht registriert werden."
+    IDS_DIB_OPENFAIL        "Die Grafikdatei '%s' konnte nicht geöffnet werden."
+    IDS_MCI_OPENFAIL        "Die MCI-Datei %s konnte nicht zur Wiedergabe geöffnet werden."
+    IDS_MCI_GETIDFAIL       "Die MCI-Device-ID für das MCI-Gerät konnte nicht gefunden werden."
+    IDS_MCI_WINDOWFAIL      "Das MCI-Fenster zur Wiedergabe des MCI-Geräts konnte nicht initialisiert werden: %s"
+    IDS_MCI_PUTFAIL         "Die MCI-Wiedergabe des MCI-Geräts konnte nicht im Fenster gestartet werden: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MCI_SEEKFAIL        "Konnte nicht bis zum Anfang der MCI-Daten durchsuchen: %s"
+    IDS_MCI_BREAKFAIL       "Die Unterbrechungstaste der MCI-Daten konnte nicht eingestellt werden: %s"
+    IDS_MCI_PLAYFAIL        "Die Wiedergabe der MCI-Daten konnte nicht gestartet werden: %s"
+    IDS_MCI_STOPFAIL        "Die Wiedergabe der MCI-Daten konnte nicht gestoppt werden: %s"
+    IDS_MCI_CLOSEFAIL       "Die MCI-Daten konnten nicht geschlossen werden: %s"
+    IDS_CONTROLS_RESTOREFAIL 
+                            "Die Standard-Einstellungen für den Spieler konnten nicht wiederhergestellt werden."
+    IDS_SND_BADNAME         "Ungültiger Soundname"
+    IDS_PROFILE_ALLOCFAIL   "Es konnte kein Speicher für die Tastaturverknüpfung reserviert werden."
+    IDS_AUDIO_NOPROFILE     "Die Soundeinstellungen können nicht geändert werden, ohne dass Sie ein aktuelles Spielerprofil ausgewählt haben."
+    IDS_VIDEO_NOPROFILE     "Die Grafikeinstellungen können nicht geändert werden, ohne dass Sie ein aktuelles Spielerprofil ausgewählt haben."
+    IDS_CONTROLS_KEYHELP    "Benutzen Sie die Maus oder die Cursortasten, um einen Eintrag auszuwählen.  Klicken Sie doppelt darauf, oder drücken Sie die ENTER-Taste, um den Eintrag zu ändern.  Drücken Sie ENTFERNEN, um einen Eintrag zu löschen."
+    IDS_ENDDEMO_URL         "media/order/default.html"
+    IDS_ORDER_URL           "media/order/default.html"
+    IDS_LOADSAVE_HINT       "Während des Spiels können Sie Ihr Spiel schnell sichern, indem Sie die Taste %s drücken. Um das Spiel wieder zu laden, drücken Sie die Taste %s."
+    IDS_LAUNCHER_BUTTONSIZE "173 26"
+    IDS_MEM_INSUFFICIENT    "Ihr System verfügt nur über %.2fK physikalischen Speicher, Half-Life benötigt aber mindestens 16 MB."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MEM_ALLOCFAIL       "Half-Life konnte keine %.2fK Speicher reservieren."
+    IDS_EVENT_CREATEFAIL    "Half-Life konnte ein System-Objekt nicht erzeugen."
+    IDS_OSVER_FAIL          "Half-Life konnte keine System-Informationen abfragen."
+    IDS_OSVER_OUTDATED      "Half-Life benötigt Windows 95 oder Windows NT 4 oder höher."
+    IDS_OSVER_NTSP3         "Half-Life benötigt NT Service Pack 3 oder höher."
+    IDS_OSVER_16BIT         "Half-Life benötigt eine 16-Bit-Farbpalette. Bitte ändern Sie die Einstellungen für Ihren Arbeitsplatz auf HiColor. Es werden manchmal auch folgende Begriffe verwendet:""32767 Farben"" oder""65535 Farben""."
+    IDS_BINDING_ACTIONHEADING "Aktion"
+    IDS_BINDING_PRIMARYHEADING "Taste / Button"
+    IDS_BINDING_ALTERNATEHEADING "Alternative"
+    IDS_BINDING_PROMPT      "Taste oder Button drücken."
+    IDS_URL_BROWSERFAIL     "Half-Life konnte die Webseite '%s‘ nicht anzeigen. Stellen Sie bitte sicher, dass Sie einen Internet-Browser installiert haben, der mit Dateien mit der Endung .htm verknüpft ist."
+    IDS_SAVELOAD_TIMECOL    "Zeit"
+    IDS_SAVELOAD_GAMECOL    "Spiel"
+    IDS_SAVELOAD_ELAPSEDCOL "Verstrichene Zeit"
+    IDS_SERVER_GAMESERVER   "Spiel"
+    IDS_SERVER_SPEED        "Netzwerktempo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MAP          "Karte"
+    IDS_SERVER_PLAYERS      "Spieler/Max."
+    IDS_SERVER_GAME         "Spieltyp"
+    IDS_SERVER_NETWORK      "Netzwerk"
+    IDS_QUERY_STARTING      "Starte ..."
+    IDS_QUERY_COMPLETED     "'%s' abgeschlossen."
+    IDS_SERVER_REMOVE       "%i-Server permanent aus der Liste löschen?"
+    IDS_SERVER_CONNECT      "Baue Verbindung zu %s auf ..."
+    IDS_SERVER_LANTAG       "LAN"
+    IDS_SERVER_INTERNETTAG  "Internet"
+    IDS_SERVER_MENU_CONNECT "Verbinden"
+    IDS_SERVER_MENU_PLAYERINFO "Spieler- und Regel-Informationen zeigen"
+    IDS_SERVER_MENU_RULEINFO "Regel-Informationen zeigen"
+    IDS_SERVER_MENU_FILTER  "Server filtern"
+    IDS_SERVER_MENU_ADDTOFAVORITE "Zu Favoriten hinzufügen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MENU_REMOVEFROMFAV "Aus Favoriten entfernen"
+    IDS_SERVER_MENU_REMOVE  "Server permanent entfernen"
+    IDS_SERVER_MENU_NOPLAYERINFO "Keine Spieler-Informationen verfügbar"
+    IDS_SERVER_MENU_NOLANPLAYERINFO 
+                            "Keine verfügbaren Spieler-Informationen bei LAN-Spielen"
+    IDS_SAVELOAD_QUICKLISTTEXT "[schnell] %s"
+    IDS_SAVELOAD_AUTOLISTITEM "[autom. speichern] %s"
+    IDS_PLAYERINFO_NUMBER   "#"
+    IDS_PLAYERINFO_NAME     "Spielername"
+    IDS_PLAYERINFO_KILLS    "Volltreffer"
+    IDS_PLAYERINFO_TIME     "Zeit"
+    IDS_PLAYERINFO_SUIT     "Schutzanzug"
+    IDS_QUICK_REQUEST       "Fordere Liste der Server an ..., noch %i Sekunden."
+    IDS_QUICK_GOTLIST       "Liste empfangen ..."
+    IDS_QUICK_CONTACTING    "Kontaktiere Server ..."
+    IDS_QUICK_COMPLETEDSERVER "'%s' abgeschlossen."
+    IDS_SAVE_NEWCOMMENT     "Neues gespeichertes Spiel"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_NEWTIME        "Neu"
+    IDS_SAVE_NEWFILETIME    "Aktuell"
+    IDS_DDRAW_FAILEINIT     "Direct Draw-Initialisierung fehlgeschlagen (%08lx):%s\n"
+    IDS_DDRAW_DX4FAIL       "Direct Draw 4-Initialisierung fehlgeschlagen (%08lx):%s\n"
+    IDS_VIDEO_MODECOL       "Anzeige-Modus"
+    IDS_ROOM_NAMECOL        "Name"
+    IDS_ROOM_PEOPLECOL      "Leute"
+    IDS_ROOM_SERVERSCOL     "Server"
+    IDS_DDRAW_REQUIRED      "Half-Life benötigt DirectDraw."
+    IDS_DLL_LOADFAIL        "Engine-DLL konnte nicht geladen werden."
+    IDS_CMDLINE_VTOPTS      "-vt erfordert einen der folgenden Parameter: Software, GL oder D3D."
+    IDS_SAVE_NUMCHANGED     "Anzahl der gespeicherten Spielstände geändert?"
+    IDS_BINDINGS_ALLOCFAIL  "Es konnte kein Speicher für die Tastaturverknüpfung reserviert werden."
+    IDS_GAMMA_LOADFAIL      "Das Gamma-Bild 'gamma.bmp' konnte nicht gefunden werden."
+    IDS_DDRAW_RESTOREMODEFAIL 
+                            "Der DirectDraw-Videomodus konnte nicht wiederhergestellt werden."
+    IDS_AUDIO_VOLUME        "Lautstärke des Spielsounds"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUDIO_SUITVOL       "Anzuglautstärke"
+    IDS_AUDIO_USECD         "CD-Musik spielen."
+    IDS_AUDIO_HIGHQUALITY   "High Quality-Sound (für schnelle Computer)."
+    IDS_CFG_VIDHELP         "Bildschirmauflösung, Grafikmodus, Gamma oder Helligkeitsreduktion ändern."
+    IDS_CFG_AUDIOHELP       "Soundlautstärke und -qualität ändern."
+    IDS_CFG_CONTROLHELP     "Tastatur-, Maus- und Joystick-Einstellungen ändern."
+    IDS_CFG_RETURNTOMAIN    "Zurück zum Hauptmenü."
+    IDS_CREATEROOM_TITLE    "Privaten Raum erstellen"
+    IDS_CREATEROOM_ROOMNAME "Raum-Name"
+    IDS_CREATEROOM_ROOMTOPIC "Raum-Thema"
+    IDS_CREATESERVER_NAME   "Server-Name:"
+    IDS_CREATESERVER_MAP    "Karte:"
+    IDS_CREATESERVER_ROOM   "Zugeordneter Raum:"
+    IDS_CREATESERVER_GAMETYPE "Spieltyp:"
+    IDS_CREATESERVER_MAXPLAYERS "Max. Anzahl Spieler:"
+    IDS_FILTER_TITLE        "Filtert die Liste der Half-Life-Spiele"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILTER_HEADING      "Nur Server zeigen, die "
+    IDS_FILTER_RESPONDING   "antworten"
+    IDS_FILTER_RESPONSETIME "schneller geantwortet haben als"
+    IDS_FILTER_NOTFULL      "nicht voll sind"
+    IDS_FILTER_NOTEMPTY     "gerade aktive Spieler haben"
+    IDS_FILTER_ONFAVORITES  "in meiner 'Favoriten'-Liste sind"
+    IDS_FILTER_INCHATROOM   "mit dem ausgewählten Chat-Raum assoziiert sind"
+    IDS_FINDPLAYER_PLAYER   "Spieler suchen:"
+    IDS_OPTS_CROSSHAIR      "Fadenkreuz"
+    IDS_OPTS_REVERSE        "Maus umkehren"
+    IDS_OPTS_MLOOK          "Sehen mit Maus"
+    IDS_OPTS_LOOKSPRING     "Blick zurücksetzen"
+    IDS_OPTS_LOOKSTRAFE     "Sehen und seitwärts gehen"
+    IDS_OPTS_MFILTER        "Mausfilter"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JOYSTICK       "Joystick"
+    IDS_OPTS_CROSSHAIRHELP  "Schaltet das Fadenkreuz für das Zielen mit Waffen ein."
+    IDS_OPTS_REVERSEHELP    "Auf/Ab-Achse der Maus umkehren."
+    IDS_OPTS_MLOOKHELP      "Benutzen Sie die Maus zum Umsehen, anstatt sich mit der Maus fortzubewegen."
+    IDS_OPTS_LOOKSPRINGHELP "Sorgt dafür, dass der Bildschirm ""in Geradeaus-Position"" zurückspringt, wenn Sie sich vorwärts bewegen."
+    IDS_OPTS_LOOKSTRAFEHELP "In Kombination mit der Mausansicht-Option können Sie mit dieser Option zur Seite gehen, anstatt sich zu drehen."
+    IDS_OPTS_MFILTERHELP    "Ermittelt den Durchschnitt aus den Mauseingaben während der letzten zwei Bilder, um die Bewegungen weicher zu machen."
+    IDS_OPTS_JOYSTICKHELP   "Joystick aktivieren."
+    IDS_OPTS_SENSITIVITYHELP "Mausempfindlichkeit"
+    IDS_LOADSAVE_LOADHELP   "Ein gespeichertes Spiel laden."
+    IDS_LOADSAVE_SAVEHELP   "Das aktuelle Spiel abspeichern."
+    IDS_LOADSAVE_RETURN     "Zurück zum Hauptmenü."
+    IDS_MAIN_RETURNHELP     "Zum Spiel zurückkehren."
+    IDS_MAIN_NEWGAMEHELP    "Ein neues Spiel starten."
+    IDS_MAIN_TRAININGHELP   "Lernen, wie man Half-Life spielt."
+    IDS_MAIN_LOADHELP       "Ein gespeichertes Spiel laden."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_LOADSAVEHELP   "Ein gespeichertes Spiel laden und das aktuelle Spiel abspeichern."
+    IDS_MAIN_CONFIGUREHELP  "Spieleinstellungen ändern und Steuerung konfigurieren."
+    IDS_MAIN_READMEHELP     "Die Datei README.TXT anzeigen."
+    IDS_MAIN_ORDERHELP      "Die Vollversion von Half-Life bestellen."
+    IDS_MAIN_QUITHELP       "Das Spielen von Half-Life beenden."
+    IDS_MAIN_QUICKHELP      "Mit dem schnellsten aktiven Internet-Spieleserver verbinden, der gefunden wurde."
+    IDS_MAIN_MULTIPLAYERHELP 
+                            "Nach Half-Life-Servern suchen, mit anderen Spielern chatten und Charaktere konfigurieren."
+    IDS_CHAT_PROMPT         "Nachricht eingeben:"
+    IDS_NEWGAME_EASYHELP    "Half-Life auf der Schwierigkeitsstufe 'Einfach' spielen."
+    IDS_NEWGAME_MEDIUMHELP  "Half-Life auf der Schwierigkeitsstufe 'Mittel' spielen."
+    IDS_NEWGAME_DIFFICULTHELP 
+                            "Half-Life auf der Schwierigkeitsstufe 'Schwierig' spielen."
+    IDS_NEWGAME_RETURNHELP  "Zurück zum Hauptmenü."
+    IDS_NEWPROFILE_TITLE    "Spieler wählen"
+    IDS_NEWPROFILE_NAME     "Na&me:"
+    IDS_NEWPROFILE_PASSWORD "Passwort:"
+    IDS_NEWPROFILE_REMEMBER "Passwort speichern"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROFILE_MODEL       "Spielermodell"
+    IDS_PROFILE_NICKNAME    "Spielername"
+    IDS_PROFILE_SELECT      "Spielerprofil:"
+    IDS_PROFILE_PROCEEDHELP "Mit Benutzern chatten und nach Servern suchen."
+    IDS_PROFILE_RETURNHELP  "Zurück zum Hauptmenü."
+    IDS_VIDEO_SCREENSIZE    "Bildschirmgröße"
+    IDS_VIDEO_GAMMA         "Gammakorrektur"
+    IDS_VIDEO_GLARE         "Helligkeitsreduktion"
+    IDS_VIDEO_GAMMAHELP     "Gammakorrektur:  Stellt die Farbe von Half-Life so ein, wie Ihr Monitor sie am besten darstellen kann. Bewegen Sie den Schieberegler, bis Sie die Figur, die im Beispielbild auf der rechten Seite im Schatten steht, gerade noch erkennen können."
+    IDS_VIDEO_GLAREHELP     "Helligkeitsreduktion: Stellt die dunkleren Farben so ein, dass der Leuchteffekt auf Ihrem Monitor reduziert wird. "
+    IDS_VIDMODE_WINDOWED    "Im Fenster starten"
+    IDS_VIDMODE_MOUSE       "Maus ben&utzen"
+    IDS_VIDMODE_GLLISTHEADER "OpenGL-Treiber"
+    IDS_VIDMODE_D3DHEADER   "D3D-Gerät"
+    IDS_VIDSELECT_OPTIONSHELP 
+                            "Ändern der Grafik-Optionen wie Bildschirmauflösung, Gamma- und Helligkeitsreduktion."
+    IDS_VIDSELECT_MODESHELP "Grafik-Modus einstellen und 3D-Beschleuniger konfigurieren."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VIDSELECT_RETURNHELP "Zurück zum vorhergehenden Menü."
+    IDS_SERVERS_REFRESH     "Server erneut suchen ..."
+    IDS_PROGRESS_START      "Start"
+    IDS_QUICK_CONTACT       "Kontaktiere Server ..."
+    IDS_QUICK_REQUESTLIST   "Fordere Liste der Server an ..."
+    IDS_README_NOFILE       "Die Datei README.TXT konnte nicht gefunden werden."
+    IDS_STATUS_CONNECTING   "Mit Server '%s' verbinden"
+    IDS_STATUS_CONNECTIONESTABLISHED 
+                            "Verbindung zu %s hergestellt, schalte zum Spiel um"
+    IDS_STATUS_SKIPSERVER   "Überspringe ..."
+    IDS_STATUS_ELPASEDTIME  "%s\n%3.1f Sekunden vergangen"
+    IDS_TRAINING_EXITCURRENT 
+                            "Wenn Sie den Gefahrenkurs betreten, wird das aktuelle Spiel beendet. Wirklich beenden?"
+    IDS_MAIN_QUITPROMPTINGAME 
+                            "Möchten Sie Half-Life verlassen, ohne das aktuelle Spiel zu speichern?"
+    IDS_MAIN_QUITPROMPT     "Sind Sie sicher, dass Sie das Programm beenden möchten?"
+    IDS_CONTROLS_CANCELPROMPT "Verlassen ohne Änderungen zu speichern?"
+    IDS_LOAD_LOADPROMPT     "Wenn Sie ein Spiel laden, wird das aktuelle Spiel beendet. Wirklich beenden?"
+    IDS_LOADSAVE_DELETEPROMPT "Ausgewähltes Spiel löschen?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEWGAME_NEWPROMPT   "Wenn Sie ein neues Spiel starten, wird das aktuelle Spiel beendet. Wirklich beenden?"
+    IDS_NICKNAME_ADD        "Geben Sie einen Namen ein:"
+    IDS_PROFILE_CANCELPROMPT "Änderungen am Profil speichern?"
+    IDS_SAVE_INGAMEPROMPT   "Speichern nicht möglich, Sie haben im Moment kein Spiel gestartet."
+    IDS_SAVE_OVERWRITE      "Sind Sie sicher, dass Sie die gespeicherten Spieldaten überschreiben möchten?"
+    IDS_VIDEO_BADSETTINGS   "Ihre Grafikeinstellungen scheinen ungültig zu sein, möchten Sie die Einstellungen trotzdem benutzen?"
+    IDS_AUDIO_A3D           "D3D-Hardwareunterstützung einschalten."
+    IDS_BTN_DONE            "&Fertig"
+    IDS_BTN_CONTROLS        "Steuerung (&s)"
+    IDS_BTN_AUDIO           "&Audio"
+    IDS_BTN_VIDEO           "Grafik (&g)"
+    IDS_BTN_CANCEL          "Abbrechen (&a)"
+    IDS_BTN_CREATE          "&Raum erstellen"
+    IDS_BTN_FILTER          "Filtern (&l)"
+    IDS_BTN_FIND            "Suchen ... (&d)"
+    IDS_BTN_RETURN          "Zurück (&i)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_NEWGAME         "&Neues Spiel"
+    IDS_BTN_TRAINING        "Gefahrenkurs (&g)"
+    IDS_BTN_CONFIGURE       "Konfigurieren (&k)"
+    IDS_BTN_LOADSAVE        "Spiel speichern/laden (&s)"
+    IDS_BTN_LOAD            "Spiel laden (&l)"
+    IDS_BTN_MULTIPLAYER     "&Multiplayer"
+    IDS_BTN_README          "Readme anzeigen (&e)"
+    IDS_BTN_ORDER           "Bestellen"
+    IDS_BTN_QUIT            "Beenden (&b)"
+    IDS_BTN_ADVANCED        "Erweiterte Steuerung (&e)"
+    IDS_BTN_REVERT          "Abbrechen (&a)"
+    IDS_BTN_RESTORE         "Standard ben&utzen"
+    IDS_BTN_DELETE          "Löschen (&c)"
+    IDS_BTN_SAVE            "Spiel &speichern"
+    IDS_BTN_LOGIN           "&Login"
+    IDS_BTN_CONNECT         "Verbinden"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_CREATESV        "Spiel ers&tellen"
+    IDS_BTN_REFRESH         "E&rneut suchen"
+    IDS_BTN_ROOM            "Räume auflisten (&m)"
+    IDS_BTN_EASY            "&Einfach"
+    IDS_BTN_MEDIUM          "&Mittel"
+    IDS_BTN_HARD            "Schwer (&s)"
+    IDS_BTN_YES             "&Ja"
+    IDS_BTN_NO              "&Nein"
+    IDS_BTN_OK              "&Ok"
+    IDS_BTN_OPTIONS         "&Grafik-Optionen"
+    IDS_BTN_MODES           "Grafik-&Modi"
+    IDS_BTN_QUICK           "Schnellstart (&s)"
+    IDS_PROFILE_LOGO        "Graffiti-Bild"
+    IDS_BTN_BROWSE          "&Internet-Spiele"
+    IDS_MULTI_BROWSEHELP    "Hier sehen Sie eine Liste der Half-Life-Spielserver und können einen davon auswählen."
+    IDS_BTN_CHAT            "C&hat-Räume"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_CHATHELP      "Online mit anderen Half-Life-Spielern chatten."
+    IDS_BTN_LAN             "&LAN-Spiel"
+    IDS_MULTI_LANHELP       "Ein Half-Life-Spiel im lokalen Netzwerk (LAN) einrichten."
+    IDS_BTN_CUSTOMIZE       "Anpassen (&e)"
+    IDS_MULTI_CUSTOMIZEHELP "Ihren Spielernamen und die visuellen Optionen für Ihren Charakter wählen."
+    IDS_CREATEROOM_ROOMPASSWORD "Raum-Passwort (optional)"
+    IDS_PLAYERINFO_RULENAME "Server-Regel"
+    IDS_PLAYERINFO_RULEVALUE "Wert"
+    IDS_BTN_SEARCH          "Nach Spiel &suchen"
+    IDS_BTN_CHATMODE        "Chatten"
+    IDS_BTN_LISTMODE        "&Internet-Spiele"
+    IDS_BTN_EXIT            "B&eenden"
+    IDS_SERVER_MANUALADD    "Server über IP-Adresse von Hand hinzufügen ..."
+    IDS_SERVER_REQUESTNEWLIST "Neue Serverliste anfordern."
+    IDS_PLAYERINFO_SERVERNAME "Server-Host-Name:"
+    IDS_PLAYERINFO_SERVERIP "Server-IP-Adresse:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLAYERINFO_SERVERPING "Server-'PING'-Zeit:"
+    IDS_PROFILE_FACE        "Spielergesicht"
+    IDS_PROFILE_SKIN        "Spielerhaut"
+    IDS_BTN_JOIN            "Einklinken (&e)"
+    IDS_BTN_FINDGAME        "Spiel suchen"
+    IDS_BTN_START           "Spiel s&tarten"
+    IDS_PROFILE_LOGOCOLOR   "Farbe"
+    IDS_MULTI_RESUMEHELP    "Zu Ihrem aktuellen Multiplayer-Spiel zurückkehren."
+    IDS_MULTI_DISCONNECTHELP "Verbindung zum Spielserver trennen."
+    IDS_BTN_RESUME          "Weiterspielen (&i)"
+    IDS_BTN_DISCONNECT      "Unterbrechen"
+    IDS_BTN_ADDSERVER       "Server hinzufügen (&z)"
+    IDS_BTN_UPDATE          "&Updaten"
+    IDS_BTN_INFO            "Spielinfo ansehen (&s)"
+    IDS_QUICKSTART_TITLE    "Multiplayer-Schnelleinstieg"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_LISTROOMS       "Räume auf&listen"
+    IDS_BTN_GORE            "Inhaltssteuerung (&i)"
+    IDS_BTN_AUTOPATCH       "Half-Life &updaten."
+    IDS_CONFIGURE_GOREHELP  "Für jüngere Spieler und Multiplayer ungeeignete Grafiken ausschalten."
+    IDS_CONFIGURE_AUTOPATCHHELP 
+                            "Die neueste Version von Half-Life herunterladen."
+    IDS_CHAT_NOSERVERS      "Es wurden keine WON-Server gefunden."
+    IDS_CHAT_NOPROFILE      "Spielerprofil konnte nicht gefunden werden."
+    IDS_INIT_DX6REQUIRED    "Half-Life benötigt DirectX Version 6 oder höher. Bitte installieren Sie DirectX 6 und starten Sie Half-Life erneut."
+    IDS_WON_VALIDATIONFAIL  "Gültigkeitsüberprüfung abgelehnt\n‘%s‘"
+    IDS_WON_VALIDATIONFAIL2 "Gültigkeitsüberprüfung abgelehnt."
+    IDS_WON_AUTHOUTOFORDER  "Authentifzierung nicht mehr gültig (1)."
+    IDS_WON_AUTHPROBLEM     " Authentifzierungsproblem (2)"
+    IDS_WON_ENCRYPTBAD      "Fehler beim Erzeugen der Nachricht (1)."
+    IDS_WON_BADPUBLICKEY    "Ungültiges Signal vom Authentifzierungsserver (1)."
+    IDS_WON_AUTHNOMEM       "Nicht genügend Speicher zum Empfangen der Authentifzierungsantwort."
+    IDS_CD_NEEDCDKEY        "Sie müssen einen gültigen CD-Code eingeben, um Half-Life spielen zu können."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CD_BADKEY           "Der CD-Code, den Sie eingegeben haben, war ungültig."
+    IDS_CD_BADKEYTYPED      "Ihr CD-Code ist ungültig, bitte geben Sie den CD-Code erneut ein."
+    IDS_MD5_HASHFAIL        "Half-Life konnte nicht überprüft werden"
+    IDS_MAIN_REGISTERMSGFAIL 
+                            "Die Half-Life-Benutzernachricht konnte nicht registriert werden"
+    IDS_CDCHECK_PROMPT      "Bitte legen Sie die Half-Life-CD ein."
+    IDS_SETTINGS_SERVERTYPEINVALID "Falsche Listenart in %s"
+    IDS_TOKEN_EXPECTLEFTBRACE "{ erwartet in %s"
+    IDS_TOKEN_EXPECTRIGHTBRACE "} erwartet in %s"
+    IDS_MULTI_ADDIPUNRESOLVABLE 
+                            "Die IP-Adresse konnte nicht aufgelöst werden."
+    IDS_CHATCTRL_NOMEM      "Der Speicher für den Benutzernamen konnte nicht reserviert werden."
+    IDS_CHATCTRL_NOTEXTMEM  "Der Speicher für den Chattext konnte nicht reserviert werden."
+    IDS_CHATCTRL_WINREGFAIL "Die Chat-Edit-Control konnte nicht registriert werden."
+    IDS_PROFILE_DEFAULTMISSING 
+                            "Die Standard-Tastaturverknüpfungsdatei %s konnte nicht gefunden werden."
+    IDS_QUICK_NOMASTER      "Serverliste konnte nicht empfangen werden. Überprüfen Sie bitte, ob Ihre Internet-Verbindung aktiv ist."
+    IDS_QUICK_USINGPREVIOUSLIST 
+                            "Konnte Master nicht erreichen, benutze vorherige Liste ..."
+    IDS_CHAT_NOROOMLIST     "Raumliste konnte nicht empfangen werden."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVELOAD_NUMBEROFGAMESCHANGED 
+                            "Anzahl der gespeicherten Spielstände geändert?"
+    IDS_MAIN_EXITMULTIPLAYERPROMPT 
+                            "Wenn Sie in das Multiplayer-System wechseln, wird Ihr aktuelles Einzelspiel beendet. Möchten Sie es beenden, ohne zu speichern?"
+    IDS_CD_ENTERPROMPT      "Bitte geben Sie den CD-Code ein, den Sie auf der Hülle der Half-Life-CD finden."
+    IDS_MULTISELECT_EXITGAMEPROMPT 
+                            "Wenn Sie das Multiplayer-System verlassen, wird Ihr aktuelles Multiplayer-Spiel beendet. Wirklich beenden?"
+    IDS_MULTI_ADDSERVERPROMPT 
+                            "Internet-Adresse des Servers eingeben\r\n(z.B. 209.255.10.255:27015)"
+    IDS_ROOM_NEEDPASS       "Geben Sie das Raum-Passwort ein:"
+    IDS_SAVE_CANTSAVE       "Speichern nicht möglich, Sie haben im Moment kein Spiel gestartet."
+    IDS_SAVE_OVERWRITEPROMPT 
+                            "Sind Sie sicher, dass Sie die gespeicherten Spieldaten überschreiben möchten?"
+    IDS_SAVE_DELETEPROMPT   "Ausgewähltes Spiel löschen?"
+    IDS_AUTH_INUSE          "Benutzter Zugang"
+    IDS_AUTH_BADACCOUNT     "Ungültiger Zugang"
+    IDS_AUTH_BADREQ         "Ungültige Server-Anforderung"
+    IDS_AUTH_BADCERTIFICATE "Ungültige Client-Zertifizierung"
+    IDS_AUTH_BADEXE         "Ungültiger Client-Wert"
+    IDS_AUTH_BADCERTIFICATE2 "Ungültige Client-Zertifizierung"
+    IDS_AUTH_BADLOOKUP      "Ungültiger Client-'LookUp‘-Wert"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTH_BADBITS        "Ungültiger Client-Authentisierungswert"
+    IDS_AUTH_CORRUPT        "Ausführbare Datei beschädigt"
+    IDS_AUTH_INVALIDACCOUNT "Unbekannter Zugangsfehler"
+    IDS_CHAT_STATUSUNCONNECTED "Nicht verbunden."
+    IDS_CHAT_WONCONNECT     "Versuche, Verbindung herzustellen ..."
+    IDS_CHAT_USERENTER      "%s ist hinzugekommen ... \r\n"
+    IDS_CHAT_USERLEFT       "%s ist ausgeschieden ... \r\n"
+    IDS_ENG_STARTING        "Starte Engine ..."
+    IDS_SERVERS_SEARCHING   "Suche nach Servern ..."
+    IDS_SERVERS_LISTREC     "Empfange Serverliste ..."
+    IDS_SERVERS_CONNECTING  "Stelle Verbindung zu Servern her ..."
+    IDS_SERVERS_REQUESTINFO "Fordere Server-Informationen an"
+    IDS_ROOM_CREATENOTICE   "Erstelle Raum '%s', bitte warten ..."
+    IDS_ROOM_CREATEPROMPTTITLE "Erstelle Raum"
+    IDS_SAVE_TIMEHEADING    "Zeit"
+    IDS_SAVE_GAMEHEADING    "Spiel"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_ELAPSEDHEADING "Verstrichene Zeit"
+    IDS_SAVE_NEWCAPTION     "Neues gespeichertes Spiel"
+    IDS_SAVE_NEWGAMETXT     "Neu"
+    IDS_SAVE_FILETIME       "Aktuell"
+    IDS_STATUS_CONNECTINGNOTIME 
+                            "Stelle Verbindung zu Server '%s' her ... \n\n%s"
+    IDS_MULTI_CHATROOMCAPTION "Raum:"
+    IDS_GORE_CHECKBOX       "Inhaltskontrolle einschalten"
+    IDS_GORE_HELP           "Aktivieren Sie diese Option und geben Sie ein Passwort ein, um für jüngere Spieler und Multiplayer ungeeignete Grafiken auszuschalten. Jeder, der diese Einstellung ändern möchte, muss dieses Passwort benutzen."
+    IDS_GORE_PWPROMPT1      "Passwort eingeben:"
+    IDS_GORE_PWPROMPT2      "Zur Bestätigung erneut eingeben:"
+    IDS_GORE_PWMISMATCHED   "Die Passwörter, die Sie eingegeben haben, stimmen nicht überein. Bitte versuchen Sie es erneut."
+    IDS_GORE_BADPW          "Ungültiges Passwort"
+    IDS_BTN_ADVANCEDSVR     "Erweiterte Optionen (&e)"
+    IDS_OPTS_AUTOAIM        "Autom. zielen"
+    IDS_OPTS_AUTOAIMHELP    "Wenn Sie diese Option einschalten, unterstützt Sie Half-Life beim Zielen auf Gegner."
+    IDS_BTN_PREVIEWS        "Vorschau (&v)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_PREVIEWSHELP   "Vorschau auf andere Produkte ansehen, z.B. 'Team Fortress'."
+    IDS_SECONDS_LEFT        "Noch %i Sekunden ..."
+    IDS_MEDIA_PREVIEWURL    "media/previews/previews.htm"
+    IDS_ADVANCEDSVR_PAGE    "Seite %i von %i"
+    IDS_EMPTY               " "
+    IDS_MULTI_TYPE          "Verbindungsgeschwindigkeit"
+    IDS_MULTI_LAN           "LAN - T1 > 1M"
+    IDS_MULTI_ISDN          "ISDN - 112K"
+    IDS_MODEM56K            "Modem - 56K"
+    IDS_MODEM28K            "Modem - 28.8K"
+    IDS_OPTS_HIMODELS       "&High Quality-Modelle (für schnelle Computer)"
+    IDS_OPTS_HIMODELSHELP   " "
+    IDS_CHAT_SOCKETERROR    "Probleme mit Chat-Verbindung, versuche Verbindung erneut aufzubauen ..."
+    IDS_CHAT_RECONNECTFAIL  "Verbindung zum Chat gescheitert. Bitte überprüfen Sie, ob Sie mit dem Internet verbunden sind, und versuchen Sie es erneut."
+    IDS_CHAT_RECONNECTSUCCESS "Erneut verbunden ..."
+    IDS_CHAT_JOINFAILED     "Konnte in den Raum '%s' nicht eintreten. Klicken Sie auf 'Räume auflisten', um einen anderen Raum auszuwählen."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_WON             "&WON.net besuchen"
+    IDS_WON_URL             "www.won.net"
+    IDS_AUDIO_CDHINT        "Stellen Sie die CD-Lautstärke mit dem Windows-Multimediazubehör für die Lautstärke-Regelung ein."
+    IDS_PREVIOUS            "Zurück"
+    IDS_NEXT                "Weiter"
+    IDS_MODEM33K            "Modem - 33.6K"
+    IDS_MODEM14K            "Modem - 14.4K"
+    IDS_ROOM_PERMANENT      "Ständige Räume"
+    IDS_ROOM_USER           "Benutzererstellte Räume"
+    IDS_MULTI_DONEHELP      "Zurück zum Hauptmenü."
+    IDS_MULTI_WONHELP       "Zum World Opponent Network gehen."
+    IDS_AUDIO_EAX           "EAX-Hardware-Unterstützung einschalten."
+    IDS_GL_NOMODE           "Der gewählte OpenGL-Modus wird von Ihrer Grafikkarte nicht unterstützt."
+    IDS_D3D_NOMODE          "Der gewählte D3D-Modus wird von Ihrer Grafikkarte nicht unterstützt."
+    IDS_VID_NOMODE          "Der gewählte Grafik-Modus ist nicht verfügbar."
+    IDS_VID_RESELECT        "Bitte wählen Sie einen anderen Grafik-Modus."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VID_INITFAIL        "Das Grafik-Subsystem konnte nicht initialisiert werden."
+    IDS_NET_WONCONNFAIL     "Die Verbindung zum WON-Server konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internet-Verbindung."
+    IDS_NET_CORRUPT         "Ihre Half-Life-Installation weist einen Fehler auf oder ist überholt. Half-Life versucht jetzt, Ihre Version mit einem Update auf den neuesten Stand zu bringen."
+    IDS_CDKEY_BAD           "Ihr Half-Life-CD-Code ist ungültig."
+    IDS_MULTI_REFRESH       "Fordere Server-Informationen an"
+    IDS_CHAT_NOROOM         "Keine Verbindung"
+    IDS_RUN_PATCH           "Internet nach Updates durchsuchen?"
+    IDS_WON_AUTHFAILURE     "Keine Authentifizierung mit WON-Servern möglich."
+    IDS_WON_LOGIN           "Versuche, im WON einzuloggen."
+    IDS_LOGO_SIZEMISMATCH   "Höhe und Breite eigener Logos müssen einander entsprechen"
+    IDS_LOGO_OVERSIZED      "Eigene Logos dürfen nicht größer als 64x64 Pixel sein."
+    IDS_LOGO_POWEROF2       "Höhe und Breite des eigenen Logos müssen 2, 4, 8, 16, 32, oder 64 betragen."
+    IDS_MODEM_CUSTOM        "Selbst erstellt"
+    IDS_MODEM_RATE          "Datenübertragungsrate eingeben (100 - 9999)"
+    IDS_REGISTRY_UPDATE     "Registry-Einstellungen für Half-Life werden aktualisiert. Sie müssen Ihre Einstellungen neu konfigurieren."
+    IDS_CHAT_JOIN           "Versuche, in %s einzuklinken."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CHAT_FLOOD          "Zu viel Text. Bitte warten."
+    IDS_CHAT_SEARCH         "Suche nach User %s."
+    IDS_CHAT_NOINFO         "Directory-Server hat keine User-Informationen ausgegeben."
+    IDS_CHAT_NOFIND         "User %s konnte nicht gefunden werden."
+    IDS_CHAT_FIND           "%s in %s gefunden."
+    IDS_CHAT_NOAUTH         "Keine Authentifizierungsinformation erhalten."
+    IDS_CHAT_NODIR          "Server hat keine Directory-Informationen ausgegeben."
+    IDS_CHAT_NOSUCHROOM     "Konnte den Raum %s nicht finden."
+    IDS_CHAT_ROOMFULL       "Kann in %s nicht einklinken. Zu viele User halten sich im Raum auf ( %i ). Bitte später erneut versuchen."
+    IDS_CREATESV_NOADVANCED "Keine erweiterten Optionen verfügbar."
+    IDS_WON_CDINUSE         "Ihr Half-Life-CD-Code wird bereits benutzt. Bitte versuchen Sie es später erneut."
+    IDS_CHAT_JOINHINT       "Bitte ""/join [Raumname]"" eingeben, um sich in einen anderen Chat-Raum einzuklinken."
+    IDS_WON_BANNED          "Ihr CD-Code kann im WON.net-System nicht benutzt werden."
+    IDS_CONTENT_NOMULTIPLAYER "Inhaltssteurung-Konfiguration – Ein"
+    IDS_PATCH_ERROR         "Half-Life – AutoPatch-Fehler"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PATCH_NOUTIL        "Die Sierra Utilities sind nicht korrekt installiert. Bitte nochmals von der CD installieren."
+    IDS_PATCH_FAIL          "AutoPatch-Programm konnte nicht ausgeführt werden."
+    IDS_PATCH_BADINSTALL    "Half-Life ist nicht korrekt installiert."
+    IDS_CONNECT_FAILURE     "Verbindung zum Spiel-Server war nicht möglich.\r\nGrund: %s"
+    IDS_MULTI_NEEDPASSWORD  "Passwort erforderlich. Bitte geben Sie ein Passwort ein, um einen erneuten Verbindungsaufbau zu versuchen."
+    IDS_VID_HINT            "Als zuverlässigsten OpenGL-Modus empfehlen wir 640x480. Andere Modi sind von der jeweiligen Hardware abhängig und mit Ihrer Karte möglicherweise nicht kompatibel.\n\nFalls Sie eine 3D-Karte haben, die mit einem Voodoo-, Voodoo 2- oder Banshee-Chip-Satz ausgerüstet ist, wählen Sie als OpenGL-Treiber den 3DFX-Minitreiber an."
+    IDS_MULTI_LOGODISCONNECT 
+                            "Wenn Sie Ihr Logo ändern, wird Ihr aktuelles Multiplayer-Spiel beendet. Wirklich beenden?"
+    IDS_3D_WARNING          "Für die 3D-Unterstützung benötigt Half-Life die aktuellsten Versionen der auf Ihrem System vorhandenen Treiber. Das 3D-Info-Link hilft Ihnen sicherzustellen, dass Sie die korrekten Treiber besitzen."
+    IDS_3DSITE_URL          "www.sierrastudios.com/games/half-life/support/3Dinfo/"
+    IDS_WON_MODIFIED        "Die Executable von Half-Life wurde verändert. Bitte überprüfen Sie Ihr System auf Viren und installieren Sie Half-Life dann erneut."
+    IDS_ADVANCEDMP_OFFSETS  "0"
+    IDS_AUDIO_OFFSET        "0 50 0 3"
+    IDS_CONFIGURE_OFFSET    "0 0"
+    IDS_CREATEROOM_OFFSET   "0"
+    IDS_CREATESERVER_OFFSET "0"
+    IDS_GAMEOPTIONS_OFFSET  "0 0 0 0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HLMAIN_OFFSET       "0"
+    IDS_KEYBOARD_OFFSET     "0"
+    IDS_LAN_OFFSET          "100 85 75 71 100"
+    IDS_LOAD_OFFSET         "10 0"
+    IDS_NETGAMEDLG_OFFSET   "0 0 35"
+    IDS_NEWGAMEDLG_OFFSET   "0"
+    IDS_PLAYERINFODLG_OFFSET "0"
+    IDS_PLAYERPROFILEDLG_OFFSET "-25 0"
+    IDS_PROMPT_OFFSET       "40 40"
+    IDS_ROOM_OFFSET         "0"
+    IDS_VIDEODLG_OFFSET     "10"
+    IDS_VIDEOMODEDLG_OFFSET "0 0"
+    IDS_VIDSELECTDLG_OFFSET "7 0"
+    IDS_UPDATERREGISTRYINSTALLDIR "HALFLIFE"
+    IDS_SPANISH             "0"
+    IDS_FRENCH              "0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JLOOKHELP      "Benutzen Sie den Joystick zum Umsehen anstatt sich mit dem Joystick fortzubewegen."
+    IDS_OPTS_JLOOK          "Joystick-Sicht"
+    IDS_GERMAN              "1"
+    IDS_CONNECT_PROTOCOLBAD "Sie können keine Verbindung zu einem Server herstellen, der mit einer anderen Protokollversion arbeitet."
+    IDS_SERVER_MENU_QUICK   "Liste nach optimaler Serverauswahl sortieren"
+    IDS_DECAL_LIMIT         "Maximale Anzahl von Spuren im Multiplayer-Modus."
+    IDS_SPRITE_SKIP         "Schnellere Software-Sprites zeichnen."
+    IDS_MODEL_NAME          "Spielermodell:  %s"
+    IDS_FILTER_BYGAME       "sind laufende Spiele "
+    IDS_BTN_SETINFO         "&Erweiterte Optionen"
+    IDS_MODLIST_TYPE        "Typ"
+    IDS_MODLIST_NAME        "Name"
+    IDS_MODLIST_VERSION     "Version"
+    IDS_MODLIST_SIZE        "Größe"
+    IDS_MODLIST_RATING      "Qualität"
+    IDS_MODLIST_INSTALLED   "Installiert"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MODLIST_SERVERS     "Server"
+    IDS_MODLIST_PLAYERS     "Spieler"
+    IDS_MOD_DOWNLOADING     "'%s' wird heruntergeladen"
+    IDS_MOD_DLSIZEMB        "Gesamte Downloadgröße des Spiels %s\r\n%.2fmb"
+    IDS_MOD_DLSIZEKB        "Gesamte Downloadgröße des Spiels %s\r\n%.2fkb"
+    IDS_MOD_DLSTATUS        "%s wird aus Datei \r\n%s\r\n heruntergeladen:  %s\r\n%.0f%%"
+    IDS_MOD_TIME            "%.1f Sekunden"
+    IDS_MOD_CONNECT         "Verbindung mit %s wird hergestellt"
+    IDS_MOD_GETTINGSIZE     "Downloadgröße wird bekannt gegeben"
+    IDS_MOD_DLSTATUSSHORT   "%s wird von \r\n%s heruntergeladen"
+    IDS_MOD_NOFILES         "Keine Daten für Download vorhanden"
+    IDS_MOD_NOLIBLIST       "Datei liblist.gam wurde nicht auf Remote-Host gefunden.\r\nÜberprüfen Sie, ob %s ein gültiger, Pfad für anpaßbare Spiele ist"
+    IDS_INTERNET_CURRENTTOTALS "%i Server ( %i Spieler online )"
+    IDS_SERVER_REFRESH      "Ausgewählten Server aktualisieren"
+    IDS_CONNECT_NEEDMOD     "Sie können keine Verbindung zu einem Server herstellen, auf dem das anpaßbare Spiel %s läuft, bevor Sie das anpaßbare Spiel installiert haben."
+    IDS_MOD_REMOTEOPENFAIL  "%s konnte nicht auf dem Remote-Computer geöffnet werden"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_LOCALOPENFAIL   "%s konnte nicht auf dem lokalen Computer geöffnet werden"
+    IDS_BTN_CUSTOMGAME      "Selbst erstelltes Spiel"
+    IDS_MAIN_CUSTOMHELP     "Selbst erstelltes Spiel anwählen, Internet nach selbst erstellten Spielen durchsuchen."
+    IDS_BTN_ACTIVATE        "&Aktivieren"
+    IDS_BTN_INSTALL         "&Installieren"
+    IDS_BTN_DETAILS         "Details"
+    IDS_BTN_VISIT           "Website besuchen"
+    IDS_BTN_REFRESHMODS     "Liste erneuern"
+    IDS_BTN_DEACTIVATE      "D&eaktivieren"
+    IDS_MOD_INFO            "Info:"
+    IDS_YES                 "Ja"
+    IDS_NO                  "Nein"
+    IDS_UPDATE              "Aktualisieren"
+    IDS_MODREQ_TITLE        "Info für selbst erstelltes Spiel wird angefordert."
+    IDS_DOWNLOAD_WARNING    "Sie sind im Begriff, ein anpaßbares Spiel herunterzuladen. Der Download eines Spiels für Half-Life bringt wie der Download aller Programme aus dem Internet gewisse Risiken mit sich. Programme können Viren und Fehler enthalten, die zu einem Systemabsturz und zum Verlust nicht gespeicherter Daten führen können, oder für Ihren Computer schädliche Vorgänge ausführen.\r\nSie können diese Warnung deaktivieren, indem Sie unten in diesem Dialogfeld 'Diese Warnung nicht mehr anzeigen' markieren."
+    IDS_WARN_CHECKPROMPT    "Diese Warnung nicht mehr anzeigen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_VERSION         "Für das selbst erstellte Spiel %s gibt es eine neue Version. Möchtest du das Spiel wirklich anwählen, bevor die aktualisierte Version installiert wurde?"
+    IDS_MOD_REINSTALL       "Das selbst erstellte Spiel %s wurde bereits installiert. Willst du es wirklich erneut installieren?"
+    IDS_WARN_TITLE          "Selbst erstelltes Spiel herunterladen"
+    IDS_MOD_ENGINEVERSION   "Das selbst erstellte Spiel '%s' wurde mit einer Version von Half-Life erstellt, die nicht mit der zur Zeit hier installierten Version identisch ist. Möchtest du das Spiel wirklich anwählen, bevor die aktualisierte Version installiert wurde?"
+    IDS_MOD_CONNVERSION     "Du kannst erst dann mit einem Server, auf dem Version %i des selbst erstellten Spiels '%s' läuft, eine Verbindung aufbauen, wenn auch auf deinem System diese aktualisierte Version installiert ist. Deine aktuelle Version ist %i"
+    IDS_CONNHLVERSION       "Du kannst erst dann mit einem Server, auf dem die Spielversion %i für Half-Life, Version %s, läuft, eine Verbindung aufbauen, wenn Half-Life auch auf deinem System auf diese Version aktualisiert wurde. Deine aktuelle Version von Half-Life ist %s"
+    IDS_MOD_NOTINSTALLED    "Das selbst erstellte Spiel '%s' kann nicht aktiviert werden, du musst dieses Spiel zuerst installieren."
+    IDS_REFRESH_SERVERS     "%i servers remaining"
+	IDS_DEDICATED			"Spezialisierter Server (schneller, Sie können sich von dieser Maschine aus jedoch nicht in den Server einklinken)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

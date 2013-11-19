@@ -1,0 +1,12 @@
+EXPORTS
+	XSIOnCommand	@1 PRIVATE
+	XSIOnInit		@2 PRIVATE
+	XSIOnTerminate  @3 PRIVATE
+	XSIOnEvent		@4 PRIVATE
+	XSILoadPlugin	@5 PRIVATE
+	XSIUnloadPlugin	@6 PRIVATE
+	VMFImportProperty_DefineLayout	@7 PRIVATE
+	VMFImportProperty_Define		@8 PRIVATE
+	CPPImportVMF_Init	@9 PRIVATE
+	OnVMFImportMenu		@10 PRIVATE
+	VMFImport_Execute	@11	PRIVATE

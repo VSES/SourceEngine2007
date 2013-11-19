@@ -1,0 +1,129 @@
+//-----------------------------------------------------------------------------
+//	VSVMFIO_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\utils\common;$SRCDIR\utils\vbsp;$SRCDIR\public\maya;$SRCDIR\sdktools\maya\vsVmfIO"
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM;VSVMFIO"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE comctl32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"VmfImport.cpp"
+		$File	"vsVmfIOCmd.cpp"
+		$File	"vsVmfIOInit.cpp"
+		$File	"vsVmfIOTranslator.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"VmfImport.h"
+		$Folder "vbsp"
+		{
+			$File	"$SRCDIR\utils\vbsp\csg.h"
+			$File	"$SRCDIR\utils\vbsp\detail.h"
+			$File	"$SRCDIR\utils\vbsp\disp_ivp.h"
+			$File	"$SRCDIR\utils\vbsp\disp_vbsp.h"
+			$File	"$SRCDIR\utils\vbsp\faces.h"
+			$File	"$SRCDIR\utils\vbsp\ivp.h"
+			$File	"$SRCDIR\utils\vbsp\map.h"
+			$File	"$SRCDIR\utils\vbsp\materialpatch.h"
+			$File	"$SRCDIR\utils\vbsp\materialsub.h"
+			$File	"$SRCDIR\utils\vbsp\portals.h"
+			$File	"$SRCDIR\public\studio.h"
+			$File	"$SRCDIR\utils\vbsp\vbsp.h"
+			$File	"$SRCDIR\utils\vbsp\writebsp.h"
+		}
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\bitmap.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\vtf.lib"
+	}
+
+	$Folder	"external"
+	{
+		$Folder "utils_vbsp"
+		{
+			$File	"$SRCDIR\utils\vbsp\brushbsp.cpp"
+			$File	"$SRCDIR\utils\vbsp\csg.cpp"
+			$File	"$SRCDIR\utils\vbsp\cubemap.cpp"
+			$File	"$SRCDIR\utils\vbsp\detail.cpp"
+			$File	"$SRCDIR\utils\vbsp\detailobjects.cpp"
+			$File	"$SRCDIR\utils\vbsp\disp_ivp.cpp"
+			$File	"$SRCDIR\utils\vbsp\disp_vbsp.cpp"
+			$File	"$SRCDIR\utils\vbsp\faces.cpp"
+			$File	"$SRCDIR\utils\vbsp\glfile.cpp"
+			$File	"$SRCDIR\utils\vbsp\ivp.cpp"
+			$File	"$SRCDIR\utils\vbsp\leakfile.cpp"
+			$File	"$SRCDIR\utils\vbsp\map.cpp"
+			$File	"$SRCDIR\utils\vbsp\materialpatch.cpp"
+			$File	"$SRCDIR\utils\vbsp\materialsub.cpp"
+			$File	"$SRCDIR\utils\vbsp\nodraw.cpp"
+			$File	"$SRCDIR\utils\vbsp\normals.cpp"
+			$File	"$SRCDIR\utils\vbsp\overlay.cpp"
+			$File	"$SRCDIR\utils\vbsp\portals.cpp"
+			$File	"$SRCDIR\utils\vbsp\prtfile.cpp"
+			$File	"$SRCDIR\utils\vbsp\staticprop.cpp"
+			$File	"$SRCDIR\utils\vbsp\textures.cpp"
+			$File	"$SRCDIR\utils\vbsp\tree.cpp"
+			$File	"$SRCDIR\utils\vbsp\vbsp.cpp"
+			$File	"$SRCDIR\utils\vbsp\worldvertextransitionfixup.cpp"
+			$File	"$SRCDIR\utils\vbsp\writebsp.cpp"
+		}
+		$Folder "public"
+		{
+			$File	"$SRCDIR\public\builddisp.cpp"
+			$File	"$SRCDIR\public\chunkfile.cpp"
+			$File	"$SRCDIR\public\CollisionUtils.cpp"
+			$File	"$SRCDIR\public\disp_common.cpp"
+			$File	"$SRCDIR\public\disp_powerinfo.cpp"
+			$File	"$SRCDIR\public\filesystem.h"
+			$File	"$SRCDIR\public\filesystem_helpers.cpp"
+			$File	"$SRCDIR\public\filesystem_init.cpp"
+			$File	"$SRCDIR\public\interpolatortypes.cpp"
+			$File	"$SRCDIR\public\interpolatortypes.h"
+			$File	"$SRCDIR\public\loadcmdline.cpp"
+			$File	"$SRCDIR\public\lumpfiles.cpp"
+			$File	"$SRCDIR\public\zip_utils.cpp"
+		}
+		$Folder "utils_common"
+		{
+			$File	"$SRCDIR\utils\common\bsplib.cpp"
+			$File	"$SRCDIR\utils\common\cmdlib.cpp"
+			$File	"$SRCDIR\utils\common\filesystem_tools.cpp"
+			$File	"$SRCDIR\utils\common\map_shared.cpp"
+			$File	"$SRCDIR\utils\common\mstristrip.cpp"
+			$File	"$SRCDIR\utils\common\pacifier.cpp"
+			$File	"$SRCDIR\utils\common\physdll.cpp"
+			$File	"$SRCDIR\utils\common\polylib.cpp"
+			$File	"$SRCDIR\utils\common\scriplib.cpp"
+			$File	"$SRCDIR\utils\common\threads.cpp"
+			$File	"$SRCDIR\utils\common\tools_minidump.cpp"
+			$File	"$SRCDIR\utils\common\tools_minidump.h"
+			$File	"$SRCDIR\utils\common\utilmatlib.cpp"
+		}
+	}
+}

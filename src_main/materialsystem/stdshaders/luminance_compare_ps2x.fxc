@@ -1,0 +1,46 @@
+// STATIC: "CONVERT_TO_SRGB" "0..1"	[ps20b][= g_pHardwareConfig->NeedsShaderSRGBConversion()] [PC]
+// STATIC: "CONVERT_TO_SRGB" "0..0"	[= 0] [XBOX]
+
+#define HDRTYPE HDR_TYPE_NONE
+#include "common_ps_fxc.h"
+
+// this pixel shader compares the luminance against a conatnt value and retruns all 1s when
+// greater.
+
+sampler TexSampler	: register( s0 );
+
+struct PS_INPUT
+{
+	float2 coordTap0				: TEXCOORD0;
+	
+#if defined( _X360 ) //matching pixel shader inputs to vertex shader outputs to avoid shader patches	
+	float2 ZeroTexCoord				: TEXCOORD1;
+    float2 bloomTexCoord            : TEXCOORD2;
+#endif
+};
+
+float3 ComparisonMinMax_and_scale : register( c0 );
+
+float4 main( PS_INPUT i ) : COLOR
+{
+	float3 color = tex2D( TexSampler, i.coordTap0 ) * ComparisonMinMax_and_scale.z;
+
+	// Formula for calculating luminance based on NTSC standard
+	float lum = ( 0.2125f * color.r ) + ( 0.7154f * color.g ) + ( 0.0721f * color.b );
+
+	// Alternate formula for calculating luminance for linear RGB space (Widely used in color hue and saturation computations)
+	//lum = ( 0.3086f * color.r ) + ( 0.6094f * color.g ) + ( 0.0820f * color.b );
+
+	// Simple average
+	//lum = ( color.r + color.g + color.b ) / 3.0f;
+
+	float4 result;
+	if ( ( lum >= ComparisonMinMax_and_scale.x ) && ( lum < ComparisonMinMax_and_scale.y ) )
+		result = float4( 1, 0, 0, 1 );
+	else
+		result = float4( 0, 0, 0, 0 );
+
+	return result;
+	//return FinalOutput( result, 0, PIXEL_FOG_TYPE_NONE, TONEMAP_SCALE_NONE );
+}
+

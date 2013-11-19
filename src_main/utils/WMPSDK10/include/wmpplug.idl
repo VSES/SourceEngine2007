@@ -1,0 +1,109 @@
+//************************************************************
+//
+// Microsoft Windows Media Technologies
+// Copyright (C) Microsoft Corporation. All rights reserved.
+//
+// Filename:    wmpplug.idl
+//
+// Abstract:    Interface implemented by Windows Media Player
+//              UI Plugins.
+//
+//************************************************************
+cpp_quote( "//=========================================================================" )
+cpp_quote( "//" )
+cpp_quote( "// Microsoft Windows Media Technologies" )
+cpp_quote( "// Copyright (C) Microsoft Corporation. All rights reserved." )
+cpp_quote( "//" )
+cpp_quote( "//=========================================================================" )
+
+import "oaidl.idl";
+import "wmp.idl";
+
+// Constants defined for required plugin registry keys:
+
+// The following variables should be written to the following key:
+//      HLKM\PLUGIN_INSTALLREGKEY\{GUID}
+// Where {GUID} is the identifier used to create the plugin, and PLUGIN_INSTALLREGKEY is the
+// registry path listed below.
+
+cpp_quote( "#define PLUGIN_INSTALLREGKEY                L\"Software\\\\Microsoft\\\\MediaPlayer\\\\UIPlugins\"" )
+
+cpp_quote( "#define PLUGIN_INSTALLREGKEY_FRIENDLYNAME   L\"FriendlyName\"" )
+cpp_quote( "#define PLUGIN_INSTALLREGKEY_DESCRIPTION    L\"Description\"" )
+cpp_quote( "#define PLUGIN_INSTALLREGKEY_CAPABILITIES   L\"Capabilities\"" )
+cpp_quote( "#define PLUGIN_INSTALLREGKEY_UNINSTALL      L\"UninstallPath\"" )
+
+
+// Plugin Types (stored in the PLUGIN_INSTALLREGKEY_CAPABILITIES registry entry)
+
+const DWORD PLUGIN_TYPE_BACKGROUND          =   0x00000001;         // plugin has no UI
+const DWORD PLUGIN_TYPE_SEPARATEWINDOW      =   0x00000002;         // plugin runs in its own window
+const DWORD PLUGIN_TYPE_DISPLAYAREA         =   0x00000003;         // plugin takes the full visuzalization area
+const DWORD PLUGIN_TYPE_SETTINGSAREA        =   0x00000004;         // plugin takes the settings area
+const DWORD PLUGIN_TYPE_METADATAAREA        =   0x00000005;         // plugin takes the metadata area
+
+// Capability Flags (also stored in the PLUGIN_INSTALLREGKEY_CAPABILITIES registry entry)
+
+const DWORD PLUGIN_FLAGS_HASPROPERTYPAGE    =   0x80000000;         // does the plugin have a property page?
+const DWORD PLUGIN_FLAGS_INSTALLAUTORUN     =   0x40000000;         // autorun after installation?
+const DWORD PLUGIN_FLAGS_LAUNCHPROPERTYPAGE =   0x20000000;         // auto-launch property page on first load?
+const DWORD PLUGIN_FLAGS_ACCEPTSMEDIA       =   0x10000000;         // allow media 'send-to' context item?
+const DWORD PLUGIN_FLAGS_ACCEPTSPLAYLISTS   =   0x08000000;         // allow playlist 'send-to' context item?
+const DWORD PLUGIN_FLAGS_HASPRESETS         =   0x04000000;         // does the plugin have presets? (Display, Settings, Metadata only)
+const DWORD PLUGIN_FLAGS_HIDDEN             =   0x02000000;         // should the plugin not be listed in menus?(Background plugins only)
+
+// Variables requested from the GetProperty API for plugins that have PLUGIN_FLAGS_HASPRESETS flag set
+
+cpp_quote( "#define PLUGIN_MISC_PRESETCOUNT      L\"PresetCount\"" )     // (VT_I4)      returns total number of presets
+cpp_quote( "#define PLUGIN_MISC_PRESETNAMES      L\"PresetNames\"")      // (VT_ARRAY)   returns BSTR array of preset titles
+
+// Variables requested from the GetProperty/SetProperty API for plugins that have PLUGIN_FLAGS_HASPRESETS flag set
+
+cpp_quote( "#define PLUGIN_MISC_CURRENTPRESET    L\"CurrentPreset\"" )   // (VT_I4)      returns/sets the current preset
+
+// Variables requested from the GetProperty API for PLUGIN_TYPE_SEPARATEWINDOW plugins
+
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_RESIZABLE     L\"Resizable\"" )       // (VT_BOOL)    when true, makes the window resizable
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_DEFAULTWIDTH  L\"DefaultWidth\"" )    // (VT_I4)      the plugin's initial launch width
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_DEFAULTHEIGHT L\"DefaultHeight\"" )   // (VT_I4)      the plugin's initial launch height
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_MINWIDTH      L\"MinWidth\"" )        // (VT_I4)      the plugin's minimum resize width
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_MINHEIGHT     L\"MinHeight\"" )       // (VT_I4)      the plugin's minimum resize height
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_MAXWIDTH      L\"MaxWidth\"" )        // (VT_I4)      the plugin's maximum resize width
+cpp_quote( "#define PLUGIN_SEPARATEWINDOW_MAXHEIGHT     L\"MaxHeight\"" )       // (VT_I4)      the plugin's maximum resize height
+
+// Variables requested from the GetProperty API for PLUGIN_TYPE_SEPARATEWINDOW and PLUGIN_TYPE_BACKGROUND plugins
+
+cpp_quote( "#define PLUGIN_MISC_QUERYDESTROY            L\"QueryDestroy\"" )    // (VT_BSTR)    when not blank, displays returned string and doesn't close plugin
+
+// Variables given to the SetProperty API for any plugin type exposing PLUGIN_FLAGS_ACCEPTSMEDIA or PLUGIN_FLAGS_ACCEPTSPLAYLISTS
+
+cpp_quote( "#define PLUGIN_ALL_MEDIASENDTO              L\"MediaSendTo\"" )     // (VT_ARRAY)   array of IUnknown pointers (QI for IWMPMedia)
+cpp_quote( "#define PLUGIN_ALL_PLAYLISTSENDTO           L\"PlaylistSendTo\"" )  // (VT_ARRAY)   array of IUnknown pointers (QI for IWMPPlaylist)
+
+// Notification function that plugin installed/uninstalled
+
+cpp_quote( "__inline BOOL WMPNotifyPluginAddRemove()" )
+cpp_quote( "{" )
+cpp_quote( "    return( ::PostMessage( HWND_BROADCAST, ::RegisterWindowMessageA( \"WMPlayer_PluginAddRemove\" ), 0, 0 ) );" )
+cpp_quote( "}" )
+
+// Interface required to be implemented by a UI Plugin for Window Media Player
+
+[
+    object,
+    uuid(4C5E8F9F-AD3E-4bf9-9753-FCD30D6D38DD),
+    helpstring("IWMPPluginUI: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPPluginUI : IUnknown
+{
+    HRESULT SetCore( [in] IWMPCore * pCore );
+    HRESULT Create( [in] HWND hwndParent, [out] HWND * phwndWindow );
+    HRESULT Destroy();
+    HRESULT DisplayPropertyPage( [in] HWND hwndParent );
+    HRESULT GetProperty( [in] const WCHAR * pwszName, [out] VARIANT * pvarProperty );
+    HRESULT SetProperty( [in] const WCHAR * pwszName, [in] const VARIANT * pvarProperty );
+    HRESULT TranslateAccelerator( [in] LPMSG lpmsg );
+};
+
+

@@ -1,0 +1,66 @@
+//-----------------------------------------------------------------------------
+//	FOUNDRY.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\tools"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"		[$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,.\,$SRCDIR\game\shared"
+		$PreprocessorDefinitions			"$BASE;FOUNDRY_EXPORTS"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"Psapi.lib"
+	}
+}
+
+$Project "foundry"
+{
+	$Folder	"Source Files"
+	{
+		$File	"DmeVMFEntity.cpp"
+		$File	"DmeVMFEntity.h"
+		$File	"entityreportpanel.cpp"
+		$File	"entityreportpanel.h"
+		$File	"foundrydoc.cpp"
+		$File	"foundrytool.cpp"
+		$File	"$SRCDIR\public\interpolatortypes.cpp"
+		$File	"$SRCDIR\public\registry.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"foundrydoc.h"
+		$File	"foundrytool.h"
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\public\mathlib\mathlib.h"
+	}
+	
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\datamodel.lib"
+		$File	"$SRCDIR\lib\public\dmserializers.lib"
+		$File	"$SRCDIR\lib\public\dme_controls.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\matsys_controls.lib"
+		$File	"$SRCDIR\lib\public\movieobjects.lib"
+		$File	"$SRCDIR\lib\public\sfmobjects.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\toolutils.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+	}
+}

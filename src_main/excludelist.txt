@@ -1,0 +1,11 @@
+.user
+.obj
+.pch
+.vpc
+.exp
+.dll
+.htm
+.idb
+.pdb
+.map
+.lib

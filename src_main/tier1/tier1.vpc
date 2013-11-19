@@ -1,0 +1,142 @@
+//-----------------------------------------------------------------------------
+//	TIER1.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		".."
+$macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]	
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+	$BuildForLinux 1
+}
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions		"$BASE;TIER1_STATIC_LIB"
+	}
+
+	$Librarian [$WIN32]
+	{
+		$AdditionalDependencies			"Rpcrt4.lib"
+	}
+}
+
+$Configuration	"Release"
+{
+	$Compiler
+	{
+	}
+}
+
+$Project "tier1"
+{
+	$Folder	"Source Files"
+	{
+		$File	"bitbuf.cpp"
+		$File	"newbitbuf.cpp"
+		$File	"byteswap.cpp"
+		$File	"characterset.cpp"
+		$File	"checksum_crc.cpp"
+		$File	"checksum_md5.cpp"
+		$File	"commandbuffer.cpp"
+		$File	"convar.cpp"
+		$File	"datamanager.cpp"
+		$File	"diff.cpp"
+		$File	"generichash.cpp"
+		$File	"interface.cpp"
+		$File	"KeyValues.cpp"
+		$File	"lzmaDecoder.cpp"
+		$File	"lzss.cpp"
+		$File	"mempool.cpp"
+		$File	"memstack.cpp"
+		$File	"NetAdr.cpp"
+		$File	"processor_detect.cpp"
+		{
+			$Configuration
+			{
+				$Compiler
+				{
+					$EnableC++Exceptions	"Yes (/EHsc)" [!$X360]
+				}
+			}
+		}
+		
+		$File	"processor_detect_linux.cpp"	[$LINUX]
+		$File	"rangecheckedvar.cpp"
+		$File	"stringpool.cpp"
+		$File	"strtools.cpp"
+		$File	"tier1.cpp"
+		$File	"tokenreader.cpp"
+		$File	"uniqueid.cpp"
+		$File	"utlbuffer.cpp"
+		$File	"utlbufferutil.cpp"
+		$File	"utlstring.cpp"
+		$File	"utlsymbol.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\tier1\bitbuf.h"
+		$File	"$SRCDIR\public\tier1\byteswap.h"
+		$File	"$SRCDIR\public\tier1\callqueue.h"
+		$File	"$SRCDIR\public\tier1\characterset.h"
+		$File	"$SRCDIR\public\tier1\checksum_crc.h"
+		$File	"$SRCDIR\public\tier1\checksum_md5.h"
+		$File	"$SRCDIR\public\tier1\commandbuffer.h"
+		$File	"$SRCDIR\public\tier1\convar.h"
+		$File	"$SRCDIR\public\tier1\datamanager.h"
+		$File	"$SRCDIR\public\datamap.h"
+		$File	"$SRCDIR\public\tier1\delegates.h"
+		$File	"$SRCDIR\public\tier1\diff.h"
+		$File	"$SRCDIR\public\tier1\fmtstr.h"
+		$File	"$SRCDIR\public\tier1\functors.h"
+		$File	"$SRCDIR\public\tier1\generichash.h"
+		$File	"$SRCDIR\public\tier1\iconvar.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"$SRCDIR\public\tier1\KeyValues.h"
+		$File	"$SRCDIR\public\tier1\lzmaDecoder.h"
+		$File	"$SRCDIR\public\tier1\lzss.h"
+		$File	"$SRCDIR\public\tier1\mempool.h"
+		$File	"$SRCDIR\public\tier1\memstack.h"
+		$File	"$SRCDIR\public\tier1\netadr.h"
+		$File	"$SRCDIR\public\tier1\processor_detect.h"
+		$File	"$SRCDIR\public\tier1\rangecheckedvar.h"
+		$File	"$SRCDIR\public\tier1\refcount.h"
+		$File	"$SRCDIR\public\tier1\smartptr.h"
+		$File	"$SRCDIR\public\tier1\stringpool.h"
+		$File	"$SRCDIR\public\tier1\strtools.h"
+		$File	"$SRCDIR\public\tier1\tier1.h"
+		$File	"$SRCDIR\public\tier1\tokenreader.h"
+		$File	"$SRCDIR\public\tier1\uniqueid.h"				[$WIN32]
+		$File	"$SRCDIR\public\tier1\utlbidirectionalset.h"
+		$File	"$SRCDIR\public\tier1\utlblockmemory.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utlbufferutil.h"
+		$File	"$SRCDIR\public\tier1\utldict.h"
+		$File	"$SRCDIR\public\tier1\utlenvelope.h"
+		$File	"$SRCDIR\public\tier1\utlfixedmemory.h"
+		$File	"$SRCDIR\public\tier1\utlhandletable.h"
+		$File	"$SRCDIR\public\tier1\utlhash.h"
+		$File	"$SRCDIR\public\tier1\utllinkedlist.h"
+		$File	"$SRCDIR\public\tier1\utlmap.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlmultilist.h"
+		$File	"$SRCDIR\public\tier1\utlpriorityqueue.h"
+		$File	"$SRCDIR\public\tier1\utlqueue.h"
+		$File	"$SRCDIR\public\tier1\utlrbtree.h"
+		$File	"$SRCDIR\public\tier1\UtlSortVector.h"
+		$File	"$SRCDIR\public\tier1\utlstack.h"
+		$File	"$SRCDIR\public\tier1\utlstring.h"
+		$File	"$SRCDIR\public\tier1\UtlStringMap.h"
+		$File	"$SRCDIR\public\tier1\utlsymbol.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\common\xbox\xboxstubs.h"				[$WIN32||$LINUX]
+	}
+}

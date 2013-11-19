@@ -1,0 +1,4 @@
+EXPORTS
+	HelperBoneOp__Init		@1 PRIVATE	
+	HelperBoneOp__Update	@2 PRIVATE
+	HelperBoneOp__Term		@3 PRIVATE

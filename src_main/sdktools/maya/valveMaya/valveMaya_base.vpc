@@ -1,0 +1,45 @@
+//-----------------------------------------------------------------------------
+//	VALVEMAYA_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+$Macro OUTLIBNAME	"valveMaya"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\public\maya"
+		$PreprocessorDefinitions			"$BASE;NT_APP"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"IsDefault.cpp"
+		$File	"Undo.cpp"
+		$File	"valveMaya.cpp"
+		$File	"valveMayaStreams.cpp"
+		$File	"valveMayaVsStuff.cpp"
+		$File	"VsMayaDmx.cpp"
+		$File	"VsMayaMPxFactory.cpp"
+		$File	"VsVguiWindow.cpp"
+		$File	"VsVguiWindowFactoryBase.cpp"
+		$File	"CMSyntaxHelp.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\maya\valveMaya.h"
+		$File	"$SRCDIR\public\maya\VsMayaDmx.h"
+		$File	"$SRCDIR\public\maya\VsMayaMPxFactory.h"
+		$File	"$SRCDIR\public\maya\VsVGuiWindow.h"
+	}
+}

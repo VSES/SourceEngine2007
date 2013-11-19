@@ -1,0 +1,4 @@
+EXPORTS
+	CppAxisInterpOp_Init	@1 PRIVATE	
+	CppAxisInterpOp_Update	@2 PRIVATE
+	CppAxisInterpOp_Term	@3 PRIVATE

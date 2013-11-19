@@ -1,0 +1,1505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st April 2002), see www.w3.org">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Parsifal XML parser</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h3>Event handlers</h3>
+
+<br>
+<div>
+<table>
+
+<th>Name</th>
+<th>Type</th>
+</tr>
+
+
+<td width="30%"><a href=
+"manual.html#XML_START_ELEMENT">startElementHandler</a></td>
+<td>XML_START_ELEMENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_START_ELEMENT">endElementHandler</a></td>
+<td>XML_END_ELEMENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_CHARACTERS">charactersHandler</a></td>
+<td>XML_CHARACTERS_HANDLER</td>
+</tr>
+
+<td width="30%"><a href="manual.html#XML_RESOLVE_ENTITY_HANDLER">resolveEntityHandler/externalEntityParsedHandler</a></td>
+<td>XML_RESOLVE_ENTITY_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_ERROR_HANDLER">errorHandler</a></td>
+<td>XML_ERROR_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_IGNORABLEWS_HANDLER">ignorableWhitespaceHandler</a></td>
+<td>XML_CHARACTERS_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_START_DOC">startDocumentHandler/endDocumentHandler</a></td>
+<td>XML_EVENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_CHARACTERS">commentHandler</a></td>
+<td>XML_CHARACTERS_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_CHARACTERS">startCDATAHandlerHandler/endCDATAHandler</a></td>
+<td>XML_EVENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_PI_HANDLER">processingInstructionHandler</a></td>
+<td>XML_PI_HANDLER</td>
+</tr>
+
+<td width="30%"><a href="manual.html#XML_SKIPPED_ENTITY_HANDLER">skippedEntityHandler</a></td>
+<td>XML_SKIPPED_ENTITY_HANDLER</td>
+</tr>
+
+<td width="30%"><a href="manual.html#XML_DECL_HANDLER">xmlDeclHandler</a></td>
+<td>XML_XMLDECL_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_DTD_HANDLER">startDTDHandler</a></td>
+<td>XML_START_DTD_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_DTD_HANDLER">endDTDHandler</a></td>
+<td>XML_EVENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href="manual.html#XML_DEFAULT_HANDLER">defaultHandler</a></td>
+<td>XML_CHARACTERS_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_ENTITY_HANDLER">startEntityHandler/endEntityHandler</a></td>
+<td>XML_ENTITY_EVENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_ELEMENTDECL_HANDLER">elementDeclHandler</a></td>
+<td>XML_ELEMENTDECL_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_ATTRIBUTEDECL_HANDLER">AttributeDeclHandler</a></td>
+<td>XML_ATTRIBUTEDECL_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_ENTITYDECL_HANDLER">entityDeclHandler</a></td>
+<td>XML_ENTITY_EVENT_HANDLER</td>
+</tr>
+
+<td width="30%"><a href=
+"manual.html#XML_NOTATIONDECL_HANDLER">notationDeclHandler</a></td>
+<td>XML_NOTATIONDECL_HANDLER</td>
+</tr>
+</table>
+</div>
+
+<br>
+<p>Parsifal events (callbacks) work pretty much the same way as events in original Java SAX2 interface,
+so besides reading this page you should look for SAX2 reference somewhere - start here: <a
+href="http://www.saxproject.org/" target="_top">www.saxproject.org</a>. See also
+<a href="csrchtml/parsifal_h.html">parsifal.h</a> for more information on Parsifal API.</p>
+<p>Good way to learn SAX is to use xmlplint with -f 1 flag 
+and examine the order events are called when parsing different documents.</p>
+<p><b>Note:</b> Most of the time you're likely to work with the first 5 handlers in the above list.</p>
+
+<br>
+<p>First parameter for all callbacks is <code>UserData</code> which is usually set
+before parsing to glue &quot;the this pointer&quot; to callbacks. e.g.</p>
+<div class="codebox">
+
+<pre>
+<code>parser-&gt;UserData = parser;</code>
+</pre>
+</div>
+<p>Of course UserData is often some kind of &quot;state machine&quot; structure that
+contains current parser as one of its members.</p>
+
+<p>Return <b>XML_ABORT</b> in callbacks if you want to abort parsing, <b>XML_OK</b> 
+ (value 0) otherwise.</p>
+
+<br>
+<br>
+<h4><a name="XML_START_DOC">startDocumentHandler/endDocumentHandler</a></h4>
+
+<pre><b>int (*XML_EVENT_HANDLER)(void *UserData);</b></pre>
+
+<p>startDocumentHandler reports (surprisingly!) start of document. This is quaranteed to be the first
+event that's triggered in the processing. There's one exception to this: if parser fails to detect the encoding for the
+document (by reading byte order mark and/or XML declaration or forced encoding given by <code>encoding</code>
+parameter to <code>XMLParser_Parse</code>) startDocumenentHandler/endDocumentHandler won't be called - this
+is special case because encoding must be known at startDocument stage.
+</p>
+<p>
+endDocument is <b>always</b> called in conjunction with startDocument (even in error condition), 
+thus it's safe to initialize/allocate data in startDocument and clean up your data in endDocument.
+</p>
+
+<br>
+<br>
+<h4><a name="XML_START_ELEMENT">startElementHandler</a></h4>
+<pre><b>int (*XML_START_ELEMENT_HANDLER)(void *UserData, const XMLCH *uri, const XMLCH *localName, 
+			         const XMLCH *qName, LPXMLVECTOR atts);</b></pre>
+<h4><a name="XML_START_ELEMENT">endElementHandler</a></h4>
+<pre><b>int (*XML_END_ELEMENT_HANDLER)(void *UserData, const XMLCH *uri, const XMLCH *localName,
+			       const XMLCH *qName);</b></pre>
+
+<p>Similar to SAX2 events, note that <code>uri</code> or
+<code>localName</code> parameter doesn't have value <code>NULL</code> when unavailable but their values are
+<b>empty string</b>, this can be tested with</p>
+
+<pre>
+<code>if (*uri) ...</code>
+</pre>
+
+of course. Difference from SAX is that <code>qName</code> has
+<b>always</b> valid value. <code>localName</code> is empty string
+when element doesn't belong to any namespace <font color="#FF0000"><strike>or belongs to default namespace</strike> Note: changed starting from v.0.9.3</font>. Namespace attributes <b>xmlns:XXX</b> and <b>xmlns</b> belong to predefined<b>
+ http://www.w3.org/2000/xmlns/</b>
+namespace and predefined <b>xml:XXX</b> attributes belong to <b>http://www.w3.org/XML/1998/namespace</b>.<br>
+<p>Common attribute enumeration example:</p>
+
+<div class="codebox">
+<pre>
+<code>if (atts-&gt;length) 
+{
+    int i;
+    LPXMLRUNTIMEATT att;
+    
+    printf(&quot;Tag %s has %d attributes:\n&quot;, qName, atts-&gt;length);
+    for (i=0; i&lt;atts-&gt;length; i++) {
+        att = (LPXMLRUNTIMEATT) XMLVector_Get(atts, i);
+        
+        if (*att-&gt;uri)
+            printf(&quot;  Name: %s Value: %s Prefix: %s LocalName: %s Uri: %s\n&quot;, 
+                att-&gt;qname, att-&gt;value,
+                        att-&gt;prefix, att-&gt;localName, 
+                            att-&gt;uri);
+        else 
+            printf(&quot;  Name: %s Value: %s\n&quot;, 
+                att-&gt;qname, att-&gt;value);
+        
+        
+    }
+}
+</code></pre>
+</div>
+
+<br>
+<p>
+<br>
+</p>
+<p>An example of getting named attribute using
+XMLParser_GetNamedItem function:<br>
+(this example assumes that UserData contains current parser object in StartElement callback)</p>
+
+<div class="codebox">
+<pre>
+<code>if (att = XMLParser_GetNamedItem((LPXMLPARSER)UserData, &quot;myattribute&quot;))
+    printf(&quot;myattribute has value: %s\n&quot;, att-&gt;value);
+</code>
+</pre>
+</div>
+
+<br>
+<br>
+<p>Some SAX attribute handling methods and their Parsifal equivalents:</p>
+
+<div>
+<table>
+
+<th>SAX</th>
+<th>Parsifal</th>
+</tr>
+
+
+<td width="30%"><code>atts.GetQName(index)</code></td>
+<td><code>((LPXMLRUNTIMEATT)XMLVector_Get(atts,
+index))-&gt;qname</code></td>
+</tr>
+
+
+<td width="30%"><code>atts.getValueFromQName(name)</code></td>
+<td><code>((LPXMLRUNTIMEATT)XMLParser_GetNamedItem(parser,
+name))-&gt;value</code></td>
+</tr>
+</table>
+</div>
+
+<br>
+<br>
+<h4><a name="XML_CHARACTERS">charactersHandler</a></h4>
+
+<pre><b>int (*XML_CHARACTERS_HANDLER)(void *UserData, const XMLCH *chars, int cbSize);</b></pre>
+
+<p>Reports character data. Parameter <code>cbSize</code> is the length
+of the buffer<code> chars</code>, which is <b>not NUL
+terminated</b>.</p><p> Whether parser reports data in a single
+chunk or splits data into several chunks is dependant on the parser
+configuration:
+If you've compiled Parsifal library without <code> DTD_SUPPORT</code>
+or flag <code> XMLFLAG_PRESERVE_GENERAL_ENTITIES</code> is TRUE Parsifal calls charactersHandler <b>once</b>
+for every text content - Parsifal expands character references and predefined
+entities (e.g. <code> &amp;#60;</code> and <code> &amp;lt;</code>) always into this contiguous data but when you use general
+entities Parsifal splits data into several chunks and you must use stringbuffer
+to collect the data. Common way to handle this:
+</p>
+
+<blockquote>
+  <ol>
+    <li>Initialize stringbuffer in
+startElement (or in endElement, see examples)</li>
+    <li>Append data into stringbuffer in charactersHandler call</li>
+    <li>Store the buffer in endElement.</li>
+  </ol>
+</blockquote>
+
+ <code>charactersHandler</code>,
+<code>ignorableWhitespaceHandler</code> and <code>commentHandler</code>
+are all alike, thus common trick is to declare one handler and call that handler
+for all XML_CHARACTERS_HANDLER types. Note that only <code>charactersHandler
+</code>
+ splits their data into several chunks, other handlers report contiguous data.
+<p>
+<p>
+startCDATAHandler Reports the start of a CDATA section. 
+The contents of the CDATA section will be reported through the characters callback; startCDATAHandlerHandler call is 
+intended only to report the boundary. endCDATAHandler reports the end of a CDATA section.
+</p>
+
+<br>
+<br>
+
+</p>
+
+<h4><a name="XML_IGNORABLEWS_HANDLER">ignorableWhitespaceHandler</a></h4>
+<pre><b>int (*XML_CHARACTERS_HANDLER)(void *UserData, const XMLCH *chars, int cbSize);</b></pre>
+
+<p>Reports &quot;whitespace only&quot; content.</p>
+<p>If you're using Parsifal in validating mode IgnorableWhitespaceHandler works exactly
+as XML 1.0 spec defines it; <b>Whitespace only content is ignorable only in the content of elements that aren't
+declared as #PCDATA elements</b>. Thus when validating the description below becomes meaningless - it
+decribes only using this handler in non-validating mode.</p>
+<div class="codebox">
+<code><pre>&lt;root&gt;CRLF
+SPACE&lt;node&gt;CRLF
+TAB&lt;data&gt;text&lt;/data&gt;CRLF
+&lt;/node&gt;&lt;/root&gt;
+</pre></code>
+</div>
+<p>
+SPACE, CRLF and TAB (shown as alias values, meaning real tab etc. characters) here are reported in
+ignorableWhitespaceHandler. <code>xml:space</code> attribute
+isn't currently handled by Parsifal although <code>xml</code> namespace is special
+&quot;pre-defined&quot;
+namespace and <b>Parsifal tracks the scope of all xml prefixed attributes</b>
+ <b>for you </b>-&nbsp; see XMLParser_GetPrefixMapping for more info on handling
+<code>xml:space</code>.
+
+</p>
+<p>Note that if <code>data</code> tag would have been <code>&lt;data&gt;textCRLF&lt;/data&gt;</code>, CRLF in element content wouldn't be reported in
+ignorableWhitespaceHandler but charactersHandler (whitespace in the middle of
+content isn't considered ignorable whitespace). Parsifal normalizes CRLF pairs
+and single CR into single LF character. The only way to insert CR into parser character data
+is to use &amp;#13; character reference or something like<br><code>&lt;!ENTITY CRLF &quot;&amp;#13;&amp;#10;&quot;&gt;</code>
+</p>
+<p>
+If whitespace is significant for you, you should set <code>ignorableWhitespaceHandler</code> to point to
+<code>charactersHandler</code>. Non-validating parsers should actually treat all whitespace as significant but
+making parsifal non-conformant here and calling <code>ignorableWhitespaceHandler</code> can save you
+some coding when you want to distinguish between whitespace and content - it's easier/faster this way,
+you don't have to check the whitespace in charactersHandler.
+</p>
+<br>
+<br>
+
+<h4><a name="XML_PI_HANDLER">processingInstructionHandler</a></h4>
+<pre><b>int (*XML_PI_HANDLER)(void *UserData, const XMLCH *target, const XMLCH *data);</b></pre>
+
+<p><b>Parameters:</b></p>
+
+<div>
+<table>
+
+<td width="30%"><code>target</code></td>
+<td>Processing instruction target.</td>
+</tr>
+
+
+<td width="30%"><code>data</code></td>
+<td>Processing instruction data if present, empty string otherwise.</td>
+</tr>
+</table>
+</div>
+
+<br>
+<p>Parsifal skips all whitespace between <code>target</code> and <code>data</code> i.e.
+in <code>&lt;?target<i><font color="#C0C0C0">TABTABTABTABTAB</font></i>I'm data<i><font color="#C0C0C0">TABTABTAB</font></i>?&gt;
+</code>first tabs will be skipped but tabs at the end will be included in the <code>data.</code>
+</p>
+<br>
+<br>
+<h4><a name="XML_RESOLVE_ENTITY_HANDLER">resolveEntityHandler</a>/externalEntityParsedHandler</h4>
+<pre><b>int (*XML_RESOLVE_ENTITY_HANDLER)(void *UserData, LPXMLENTITY entity, LPBUFFEREDISTREAM reader);</b></pre>
+<p>Parser calls this handler when it encounters reference to external general entity in
+element content (e.g. <code>&amp;ent2;</code> in <a href="manual.html#ENTITIES">entities</a>) or reference
+to external parameter entity within DTD (e.g. <code>%latin1;</code> in <a href="manual.html#ENTITIES">entities</a>) or when
+!DOCTYPE tag has <code> systemID</code> and <code>publicID</code> (optional) specified.</p>
+
+<p>Normally you use <code>systemID</code> to resolve external resource (you can think
+the resource is a file if you like).&nbsp;</p>
+
+<p>You must set<code> reader-&gt;inputData</code> to point to resource you open usually
+based on <code> entity-&gt;systemID</code>. by default <code> reader-&gt;inputSrc
+</code> is <code> NULL</code> which means
+that reader will use same input source as your main document (specified in
+XMLParser_Parse). If you don't set <code> reader-&gt;inputData</code>   (you leave it to default
+<code>NULL</code>)
+entity won't be parsed but silently skipped (you can call skippedEntity yourself&nbsp;
+if you like!).&nbsp;</p>
+
+<p> If you fail to open/initialize inputData for reader, you might want to
+return <code>XML_ABORT</code>. You must&nbsp; implement some kind of error reporting yourself
+since Parsifal's inputsource handling is very &quot;abstract&quot;. Using <code>
+XML_ABORT</code> in conjunction with your own &quot;failed to open file <code>entity-&gt;systemID</code>&quot;
+for example would do the trick. See example.</p>
+
+<p>Once parser has finished parsing your inputData you'll get
+externalEntityParsedHandler call which gives you a chance to close/free you <code>reader-&gt;</code><code>inputData</code>.</p>
+
+<p>If parser wants to open external DTD <code>entity-&gt;type</code> is <code> XML_ENTITY_DOCTYPE</code>
+and <code> entity-&gt;name </code> is &quot;[dtd]&quot;. Usually this information isn't needed
+since there's no difference in opening external DTD and external entity - for
+instance the following example would handle both situations. If parser isn't
+opening external DTD entity type is <code>XML_ENTITY_EXT_GEN</code> or <code>XML_ENTITY_EXT_PARAM</code>. (See <a href="csrchtml/parsifal_h.html">parsifal.h</a> for more type
+info).</p>
+
+<p>resolveEntityHandler example:<br>
+(this example also takes special <code> xml:base</code> attribute into account)&nbsp;</p>
+
+<div class="codebox">
+  <code>
+  <pre>int ResolveEntity(void *UserData, LPXMLENTITY entity, LPBUFFEREDISTREAM reader)
+{
+  FILE *f;
+  XMLCH filename[MAX_FILE]; 
+  XMLCH *base = XMLParser_GetPrefixMapping((LPXMLPARSER)UserData, &quot;xml:base&quot;);
+  
+  if (base) {
+    strcpy(filename, base);
+    strcat(filename, entity-&gt;systemID);
+  }
+  else {
+    strcpy(filename, entity-&gt;systemID);
+  }
+  
+  if (!(f = fopen(filename, &quot;rb&quot;))) {
+    printf(&quot;error opening file '%s'!\n&quot;, filename);
+    return XML_ABORT;
+  }
+  	
+  reader-&gt;inputData = f; 
+  return XML_OK;
+}</pre>
+  </code>
+</div>
+
+<p>Example assumes that parser uses FILE* stream (uses same <code> reader-&gt;inputSrc</code>
+as provided in XMLParser_Parse call)</p>
+<br>
+<p>Subsequent externalEntityParsedHandler call can contein simply:</p>
+
+<div class="codebox">
+  <code>
+  <pre>fclose((FILE*)reader-&gt;inputData);</pre>
+  </code>
+</div>
+<p>Note that externalEntityParsedHandler isn't called if you don't specify <code>reader-&gt;inputData</code> in
+resolveEntityHandler.</p>
+<br><br>
+<h4><a name="XML_SKIPPED_ENTITY_HANDLER">skippedEntityHandler</a></h4>
+
+<pre><b>int (*XML_SKIPPED_ENTITY_HANDLER)(void *UserData, const XMLCH *Name);</b></pre>
+
+<p>Parsifal calls this handler if it encounters reference to general entity in text content for
+which it <b>has not seen the declaration</b> or if it encounters reference to external general entity 
+and XMLFLAG_EXTERNAL_GENERAL_ENTITIES flag is FALSE.</p>
+<p>If XMLFLAG_UNDEF_GENERAL_ENTITIES flag is set, parsifal triggers ERR_XMLP_UNDEF_ENTITY
+error for every undeclared entity.</p>
+<br>
+<br>
+
+
+<h4><a name="XML_DECL_HANDLER">xmlDeclHandler</a></h4>
+
+<pre><b>int (*XML_XMLDECL_HANDLER)(void *UserData, const XMLCH *version, const XMLCH *encoding, const XMLCH *standalone);</b></pre>
+
+<p>Reports XML declaration. Note that although external entities/DTDs might
+contain XML declaration (called text declaration there) it isn't reported via
+xmlDeclHandler. If Parameter has  value <code>NULL</code> it means that XML declaration
+doesn't have that attribute specified (version param is mandatory and is never NULL though).
+<br>
+</p>
+<br>
+<br>
+<h4><a name="#XML_DTD_HANDLER">startDTDHandler</a></h4>
+<pre><b>int (*XML_START_DTD_HANDLER)(void *UserData, const XMLCH *Name, const XMLCH *publicId,
+                             const XMLCH *systemId, int hasInternalSubset);</b></pre>
+
+<p><b>
+Parameters:</b></p>
+
+<div>
+<table>
+
+<td width="30%"><code>Name</code></td>
+<td>Name of the document (root) element.</td>
+</tr>
+
+
+<td width="30%"><code>publicId</code></td>
+<td>publicId or <code>NULL</code> if not specified. Value is trimmed and
+  normalized (linefeeds etc. are removed) but publicID or systemID is not
+  validated by parsifal i.e. they're not necessarily valid uris, filenames etc.</td>
+</tr>
+
+
+<td width="30%"><code>systemId</code></td>
+<td>systemId or <code>NULL</code> if not specified.&nbsp;</td>
+</tr>
+
+
+<td width="30%">hasInternalSubset</td>
+<td>(boolean) whether XML document contains internal subset</td>
+</tr>
+</table>
+</div>
+
+<br>
+<p>Reports start of the document type declaration (!DOCTYPE tag).
+startDTDHandler and endDTDHandler are mainly used when roundtripping/serializing
+input document to output (you want to preserve !DOCTYPE data from input
+document to output document). If document contains internal DTD subset (stuff
+between <code>[</code> and <code>])</code>, its data
+will be reported via declaration handlers such as entityDeclHandler or via processingInstructionHandler and
+commentHandler (depending on what's in the subset of course) between
+startDTDHandler and endDTDHandler call.</p>
+
+<p>Here's an example !DOCTYPE tag (the result is complex looking but it
+shows you the order DTD events are executed, normally you don't use most of these
+events, you probably&nbsp;only implement&nbsp; resolveEntityHandler and
+externalEntityParsedHandler)</p>
+<br>
+<div class="codebox">
+  <code>
+  <pre>&lt;!DOCTYPE mydoc SYSTEM &quot;mydoc.dtd&quot; [
+  &lt;!-- this is my doctype --&gt;
+  &lt;!ENTITY ent1 &quot;wheeeeooo&quot;&gt;
+]&gt;
+</pre>
+  </code>
+</div>
+<br>
+
+<p>Will result in:</p>
+
+<blockquote>
+  <ol>
+    <li>startDTDHandler -<code>   Name:</code>  &quot;mydoc&quot;, <code>publicId:</code> 
+      NULL,
+      <code>systemId:</code>  &quot;mydoc.dtd&quot;, <code>hasInternalSubset:</code> 1</li>
+    <li>commentHandler - &quot; this is my doctype &quot;</li>
+    <li>entityDeclHandler - reports entity declaration for entity ent1. see <a href=
+"manual.html#XML_ENTITYDECL_HANDLER">entityDeclHandler</a>
+    <li>startEntityHandler - <code>Name: </code>&quot;[dtd]&quot;, type:
+      XML_ENTITY_DOCTYPE,
+      <code>systemId: </code>&quot;mydoc.dtd&quot; ...</li>
+    <li>resolveEntityHandler - this lets you open file/resource for entity &quot;[dtd]&quot;<br>
+    - Here you get declaration events for external DTD</li>
+    <li>externalEntityParsedHandler - this lets you close/free file/resource for entity &quot;[dtd]&quot;
+      (this call happens only if
+      resolveEntityHandler parsed the external DTD)</li>
+    <li>endEntityHandler same params as for startEntityHandler</li>
+    <li>endDTDHandler</li>
+  </ol>
+</blockquote>
+<br>
+<p>Calls 4-7 happened because SYSTEM &quot;mydoc.dtd&quot; specified external
+DTD that needed to be loaded. Internal subset is parsed first and if there's duplicate
+entity declarations or attribute declarations etc, declarations in internal subset have higher priority than declarations in
+external DTD. Note also that parser doesn't report comments and processing instructions
+if they reside in the external DTD.
+</p>
+<br>
+<br>
+<h4><a name="XML_ELEMENTDECL_HANDLER">elementDeclHandler</a></h4>
+<pre><b>typedef int (*XML_ELEMENTDECL_HANDLER)(void *UserData,
+    const XMLCH *name, void *contentModel);</b></pre>
+
+<p>Report an element type declaration.</p>
+<p>From SAX docs: The content model will consist of the string "EMPTY", the string "ANY", or a parenthesised group, optionally
+followed by an occurrence indicator. The model will be normalized so that all parameter entities are fully 
+resolved and all whitespace is removed, and will include the enclosing parentheses.</p>
+<p><code>contentModel</code> parameter is of type void* and you can cast it to <code>XMLCH*</code> <b>unless</b> 
+XMLFLAG_REPORT_DTD_EXT has been set TRUE, then contentModel contains tree representation of
+content particles for declared element (when for example validating).</p>
+<p>See <a href="csrchtml/dtddecl_c.html">dtddecl.c</a>
+for more info.<p>
+
+<br>
+<br>
+<h4><a name="XML_ATTRIBUTEDECL_HANDLER">attributeDeclHandler</a></h4>
+<pre><b>typedef int (*XML_ATTRIBUTEDECL_HANDLER)(void *UserData, const XMLCH *eName,
+    const XMLCH *aName, int type, const XMLCH *typeStr, int valueDef,
+    const XMLCH *def);</b></pre>
+
+<p>Report an attribute type declaration.</p>
+
+<p><b>Parameters:</b></p>
+
+<div>
+<table>
+
+<td width="30%"><code>eName</code></td>
+<td>The name of the associated element</td>
+</tr>
+
+
+<td width="30%"><code>aName</code></td>
+<td>The name of the attribute</td>
+</tr>
+
+
+<td width="30%"><code>type</code></td>
+<td>Attribute type. See <code>XMLATTDECL_TYPE_</code> types in <a href="csrchtml/parsifal_h.html">parsifal.h</a></td>
+</tr>
+
+
+<td width="30%"><code>typeStr</code></td>
+<td>Attribute type string. If type parameter is <code>XMLATTDECL_TYPE_NOTATION</code> or <code>XMLATTDECL_TYPE_ENUMERATED</code>,
+this parameter contains a parenthesized token group with the separator "|" and all whitespace removed.
+</td>
+</tr>
+
+
+<td width="30%"><code>valueDef</code></td>
+<td><code>XMLATTDECL_DEF_FIXED, XMLATTDECL_DEF_REQUIRED, XMLATTDECL_DEF_IMPLIED</code> or 0.
+</td>
+</tr>
+
+
+<td width="30%"><code>def</code></td>
+<td>Attribute default value or null if there is none.
+</td>
+</tr>
+</table>
+</div>
+<p>See <a href="csrchtml/dtddecl_c.html">dtddecl.c</a>
+for more info.<p>
+
+<br>
+<br>
+<h4><a name="XML_ENTITYDECL_HANDLER">entityDeclHandler</a></h4>
+<pre><b>typedef int (*XML_ENTITY_EVENT_HANDLER)(void *UserData, LPXMLENTITY entity);</b></pre>
+
+<p>Report an entity declaration.</p>
+<p><b>LPXMLENTITY members:</b></p>
+
+<div>
+<table>
+
+<td width="30%"><code>type</code></td>
+<td>Entity type <code>XMLENTITYTYPE</code>. See <a href="csrchtml/parsifal_h.html">parsifal.h</a></td>
+</tr>
+
+
+<td width="30%"><code>len</code></td>
+<td>length of <code>value</code> parameter if this is internal general or internal parameter entity</td>
+</tr>
+
+
+<td width="30%"><code>name</code></td>
+<td>Name of entity. Starts with '%' if this is parameter entity.</td>
+</tr>
+
+
+<td width="30%"><code>value</code></td>
+<td>Value of an internal general or internal parameter entity. <code>NULL</code> otherwise.</td>
+</tr>
+
+
+<td width="30%"><code>publicID, systemID and notation</code></td>
+<td><code>XMLCH *</code> or <code>NULL</code> if not available.</td>
+</tr>
+
+</table>
+</div>
+
+<p>See <a href="csrchtml/parsifal_h.html">parsifal.h</a> and <a href="csrchtml/dtddecl_c.html">dtddecl.c</a>
+for more info.</p>
+
+<br>
+<br>
+<h4><a name="XML_NOTATIONDECL_HANDLER">notationDeclHandler</a></h4>
+<pre><b>typedef int (*XML_NOTATIONDECL_HANDLER)(void *UserData, const XMLCH *name,
+    const XMLCH *publicID, const XMLCH *systemID);</b></pre>
+
+<p>Report a notation declaration.</p>
+<p>At least one of publicId and systemId must be non-NULL</p>
+<p>See <a href="csrchtml/dtddecl_c.html">dtddecl.c</a> for more info.</p>
+
+<br>
+<br>
+<h4><a name="XML_DEFAULT_HANDLER">defaultHandler</a></h4>
+<pre><b>int (*XML_CHARACTERS_HANDLER)(void *UserData, const XMLCH *Chars, int cbSize);</b></pre>
+
+<p><b>Not used in the current version</b></p>
+
+<br>
+<br>
+<h4><a name="XML_ENTITY_HANDLER">startEntityHandler/endEntityHandler</a></h4>
+<pre><b>int (*XML_ENTITY_EVENT_HANDLER)(void *UserData, LPXMLENTITY entity);</b></pre>
+
+<p>Reports entity boundaries.</p>
+<br>
+<br>
+
+<h4><a name="XML_ERROR_HANDLER">errorHandler</a></h4>
+<pre><b>void (*XML_ERROR_HANDLER)(LPXMLPARSER parser);</b></pre>
+<p>examine <code>ErrorCode</code>,
+<code>ErrorString</code>,
+ <code>ErrorLine</code> and <code>ErrorColumn</code> for error information. You can
+also check <code>XMLParser_Parse</code> return value which will be
+0 if some error occurred.</p>
+
+<p>Note: If you don't specify <code>errorHandler</code>,
+only <code>ErrorCode</code> will have valid value (this
+is like using parser in unattended mode when you don't need
+detailed error info).</p>
+<p>See <a href="csrchtml/parsifal_h.html">parsifal.h</a> for list of <code>XMLERRCODE</code> values</p>
+
+<br>
+<p>
+Error handler example:
+</p>
+<div class="codebox">
+  <code>
+  <pre>void ErrorHandler(LPXMLPARSER parser) 
+{
+  /* you should treat ERR_XMLP_ABORT as &quot;user error&quot; and give somekind of
+     description before returning from callbacks, otherwise we present parser error: */
+     
+  if (parser-&gt;ErrorCode != ERR_XMLP_ABORT) {
+    XMLCH *SystemID = XMLParser_GetSystemID(parser); 		
+    printf(&quot;\nParsing Error: %s\nCode: %d&quot;, parser-&gt;ErrorString, parser-&gt;ErrorCode);
+    if (SystemID) printf(&quot;\nSystemID: '%s'&quot;, SystemID);
+  }
+  printf(&quot;\nLine: %d Column: %d&quot;, parser-&gt;ErrorLine, parser-&gt;ErrorColumn);
+}</pre>
+  </code>
+</div>
+
+
+
+<br>
+
+<br>
+<h3><a name="FEATURES">Property </a>members of LPXMLPARSER struct</h3>
+<br>
+
+<div>
+<table>
+
+<th>Name</th>
+<th>Type</th>
+<th>Read-only</th>
+<th>Description</th>
+</tr>
+
+
+<td>DocumentElement</td>
+<td>XMLCH*</td>
+<td width="1%">yes</td>
+<td>root element of current document (test for
+<code>!NULL</code>)</td>
+</tr>
+
+
+<td>UserData</td>
+<td>void*</td>
+<td width="1%">no</td>
+<td>UserData passed to all callbacks</td>
+</tr>
+
+
+<td>ErrorCode</td>
+<td>int</td>
+<td width="1%">yes</td>
+<td>see <a href="#XML_ERROR_HANDLER">errorHandler</a></td>
+</tr>
+
+
+<td>ErrorString</td>
+<td>XMLCH*</td>
+<td width="1%">yes</td>
+<td>see <a href="#XML_ERROR_HANDLER">errorHandler</a></td>
+</tr>
+
+
+<td>ErrorLine</td>
+<td>int</td>
+<td width="1%">yes</td>
+<td>see <a href="#XML_ERROR_HANDLER">errorHandler</a></td>
+</tr>
+
+
+<td>ErrorColumn</td>
+<td>int</td>
+<td width="1%">yes</td>
+<td>see <a href="#XML_ERROR_HANDLER">errorHandler</a></td>
+</tr>
+
+</table>
+</div>
+
+<br>
+<br>
+<h3>XMLFlags</h3>
+
+<br>
+
+<div>
+<table>
+
+<th>Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+
+
+<td>XMLFLAG_NAMESPACES</td>
+<td>TRUE</td>
+<td>Namespace processing</td>
+</tr>
+
+
+<td>XMLFLAG_NAMESPACE_PREFIXES</td>
+<td>FALSE</td>
+<td>Report namespace (xmlns and xmlns:XXX) attributes in startElementHandler</td>
+</tr>
+
+
+<td>XMLFLAG_EXTERNAL_GENERAL_ENTITIES</td>
+<td>TRUE</td>
+<td>Process external general entities (FALSE they will be skipped)</td>
+</tr>
+
+
+<td>XMLFLAG_PRESERVE_GENERAL_ENTITIES</td>
+<td>FALSE</td>
+<td>Preserve all general entity references (character references, predefined entities and parameter entities are expanded. See <a href="#ENTITIES">entities</a>).
+  You can set this flag during parsing but don't set it in the midst of
+  charactersHandler calls! <b>This flag overrides all other entity flags.</b></td>
+</tr>
+
+
+<td>XMLFLAG_UNDEF_GENERAL_ENTITIES</td>
+<td>FALSE</td>
+<td>Setting this flag makes parsifal trigger ERR_XMLP_UNDEF_ENTITY error when it
+  encounters undefined general entity&nbsp; instead of skippedEntity call.</td>
+</tr>
+
+
+<td>XMLFLAG_PRESERVE_WS_ATTRIBUTES</td>
+<td>FALSE</td>
+<td>By default all attribute values are normalized (linefeeds and extra space
+  removed) and trimmed. You can set this flag to prevent the attribute normalization to
+  happen.</td>
+</tr>
+
+
+<td>XMLFLAG_CONVERT_EOL</td>
+<td>TRUE</td>
+<td><b><font color="#FF0000">Always TRUE starting from v0.7.2.</font> By default all CRLF pairs and CRs are converted into single LF</b>. Set this
+  flag to false if you want to preserve linefeeds as they appear in the input
+  document.</td>
+</tr>
+
+
+<td>XMLFLAG_REPORT_DTD_EXT</td>
+<td>FALSE</td>
+<td>Reports element declaration content particles as tree structure in the elementDeclHandler and
+gathers additional attribute declaration information from DTDs. Currently used only internally 
+(not documented).</td>
+</tr>
+
+
+<td>XMLFLAG_VALIDATION_WARNINGS</td>
+<td>FALSE</td>
+<td>When this flag is set <b>validation errors are treated as warnings</b> - this means that parsing continues after
+validation errors. Tip: You might want to set your startElement etc. handlers to NULL when first
+validation warning occurs or set some user flag to inform your handlers that from this point on
+you're only collecting warnings/parsing errors and not building any data model in your handlers.</td>
+</tr>
+
+</table>
+</div>
+
+<p><br>
+These flags can be set by macro <b>_XMLParser_SetFlag(LPXMLPARSER parser, [FLAG],
+[TRUE/FALSE])</b>.</p>
+
+<p>Values can be retrieved by calling macro <b>_XMLParser_GetFlag(LPXMLPARSER
+parser, [FLAG])</b>.</p>
+
+<br>
+<br>
+
+<h3><a name="METHODS">Methods</a></h3>
+<br>
+
+<h4>XMLParser_Create</h4>
+<pre><b>LPXMLPARSER XMLParser_Create(LPXMLPARSER *parser);</b></pre>
+
+
+<p>Creates new parser. <code>Parser</code> parameter is an address
+of pointer which will be allocated and prepared by XMLParser_Create. Return value and pointer will be
+<code>NULL</code> if parser can't be created due to memory
+allocation problem.</p>
+
+<p>After parser has been created, you can reuse it calling
+XMLParser_Parse multiple times or you can create for example pool
+of pre-allocated parser objects for some special case.</p>
+
+<br>
+<br>
+<h4>XMLParser_Parse</h4>
+<pre><b>int XMLParser_Parse(LPXMLPARSER parser, LPFNINPUTSRC inputSrc, 
+                    void *inputData, const XMLCH *encoding);</b></pre>
+
+<p><b>Parameters:</b></p>
+
+<div>
+<table>
+
+<td width="30%"><code>parser</code></td>
+<td>Pointer to parser object</td>
+</tr>
+
+
+<td width="30%"><code>inputSrc</code></td>
+<td>Pointer to callback function that will feed data to parser.</td>
+</tr>
+
+
+<td width="30%"><code>inputData</code></td>
+<td>For example FILE* to be passed to <code>inputSrc</code>
+function</td>
+</tr>
+
+
+<td width="30%"><code>encoding</code></td>
+<td>Sets document encoding. Note that forced encoding <b>doesn't override</b> encoding declaration or BOM and
+should be used only in situations when document doesn't contain encoding declaration and/or BOM i.e.
+encoding is specified in MIME header etc. Forced encoding can infact conflict with encoding set by bom or
+xml declaration.
+Set <code>NULL</code> (recommended) to let bom, document encoding declaration or
+default UTF-8 to be used.<br><br>
+Valid values are:<br>
+<ul>
+<li>NULL (most of the time)</li>
+
+<li>UTF-8</li>
+
+<li>ISO-8859-1</li>
+
+<li>US-ASCII</li>
+
+<li>UTF-16, UTF-32 etc. when compiled with GNU libiconv support. See <a href="manual.html#ENCODING_NOTES">Notes about encodings</a></li>
+</ul>
+
+Case is insignificant.</td>
+</tr>
+</table>
+</div>
+
+<br>
+ 
+<p><code>inputSrc</code> function has the following prototype:</p>
+
+<br>
+<div class="codebox">
+<pre>
+<code>int (*LPFNINPUTSRC)(BYTE *buf, int cBytes, int *cBytesActual, void *inputData);
+</code>
+</pre>
+</div>
+
+<br>
+<p>Parser will send read request to this callback each time it
+needs more data. <code>buf</code> is allocated for
+<code>cBytes</code>, set <code>cBytesActual</code> to byte count
+you actually put into <code>buf</code>.</p>
+
+<p>Return TRUE if EOF or some error occurred, EOF can be normally
+determined by following:</p>
+
+<br>
+<div class="codebox">
+<pre>
+<code>return (*cBytesActual &lt; cBytes);
+</code>
+</pre>
+</div>
+
+<br>
+<p>
+<b>NOTE:</b> If you want to distinguish between an end of stream (EOF) and a stream error,
+you must return <code>BIS_ERR_INPUT</code> on stream error and <code>BIS_EOF</code> (or TRUE) on EOF condition. 
+BIS_ERR_INPUT is added into parser starting from version 0.7.4. Returning <code>BIS_ERR_INPUT</code> will trigger
+<code>ERR_XMLP_IO</code> error accordingly. Stream error check makes code more explicit, for example
+document and more importantly external entity can be well-formed and parsing can be succesfull even though
+there was a stream error! For this reason it's always good practise to do error checking in
+inputsource callback.
+<p>
+<br>
+<p>Here's an example FILE* inputsrc that handles ferror() too:
+<br>
+<div class="codebox">
+<pre>
+<code>int cstream(BYTE *buf, int cBytes, int *cBytesActual, void *inputData)
+{
+	*cBytesActual = fread(buf, 1, cBytes, (FILE*)inputData);	
+	if (ferror((FILE*)inputData)) return BIS_ERR_INPUT;
+	
+	return (feof((FILE*)inputData)) ? BIS_EOF : 0;
+}</code>
+</pre>
+</div>
+
+<br>
+<p>Samples include an example of parsing C file stream and parsing
+from Windows specific url stream. Xmlplint project contains curlread.c and curlread.h for parsing
+libcurl specific input sources like http and ftp. See also isrcmem.h for info on parsing memory
+buffers.</p>
+
+<br>
+<br>
+<h4>XMLParser_GetNamedItem</h4>
+<pre><b>LPXMLRUNTIMEATT XMLParser_GetNamedItem(LPXMLPARSER parser, XMLCH *name);</b></pre>
+<p>Returns attribute of type <code>LPXMLRUNTIMEATT</code> by <code>name</code>
+or <code>NULL</code> if there isn't such attribute.<br>
+Call this function <b>only in startElementHandler</b> when
+attributes are valid!</p>
+
+<br>
+<br>
+<h4>XMLParser_GetPrefixMapping</h4>
+<pre><b>XMLCH* *XMLParser_GetPrefixMapping(LPXMLPARSER parser, const XMLCH *prefix);</b></pre>
+<p>Returns uri for <code>prefix</code> or <code>NULL</code> if there isn't such prefix in
+scope. 
+Parsifal tracks also the scope for predefined <code>xml</code> prefix i.e. <code>xml:space</code>, 
+<code>xml:base</code> or <code>xml:whatever</code> can be retrieved by calling <code>
+XMLParser_GetPrefixMapping(parser, &quot;xml:space&quot;);</code></p>
+
+<br>
+<br>
+<h4>XMLParser_GetSystemID / GetPublicID</h4>
+<pre><b>XMLCH* *XMLParser_GetSystemID(LPXMLPARSER parser);</b></pre>
+<p>Returns systemID/publicID for current external entity or <code>NULL</code> if parsing the main
+document.<br>
+These functions (and XMLParser_GetCurrentEntity) can be used to provide more information on error condition for
+example. They <b>return meaningful values
+only during parsing</b> i.e. in the callback events - usually you call these in
+errorHandler. Return value of these functions is undefined AFTER errorHandler event call
+(when parser->ErrorCode has been set)</p>
+
+<br>
+<br>
+<h4>XMLParser_GetCurrentLine</h4>
+<pre><b>int *XMLParser_GetCurrentLine(LPXMLPARSER parser);</b></pre>
+<p>Returns line number of current parsing position. Return value -1 means that position
+info isn't available</p>
+<p>NOTE: during parsing internal entity line and column can be relative to internal entity
+string not current document position. If you need REALLY accurate error information
+you must call <code>XMLParser_GetCurrentEntity</code> (LPXMLENTITY or
+NULL if parsing main document). Note also that parser's line
+and column information isn't file/resource byte offset information.</p>
+
+<br>
+<br>
+<h4>XMLParser_GetCurrentColumn</h4>
+<pre><b>int *XMLParser_GetCurrentColumn(LPXMLPARSER parser);</b></pre>
+<p>Returns column number of current parsing position (in UTF-8 characters - not bytes). 
+Return value -1 means that position info isn't available</p>
+
+<br>
+<br>
+<h4>XMLParser_GetContextBytes</h4>
+<pre><b>int XMLParser_GetContextBytes(LPXMLPARSER parser, XMLCH **Bytes, int *cBytes);</b></pre>
+<p>Returns column number of current parsing position (in bytes 0-based). <code>Bytes</code>
+parameter can be address of XMLCH* that receives context bytes. <code>cBytes</code>
+receives length of <code>Bytes</code>. Both might be NULL when you need only the return value.
+Note that <code>Bytes</code> might be NUL terminated before 
+<code>cBytes</code> and <b>it might not be complete line</b>, see helper.c for example
+of handling context bytes. Return value -1 means that position info/context isn't available</p>
+
+<br>
+<br>
+
+<h4>XMLParser_GetCurrentEntity</h4>
+<pre><b>LPXMLENTITY *XMLParser_GetCurrentEntity(LPXMLPARSER parser);</b></pre>
+<p>Returns LPXMLENTITY or NULL if parsing main document. This info can be used for determining
+accurate error position - whether parser was processing internal entity when error occurred etc. Return value of this function is undefined AFTER errorHandler event call
+(when parser->ErrorCode has been set)</p>
+
+<br>
+<br>
+
+<h4>XMLParser_SetExternalSubset</h4>
+<pre><b>LPXMLENTITY XMLAPI XMLParser_SetExternalSubset(LPXMLPARSER parser,
+                const XMLCH *publicID, const XMLCH *systemID);</b></pre>
+
+<p>This function can be used to set external subset (DTD) for documents that have no DOCTYPE declaration or
+to set additional DTD to be loaded <b>before</b> any other DTD (if present) gets loaded. This means that
+startDTDHandler and endDTDHandler are always called once (no matter whether there is only external 
+DTD set by this function or both DOCTYPE declaration and DTD set by this function)</p>
+<p>XMLParser_SetExternalSubset returns pointer to LPXMLENTITY object (return value is always
+valid LPXMLENTITY) - this can be used to distinguish user
+DTD from other external DTD in resolveEntityHandler.</p>
+<p>To turn off user subset loading call this with <code>NULL</code> values for <code>publicID</code> and <code>systemID</code> parameters.</p>
+<p>See also <a href="http://www.saxproject.org/apidoc/org/xml/sax/ext/EntityResolver2.html#getExternalSubset(java.lang.String,%20java.lang.String)">SAX2 java API getExternalSubset</a></p>
+
+
+<br>
+<br>
+
+<h4>XMLParser_Free</h4>
+<pre><b>void XMLParser_Free(LPXMLPARSER parser);</b></pre>
+<p>Frees parser and its resources.</p>
+
+<br>
+<br>
+<h4>XMLNormalizeBuf</h4>
+<pre><b>int XMLNormalizeBuf(XMLCH *buf, int len);</b></pre>
+
+<p>XMLNormalizeBuf can be used to normalize character content. Normalization converts all
+LFs, CRs, CRLF pairs and TABS in <code>buf</code>
+into single space and trims the start and end of the buffer. XMLNormalizeBuf returns length of normalized buffer (most likely less than <code>len</code> 
+after normalization) but it <b>doesn't nul terminate</b> the buffer. You must
+do this yourself.</p>
+
+<br>
+<br>
+<h4>XMLVector...</h4>
+<p>Dynamically allocating array implementation that is also exported/available
+for end-user of Parsifal. See XMLVector.c and XMLVector.h for details. Samples
+demonstrate XMLVector usage. Samples (and Parsifal
+internally) use XMLVector as stack too. xmldef.h provides stack macro wrappers
+for XMLVector.</p>
+
+<br>
+<br>
+<h4>XMLStringbuf...</h4>
+<p>Simple stringbuffer implementation that is also exported/available for end-user
+of Parsifal. See XMLStringbuf.c and XMLStringbuf.h for details. Sample
+files demonstrate XMLStringbuf usage.</p>
+
+<br>
+<br>
+<h4>XMLPool...</h4>
+<p>Can be used in conjunction with XMLStrinbuf for allocating fixed length strings etc.
+See also <a href="csrchtml/test_pool_c.html">test_pool.c</a> for example of using XMLVector, XMLStringbuf
+ans XMLPool.</p>
+
+<br>
+<br>
+<h3><a name="VALIDATION">Validation</a></h3>
+<br>
+
+<p>
+DTD validation with parsifal requires the following steps besides creating the usual LPXMLPARSER object:
+</p>
+
+<ul>
+<li>Include <code>libparsifal/dtdvalid.h</code></li>
+<li>Create LPXMLDTDVALIDATOR object by calling XMLParser_CreateDTDValidator</li>
+<li>call XMLParser_ParseValidateDTD instead of 
+XMLParser_Parse. XMLParser_ParseValidateDTD takes LPXMLDTDVALIDATOR as its
+1st parameter, otherwise parameters are identical to
+XMLParser_Parse.</li>
+</ul>
+
+<p>
+You can reuse LPXMLDTDVALIDATOR objects and call 
+XMLParser_ParseValidateDTD multiple times without doing any
+cleaning up etc. LPXMLDTDVALIDATOR isn't "tied into" LPXMLPARSER
+in any way BEFORE or AFTER XMLParser_ParseValidateDTD call so
+XMLParser_FreeDTDValidator can also be called independently of
+XMLParser_Free.</p>
+
+<p>Validation function prototypes:</p>
+<div class="codebox">
+<code>
+<pre>LPXMLDTDVALIDATOR XMLAPI XMLParser_CreateDTDValidator(void);
+void XMLAPI XMLParser_FreeDTDValidator(LPXMLDTDVALIDATOR dtd);
+int XMLAPI XMLParser_ParseValidateDTD(LPXMLDTDVALIDATOR dtd,
+    LPXMLPARSER parser, LPFNINPUTSRC inputSrc, 
+    void *inputData, const XMLCH *encoding);</b></pre>
+</pre>
+</code>
+</div>
+
+<p>An example (assumes LPXMLPARSER has been created):</p>
+
+<div class="codebox">
+  <code>
+  <pre>  LPXMLDTDVALIDATOR dtd = XMLParser_CreateDTDValidator();
+  if (!dtd) {
+    puts("Out of memory!");
+    return 1;
+  }
+  parser->startElementHandler = MyStartElement;
+  XMLParser_ParseValidateDTD(dtd, parser, cstream, stdin, 0);
+  XMLParser_FreeDTDValidator(dtd);</pre>
+  </code>
+</div>
+
+<p><b>Important:</b></p>
+<p>
+When parsing with XMLParser_ParseValidateDTD, UserData
+parameter for your LPXMLPARSER will be LPXMLDTDVALIDATOR
+(which contains your LPXMLPARSER as one of its members
+called simply 'parser'). LPXMLDTDVALIDATOR contains
+UserData and extra int UserFlag that you can use.
+</p>
+<p>
+Another thing is that if you want to alter your handlers
+during validation you must alter the handlers that
+are the members of LPXMLDTDVALIDATOR object (see dtdvalid.h).
+Modifying same handlers in your LPXMLPARSER doesn't do what
+you want (infact they just don't change anything). Also parser's elementDeclHandler gets called
+with content particle tree structure and not with string
+representation of the content model - so if you need the
+string representation you must study parsifal.c and 
+ContentModelToString() function etc.
+</p>
+<br>
+<p><b>Validation errors/warnings</b></p>
+<p>
+When validation errors occur XMLParser_ParseValidateDTD returns
+false and parser ErrorHandler gets normally called before that (if
+specified). If ErrorCode is ERR_XMLP_VALIDATION then 
+parser ErrorColumn or ErrorString etc. WILL NOT BE SET but ErrorCode, ErrorString
+etc. of LPXMLDTDVALIDATOR will be available. If XMLFLAG_VALIDATION_WARNINGS has been set parsing
+continues after reporting "error" (which in this case is merely a warning) in ErrorHandler.
+</p>
+<p>An example ErrorHandler:</p>
+
+<div class="codebox">
+  <code>
+  <pre>void ErrorHandler(LPXMLPARSER parser) 
+{
+    if (parser->ErrorCode == ERR_XMLP_VALIDATION) {
+        LPXMLDTDVALIDATOR vp = (LPXMLDTDVALIDATOR)parser->UserData;
+        printf("Validation Error: %s\nErrorLine: %d ErrorColumn: %d\n", 
+            vp->ErrorString, vp->ErrorLine, vp->ErrorColumn);
+    }
+    else {
+        printf("Parsing Error: %s\nErrorLine: %d ErrorColumn: %d\n", 
+            parser->ErrorString, parser->ErrorLine, parser->ErrorColumn);
+    }
+}
+</pre></code></div>
+
+<br>
+<br>
+<p><b>DTD, namespaces and selective (filtering) validation</b></p>
+<p>
+You can use DTDValidate_StartElement and other DTDValidate... handlers
+specified in <code>dtdvalid.h</code> to filter and selectively validate DTDs. This feature also makes possible to
+correctly validate elements that are namespace prefixed - this is easily
+accomplished in your StartElement filter where you just check
+that uri matches your preferred one and then <b>pass localName as qName to
+DTDValidate_StartElement</b>.
+</p>
+<p>
+You can filter attributes in the filter handlers too. Recommended way
+is to use separate/new LPXMLVECTOR object where you copy attributes selectively
+from startElementHandler's atts parameter using XMLVector_Append(newVect, att);
+Adding or modifying attributes isn't currently recommended (not documented properly).
+</p>
+<p>see example nsvalid.c and xmlplint sources (vfilter.c)</p>
+<p>
+Note: You can use default namespace in your root element like
+xhtml1-transitional.dtd uses #FIXED xmlns attribute in its html element BUT
+if you wan't to allow any prefixes and/or elements containing elements from
+other namespaces you must do the filtering. 
+</p>
+
+<br>
+<p>Basic tutorials about DTDs:</p>
+<p><a href="http://www.zvon.org" target="_top">ZVON.ORG XML tutorials</a></p>
+<p><a href="http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/sax/5a_dtd.html" target="_top">Creating a Document Type Definition (DTD)</a></p>
+
+<br>
+<br>
+<br>
+<h3><a name="BUILDING">Building</a></h3>
+
+<br>
+<p><b>On Windows:</b></p>
+<br>
+<p>If you have Visual C++ compiler all sample
+programs can be build by running <code>BUILD.BAT</code> in sample
+directories. Sample executables will be build into <code>WIN32\BIN</code>
+directory.</p>
+
+<p>Directory <code>WIN32\VC6</code> contains VC6 project files and sources
+for building Windows dll to be linked to your own projects. Simply
+link to <code>parsifal.lib</code>, include <code>parsifal.h</code>
+and define <code>XMLAPI=__declspec(dllimport)</code> preprocessor
+definition in your target project. Also make sure that dll is found
+in your path.</p>
+
+<p>You can find <code>parsifal.dll</code> prebuild from
+<code>WIN32\BIN</code> directory and <code>parsifal.lib</code> from
+<code>WIN32\LIB</code> directory. Prebuild dll is linked with static
+multithreaded run-time library (option <code>-MT</code>).</p>
+
+<p>VC6 project file also contains target for building dll with libiconv support that
+is tested with binary distribution libiconv-1.9.1.bin.woe32. This builds parsifal.dll
+that is linked with dynamic multithreaded run-time library - using same RTL as
+libiconv is essential. 
+</p>
+
+<p>If you aren't using VC6, you must build your Parsifal library by
+means specific to your C/C++ compiler. Just generate static or
+dynamic library from files in <b>src</b> directory, link your
+program with it and include <code>parsifal.h</code> in your
+source.</p>
+<br>
+<p><b>MinGW:</b></p>
+<p>Directory <code>WIN32\MINGW</code> etc. contains static library for mingw compiler
+and <a href="http://www.bloodshed.net" target="_top">Dev-Cpp IDE</a> project files. See README in that directory.</p>
+<br>
+<p><b>C++ Builder command line tools V.5.5:</b></p>
+<p>Directory <code>WIN32\BCC</code> etc. contains makefile for building static library for free BCC 5.5 compiler.
+Makefile was contributed by Carsten Heuer. Links with static and singlethreaded runtime library which is default
+for BCC. See README in that directory.</p>
+<br>
+<p>
+See also <a href="../README">README</A>
+</p>
+<br>
+<p><b>On Linux/Unix:</b></p>
+<br>
+Install library
+<br>
+<code><pre>tar xzf libparsifal-X.X.X.tar.gz
+cd libparsifal-X.X.X
+./configure
+make
+make install
+</pre></code>
+<br>
+installs shared library into <code>/usr/lib</code> and include files into <code>/usr/include/libparsifal</code> by default.
+<br>
+<br>
+Each sample directory contains Makefile that build sample exe's and installs them to <code>/usr/local/bin</code> by default, 
+build samples by executing:<br>
+<code><pre>
+make
+make install (optional, you can place executables in to directory of 
+              your choice of course)
+</pre></code>
+Samples aren't build when installing shared library. Library must be build and installed
+before making sample files of course.
+<br>
+<p>
+See also <a href="../README">README</A>
+</p>
+<br>
+Compiling options:
+<div>
+<table>
+
+<th>#define</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+
+<td>DTD_SUPPORT</td>
+<td>TRUE</td>
+<td>Compiles with DTD support. Compiling w/o DTD_SUPPORT defined makes much smaller parser which
+doesn't support parsing DTDs at all (accepts simple DOCTYPE tag optionally containing PUBLIC and
+SYSTEM declared BUT NOT an internal subset of any sort). This has also effect on how character data is reported via <a href="#XML_CHARACTERS">charactersHandler</a>.</td>
+</tr>
+
+<td>DTDVALID_SUPPORT</td>
+<td>TRUE</td>
+<td>DTD Validation support. Includes <code>dtdvalid.c</code module</td>
+</tr>
+
+<td>MAX_SPEED</td>
+<td>TRUE</td>
+<td>Performs some optimizations (basically inlining stuff). Makes the parser about 4 KB bigger but
+a bit faster.</td>
+</tr>
+
+<td>ICONV_SUPPORT</td>
+<td>FALSE</td>
+<td>Compiles with <a href="http://www.gnu.org/software/libiconv/" target="_top">GNU libiconv</a> support.</tr>
+</table>
+</div>
+<p>All makefiles and pre-build libraries use these default compiling options.</p>
+
+<br>
+<br>
+<h3><a name="ENCODING_NOTES">Notes about encodings</a></h3>
+
+<br>
+<p><b>Parsifal uses UTF-8 encoding internally.</b>. All <code>XMLCH</code>
+type parameters passed to callbacks are UTF-8 encoded i.e.
+<b>parsifal output is always UTF-8 encoded no matter what
+input encoding document uses</b>. This makes
+Parsifal usable with many languages although sometimes you need to
+do some extra work converting UTF-8 to character encoding used by
+your target program. See also helper.c for UTF-8 to iso-latin1 conversion routine.</p>
+
+<p>Since UTF-8 is becoming very popular form of unicode in various
+platforms you may consider using UTF-8 as your program's internal
+encoding, here's an excerpt from UTF-8 and Unicode FAQ for
+Unix/Linux - <a href=
+"http://www.cl.cam.ac.uk/~mgk25/unicode.html" target="_top">http://www.cl.cam.ac.uk/~mgk25/unicode.html</a>:</p>
+
+<p><i>"the major Linux distributors and application developers now
+foresee and hope that Unicode will eventually replace all these
+older legacy encodings, primarily in the UTF-8 form."</i></p>
+
+<p>TIP: to enable UTF-8 support for xterm use<code><pre>
+xterm -u8
+</pre></code>
+Now you should see Parsifal output converted from UTF-8 to "normal" ISO-8859-1 
+latin characters. Read linux Unicode-HOWTO for more details/language/font support
+for xterm etc.
+<p>
+<br>
+<b>GNU libiconv</b>
+<br>
+<br>
+<p>If you compile with <a href="http://www.gnu.org/software/libiconv/" target="_top">GNU libiconv</a> you must make sure Parsifal build uses the same kind
+of runtime library as your libiconv. If you're going to use libiconv on win this is
+easily accomplished by making libiconv target from VC6 project file and downloading libiconv binary distribution
+from gnu ftp sites (tested with 1.9.1). See also libiconv READMEs for more information</p>
+<p>You can test your build by running <code>IconvTest()</code> in your code. 
+<a href="csrchtml/test_iconv_c.html">test_iconv.c</a> can be found in <code>samples/misc</code> directory.
+</p>
+<p>
+<b>Note:</b> Libiconv defaults to <b>big endian</b> unicode encodings i.e. if your document doesn't have byte order mark
+you must explicitly specify UTF-16LE or UCS-4LE, when for example only UCS-4 is specified, libiconv defaults
+to UCS-4BE.
+</p>
+
+<br>
+<br>
+<h3><a name="ENTITIES">Entities</a></h3>
+<br>
+<p>Parsifal supports character references, predefined entities, internal and
+external general entities. + internal and external parameter entities (used in
+DTD authoring only)</p>
+<br>
+<p>Example documents with supported entity types:</p>
+
+<div class="codebox">
+  <code>
+  <pre>
+&lt;!DOCTYPE doc [
+&lt;!ENTITY ent1 &quot;internal entity data&quot;&gt;
+&lt;!ENTITY ent2 SYSTEM &quot;external.ent&quot;&gt;
+]&gt;
+&lt;doc&gt;
+    &amp;#60;  &lt;!-- this is character reference --&gt;
+    &amp;lt;   &lt;!-- this is reference to predefined entity --&gt;
+    &amp;ent1; &lt;!-- this is reference to internal general entity --&gt;
+    &amp;ent2; &lt;!-- this is reference to external general entity --&gt;
+&lt;/doc&gt;</pre>
+  </code>
+</div>
+
+<br>
+<br>
+<p>An example that includes common xhtml entity declarations into document:</p>
+
+<br>
+<div class="codebox">
+  <code>
+  <pre>
+&lt;!DOCTYPE doc [
+&lt;!ENTITY % latin1 SYSTEM &quot;xhtml-lat1.ent&quot;&gt;
+%latin1; &lt;!-- this is a reference to external parameter entity --&gt;
+]&gt;
+&lt;doc&gt;
+     Copyright &amp;copy; 2004 Sir Elmo Von Eltonzon
+&lt;/doc&gt;</pre>
+  </code>
+</div>
+<p>
+
+<br>
+
+<br>
+</p>
+<h3><a name="THREAD_SAFETY">Thread safety</a></h3>
+
+<br>
+<p>Parsifal is re-entrant - this means that you can run
+multiple parsers concurrently and parser works in the threaded
+environments as long as you handle thread synchronization etc. when needed.</p>
+
+<br>
+<br>
+<h3><a name="BUG_REPORTS">Bug reports</a></h3>
+
+<br>
+Bug reports should include minimal source code that produces the
+bug and minimal XML document used if its relevant for producing the
+buggy behaviour. Double-check that bug originates from Parsifal library or perhaps
+from specific compiler configuration before sending bug reports.
+You should of course test your XML documents with other tools (XML 1.0 compliant browsers etc.)
+to rule out simple well-formedness or validation errors - if
+other tools process your document and parsifal don't (or vice versa) you definitely have
+found a bug!
+<br>
+<br>
+<hr>
+<p><font color="#004040">Copyright &copy; 2002-2005 Toni
+Uusitalo.<br>
+Send mail, suggestions and bug reports to<br><img src="pics/semail.gif"><br>
+Last modified: 17.04.2005 13:40</font></p>
+</body>
+</html>

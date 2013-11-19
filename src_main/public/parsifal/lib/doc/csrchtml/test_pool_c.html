@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\misc\test_pool.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="com">/* Example that uses XMLVector, XMLStringbuf and XMLPool.</span>
+<span class="com">   Reads lines from stdin into memory and presents them backwards</span>
+<span class="com">*/</span>
+<span class="dir">#include &lt;stdio.h&gt;</span>
+<span class="dir">#include &lt;stdlib.h&gt;</span>
+<span class="dir">#include &lt;string.h&gt;</span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/xmlvect.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/xmlsbuf.h&quot;</span><span class="dir"></span> <span class="com">/* includes XMLPool too */</span><span class="dir"></span>
+
+<span class="dir">#define CHKMEM(p) if (!(p)) { puts(</span><span class="dstr">&quot;memory allocation failure!&quot;</span><span class="dir">); exit(EXIT_FAILURE); }</span>
+<span class="dir">#define SIZE_LINEBUF 1024</span>
+<span class="dir">#define SIZE_POOLITEM 30</span>
+
+<span class="kwb">int</span> <span class="kwd">main</span><span class="sym">(</span><span class="kwb">int</span> argc<span class="sym">,</span> <span class="kwb">char</span><span class="sym">*</span> argv<span class="sym">[])</span>
+<span class="sym">{</span>
+  <span class="kwb">char</span> linebuf<span class="sym">[</span>SIZE_LINEBUF<span class="sym">];</span>
+  <span class="kwb">char</span> <span class="sym">*</span>s<span class="sym">;</span>
+  LPXMLPOOL pool<span class="sym">;</span>
+  LPXMLVECTOR list<span class="sym">;</span>
+  LPXMLSTRINGBUF sbuf<span class="sym">;</span>
+
+  <span class="com">/* create a list of stringbuffers (lines) that will be allocated</span>
+<span class="com">     dynamically by calling XMLVector_Append(list, NULL).</span>
+<span class="com">     Vector grows in 6 * sizeof(XMLSTRINGBUF) sized chunks */</span>
+  <span class="kwd">XMLVector_Create</span><span class="sym">(&amp;</span>list<span class="sym">,</span> <span class="num">6</span><span class="sym">,</span> <span class="kwa">sizeof</span><span class="sym">(</span>XMLSTRINGBUF<span class="sym">));</span>
+  <span class="kwd">CHKMEM</span><span class="sym">(</span>list<span class="sym">);</span>
+
+  <span class="com">/* create a pool for XMLStringbuf that contains SIZE_POOLITEM sized</span>
+<span class="com">     fixed length strings, pool grows in 4 * SIZE_POOLITEM sized chunks */</span>
+  pool <span class="sym">=</span> <span class="kwd">XMLPool_Create</span><span class="sym">(</span>SIZE_POOLITEM<span class="sym">,</span> <span class="num">4</span><span class="sym">);</span>
+  <span class="kwd">CHKMEM</span><span class="sym">(</span>pool<span class="sym">);</span>
+
+  <span class="kwa">while</span> <span class="sym">(</span><span class="kwd">fgets</span><span class="sym">(</span>linebuf<span class="sym">,</span> SIZE_LINEBUF<span class="sym">,</span> stdin<span class="sym">)) {</span>
+    <span class="slc">//fgets(linebuf, SIZE_LINEBUF, stdin);</span>
+
+    <span class="com">/* append new XMLStringbuf to list: */</span>
+    sbuf <span class="sym">=</span> <span class="kwd">XMLVector_Append</span><span class="sym">(</span>list<span class="sym">,</span> NULL<span class="sym">);</span>
+    <span class="kwd">CHKMEM</span><span class="sym">(</span>sbuf<span class="sym">);</span>
+
+    <span class="com">/* initialize it to use pool as long as string fits into</span>
+<span class="com">       pool itemsize, otherwise XMLStringbuf will allocate</span>
+<span class="com">       more memory from heap. XMLStringbuf grows in SIZE_POOLITEM</span>
+<span class="com">       sized chunks. */</span>
+    s <span class="sym">=</span> <span class="kwd">XMLStringbuf_InitUsePool</span><span class="sym">(</span>sbuf<span class="sym">,</span> SIZE_POOLITEM<span class="sym">,</span> <span class="num">0</span><span class="sym">,</span> pool<span class="sym">);</span>
+    <span class="kwd">CHKMEM</span><span class="sym">(</span>s<span class="sym">);</span>
+
+    <span class="com">/* append string into stringbuf. (You can set debugger breakpoint</span>
+<span class="com">       into XMLStringbuf_Append to see how memory gets allocated) */</span>
+    s <span class="sym">=</span> <span class="kwd">XMLStringbuf_Append</span><span class="sym">(</span>sbuf<span class="sym">,</span> linebuf<span class="sym">,</span> <span class="kwd">strlen</span><span class="sym">(</span>linebuf<span class="sym">)+</span><span class="num">1</span><span class="sym">);</span>
+    <span class="kwd">CHKMEM</span><span class="sym">(</span>s<span class="sym">);</span>
+  <span class="sym">}</span>
+
+  <span class="com">/* present the strings backwards: */</span>
+  <span class="kwa">if</span> <span class="sym">(</span>list<span class="sym">-&gt;</span>length<span class="sym">) {</span>
+    <span class="kwb">int</span> i<span class="sym">;</span>
+    <span class="kwa">for</span> <span class="sym">(</span>i<span class="sym">=</span>list<span class="sym">-&gt;</span>length<span class="sym">;</span> i<span class="sym">;</span> i<span class="sym">--) {</span>
+      sbuf <span class="sym">=</span> <span class="kwd">XMLVector_Get</span><span class="sym">(</span>list<span class="sym">,</span> i<span class="sym">-</span><span class="num">1</span><span class="sym">);</span>
+      <span class="kwd">CHKMEM</span><span class="sym">(</span>sbuf<span class="sym">);</span>
+      <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;line %d: %s&quot;</span><span class="sym">,</span> i<span class="sym">,</span> sbuf<span class="sym">-&gt;</span>str<span class="sym">);</span>
+      <span class="kwa">if</span> <span class="sym">(</span>sbuf<span class="sym">-&gt;</span>len <span class="sym">&gt;</span> <span class="num">1</span> <span class="sym">&amp;&amp;</span> sbuf<span class="sym">-&gt;</span>str<span class="sym">[</span>sbuf<span class="sym">-&gt;</span>len<span class="sym">-</span><span class="num">2</span><span class="sym">] !=</span> <span class="str">'</span><span class="esc">\n</span><span class="str">'</span><span class="sym">)</span>
+        <span class="kwd">fputc</span><span class="sym">(</span><span class="str">'</span><span class="esc">\n</span><span class="str">'</span><span class="sym">,</span> stdout<span class="sym">);</span>
+      <span class="kwd">XMLStringbuf_Free</span><span class="sym">(</span>sbuf<span class="sym">);</span>
+    <span class="sym">}</span>
+  <span class="sym">}</span>
+
+  <span class="com">/* clean up: */</span>
+  <span class="kwd">XMLVector_Free</span><span class="sym">(</span>list<span class="sym">);</span>
+  <span class="kwd">XMLPool_FreePool</span><span class="sym">(</span>pool<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

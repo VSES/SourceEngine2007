@@ -1,0 +1,5 @@
+P4Win Tools File CS Src Locks
+>>CS Src Locks				0	0	0	1
+>>Lock Dev/csport	p4mutex.exe	lock devcsport 3 $u $p	c:\	1	0	1	0
+>>Release Dev/csport	p4mutex.exe	release devcsport 3 $u $p	c:\	1	0	1	0
+>>Query Dev/csport lock	p4mutex.exe	query devcsport 3 $u $p	c:\	1	0	1	0

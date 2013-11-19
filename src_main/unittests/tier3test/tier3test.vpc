@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+//	TIER3TEST.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\unittests"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"		[$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;TIER3TEST_EXPORTS"
+	}
+}
+
+$Project "tier3test"
+{
+	$Folder	"Source Files"
+	{
+		$File	"tier3test.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\movieobjects\dmx_to_vcd.h"
+		$File	"$SRCDIR\public\interpolatortypes.h"
+	}
+
+	$Folder "Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\unitlib.lib"
+	}
+}

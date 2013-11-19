@@ -1,0 +1,783 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LANGUAGE            "English"
+    IDS_BORDERLESS_REGFAIL  "Could not register !game edit control class."
+    IDS_CHAT_IGNORE_MISLINKED "Ignoring mislinked chat room"
+    IDS_CHAT_IGNORE_UNLINKED "Ignoring unlinked chat room"
+    IDS_CREATE_MAPSCHANGED  "The number of maps in the map directory changed."
+    IDS_CREATE_LIBLISTBAD   "The file 'liblist.gam' in the game directory was malformed, see /valve/liblist.gam for format info."
+    IDS_SOCKET_CONNECTIONFAILURE 
+                            "Your network connection may have failed, continuing anway..."
+    IDS_PLAYERINFO_NOMEM    "Could not allocate memory for player information instance."
+    IDS_CHAT_NOCONNECTION   "Could not create chat server connection."
+    IDS_CHAT_NOSTREAM       "Could not create chat server data stream."
+    IDS_CHAT_NOSELECT       "Could not prepare chat server client for connection."
+    IDS_CONTROLS_DELETE_LINKED "Deletion of linked key action item."
+    IDS_CONTROLS_KBLIST_EMPTY "Keyboard bindings file 'kb_act.lst' is empty."
+    IDS_CONTROLS_KBLIST_PARSEERROR "Error parsing bindings file 'kb_act.lst'."
+    IDS_CONTROLS_KBKEYS_EMPTY "Keyboard bindings file 'kb_keys.lst' is empty."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONTROLS_KBKEYS_PARSEERROR "Error parsing file 'kb_keys.lst'."
+    IDS_CONTROLS_KBKEYS_OVERFLOW "Too many actions in file 'kb_keys.lst'."
+    IDS_PROFILE_COLOR       "Colors"
+    IDS_MAIN_NOCAPS         "Could not query graphics device capabilities."
+    IDS_MAIN_INSUFFICIENTCAPS 
+                            "Your graphics card does not support a necessary raster operation."
+    IDS_MAIN_REGWNDCLSFAIL  "Could not register !game window class."
+    IDS_MAIN_INSUFFICIENTSOCKETS 
+                            "Insufficient number of windows sockets, networking may not operate correctly."
+    IDS_MAIN_MEMMAPFAILURE  "Memory-mapped file i/o initialization failed."
+    IDS_PROFILE_NOMEM       "Couldn't allocate memory for player profile, exiting."
+    IDS_BTN_STRANGESIZE     "Button face bitmap graphics file sizes appear invalid."
+    IDS_MAIN_NOUSERMSGS     "Could not register user messages."
+    IDS_MAIN_NOFILEMAPPING  "Could not create file mapping to engine."
+    IDS_MAIN_NOMEMMAPCONNECT "Could not connect to server '%s'."
+    IDS_MSG_OVERFLOW        "SZ_GetSpace overflow without m_bAllowOverflow set"
+    IDS_MSG_REQTOOBIG       "SZ_GetSpace requested length is greater than available buffer size."
+    IDS_MULTI_NOROOMSTATIC  "Could not allocate room static text control."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_NOROOMTAB     "Could not allocate room tab control."
+    IDS_MULTI_NOCHATWINDOW  "Could not allocate chat display window control."
+    IDS_MULTI_NOCHATINPUT   "Could not allocate chat text input control."
+    IDS_MULTI_NOUSERLIST    "Could not allocate chat user list control."
+    IDS_MULTI_NOSERVERLIST  "Could not allocate server browser list control."
+    IDS_MULTI_NOSELECTION   "No servers selected."
+    IDS_MULTI_NOARCHIVE     "!game could not open the server list archive file:  '%s'."
+    IDS_CHAT_USER_NOMEM     "Could not allocate space for new chat rrom user."
+    IDS_MULTI_SERVER_NOMEM  "Could not allocate space for a new server."
+    IDS_MULTI_MASTER_BADLISTFILE "Could not open master server list file."
+    IDS_MULTI_NODIALOG      "SetDialog with no dialog!"
+    IDS_PROFILE_REQUIRED    "You must create or select a player profile to continue."
+    IDS_ODCOMBO_REGFAIL     "Could not register !game combobox class."
+    IDS_ODEDIT_REGFAIL      "Could not register !game edit control class."
+    IDS_ODLIST_REGFAIL      "Could not register !game list control class."
+    IDS_ODSCROLL_REGFAIL    "Could not register !game scrollbar class."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ODSLIDER_REGFAIL    "Could not register !game slider class."
+    IDS_ODTAB_REGFAIL       "Could not register !game tab control class."
+    IDS_PROFILE_NICKREMOVEFAIL "Could not remove chat nicknames."
+    IDS_PROFILE_NOPROFILE   "No chosen profile."
+    IDS_QUICK_NOSERVERS     "Could not locate any active %s servers with available slots."
+    IDS_QUICK_NOACTIVE      "Could not connect to any active %s servers."
+    IDS_README_NOMEM        "Could not allocate buffer for readme:  %i bytes"
+    IDS_ROOM_BADNAME        "The room name was invalid."
+    IDS_SINGLE_NOSELECTION  "You must select a save game slot from the available slots."
+    IDS_SINGLE_CANTSAVE     "You must be playing in a single player game to save."
+    IDS_ODLISTBOX_REGFAIL   "Could not register !game list box class."
+    IDS_DIB_OPENFAIL        "Could not open bitmap file '%s'."
+    IDS_MCI_OPENFAIL        "Could not open MCI file for playback:  %s"
+    IDS_MCI_GETIDFAIL       "Could not get MCI Device ID for MCI device"
+    IDS_MCI_WINDOWFAIL      "Could not set up MCI window for playback of MCI device:  %s"
+    IDS_MCI_PUTFAIL         "Could not display MCI playback of MCI device in window: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MCI_SEEKFAIL        "Could not seek to start of MCI data:  %s"
+    IDS_MCI_BREAKFAIL       "Could not set break key on MCI data:  %s"
+    IDS_MCI_PLAYFAIL        "Could not start playback of MCI data:  %s"
+    IDS_MCI_STOPFAIL        "Could not stop playback of MCI data:  %s"
+    IDS_MCI_CLOSEFAIL       "Could not close MCI data:  %s"
+    IDS_CONTROLS_RESTOREFAIL "Could not restore default bindings for player."
+    IDS_SND_BADNAME         "Invalid sound name"
+    IDS_PROFILE_ALLOCFAIL   "Could not allocate space for key binding"
+    IDS_AUDIO_NOPROFILE     "Can't change audio settings without a current player profile."
+    IDS_VIDEO_NOPROFILE     "Can't change video settings without a current player profile."
+    IDS_CONTROLS_KEYHELP    "Use your mouse or the arrow keys to select an item.  Double-click or press Enter to change an item.  Press Delete to clear an item."
+    IDS_ENDDEMO_URL         "valve/media/order/default.html"
+    IDS_ORDER_URL           "valve/media/order/default.html"
+    IDS_LOADSAVE_HINT       "During play, you can quickly save your game by pressing %s. Load this game again by pressing %s."
+    IDS_LAUNCHER_BUTTONSIZE "156 26"
+    IDS_MEM_INSUFFICIENT    "Your system reported only %.2fK of physical memory, !game requires at least 16MB."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MEM_ALLOCFAIL       "!game was unable to allocate %.2fK of memory."
+    IDS_EVENT_CREATEFAIL    "!game was unable to create a system object."
+    IDS_OSVER_FAIL          "!game was unable to retreive system information."
+    IDS_OSVER_OUTDATED      "!game requires Windows/95 or Windows/NT and above."
+    IDS_OSVER_NTSP3         "!game requires Service Pack 3 or above"
+    IDS_OSVER_16BIT         "!game requires 16 bit color. Please change your desktop settings to HiColor. Sometimes this is called ""32767 colors"" or ""65535 colors""."
+    IDS_BINDING_ACTIONHEADING "Action"
+    IDS_BINDING_PRIMARYHEADING "Key / button"
+    IDS_BINDING_ALTERNATEHEADING "Alternate"
+    IDS_BINDING_PROMPT      "Press a key or button."
+    IDS_URL_BROWSERFAIL     "!game was unable to display the web page '%s', please make sure you have a web browser installed and that the association for opening .htm files is valid."
+    IDS_SAVELOAD_TIMECOL    "Time"
+    IDS_SAVELOAD_GAMECOL    "Game"
+    IDS_SAVELOAD_ELAPSEDCOL "Elapsed Time"
+    IDS_SERVER_GAMESERVER   "Game"
+    IDS_SERVER_SPEED        "Net Spd"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MAP          "Map"
+    IDS_SERVER_PLAYERS      "Players/Max"
+    IDS_SERVER_GAME         "Game Type"
+    IDS_SERVER_NETWORK      "Network"
+    IDS_QUERY_STARTING      "Starting..."
+    IDS_QUERY_COMPLETED     "%s completed."
+    IDS_SERVER_REMOVE       "Permanently remove %i servers from list?"
+    IDS_SERVER_CONNECT      "Initiating connection to %s..."
+    IDS_SERVER_LANTAG       "Lan"
+    IDS_SERVER_INTERNETTAG  "Internet"
+    IDS_SERVER_MENU_CONNECT "Connect"
+    IDS_SERVER_MENU_PLAYERINFO "Show player and rule information"
+    IDS_SERVER_MENU_RULEINFO "Show rule information"
+    IDS_SERVER_MENU_FILTER  "Filter server"
+    IDS_SERVER_MENU_ADDTOFAVORITE "Add to favorites"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MENU_REMOVEFROMFAV "Remove from favorites"
+    IDS_SERVER_MENU_REMOVE  "Permanently remove server"
+    IDS_SERVER_MENU_NOPLAYERINFO "No player information available"
+    IDS_SERVER_MENU_NOLANPLAYERINFO 
+                            "Player information is not available for Lan games"
+    IDS_SAVELOAD_QUICKLISTTEXT "[quick] %s"
+    IDS_SAVELOAD_AUTOLISTITEM "[autosave] %s"
+    IDS_PLAYERINFO_NUMBER   "#"
+    IDS_PLAYERINFO_NAME     "Player Name"
+    IDS_PLAYERINFO_KILLS    "Kills"
+    IDS_PLAYERINFO_TIME     "Time"
+    IDS_PLAYERINFO_SUIT     "HEV Suit"
+    IDS_QUICK_REQUEST       "Requesting list of servers..., %i seconds left"
+    IDS_QUICK_GOTLIST       "List received..."
+    IDS_QUICK_CONTACTING    "Contacting servers..."
+    IDS_QUICK_COMPLETEDSERVER "%s completed."
+    IDS_SAVE_NEWCOMMENT     "New Saved Game"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_NEWTIME        "New"
+    IDS_SAVE_NEWFILETIME    "Current"
+    IDS_DDRAW_FAILEINIT     "Direct Draw Init Failed (%08lx):%s\n"
+    IDS_DDRAW_DX4FAIL       "Direct Draw 4 Init Failed (%08lx):%s\n"
+    IDS_VIDEO_MODECOL       "Display mode"
+    IDS_ROOM_NAMECOL        "Name"
+    IDS_ROOM_PEOPLECOL      "People"
+    IDS_ROOM_SERVERSCOL     "Servers"
+    IDS_DDRAW_REQUIRED      "!game requires DirectDraw"
+    IDS_DLL_LOADFAIL        "Failed to load Engine DLL."
+    IDS_CMDLINE_VTOPTS      "-vt requires one of software, gl, or d3d."
+    IDS_SAVE_NUMCHANGED     "Number of saved games changed?"
+    IDS_BINDINGS_ALLOCFAIL  "Unable to allocate space for binding"
+    IDS_GAMMA_LOADFAIL      "Unable to locate the gamma image 'gamma.bmp'."
+    IDS_DDRAW_RESTOREMODEFAIL "Unable to restore DirectDraw video mode."
+    IDS_AUDIO_VOLUME        "Game sound volume"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUDIO_SUITVOL       "HEV suit volume"
+    IDS_AUDIO_USECD         "Play CD music."
+    IDS_AUDIO_HIGHQUALITY   "High quality sound (for fast computers)"
+    IDS_CFG_VIDHELP         "Change screen size, video mode, gamma, and glare reduction."
+    IDS_CFG_AUDIOHELP       "Change sound volume and quality."
+    IDS_CFG_CONTROLHELP     "Change keyboard, mouse, and joystick settings."
+    IDS_CFG_RETURNTOMAIN    "Go back to the Main Menu."
+    IDS_CREATEROOM_TITLE    "Create Private Room"
+    IDS_CREATEROOM_ROOMNAME "Room Name"
+    IDS_CREATEROOM_ROOMTOPIC "Room Topic"
+    IDS_CREATESERVER_NAME   "Server Name:"
+    IDS_CREATESERVER_MAP    "Map:"
+    IDS_CREATESERVER_ROOM   "Associated Room:"
+    IDS_CREATESERVER_GAMETYPE "Type of Game:"
+    IDS_CREATESERVER_MAXPLAYERS "Max. Players:"
+    IDS_FILTER_TITLE        "Filter the list of !game games"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILTER_HEADING      "Show only servers which:"
+    IDS_FILTER_RESPONDING   "are responding"
+    IDS_FILTER_RESPONSETIME "responded more quickly than"
+    IDS_FILTER_NOTFULL      "are not full"
+    IDS_FILTER_NOTEMPTY     "have people currently playing"
+    IDS_FILTER_ONFAVORITES  "are in my 'favorites' list"
+    IDS_FILTER_INCHATROOM   "are associated with the selected chat room"
+    IDS_FINDPLAYER_PLAYER   "Player to find:"
+    IDS_OPTS_CROSSHAIR      "Crosshair"
+    IDS_OPTS_REVERSE        "Reverse mouse"
+    IDS_OPTS_MLOOK          "Mouse look"
+    IDS_OPTS_LOOKSPRING     "Look spring"
+    IDS_OPTS_LOOKSTRAFE     "Look strafe"
+    IDS_OPTS_MFILTER        "Mouse filter"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JOYSTICK       "Joystick"
+    IDS_OPTS_CROSSHAIRHELP  "Enable the weapon aiming crosshair."
+    IDS_OPTS_REVERSEHELP    "Reverse mouse up/down axis."
+    IDS_OPTS_MLOOKHELP      "Use the mouse to look around instead of using the mouse to move."
+    IDS_OPTS_LOOKSPRINGHELP "Causes the screen to ""spring"" back to looking straight ahead when you move forward."
+    IDS_OPTS_LOOKSTRAFEHELP "In combination with your mouse look modifier, causes left-right movements to strafe instead of turn."
+    IDS_OPTS_MFILTERHELP    "Average mouse inputs over the last two frames to smooth out movements."
+    IDS_OPTS_JOYSTICKHELP   "Enable the joystick."
+    IDS_OPTS_SENSITIVITYHELP "Mouse sensitivity."
+    IDS_LOADSAVE_LOADHELP   "Load a previously saved game"
+    IDS_LOADSAVE_SAVEHELP   "Save current game."
+    IDS_LOADSAVE_RETURN     "Go back to the Main Menu."
+    IDS_MAIN_RETURNHELP     "Return to game."
+    IDS_MAIN_NEWGAMEHELP    "Start a new game."
+    IDS_MAIN_TRAININGHELP   "Learn how to play !game."
+    IDS_MAIN_LOADHELP       "Load a previously saved game."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_LOADSAVEHELP   "Load a saved game, save the current game."
+    IDS_MAIN_CONFIGUREHELP  "Change game settings, configure controls."
+    IDS_MAIN_READMEHELP     "View the Readme.txt file."
+    IDS_MAIN_ORDERHELP      "Order the full version of Half-Life."
+    IDS_MAIN_QUITHELP       "Quit playing !game."
+    IDS_MAIN_QUICKHELP      "Connect to the fastest, active Internet game server found."
+    IDS_MAIN_MULTIPLAYERHELP 
+                            "Search for !game servers, chat with other players, configure character."
+    IDS_CHAT_PROMPT         "Type Message:"
+    IDS_NEWGAME_EASYHELP    "Play !game on the 'easy' skill setting."
+    IDS_NEWGAME_MEDIUMHELP  "Play !game on the 'medium' skill setting."
+    IDS_NEWGAME_DIFFICULTHELP "Play !game on the 'difficult' skill setting."
+    IDS_NEWGAME_RETURNHELP  "Go back to the Main Menu."
+    IDS_NEWPROFILE_TITLE    "Select Player"
+    IDS_NEWPROFILE_NAME     "Na&me:"
+    IDS_NEWPROFILE_PASSWORD "Password:"
+    IDS_NEWPROFILE_REMEMBER "remember password"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROFILE_MODEL       "Player Model"
+    IDS_PROFILE_NICKNAME    "Player Name"
+    IDS_PROFILE_SELECT      "Player profile:"
+    IDS_PROFILE_PROCEEDHELP "Chat with users and browse for servers."
+    IDS_PROFILE_RETURNHELP  "Go back to the Main Menu."
+    IDS_VIDEO_SCREENSIZE    "Screen size"
+    IDS_VIDEO_GAMMA         "Gamma"
+    IDS_VIDEO_GLARE         "Glare reduction"
+    IDS_VIDEO_GAMMAHELP     "Gamma:  Adjusts !game's color balance to best suit your monitor. Move the slider until you can just make out the figure standing in shadow on the right side of the sample image."
+    IDS_VIDEO_GLAREHELP     "Glare Reduction: Adjusts darker colors to reduce the effect of glare on your monitor. "
+    IDS_VIDMODE_WINDOWED    "Run in a &window"
+    IDS_VIDMODE_MOUSE       "&Use mouse"
+    IDS_VIDMODE_GLLISTHEADER "OpenGL Driver"
+    IDS_VIDMODE_D3DHEADER   "D3D Device"
+    IDS_VIDSELECT_OPTIONSHELP 
+                            "Set video options such as screen size, gamma, and glare reduction."
+    IDS_VIDSELECT_MODESHELP "Set video modes and configure 3D accelerators."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VIDSELECT_RETURNHELP "Go back to the previous menu."
+    IDS_SERVERS_REFRESH     "Refreshing servers..."
+    IDS_PROGRESS_START      "Start"
+    IDS_QUICK_CONTACT       "Contacting servers..."
+    IDS_QUICK_REQUESTLIST   "Requesting list of servers..."
+    IDS_README_NOFILE       "Could not find readme.txt"
+    IDS_STATUS_CONNECTING   "Connecting to server '%s'"
+    IDS_STATUS_CONNECTIONESTABLISHED 
+                            "Connection established to %s, switching to game"
+    IDS_STATUS_SKIPSERVER   "Skipping..."
+    IDS_STATUS_ELPASEDTIME  "%s\n%3.1f Seconds Elapsed"
+    IDS_TRAINING_EXITCURRENT 
+                            "Entering the Hazard Course will exit any current game, OK to exit?"
+    IDS_MAIN_QUITPROMPTINGAME "Quit !game without saving current game?"
+    IDS_MAIN_QUITPROMPT     "Are you sure you want to quit?"
+    IDS_CONTROLS_CANCELPROMPT "Exit without saving changes?"
+    IDS_LOAD_LOADPROMPT     "Loading a game will exit any current game, OK to exit?"
+    IDS_LOADSAVE_DELETEPROMPT "Delete selected game?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEWGAME_NEWPROMPT   "Starting a new game will exit any current game, OK to exit?"
+    IDS_NICKNAME_ADD        "Enter a name:"
+    IDS_PROFILE_CANCELPROMPT "Save changes made to profile?"
+    IDS_SAVE_INGAMEPROMPT   "Can't save, you are not currently playing a game."
+    IDS_SAVE_OVERWRITE      "Are you sure you want to overwrite this saved game?"
+    IDS_VIDEO_BADSETTINGS   "Your video settings do not appear to be valid, use these settings anyway?"
+    IDS_AUDIO_A3D           "Enable A3D hardware support"
+    IDS_BTN_DONE            "&Done"
+    IDS_BTN_CONTROLS        "&Controls"
+    IDS_BTN_AUDIO           "&Audio"
+    IDS_BTN_VIDEO           "&Video"
+    IDS_BTN_CANCEL          "&Cancel"
+    IDS_BTN_CREATE          "Create &room"
+    IDS_BTN_FILTER          "&Filter"
+    IDS_BTN_FIND            "&Search"
+    IDS_BTN_RETURN          "&Return"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_NEWGAME         "&New game"
+    IDS_BTN_TRAINING        "&Hazard course"
+    IDS_BTN_CONFIGURE       "&Configure"
+    IDS_BTN_LOADSAVE        "&Save/load game"
+    IDS_BTN_LOAD            "&Load game"
+    IDS_BTN_MULTIPLAYER     "&Multiplayer"
+    IDS_BTN_README          "&View readme"
+    IDS_BTN_ORDER           "&Order"
+    IDS_BTN_QUIT            "&Quit"
+    IDS_BTN_ADVANCED        "&Advanced controls"
+    IDS_BTN_REVERT          "&Cancel"
+    IDS_BTN_RESTORE         "&Use defaults"
+    IDS_BTN_DELETE          "&Delete"
+    IDS_BTN_SAVE            "&Save game"
+    IDS_BTN_LOGIN           "&Login"
+    IDS_BTN_CONNECT         "&Connect"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_CREATESV        "Crea&te game"
+    IDS_BTN_REFRESH         "&Refresh"
+    IDS_BTN_ROOM            "&List rooms"
+    IDS_BTN_EASY            "&Easy"
+    IDS_BTN_MEDIUM          "&Medium"
+    IDS_BTN_HARD            "&Difficult"
+    IDS_BTN_YES             "&Yes"
+    IDS_BTN_NO              "&No"
+    IDS_BTN_OK              "&Ok"
+    IDS_BTN_OPTIONS         "&Video options"
+    IDS_BTN_MODES           "Video &modes"
+    IDS_BTN_QUICK           "Quick &start"
+    IDS_PROFILE_LOGO        "Spraypaint Image"
+    IDS_BTN_BROWSE          "&Internet games"
+    IDS_MULTI_BROWSEHELP    "View a list of !game game servers and join the one of your choice."
+    IDS_BTN_CHAT            "C&hat rooms"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_CHATHELP      "Talk online with other !game players."
+    IDS_BTN_LAN             "&Lan game"
+    IDS_MULTI_LANHELP       "Set up a !game game on a local area network."
+    IDS_BTN_CUSTOMIZE       "C&ustomize"
+    IDS_MULTI_CUSTOMIZEHELP "Choose your player name, and select visual options for your character."
+    IDS_CREATEROOM_ROOMPASSWORD "Room Password (optional)"
+    IDS_PLAYERINFO_RULENAME "Server Rule"
+    IDS_PLAYERINFO_RULEVALUE "Value"
+    IDS_BTN_SEARCH          "&Search for Game"
+    IDS_BTN_CHATMODE        "Chat"
+    IDS_BTN_LISTMODE        "&Internet games"
+    IDS_BTN_EXIT            "&Exit"
+    IDS_SERVER_MANUALADD    "Add a server by manually by IP address..."
+    IDS_SERVER_REQUESTNEWLIST "Request updated server list."
+    IDS_PLAYERINFO_SERVERNAME "Server hostname:"
+    IDS_PLAYERINFO_SERVERIP "Server IP address:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLAYERINFO_SERVERPING "Server 'ping' time:"
+    IDS_PROFILE_FACE        "Player Face"
+    IDS_PROFILE_SKIN        "Player Skin"
+    IDS_BTN_JOIN            "&Join Game"
+    IDS_BTN_FINDGAME        "&Find Game"
+    IDS_BTN_START           "S&tart Game"
+    IDS_PROFILE_LOGOCOLOR   "Color"
+    IDS_MULTI_RESUMEHELP    "Return to your current multi-player game."
+    IDS_MULTI_DISCONNECTHELP "Disconnect yourself from the game server."
+    IDS_BTN_RESUME          "Resume"
+    IDS_BTN_DISCONNECT      "Disconnect"
+    IDS_BTN_ADDSERVER       "&Add server"
+    IDS_BTN_UPDATE          "&Update"
+    IDS_BTN_INFO            "&View game info"
+    IDS_QUICKSTART_TITLE    "Quick multiplayer"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_LISTROOMS       "&List rooms"
+    IDS_BTN_GORE            "C&ontent control"
+    IDS_BTN_AUTOPATCH       "&Update !game."
+    IDS_CONFIGURE_GOREHELP  "Disable visuals inappropriate for younger players and multiplayer."
+    IDS_CONFIGURE_AUTOPATCHHELP "Download the latest version of !game."
+    IDS_CHAT_NOSERVERS      "Could not locate any WON servers."
+    IDS_CHAT_NOPROFILE      "Couldn't locate player profile"
+    IDS_INIT_DX6REQUIRED    "!game requires DirectX version 6 or above.   Please install DirectX 6 and restart !game."
+    IDS_WON_VALIDATIONFAIL  "Validation refused\n'%s'"
+    IDS_WON_VALIDATIONFAIL2 "Validation refused."
+    IDS_WON_AUTHOUTOFORDER  "Authentication out of order (1)."
+    IDS_WON_AUTHPROBLEM     "Authentication problem (2)"
+    IDS_WON_ENCRYPTBAD      "Error creating message (1)."
+    IDS_WON_BADPUBLICKEY    "Invalid signal from authentication server (1)."
+    IDS_WON_AUTHNOMEM       "Insufficient memory to receive authentication response."
+    IDS_CD_NEEDCDKEY        "You must type in a valid CD Key to play Half-Life"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CD_BADKEY           "The CD Key you typed was invalid, please try again"
+    IDS_CD_BADKEYTYPED      "Your CD Key is invalid, please reenter the CD key"
+    IDS_MD5_HASHFAIL        "Could not validate !game"
+    IDS_MAIN_REGISTERMSGFAIL "Couldn't register !game user message"
+    IDS_CDCHECK_PROMPT      "Please Insert the Half-Life CD"
+    IDS_SETTINGS_SERVERTYPEINVALID "Bogus list type in %s"
+    IDS_TOKEN_EXPECTLEFTBRACE "Expecting { in %s"
+    IDS_TOKEN_EXPECTRIGHTBRACE "Expecting } in %s"
+    IDS_MULTI_ADDIPUNRESOLVABLE "That IP address could not be resolved."
+    IDS_CHATCTRL_NOMEM      "Couldn't allocate space for user name"
+    IDS_CHATCTRL_NOTEXTMEM  "Couldn't allocate space for chat text"
+    IDS_CHATCTRL_WINREGFAIL "Couldn't register chat edit control"
+    IDS_PROFILE_DEFAULTMISSING "Could not find default keybinding file %s"
+    IDS_QUICK_NOMASTER      "Unable to retrieve server list, check that your internet connection is active"
+    IDS_QUICK_USINGPREVIOUSLIST 
+                            "Unable to reach master, using previous list..."
+    IDS_CHAT_NOROOMLIST     "Could not obtain room list"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVELOAD_NUMBEROFGAMESCHANGED "Number of saved games changed?"
+    IDS_MAIN_EXITMULTIPLAYERPROMPT 
+                            "Entering the multiplayer system will terminate your current single player game, OK to exit without saving?"
+    IDS_CD_ENTERPROMPT      "Please type in the CD Key displayed on the Half-Life CD case"
+    IDS_MULTISELECT_EXITGAMEPROMPT 
+                            "Exiting the multiplayer system will terminate your current multiplayer game, OK to exit?"
+    IDS_MULTI_ADDSERVERPROMPT 
+                            "Enter server Internet address\r\n(e.g., 209.255.10.255:27015)"
+    IDS_ROOM_NEEDPASS       "Enter room password:"
+    IDS_SAVE_CANTSAVE       "Can't save, you are not currently playing a game."
+    IDS_SAVE_OVERWRITEPROMPT 
+                            "Are you sure you want to overwrite this saved game?"
+    IDS_SAVE_DELETEPROMPT   "Delete selected game?"
+    IDS_AUTH_INUSE          "Account in use"
+    IDS_AUTH_BADACCOUNT     "Invalid account"
+    IDS_AUTH_BADREQ         "Invalid server request"
+    IDS_AUTH_BADCERTIFICATE "Invalid client certificate"
+    IDS_AUTH_BADEXE         "Invalid client value"
+    IDS_AUTH_BADCERTIFICATE2 "Invalid client certificate"
+    IDS_AUTH_BADLOOKUP      "Invalid client lookup value"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTH_BADBITS        "Invalid client authentication value"
+    IDS_AUTH_CORRUPT        "Corrupt executable"
+    IDS_AUTH_INVALIDACCOUNT "Unknown account error"
+    IDS_CHAT_STATUSUNCONNECTED "Unconnected."
+    IDS_CHAT_WONCONNECT     "Attempting connection..."
+    IDS_CHAT_USERENTER      "%s entered...\r\n"
+    IDS_CHAT_USERLEFT       "%s left...\r\n"
+    IDS_ENG_STARTING        "Starting engine..."
+    IDS_SERVERS_SEARCHING   "Searching for servers..."
+    IDS_SERVERS_LISTREC     "Got Server List..."
+    IDS_SERVERS_CONNECTING  "Connecting to servers..."
+    IDS_SERVERS_REQUESTINFO "Requesting server information"
+    IDS_ROOM_CREATENOTICE   "Creating room '%s', please wait"
+    IDS_ROOM_CREATEPROMPTTITLE "Creating room"
+    IDS_SAVE_TIMEHEADING    "Time"
+    IDS_SAVE_GAMEHEADING    "Game"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_ELAPSEDHEADING "Elapsed Time"
+    IDS_SAVE_NEWCAPTION     "New Saved Game"
+    IDS_SAVE_NEWGAMETXT     "New"
+    IDS_SAVE_FILETIME       "Current"
+    IDS_STATUS_CONNECTINGNOTIME "Connecting to server '%s'...\n\n%s"
+    IDS_MULTI_CHATROOMCAPTION "Room:"
+    IDS_GORE_CHECKBOX       "Activate content control"
+    IDS_GORE_HELP           "Check this box and enter password to disable visuals inappropriate for younger players and multiplayer.  Anyone wishing to change this setting will need to use this password."
+    IDS_GORE_PWPROMPT1      "Enter password:"
+    IDS_GORE_PWPROMPT2      "Enter again to confirm:"
+    IDS_GORE_PWMISMATCHED   "The passwords you entered did not match, please try again."
+    IDS_GORE_BADPW          "Incorrect password"
+    IDS_BTN_ADVANCEDSVR     "&Advanced options"
+    IDS_OPTS_AUTOAIM        "Autoaim"
+    IDS_OPTS_AUTOAIMHELP    "Allow !game to help you aim at enemies."
+    IDS_BTN_PREVIEWS        "&Previews"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_PREVIEWSHELP   "Find out more about Valve's product lineup."
+    IDS_SECONDS_LEFT        "%i seconds left..."
+    IDS_MEDIA_PREVIEWURL    "http://www.valvesoftware.com/projects.htm"
+    IDS_ADVANCEDSVR_PAGE    "Page %i of %i"
+    IDS_EMPTY               " "
+    IDS_MULTI_TYPE          "Internet Connection Speed"
+    IDS_MULTI_LAN           "LAN - T1 > 1M"
+    IDS_MULTI_ISDN          "ISDN - 112K"
+    IDS_MODEM56K            "Modem - 56K"
+    IDS_MODEM28K            "Modem - 28.8K"
+    IDS_OPTS_HIMODELS       "&High quality models (for fast computers)"
+    IDS_OPTS_HIMODELSHELP   " "
+    IDS_CHAT_SOCKETERROR    "Chat connection problem, retrying connection..."
+    IDS_CHAT_RECONNECTFAIL  "Reconnection to chat failed, please verify that you are connected to the internet and try again."
+    IDS_CHAT_RECONNECTSUCCESS "Reconnected..."
+    IDS_CHAT_JOINFAILED     "Could not join room '%s'.  Click 'List rooms' to select a different room."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_WON             "Visit &WON.net"
+    IDS_WON_URL             "www.won.net"
+    IDS_AUDIO_CDHINT        "Set CD volume with the Windows multimedia accessory for volume control."
+    IDS_PREVIOUS            "Previous"
+    IDS_NEXT                "Next"
+    IDS_MODEM33K            "Modem - 33.6K"
+    IDS_MODEM14K            "Modem - 14.4K"
+    IDS_ROOM_PERMANENT      "Permanent rooms"
+    IDS_ROOM_USER           "User-created rooms"
+    IDS_MULTI_DONEHELP      "Go back to the Main Menu."
+    IDS_MULTI_WONHELP       "Go to the World Opponent Network."
+    IDS_AUDIO_EAX           "Enable EAX hardware support"
+    IDS_GL_NOMODE           "The selected OpenGL mode is not supported by your video card."
+    IDS_D3D_NOMODE          "The selected D3D mode is not supported by your video card."
+    IDS_VID_NOMODE          "The selected video mode is not available."
+    IDS_VID_RESELECT        "Please select a different video mode."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VID_INITFAIL        "The video subsystem could not be initialized."
+    IDS_NET_WONCONNFAIL     "Could not connect to the WON server.  Please check your internet connection."
+    IDS_NET_CORRUPT         "Your !game executable is out of date.  !game will now update to the current version."
+    IDS_CDKEY_BAD           "Your Half-Life CD Key is invalid."
+    IDS_MULTI_REFRESH       "Requesting server information"
+    IDS_CHAT_NOROOM         "Not connected"
+    IDS_RUN_PATCH           "Check the Internet for updates?"
+    IDS_WON_AUTHFAILURE     "Unable to authenticate with WON servers."
+    IDS_WON_LOGIN           "Logging on to WON"
+    IDS_LOGO_SIZEMISMATCH   "Custom logos must have the same width and height."
+    IDS_LOGO_OVERSIZED      "Custom logos can be no larger than 64 x 64 pixels."
+    IDS_LOGO_POWEROF2       "Custom logo width and height must be 2, 4, 8, 16, 32, ro 64."
+    IDS_MODEM_CUSTOM        "Custom"
+    IDS_MODEM_RATE          "Enter data transfer rate ( 100 - 9999 )"
+    IDS_REGISTRY_UPDATE     "Updating registry settings for !game.  You will need to reconfigure your settings."
+    IDS_CHAT_JOIN           "Tyring to join %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CHAT_FLOOD          "Too much text, please wait."
+    IDS_CHAT_SEARCH         "Searching for user %s..."
+    IDS_CHAT_NOINFO         "Directory server did not return any user information."
+    IDS_CHAT_NOFIND         "Couldn't find user %s"
+    IDS_CHAT_FIND           "Found %s in %s"
+    IDS_CHAT_NOAUTH         "Could not obtain authentication information"
+    IDS_CHAT_NODIR          "Server did not return any directory information."
+    IDS_CHAT_NOSUCHROOM     "Could not find room %s"
+    IDS_CHAT_ROOMFULL       "Can't join %s..., room has too many users ( %i ), try again later"
+    IDS_CREATESV_NOADVANCED "No advanced options available"
+    IDS_WON_CDINUSE         "Your Half-Life CD Key is currently in use.  Please try again later."
+    IDS_CHAT_JOINHINT       "Type /join [roomname] to join another chat room."
+    IDS_WON_BANNED          "Your CD key cannot be used on the WON.net system."
+    IDS_CONTENT_NOMULTIPLAYER "Content control configuration - on"
+    IDS_PATCH_ERROR         "Half-Life AutoPatch Error"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PATCH_NOUTIL        "Sierra Utilites are not properly installed. Please reinstall from the CD."
+    IDS_PATCH_FAIL          "Could Not Run the AutoPatch Program"
+    IDS_PATCH_BADINSTALL    "Half-Life is not properly Installed"
+    IDS_CONNECT_FAILURE     "Could not connect to game server\r\nReason:  %s"
+    IDS_MULTI_NEEDPASSWORD  "Password required, please enter a password to try connecting again."
+    IDS_VID_HINT            "640 x 480 is recommended as the most reliable OpenGL mode.  Other modes are hardware dependent and may not be available on your card.\n\nIf you have a 3D card that incorporates the Voodoo, Voodoo 2, or Banshee chipsets, select the 3DFX Mini Driver as your OpenGL Driver."
+    IDS_MULTI_LOGODISCONNECT 
+                            "Changing your logo will terminate your current multiplayer game, OK to exit?"
+    IDS_3D_WARNING          "For 3D support, !game requires the current versions of device drivers on your system. The 3D Info link will help you ensure you have the correct drivers."
+    IDS_3DSITE_URL          "www.sierrastudios.com/games/half-life/support/3Dinfo/"
+    IDS_WON_MODIFIED        "Your Half-Life \\executable has been modified.  Please check your system for viruses and then re-install !game."
+    IDS_ADVANCEDMP_OFFSETS  "0"
+    IDS_AUDIO_OFFSET        "0 0 0 0"
+    IDS_CONFIGURE_OFFSET    "0 0"
+    IDS_CREATEROOM_OFFSET   "0"
+    IDS_CREATESERVER_OFFSET "0"
+    IDS_GAMEOPTIONS_OFFSET  "0 0 0 0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HLMAIN_OFFSET       "0"
+    IDS_KEYBOARD_OFFSET     "0"
+    IDS_LAN_OFFSET          "110 50 75 80 70"
+    IDS_LOAD_OFFSET         "0 0"
+    IDS_NETGAMEDLG_OFFSET   "0 0 0"
+    IDS_NEWGAMEDLG_OFFSET   "0"
+    IDS_PLAYERINFODLG_OFFSET "0"
+    IDS_PLAYERPROFILEDLG_OFFSET "0 0"
+    IDS_PROMPT_OFFSET       "0 0"
+    IDS_ROOM_OFFSET         "0"
+    IDS_VIDEODLG_OFFSET     "0"
+    IDS_VIDEOMODEDLG_OFFSET "0 0"
+    IDS_VIDSELECTDLG_OFFSET "0 0"
+    IDS_UPDATERREGISTRYINSTALLDIR "HALFLIFE"
+    IDS_SPANISH             "0"
+    IDS_FRENCH              "0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JLOOKHELP      "Use the joystick to look around instead of using the joystick to move."
+    IDS_OPTS_JLOOK          "Joystick look"
+    IDS_GERMAN              "0"
+    IDS_CONNECT_PROTOCOLBAD "You cannot connect to a server which is operating under a different protocol version."
+    IDS_SERVER_MENU_QUICK   "Sort list using best server estimate"
+    IDS_DECAL_LIMIT         "Maximum number of decals in multiplayer."
+    IDS_SPRITE_SKIP         "Draw faster software sprites"
+    IDS_MODEL_NAME          "Player Model:  %s"
+    IDS_FILTER_BYGAME       "are running game "
+    IDS_BTN_SETINFO         "&Advanced options"
+    IDS_MODLIST_TYPE        "Type"
+    IDS_MODLIST_NAME        "Name"
+    IDS_MODLIST_VERSION     "Version"
+    IDS_MODLIST_SIZE        "Size"
+    IDS_MODLIST_RATING      "Rating"
+    IDS_MODLIST_INSTALLED   "Installed"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MODLIST_SERVERS     "Servers"
+    IDS_MODLIST_PLAYERS     "Players"
+    IDS_MOD_DOWNLOADING     "Downloading '%s'"
+    IDS_MOD_DLSIZEMB        "Total download size for game %s\r\n%.2fmb"
+    IDS_MOD_DLSIZEKB        "Total download size for game %s\r\n%.0fkb"
+    IDS_MOD_DLSTATUS        "Downloading %s from\r\n%s\r\nFile:  %s\r\n%.0f%%"
+    IDS_MOD_TIME            "%.1f seconds"
+    IDS_MOD_CONNECT         "Connecting to %s"
+    IDS_MOD_GETTINGSIZE     "Getting download size"
+    IDS_MOD_DLSTATUSSHORT   "Downloading %s from\r\n%s"
+    IDS_MOD_NOFILES         "Nothing to download"
+    IDS_MOD_NOLIBLIST       "Could not find liblist.gam file on remote host\r\nDouble check that %s is a valid custom game site"
+    IDS_INTERNET_CURRENTTOTALS "%i servers ( %i players online )"
+    IDS_SERVER_REFRESH      "Refresh selected server"
+    IDS_CONNECT_NEEDMOD     "You cannot connect to a server running custom game %s until you install the custom game"
+    IDS_MOD_REMOTEOPENFAIL  "Could not open %s on remote machine"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_LOCALOPENFAIL   "Could not open %s on local machine"
+    IDS_BTN_CUSTOMGAME      "C&ustom game"
+    IDS_MAIN_CUSTOMHELP     "Select a custom game, search the Internet for custom games"
+    IDS_BTN_ACTIVATE        "&Activate"
+    IDS_BTN_INSTALL         "&Install"
+    IDS_BTN_DETAILS         "Details"
+    IDS_BTN_VISIT           "&Visit web site"
+    IDS_BTN_REFRESHMODS     "&Refresh list"
+    IDS_BTN_DEACTIVATE      "D&eactivate"
+    IDS_MOD_INFO            "Info:"
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_UPDATE              "Update"
+    IDS_MODREQ_TITLE        "Requesting custom game info"
+    IDS_DOWNLOAD_WARNING    "You are about to download a custom game.  Downloading a custom game for Half-Life has the same issues and risks as downloading any program from the Internet.  They could contain viruses, have bugs that will crash your system causing you to lose unsaved work, or could perform operations that might harm your computer.\r\nYou can disable this warning by checking the ""Don't show this warning again"" checkbox at the bottom of this form."
+    IDS_WARN_CHECKPROMPT    "Don't show this warning again"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_VERSION         "Custom game '%s' has a new version available, are you sure you want to select it before installing the updated version?"
+    IDS_MOD_REINSTALL       "Custom game %s is already installed, are you sure you want to re-install?"
+    IDS_WARN_TITLE          "Custom game download"
+    IDS_MOD_ENGINEVERSION   "Custom game '%s' was created for a different version of !game than the current version you have installed.  Are you sure you want to select it before installing the updated version?"
+    IDS_MOD_CONNVERSION     "You cannot connect to a server running version %i of custom game '%s' until you upgrade to that version.  Your current version is %i"
+    IDS_CONNHLVERSION       "You are attempting to connect to a server running game '%s' for Half-Life version %s.  Your current version of Half-Life is %s.  Continue anyway?"
+    IDS_MOD_NOTINSTALLED    "Can't activate custom game '%s', you must install the custom game first."
+    IDS_REFRESH_SERVERS     "%i servers remaining"
+    IDS_DEDICATED           "Dedicated server (faster, but you can't join the server from this machine)."
+    IDS_MOD_MODVERSION      "You are attempting to connect to a server running version %i of the game '%s', but you only have version %i installed.  Continue anyway?"
+    IDS_CONN_FULL           "Can't connect to %s, server is full."
+    IDS_MOD_UNZIP           "Do you want to uncompress the files for game '%s'?"
+    IDS_FAVSVRS_CORRUPT     "The server data file favsvrs.dat appears to be corrupt.\r\n\r\nYou can request a new list of servers by pressing the Update button.\r\n\r\nDo you want to remove the corrupt file ( you will have to re-enter your 'favorites' if you remove the file )?"
+    IDS_MULTI_DSL           "DSL > 256K"
+    IDS_MULTI_VIDCHANGE     "Changing video modes will terminate your current multiplayer game, OK to exit?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CDKEY_NEEDVALID     "You must have a valid CD key in order to play !game."
+    IDS_OPTS_CONSOLE        "Console"
+    IDS_OPTS_CONSOLEHELP    "Enable the command entry prompt."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

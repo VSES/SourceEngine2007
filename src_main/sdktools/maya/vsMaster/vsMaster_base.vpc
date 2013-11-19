@@ -1,0 +1,69 @@
+//-----------------------------------------------------------------------------
+//	VSMASTER_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya"
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE opengl32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"CVsMayaMasterApp.cpp"
+		$File	"$SRCDIR\public\interpolatortypes.cpp"
+		$File	"MayaDmeMakefileUtils.cpp"
+		$File	"MayaVGui.cpp"
+		$File	"$SRCDIR\public\movieobjects\movieobjects.cpp"
+		$File	"vsMasterInit.cpp"
+		$File	"VsVmtToTexBehavior.cpp"
+		$File	"VsVmtToTexCmd.cpp"
+		$File	"VsVmtToTexNode.cpp"
+		$File	"VsVmt.cpp"
+		$File	"VsVtf.cpp"
+		$File	"VsVProfCmd.cpp"
+		$File	"VsVmtCmd.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"CVsMasterCmd.h"
+		$File	"CVsMayaMasterApp.h"
+		$File	"$SRCDIR\public\maya\IMayaVGui.h"
+		$File	"VsVmt.h"
+		$File	"VsVtf.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\appframework.lib"
+		$File	"$SRCDIR\lib\public\datamodel.lib"
+		$File	"$SRCDIR\lib\public\dmserializers.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\movieobjects.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+		$File	"$SRCDIR\lib\public\vtf.lib"
+		$File	"$SRCDIR\lib\public\bitmap.lib"
+	}
+}
