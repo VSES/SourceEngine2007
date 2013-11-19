@@ -1,0 +1,39 @@
+//-----------------------------------------------------------------------------
+//	VSTEXAMPLE_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya"
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE wsock32.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"CVstExampleLocator.cpp"
+		$File	"CVstExampleTransform.cpp"
+		$File	"CVstExampleCmd.cpp"
+		$File	"vstExampleInit.cpp"
+	}
+
+	$Folder	"Link Libraries"
+	{
+	}
+}

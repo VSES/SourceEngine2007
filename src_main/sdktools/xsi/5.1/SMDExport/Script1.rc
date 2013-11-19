@@ -1,0 +1,126 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SMDTYPE DIALOG DISCARDABLE  0, 0, 154, 50
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION ";noui=1"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Animation SMD;noui=1",IDC_ANIMATION,"Button",
+                    BS_AUTORADIOBUTTON,13,15,90,9
+    CONTROL         "Reference SMD;noui=1",IDC_REFERENCE,"Button",
+                    BS_AUTORADIOBUTTON,13,26,79,9
+    PUSHBUTTON      "O&k;noui=1",IDC_OK,108,20,39,14
+END
+
+IDD_MOD_REGISTRATION DIALOG DISCARDABLE  0, 0, 287, 212
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Export Activation"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EMAIL,40,134,226,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_KEY,40,154,226,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDOK,63,187,32,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,187,32,14
+    LTEXT           "Email:",IDC_STATIC,14,134,18,12,SS_CENTERIMAGE | NOT 
+                    WS_GROUP
+    LTEXT           "Key:",IDC_STATIC,14,154,18,12,SS_CENTERIMAGE | NOT 
+                    WS_GROUP
+    GROUPBOX        "Info",IDC_STATIC,10,122,267,48
+    PUSHBUTTON      "Register...",IDREGISTER,159,187,51,14
+    EDITTEXT        IDC_WELCOME,15,14,260,103,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SMDTYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 147
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_MOD_REGISTRATION, DIALOG
+    BEGIN
+        RIGHTMARGIN, 202
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

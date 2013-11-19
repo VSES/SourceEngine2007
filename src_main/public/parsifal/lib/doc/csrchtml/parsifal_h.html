@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>include\libparsifal\parsifal.h</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="com">/*===========================================================================</span>
+<span class="com">  Parsifal XML Parser</span>
+<span class="com">  Copyright (c) 2002-2005 Toni Uusitalo</span>
+<span class="com">  released to the public domain 2002-11-15</span>
+<span class="com">  http://www.saunalahti.fi/~samiuus/toni/xmlproc/</span>
+<span class="com"></span>
+<span class="com">  Parsifal is free for both commercial and non-commercial use and</span>
+<span class="com">  redistribution, provided that author's copyright and disclaimer are</span>
+<span class="com">  retained intact.  You are free to modify Parsifal for your own use and</span>
+<span class="com">  to redistribute Parsifal with your modifications, provided that the</span>
+<span class="com">  modifications are clearly documented.</span>
+<span class="com"></span>
+<span class="com">  DISCLAIMER</span>
+<span class="com">  ----------</span>
+<span class="com"></span>
+<span class="com">  This program is distributed in the hope that it will be useful, but</span>
+<span class="com">  WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="com">  Merchantability or fitness for a particular purpose. Please use it AT</span>
+<span class="com">  YOUR OWN RISK.</span>
+<span class="com">===========================================================================*/</span>
+
+<span class="dir">#ifndef PARSIFAL__H</span>
+<span class="dir">#define PARSIFAL__H</span>
+
+<span class="dir">#ifdef __cplusplus</span>
+   <span class="kwc">extern</span> <span class="str">&quot;C&quot;</span> <span class="sym">{</span>
+<span class="dir">#endif</span>
+
+<span class="dir">#include</span> <span class="dstr">&quot;bistream.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;xmlhash.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;xmlvect.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;xmlsbuf.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;xmlpool.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;xmldtd.h&quot;</span><span class="dir"></span>
+
+<span class="dir">#ifndef XMLCH_DEFINED</span>
+    <span class="dir">#define XMLCH_DEFINED</span>
+    <span class="kwc">typedef</span> <span class="kwb">unsigned char</span> XMLCH<span class="sym">;</span>
+<span class="dir">#endif</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagXMLRUNTIMETAG
+<span class="sym">{</span>
+    XMLCH <span class="sym">*</span>qname<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>uri<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>localName<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>prefix<span class="sym">;</span>
+    LPXMLHTABLE Scope<span class="sym">;</span>
+    LPXMLHTABLE prevScope<span class="sym">;</span>
+    XMLSTRINGBUF nameBuf<span class="sym">;</span>
+<span class="sym">}</span> XMLRUNTIMETAG<span class="sym">, *</span>LPXMLRUNTIMETAG<span class="sym">;</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagXMLRUNTIMEATT
+<span class="sym">{</span>
+    XMLCH <span class="sym">*</span>qname<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>value<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>uri<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>localName<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>prefix<span class="sym">;</span>
+    XMLSTRINGBUF nameBuf<span class="sym">;</span>
+    XMLSTRINGBUF valBuf<span class="sym">;</span>
+<span class="sym">}</span> XMLRUNTIMEATT<span class="sym">, *</span>LPXMLRUNTIMEATT<span class="sym">;</span>
+
+<span class="kwb">enum</span> tagXMLENTITYTYPE <span class="sym">{</span>
+    XML_ENTITY_INT_PARAM <span class="sym">=</span> <span class="num">1</span><span class="sym">,</span>
+    XML_ENTITY_INT_GEN<span class="sym">,</span>
+    XML_ENTITY_EXT_PARAM<span class="sym">,</span>
+    XML_ENTITY_EXT_GEN<span class="sym">,</span>
+    XML_ENTITY_UNPARSED<span class="sym">,</span>
+    XML_ENTITY_DOCTYPE
+<span class="sym">};</span>
+<span class="kwc">typedef</span> <span class="kwb">enum</span> tagXMLENTITYTYPE XMLENTITYTYPE<span class="sym">;</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagXMLENTITY
+<span class="sym">{</span>
+    XMLENTITYTYPE type<span class="sym">;</span>
+    <span class="kwb">int</span> len<span class="sym">;</span>
+    <span class="kwb">int</span> open<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>name<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>value<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>publicID<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>systemID<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>notation<span class="sym">;</span>
+<span class="sym">}</span> XMLENTITY<span class="sym">, *</span>LPXMLENTITY<span class="sym">;</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagXMLPARSERRUNTIME
+<span class="sym">{</span>
+    LPXMLHTABLE nsScope<span class="sym">;</span>
+    LPXMLHTABLE namedAtts<span class="sym">;</span>
+    LPXMLHTABLE entitiesTable<span class="sym">;</span>
+    LPXMLHTABLE declAttTable<span class="sym">;</span>
+    LPXMLHTABLE cpNames<span class="sym">;</span>
+    LPXMLVECTOR atts<span class="sym">;</span>
+    LPXMLVECTOR tagstack<span class="sym">;</span>
+    LPXMLVECTOR entities<span class="sym">;</span>
+    LPBUFFEREDISTREAM refReader<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>publicID<span class="sym">, *</span>systemID<span class="sym">, *</span>doctypeStr<span class="sym">;</span>
+    <span class="kwb">const</span> XMLCH <span class="sym">*</span>nameStart<span class="sym">;</span>
+    XMLSTRINGBUF charsBuf<span class="sym">;</span>
+    LPXMLPOOL strPool<span class="sym">;</span>
+    LPXMLPOOL cpNodesPool<span class="sym">;</span>
+    <span class="kwb">struct</span> tagDTD <span class="sym">*</span>dtd<span class="sym">;</span>
+    <span class="kwb">int</span> doctypeParsed<span class="sym">;</span>
+    XMLENTITY userSubset<span class="sym">;</span>
+<span class="sym">}</span> XMLPARSERRUNTIME<span class="sym">, *</span>LPXMLPARSERRUNTIME<span class="sym">;</span>
+
+<span class="kwb">enum</span> tagXMLERRCODE <span class="sym">{</span>
+    ERR_XMLP_MEMORY_ALLOC <span class="sym">=</span> <span class="num">1</span><span class="sym">,</span>
+    ERR_XMLP_READER_FATAL<span class="sym">,</span>
+    ERR_XMLP_INVALID_TOKEN<span class="sym">,</span>
+    ERR_XMLP_INVALID_NAME<span class="sym">,</span>
+    ERR_XMLP_INVALID_END_TAG<span class="sym">,</span>
+    ERR_XMLP_UNDEF_ENTITY<span class="sym">,</span>
+    ERR_XMLP_WS_NOT_ALLOWED<span class="sym">,</span>
+    ERR_XMLP_WS_REQUIRED<span class="sym">,</span>
+    ERR_XMLP_UNCLOSED_TAG<span class="sym">,</span>
+    ERR_XMLP_EXPECTED_FOUND<span class="sym">,</span>
+    ERR_XMLP_EXPECTED_TOKEN<span class="sym">,</span>
+    ERR_XMLP_MULTIPLE_TOP<span class="sym">,</span>
+    ERR_XMLP_INVALID_AT_TOP<span class="sym">,</span>
+    ERR_XMLP_UNDEF_NSPREFIX<span class="sym">,</span>
+    ERR_XMLP_DUPL_ATTRIBUTE<span class="sym">,</span>
+    ERR_XMLP_ENCODING<span class="sym">,</span>
+    ERR_XMLP_UNSUP_ENCODING<span class="sym">,</span>
+    ERR_XMLP_INVALID_DECL<span class="sym">,</span>
+    ERR_XMLP_INVALID_ATT_VALUE<span class="sym">,</span>
+    ERR_XMLP_ABORT<span class="sym">,</span>
+    ERR_XMLP_ILLEGAL_CHAR<span class="sym">,</span>
+    ERR_XMLP_RECURSIVE_ENTITY_REF<span class="sym">,</span>
+    ERR_XMLP_IO<span class="sym">,</span>
+    ERR_XMLP_SWITCH_ENCODING<span class="sym">,</span>
+    ERR_XMLP_VALIDATION <span class="sym">=</span> <span class="num">300</span>
+<span class="sym">};</span>
+<span class="kwc">typedef</span> <span class="kwb">enum</span> tagXMLERRCODE XMLERRCODE<span class="sym">;</span>
+
+<span class="dir">#define XMLFLAG_NAMESPACES 0x1</span> <span class="com">/* http://xml.org/sax/features/namespaces */</span><span class="dir"></span>
+<span class="dir">#define XMLFLAG_NAMESPACE_PREFIXES 0x2</span> <span class="com">/* http://xml.org/sax/features/namespace-prefixes */</span><span class="dir"></span>
+<span class="dir">#define XMLFLAG_EXTERNAL_GENERAL_ENTITIES 0x4</span> <span class="com">/* http://xml.org/sax/features/external-general-entities */</span><span class="dir"></span>
+<span class="dir">#define XMLFLAG_PRESERVE_GENERAL_ENTITIES 0x8</span>
+<span class="dir">#define XMLFLAG_UNDEF_GENERAL_ENTITIES 0x10</span>
+<span class="dir">#define XMLFLAG_PRESERVE_WS_ATTRIBUTES 0x20</span>
+<span class="dir">#define XMLFLAG_REPORT_DTD_EXT 0x40</span>
+<span class="dir">#define XMLFLAG_VALIDATION_WARNINGS 0x80</span>
+
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_EVENT_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_START_ELEMENT_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span>
+                                         <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span>
+                                         LPXMLVECTOR atts<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_END_ELEMENT_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span>
+                                       <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_CHARACTERS_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>chars<span class="sym">,</span> <span class="kwb">int</span> cbSize<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_PI_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>target<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>data<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_START_DTD_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span>
+                                     <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicId<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemId<span class="sym">,</span>
+                                     <span class="kwb">int</span> hasInternalSubset<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_XMLDECL_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>version<span class="sym">,</span>
+                                   <span class="kwb">const</span> XMLCH <span class="sym">*</span>encoding<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>standalone<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_RESOLVE_ENTITY_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">,</span>
+                                          LPBUFFEREDISTREAM reader<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_SKIPPED_ENTITY_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_ENTITY_EVENT_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_ATTRIBUTEDECL_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>eName<span class="sym">,</span>
+    <span class="kwb">const</span> XMLCH <span class="sym">*</span>aName<span class="sym">,</span> <span class="kwb">int</span> type<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>typeStr<span class="sym">,</span> <span class="kwb">int</span> valueDef<span class="sym">,</span>
+    <span class="kwb">const</span> XMLCH <span class="sym">*</span>def<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_ELEMENTDECL_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span>
+    <span class="kwb">void</span> <span class="sym">*</span>contentModel<span class="sym">);</span>
+<span class="kwc">typedef</span> <span class="kwb">int</span> <span class="sym">(*</span>XML_NOTATIONDECL_HANDLER<span class="sym">)(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span>
+    <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicID<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemID<span class="sym">);</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagXMLPARSER
+<span class="sym">{</span>
+    LPBUFFEREDISTREAM reader<span class="sym">;</span>
+    LPXMLPARSERRUNTIME prt<span class="sym">;</span>
+    XMLCH <span class="sym">*</span>DocumentElement<span class="sym">;</span>
+    XMLCH ErrorString<span class="sym">[</span><span class="num">128</span><span class="sym">];</span>
+    <span class="kwb">int</span> ErrorCode<span class="sym">;</span>
+    <span class="kwb">int</span> ErrorLine<span class="sym">;</span>
+    <span class="kwb">int</span> ErrorColumn<span class="sym">;</span>
+    <span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">;</span>
+    <span class="kwb">unsigned long</span> XMLFlags<span class="sym">;</span>
+    XML_EVENT_HANDLER startDocumentHandler<span class="sym">;</span>
+    XML_EVENT_HANDLER endDocumentHandler<span class="sym">;</span>
+    XML_EVENT_HANDLER startCDATAHandler<span class="sym">;</span>
+    XML_EVENT_HANDLER endCDATAHandler<span class="sym">;</span>
+    XML_EVENT_HANDLER endDTDHandler<span class="sym">;</span>
+    XML_CHARACTERS_HANDLER charactersHandler<span class="sym">;</span>
+    XML_CHARACTERS_HANDLER ignorableWhitespaceHandler<span class="sym">;</span>
+    XML_CHARACTERS_HANDLER commentHandler<span class="sym">;</span>
+    XML_CHARACTERS_HANDLER defaultHandler<span class="sym">;</span>
+    XML_START_ELEMENT_HANDLER startElementHandler<span class="sym">;</span>
+    XML_END_ELEMENT_HANDLER endElementHandler<span class="sym">;</span>
+    XML_PI_HANDLER processingInstructionHandler<span class="sym">;</span>
+    XML_START_DTD_HANDLER startDTDHandler<span class="sym">;</span>
+    XML_XMLDECL_HANDLER xmlDeclHandler<span class="sym">;</span>
+    XML_SKIPPED_ENTITY_HANDLER skippedEntityHandler<span class="sym">;</span>
+    XML_ENTITY_EVENT_HANDLER startEntityHandler<span class="sym">;</span>
+    XML_ENTITY_EVENT_HANDLER endEntityHandler<span class="sym">;</span>
+    XML_RESOLVE_ENTITY_HANDLER resolveEntityHandler<span class="sym">;</span>
+    XML_RESOLVE_ENTITY_HANDLER externalEntityParsedHandler<span class="sym">;</span>
+    XML_ATTRIBUTEDECL_HANDLER attributeDeclHandler<span class="sym">;</span>
+    XML_ELEMENTDECL_HANDLER elementDeclHandler<span class="sym">;</span>
+    XML_ENTITY_EVENT_HANDLER entityDeclHandler<span class="sym">;</span>
+    XML_NOTATIONDECL_HANDLER notationDeclHandler<span class="sym">;</span>
+    <span class="com">/*XML_ERROR_HANDLER */</span> <span class="kwb">void</span> <span class="sym">(*</span>errorHandler<span class="sym">)(</span><span class="kwb">struct</span> tagXMLPARSER <span class="sym">*</span>parser<span class="sym">);</span>
+<span class="sym">}</span> XMLPARSER<span class="sym">, *</span>LPXMLPARSER<span class="sym">;</span>
+
+<span class="kwc">typedef</span> <span class="kwb">void</span> <span class="sym">(*</span>XML_ERROR_HANDLER<span class="sym">)(</span>LPXMLPARSER parser<span class="sym">);</span>
+
+<span class="dir">#ifndef XMLAPI</span>
+<span class="dir">#define XMLAPI</span>
+<span class="dir">#endif</span>
+
+<span class="dir">#define XML_OK 0</span>
+<span class="dir">#define XML_ABORT 1</span>
+
+<span class="dir">#define _XMLParser_SetFlag(parser,flag,valBool) \</span>
+<span class="dir">  ((valBool) ? (((LPXMLPARSER)parser)-&gt;XMLFlags |= (flag)) : \</span>
+<span class="dir">    (((LPXMLPARSER)parser)-&gt;XMLFlags &amp;= ~(flag)) )</span>
+
+<span class="dir">#define _XMLParser_GetFlag(parser,flag) \</span>
+<span class="dir">  ((((LPXMLPARSER)parser)-&gt;XMLFlags &amp; (flag)) == (flag))</span>
+
+<span class="dir">#define _XMLParser_AttIsDefaulted(att) (!(att-&gt;nameBuf.str))</span>
+
+LPXMLPARSER XMLAPI <span class="kwd">XMLParser_Create</span><span class="sym">(</span>LPXMLPARSER <span class="sym">*</span>parser<span class="sym">);</span>
+<span class="kwb">int</span> XMLAPI <span class="kwd">XMLParser_Parse</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> LPFNINPUTSRC inputSrc<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>encoding<span class="sym">);</span>
+<span class="kwb">void</span> XMLAPI <span class="kwd">XMLParser_Free</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+LPXMLRUNTIMEATT XMLAPI <span class="kwd">XMLParser_GetNamedItem</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">);</span>
+XMLCH XMLAPI <span class="sym">*</span><span class="kwd">XMLParser_GetSystemID</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+XMLCH XMLAPI <span class="sym">*</span><span class="kwd">XMLParser_GetPublicID</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+XMLCH XMLAPI <span class="sym">*</span><span class="kwd">XMLParser_GetPrefixMapping</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>prefix<span class="sym">);</span>
+<span class="kwb">int</span> XMLAPI <span class="kwd">XMLParser_GetCurrentLine</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+<span class="kwb">int</span> XMLAPI <span class="kwd">XMLParser_GetCurrentColumn</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+LPXMLENTITY XMLAPI <span class="kwd">XMLParser_GetCurrentEntity</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+LPXMLENTITY XMLAPI <span class="kwd">XMLParser_SetExternalSubset</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicID<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemID<span class="sym">);</span>
+XMLCH XMLAPI <span class="sym">*</span><span class="kwd">XMLParser_GetVersionString</span><span class="sym">(</span><span class="kwb">void</span><span class="sym">);</span>
+<span class="kwb">int</span> XMLAPI <span class="kwd">XMLParser_GetContextBytes</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">,</span> XMLCH <span class="sym">**</span>Bytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytes<span class="sym">);</span>
+<span class="kwb">int</span> XMLAPI <span class="kwd">XMLNormalizeBuf</span><span class="sym">(</span>XMLCH <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> len<span class="sym">);</span>
+
+<span class="dir">#ifdef __cplusplus</span>
+   <span class="sym">}</span>
+<span class="dir">#endif</span> <span class="com">/* __cplusplus */</span><span class="dir"></span>
+<span class="dir">#endif</span> <span class="com">/* PARSIFAL__H */</span><span class="dir"></span>
+
+
+
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

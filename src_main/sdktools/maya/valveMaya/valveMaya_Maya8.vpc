@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+//	VALVEMAYA_MAYA8.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro OUTLIBDIR	"$SRCDIR\lib\public\maya\8.0"
+
+$Include "valveMaya_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\common\maya\8.0"
+	}
+}
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					"Debug_Maya8"
+		$IntermediateDirectory				"Debug_Maya8"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					"Release_Maya8"
+		$IntermediateDirectory				"Release_Maya8"
+	}
+}
+
+$Project "ValveMaya_Maya8"
+{
+	// Source files in ValveMaya_base.vpc
+}

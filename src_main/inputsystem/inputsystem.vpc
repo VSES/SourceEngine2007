@@ -1,0 +1,51 @@
+//-----------------------------------------------------------------------------
+//	INPUTSYSTEM.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		".."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_dll_x360_base.vpc"		[$X360]
+
+$Configuration
+{
+	$Linker [$WIN32]
+	{
+		$AdditionalDependencies			"Winmm.lib"
+	}
+}
+
+$Project "inputsystem"
+{
+	$Folder	"Source Files"
+	{
+		$File	"inputsystem.cpp"
+		$File	"inputsystem.h"
+		$File	"joystick.cpp"
+		$File	"key_translation.cpp"
+		$File	"key_translation.h"
+		$File	"xcontroller.cpp"
+	}
+
+	$Folder	"Public Headers"
+	{
+		$File	"$SRCDIR\public\inputsystem\AnalogCode.h"
+		$File	"$SRCDIR\public\inputsystem\ButtonCode.h"
+		$File	"$SRCDIR\public\inputsystem\iinputsystem.h"
+		$File	"$SRCDIR\public\inputsystem\InputEnums.h"
+		$File	"$SRCDIR\dx9sdk\include\xinput.h"
+	}
+
+	$Folder	"Link Libraries" [$WIN32||$LINUX]
+	{
+		$File	"$SRCDIR\lib\public\tier2.lib"
+	}
+
+	$Folder	"Link Libraries" [$X360]
+	{
+		$File	"$SRCDIR\lib\public\tier2_360.lib"
+	}
+}

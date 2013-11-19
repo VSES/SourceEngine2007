@@ -1,0 +1,119 @@
+//-----------------------------------------------------------------------------
+//	SOURCE_DLL_X360_BASE.VPC
+//
+//	Base Settings for Source(TM) Projects
+//-----------------------------------------------------------------------------
+
+$Include "$SRCDIR\vpc_scripts\version.vpc"
+
+$MacroRequired				"SRCDIR"
+$MacroRequired				"OUTBINNAME"	"$PROJECTNAME"
+$MacroRequired				"OUTBINDIR"
+$MacroRequired				"DEVKITBINDIR"	"bin"
+
+// 360 must have a dll load address
+$Include "$SRCDIR\vpc_scripts\loadaddress.vpc"
+$MacroRequired				"LOADADDRESS_DEVELOPMENT"
+$MacroRequired				"LOADADDRESS_RETAIL"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_x360_debug.vpc"
+$Include "$SRCDIR\vpc_scripts\source_dll_x360_release.vpc"
+
+$IgnoreRedundancyWarning	"ON"
+
+// Common Configuration
+$Configuration
+{	
+	$Compiler
+	{
+		$PreprocessorDefinitions	"$BASE;_MEMTEST"	[$MEMTEST]
+	}
+	
+	$Linker
+	{
+		// This ignores the linker error "export '<symbol>' specified multiple times; using first specification
+		$AdditionalOptions		"$BASE /IGNORE:4197"
+	}
+
+	$Xbox360ImageConversion
+	{
+		// General
+		$TitleID				"0x4541080F"
+		$ProjectDefaults		"$SRCDIR\common\hl2orange.xml"
+	}
+	
+	$ConsoleDeployment
+	{
+		$ExcludedFromBuild		"Yes"
+		$DeploymentRoot			"xe:\Valve"
+	}
+
+	$PreBuildEvent
+	{
+		$CommandLine		"if EXIST $OUTBINDIR\$(TargetFileName) for /f $QUOTEdelims=$QUOTE %%A in ('attrib $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE') do set valveTmpIsReadOnly=$QUOTE%%A$QUOTE" "\n" \
+							"set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%" "\n" \
+							"if $QUOTE%valveTmpIsReadOnlyLetter%$QUOTE==$QUOTER$QUOTE del /q $(TargetDir)$(TargetName)_converted.dll" "\n" \
+							"$CRCCHECK"
+	}
+
+	$PostBuildEvent
+	{
+		$CommandLine			"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $OUTBINDIR\$(TargetFileName) $SRCDIR" "\n" \
+								"copy $(TargetDir)$(TargetName)_converted.dll $OUTBINDIR\$(TargetFileName)" "\n" \
+								"if exist $(TargetDir)$(TargetName).map copy $(TargetDir)$(TargetName).map $OUTBINDIR\$(TargetName).map" "\n" \
+								"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $OUTBINDIR\$(TargetName).pdb $SRCDIR" "\n" \
+								"copy $(TargetDir)$(TargetName).pdb $OUTBINDIR\$(TargetName).pdb" "\n" \
+								"copy $(TargetDir)$(TargetName).xdb $OUTBINDIR\$(TargetName).xdb" "\n" \
+								"call $SRCDIR\vpc_scripts\valve_xbcp_wrapper.cmd $(TargetDir)$(TargetName)_converted.dll $(RemoteRoot)\$DEVKITBINDIR\$(TargetFileName)" "\n"
+		$Description			"Publishing to $OUTBINDIR"
+		$ExcludedFromBuild		"No"
+	}
+		
+
+	// this forces a dependency on the published directory
+	// when the dependency fails (the dll was deleted), the PostBuildEvent will run, thus causing the publish to re-occur
+	// this allows for faster debug/release flipping without having to recompile or relink
+	$CustomBuildStep
+	{
+		// General
+		$CommandLine				"echo Checking Dependency $OUTBINDIR\$(TargetFileName)"			
+		$Description				" "
+		$Outputs					"$OUTBINDIR\$(TargetFileName)"
+	}
+}
+
+// Skeleton Project
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File "$SRCDIR\public\tier0\memoverride.cpp"
+		{
+			$Configuration
+			{
+				$Compiler
+				{
+					$Create/UsePrecompiledHeader	"Not Using Precompiled Headers"
+				}
+			}
+		}
+	}
+
+	$Folder "Xbox"
+	{
+		$File	"xbox\xbox.def"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\tier0_360.lib"
+		$File	"$SRCDIR\lib\public\tier1_360.lib"
+		$File	"$SRCDIR\lib\public\vstdlib_360.lib"
+	}
+
+	$Folder "Resources"
+	{
+		$File	"$ROOTSCRIPT"
+	}
+}
+

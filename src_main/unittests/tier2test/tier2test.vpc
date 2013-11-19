@@ -1,0 +1,38 @@
+//-----------------------------------------------------------------------------
+//	TIER2TEST.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\unittests"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"		[$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;TIER2TEST_EXPORTS"
+	}
+}
+
+$Project "tier2test"
+{
+	$Folder	"Source Files"
+	{
+		$File	"tier2test.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+	}
+	
+	$Folder "Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\bitmap.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\unitlib.lib"
+	}
+}

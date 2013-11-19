@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\misc\test_iconv.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="com">/*</span>
+<span class="com">LIBICONV TEST</span>
+<span class="com">These functions should be included in your application for testing</span>
+<span class="com">that libiconv library is linked with same runtime library version,</span>
+<span class="com">singlethreaded or multithreaded, as your application - it that case</span>
+<span class="com">calling IconvTest() returns 0 meaning &quot;libiconv test successful&quot;.</span>
+<span class="com"></span>
+<span class="com">Read also libiconv README for more information</span>
+<span class="com">http://www.gnu.org/software/libiconv/</span>
+<span class="com"></span>
+<span class="com">You can make this standalone application by adding</span>
+<span class="com">#include &quot;libparsifal/parsifal.h&quot;</span>
+<span class="com">and</span>
+<span class="com">int main(int argc, char* argv[])</span>
+<span class="com">{</span>
+<span class="com">  switch (IconvTest()) {</span>
+<span class="com">    case 0: puts(&quot;\nlibiconv test successful.&quot;); break;</span>
+<span class="com">    case 1: puts(&quot;\nlibiconv test failed!\n&quot;</span>
+<span class="com">      &quot;Check that you're linking with same runtime lib as your libiconv.&quot;); break;</span>
+<span class="com">    case 2: puts(&quot;\nMemory alloc error!\n&quot;);  break;</span>
+<span class="com">    default: puts(&quot;\nUnknown error testing libiconv!\n&quot;);</span>
+<span class="com">  }</span>
+<span class="com">  return 0;</span>
+<span class="com">}</span>
+<span class="com">*/</span>
+
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/isrcmem.h&quot;</span><span class="dir"></span>
+
+<span class="kwb">int</span> <span class="kwd">MemInputsrc</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">)</span>
+<span class="sym">{</span>
+  XMLMEMINPUTSRC_HANDLE
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">IconvTest</span><span class="sym">() {</span>
+  <span class="kwb">int</span> ret <span class="sym">= -</span><span class="num">1</span><span class="sym">;</span> <span class="com">/* UNKNOWN ERROR */</span>
+  <span class="kwb">char</span> <span class="sym">*</span>t <span class="sym">=</span> <span class="str">&quot;</span><span class="esc">\x</span><span class="str">FE</span><span class="esc">\x</span><span class="str">FF</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">3C</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">7A</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">3E</span><span class="esc">\x</span><span class="str">DF</span><span class="esc">\x</span><span class="str">0F</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">3C</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">2F</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">7A</span><span class="esc">\x</span><span class="str">00</span><span class="esc">\x</span><span class="str">3E&quot;</span><span class="sym">;</span>
+  <span class="com">/* UTF-16 (big endian) string (18 bytes): BOM and characters</span>
+<span class="com">     &lt;z&gt;*&lt;/z&gt;</span>
+<span class="com">     where * is illegal character (low surrogate 0xdf0f) */</span>
+  LPXMLPARSER p <span class="sym">=</span> <span class="kwd">XMLParser_Create</span><span class="sym">(&amp;</span>p<span class="sym">);</span>
+  XMLMEMINPUTSRC meminput<span class="sym">;</span>
+  <span class="kwd">XMLMEMINPUTSRC_INIT</span><span class="sym">(&amp;</span>meminput<span class="sym">,</span> t<span class="sym">,</span> <span class="num">18</span><span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(!</span>p<span class="sym">)</span> <span class="kwa">return</span> <span class="num">2</span><span class="sym">;</span> <span class="com">/* MEMORY ALLOC ERROR */</span>
+  <span class="kwd">XMLParser_Parse</span><span class="sym">(</span>p<span class="sym">,</span> MemInputsrc<span class="sym">, &amp;</span>meminput<span class="sym">,</span> NULL<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>p<span class="sym">-&gt;</span>ErrorCode<span class="sym">) {</span>
+    ret <span class="sym">= (</span>p<span class="sym">-&gt;</span>reader<span class="sym">-&gt;</span>encerr <span class="sym">==</span> EILSEQ<span class="sym">)</span> ? <span class="num">0</span> <span class="com">/* SUCCESS */</span> <span class="sym">:</span> <span class="num">1</span> <span class="com">/* FAILED */</span><span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwd">XMLParser_Free</span><span class="sym">(</span>p<span class="sym">);</span>
+  <span class="kwa">return</span> ret<span class="sym">;</span>
+<span class="sym">}</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

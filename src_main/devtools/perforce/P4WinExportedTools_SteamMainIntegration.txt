@@ -1,0 +1,5 @@
+P4Win Tools File from chrisn
+>>Steam MainIntegration Mutex				0	0	0	1
+>>Lock Steam/MainIntegration	p4mutex.exe	lock steam_maininteg 3 $u $p	c:\	1	0	1	0
+>>Release Steam/MainIntegration	p4mutex.exe	release steam_maininteg 3 $u $p	c:\	1	0	1	0
+>>Query Steam/MainIntegration lock	p4mutex.exe	query steam_maininteg 3 $u $p	c:\	1	0	1	0

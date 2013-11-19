@@ -1,0 +1,17 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=ValveTools.chm
+Contents file=index.hhc
+Default Font=Tahoma,8,0
+Default topic=main.html
+Display compile progress=No
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=ValveTools 0.1 Help
+
+
+[FILES]
+*.html
+
+[INFOTYPES]
+

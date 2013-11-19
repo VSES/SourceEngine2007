@@ -1,0 +1,181 @@
+//-----------------------------------------------------------------------------
+//	VBSP.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_con_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,..\common,..\vmpi"
+		$PreprocessorDefinitions			"$BASE;MACRO_MATHLIB;PROTECTED_THINGS_DISABLE"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"ws2_32.lib odbc32.lib odbccp32.lib winmm.lib"
+	}
+}
+
+$Project "Vbsp"
+{
+	$Folder	"Source Files"
+	{
+		$File	"brushbsp.cpp"
+		$File	"$SRCDIR\Public\CollisionUtils.cpp"
+		$File	"csg.cpp"
+		$File	"cubemap.cpp"
+		$File	"detail.cpp"
+		$File	"detailObjects.cpp"
+		$File	"$SRCDIR\public\disp_common.cpp"
+		$File	"disp_ivp.cpp"
+		$File	"$SRCDIR\public\disp_powerinfo.cpp"
+		$File	"disp_vbsp.cpp"
+		$File	"faces.cpp"
+		$File	"glfile.cpp"
+		$File	"ivp.cpp"
+		$File	"leakfile.cpp"
+		$File	"$SRCDIR\public\loadcmdline.cpp"
+		$File	"$SRCDIR\public\lumpfiles.cpp"
+		$File	"map.cpp"
+		$File	"materialpatch.cpp"
+		$File	"materialsub.cpp"
+		$File	"..\common\mstristrip.cpp"
+		$File	"nodraw.cpp"
+		$File	"normals.cpp"
+		$File	"overlay.cpp"
+		$File	"..\common\physdll.cpp"
+		$File	"portals.cpp"
+		$File	"prtfile.cpp"
+		$File	"$SRCDIR\Public\ScratchPad3D.cpp"
+		$File	"..\common\scratchpad_helpers.cpp"
+		$File	"StaticProp.cpp"
+		$File	"textures.cpp"
+		$File	"tree.cpp"
+		$File	"..\common\utilmatlib.cpp"
+		$File	"vbsp.cpp"
+		$File	"worldvertextransitionfixup.cpp"
+		$File	"writebsp.cpp"
+		$File	"$SRCDIR\public\zip_utils.cpp"
+
+		$Folder	"Common Files"
+		{
+			$File	"..\common\bsplib.cpp"
+			$File	"$SRCDIR\public\builddisp.cpp"
+			$File	"$SRCDIR\Public\ChunkFile.cpp"
+			$File	"..\common\cmdlib.cpp"
+			$File	"$SRCDIR\public\filesystem_helpers.cpp"
+			$File	"$SRCDIR\public\filesystem_init.cpp"
+			$File	"..\common\filesystem_tools.cpp"
+			$File	"..\common\map_shared.cpp"
+			$File	"..\common\pacifier.cpp"
+			$File	"..\common\polylib.cpp"
+			$File	"..\common\scriplib.cpp"
+			$File	"..\common\threads.cpp"
+			$File	"..\common\tools_minidump.cpp"
+			$File	"..\common\tools_minidump.h"
+		}
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"csg.h"
+		$File	"detail.h"
+		$File	"disp_lightmap_alpha.h"
+		$File	"$SRCDIR\public\disp_powerinfo.h"
+		$File	"disp_vbsp.h"
+		$File	"$SRCDIR\public\disp_vertindex.h"
+		$File	"faces.h"
+		$File	"map.h"
+		$File	"materialpatch.h"
+		$File	"materialsub.h"
+		$File	"..\common\scratchpad_helpers.h"
+		$File	"vbsp.h"
+		$File	"worldvertextransitionfixup.h"
+		$File	"writebsp.h"
+
+		$Folder	"Common header files"
+		{
+			$File	"..\common\bsplib.h"
+			$File	"$SRCDIR\public\builddisp.h"
+			$File	"$SRCDIR\Public\ChunkFile.h"
+			$File	"..\common\cmdlib.h"
+			$File	"disp_ivp.h"
+			$File	"$SRCDIR\Public\FileSystem.h"
+			$File	"$SRCDIR\public\filesystem_helpers.h"
+			$File	"..\common\FileSystem_Tools.h"
+			$File	"$SRCDIR\Public\GameBSPFile.h"
+			$File	"$SRCDIR\public\tier1\interface.h"
+			$File	"ivp.h"
+			$File	"..\common\map_shared.h"
+			$File	"..\common\pacifier.h"
+			$File	"..\common\polylib.h"
+			$File	"$SRCDIR\public\tier1\tokenreader.h"
+			$File	"..\common\utilmatlib.h"
+			$File	"..\vmpi\vmpi.h"
+			$File	"..\common\zip_uncompressed.h"
+		}
+	}
+
+	$Folder	"Public Headers"
+	{
+		$File	"$SRCDIR\Public\mathlib\amd3dx.h"
+		$File	"$SRCDIR\Public\arraystack.h"
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\Public\BSPFILE.H"
+		$File	"$SRCDIR\Public\bspflags.h"
+		$File	"$SRCDIR\Public\BSPTreeData.h"
+		$File	"$SRCDIR\Public\mathlib\bumpvects.h"
+		$File	"$SRCDIR\public\tier1\byteswap.h"
+		$File	"$SRCDIR\Public\cmodel.h"
+		$File	"$SRCDIR\Public\CollisionUtils.h"
+		$File	"$SRCDIR\Public\commonmacros.h"
+		$File	"$SRCDIR\Public\dbg\dbg.h"
+		$File	"$SRCDIR\public\disp_common.h"
+		$File	"$SRCDIR\Public\ImageLoader.h"
+		$File	"$SRCDIR\Public\IScratchPad3D.h"
+		$File	"$SRCDIR\Public\mathlib\MATHLIB.H"
+		$File	"..\common\mstristrip.h"
+		$File	"$SRCDIR\Public\nmatrix.h"
+		$File	"$SRCDIR\Public\NTree.h"
+		$File	"$SRCDIR\Public\nvector.h"
+		$File	"$SRCDIR\Public\phyfile.h"
+		$File	"..\common\physdll.h"
+		$File	"..\common\qfiles.h"
+		$File	"$SRCDIR\Public\ScratchPad3D.h"
+		$File	"..\common\scriplib.h"
+		$File	"$SRCDIR\Public\studio.h"
+		$File	"..\common\threads.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utllinkedlist.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlrbtree.h"
+		$File	"$SRCDIR\public\tier1\utlsymbol.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\vcollide.h"
+		$File	"$SRCDIR\Public\mathlib\vector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"$SRCDIR\Public\mathlib\vector4d.h"
+		$File	"$SRCDIR\Public\mathlib\vmatrix.h"
+		$File	"$SRCDIR\Public\vphysics_interface.h"
+		$File	"$SRCDIR\Public\mathlib\vplane.h"
+		$File	"$SRCDIR\Public\wadtypes.h"
+		$File	"$SRCDIR\Public\worldsize.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\bitmap.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\vtf.lib"
+	}
+
+	$File	"notes.txt"
+}

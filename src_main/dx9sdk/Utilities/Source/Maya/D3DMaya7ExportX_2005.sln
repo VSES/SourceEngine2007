@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3DMaya7ExportX", "D3DMaya7ExportX_2005.vcproj", "{C20B3ED8-D200-4cc3-AAC4-5E465506DAD6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FFAD44C5-F987-45B8-8275-41B1D4E405CD}.Debug.ActiveCfg = Debug|Win32
+		{FFAD44C5-F987-45B8-8275-41B1D4E405CD}.Debug.Build.0 = Debug|Win32
+		{FFAD44C5-F987-45B8-8275-41B1D4E405CD}.Release.ActiveCfg = Release|Win32
+		{FFAD44C5-F987-45B8-8275-41B1D4E405CD}.Release.Build.0 = Release|Win32
+		{16B46A57-99EB-4A9D-A914-6E94F35617A5}.Debug.ActiveCfg = Debug|Win32
+		{16B46A57-99EB-4A9D-A914-6E94F35617A5}.Debug.Build.0 = Debug|Win32
+		{16B46A57-99EB-4A9D-A914-6E94F35617A5}.Release.ActiveCfg = Release|Win32
+		{16B46A57-99EB-4A9D-A914-6E94F35617A5}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

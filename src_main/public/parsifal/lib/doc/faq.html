@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st April 2002), see www.w3.org">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Parsifal XML parser</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+<p>
+<h2>Parsifal XML Parser FAQ</h2>
+</p>
+<br>
+<p>
+	<h3>
+	1. I get error in windef.h when trying to compile my application in windows 
+  platform:</h3>
+   <code><pre>
+   \windef.h(143) : warning C4114: same type qualifier used more than once
+   \windef.h(143) : error C2632: 'char' followed by 'char' is illegal
+   \windef.h(143) : warning C4091: 'typedef ' : ignored on left of 'unsigned
+                    char ' when no variable is declared
+   </pre></code>
+</p>
+<p>
+   One solution is to <b>include windows.h always before parsifal headers</b> and not
+   to use precompiled headers option. Example:
+   <code><pre>
+     #ifdef WIN32
+     #include &lt;windows.h&gt;
+     #endif
+     #include "libparsifal/parsifal.h"
+     #include "libparsifal/dtdvalid.h"
+     ... etc ...
+   </pre></code>
+   so windows.h gets always included before parsifal BYTE define (which is 
+   the reason for the error)
+</p>
+
+<p>
+<h3>2. I get encoding errors when trying to parse my document</h3>
+</p>
+<p>
+	 Remember to <b>save your documents in wanted encoding and
+   if you don't save in default UTF-8 encoding YOU MUST SPECIFY encoding attribute in
+   xml declaration</b> e.g. &lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;.
+   Choosing encoding in the saving stage is XML/text editor
+   specific, windows notepad for example lets you choose encoding in save dialog. 
+</p>
+
+<p>
+<h3>3. I get errors when compiling samples or/and compiling Parsifal library as part of 
+  my project.</h3>
+</p>
+<p>
+You've probably compiled using C++ compiler and not C compiler. Samples
+   aren't C++ compliant 'cos some simple mandatory C++ casts are missing here
+   and there. Otherwise Parsifal should be useful for any language that can
+   interface with C libraries.
+</p>
+
+<p>
+<h3>4. Parsifal library is too large/complex for my needs, I only need simple XML 
+   parser without DTD support and all these bloated features!</h3>
+</p>
+<p>
+   Parsifal can be compiled without DTD_SUPPORT which results in VERY SMALL
+   and FAST library still capable of handling for example xml namespaces and
+   unicode so this is recommended when you need something smaller/simpler. In this way
+   you have scalable solution if/when you need advanced XML processing 
+   capabilities. Also note that even when using stripped down version of Parsifal
+   (w/o DTD_SUPPORT and DTDVALID_SUPPORT) you're still using parser that has
+   passed majority of XML conformance test suite tests - most "simple parsers"
+   cannot run the test suite because of their inadequate DTD/entities support.
+</p>
+
+<p>
+<h3>5. SAX parsing is hard, why doesn't Parsifal provide DOM or data bindings
+  features?</h3>
+</p>
+<p>
+While DOM suits some tasks very well it isn't optimal model for many
+   parsing needs - Abstract tree with only string datatype is seldom good
+   representation of data - and also not very efficient form to work with
+   memory consumption wise. Document oriented processing in contrast to data
+   oriented processing is another matter of course. Think for example the following simple data:
+   <code><pre>
+   &lt;person&gt;
+     &lt;firstname&gt;Toni&lt;/firstname&gt;
+     &lt;surname&gt;Uusitalo&lt;/surname&gt;
+   &lt;/person&gt;
+   </pre></code>
+   Trust me the best thing you can do is to get your own "person object" with
+   properties "firstname" and "surname" out of this and not some abstract tree.
+   Of course there are ways to query the abstract trees; xpath, 
+   but implementing all these (DOM+XPATH+...) in Parsifal isn't practical - libraries like
+   libxml exist for this if you need these features. I mentioned "person
+   object" so we come to the second option: data binding. While useful in some
+   cases XML data binding can not represent some XML constructs like mixed 
+   content very well. SAX has a learning curve but in my opinion it's worth
+   the time spent - just study the samples and examime xmlplint output with
+   -f 1 flag for example. Also: learning to write DTDs and using validation
+   simplifies SAX processing considerably - writing some sort of schemas is
+   usually needed for XML data binding tools etc. so SAX isn't that much 
+   harder in that respect.
+</p>
+
+<p>
+<h3>6. Why doesn't Parsifal provide XML writing/serializing capabilities?</h3>
+</p>
+<p>
+Author believes printf family of functions are sufficient for outputting XML.
+   All you have to do is to make sure you escape predefined entity characters
+   in element content and in attribute values. (like '&' and '<').
+</p>
+
+<p>
+<h3>7. Can I parse HTML/tag soup with parsifal, I need atleast some more relaxed
+   parsing mode, I don't want to stop parsing when some "minor" well-formedness
+  error occurs!</h3>
+</p>
+<p>
+XML specification defines strict rules for well-formedness, this is actually
+   a good thing and leads to more efficient/safe parsing. If you must parse 
+   HTML/tag soup there are very good <b>specialized</b> libraries available for that
+   like for xample tidylib. It's usually best to use specialized libraries - tidy for tag
+   soup and parsifal for xml parsing. Tip: you can feed tidied XHTML to 
+   parsifal if you want to process your documents with SAX - you can even 
+   invoke tidy only if some well-formedness error occurs
+</p>
+
+<hr>
+<p><font color="#004040">Copyright &copy; 2002-2005 Toni
+Uusitalo.<br>
+Send mail, suggestions and bug reports to<br><img src="pics/semail.gif"><br>
+Last modified: 15.08.2005 23:00</font></p>
+</div>
+</body>
+</html>

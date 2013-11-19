@@ -1,0 +1,121 @@
+//-----------------------------------------------------------------------------
+//	TEST.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+$Macro LOADADDRESS	"0xXXXXXXXX"	[$X360]
+
+$Include "$SRCDIR\vpc_scripts\source_exe_con_win32_base.vpc"		[$WIN32||$LINUX]
+$Include "$SRCDIR\vpc_scripts\source_exe_x360_base.vpc"		[$X360]
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					".\Debug"
+		$IntermediateDirectory				".\Debug"
+		$ConfigurationType					"Application (.exe)"
+		$UseOfMFC							"Use Standard Windows Libraries"
+		$MinimizeCRTUseInATL				"No"
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$Compiler
+	{
+		$Optimization						"Disabled (/Od)"
+		$PreprocessorDefinitions			"WIN32;_DEBUG;_CONSOLE"
+		$RuntimeLibrary						"Single-threaded Debug (/MLd)"
+		$Create/UsePrecompiledHeader		"Automatically Generate (/YX)"
+		$PrecompiledHeaderFile				".\Debug/test.pch"
+		$ASMListLocation					".\Debug/"
+		$ObjectFileName						".\Debug/"
+		$ProgramDatabaseFileName			".\Debug/"
+		$EnableBrowseInformation			"Include All Browse Information (/FR)"
+		$WarningLevel						"3"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
+	}
+
+	$CustomBuildStep
+	{
+		$CommandLine						"copy &quot;$(TargetPath)&quot; d:\quiver"
+		$Outputs							"d:\quiver\test.exe"
+	}
+
+	$Linker
+	{
+		$OutputFile							".\Debug/test.exe"
+		$EnableIncrementalLinking			"No (/INCREMENTAL:NO)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$GenerateDebugInfo					"Yes (/DEBUG)"
+		$GenerateProgramDatabaseFile		".\Debug/test.pdb"
+		$SubSystem							"Console (/SUBSYSTEM:CONSOLE)"
+		$TargetMachine						"MachineX86 (/MACHINE:X86)"
+	}
+
+	$Resources
+	{
+		$PreprocessorDefinitions			"_DEBUG"
+		$Culture							"1033"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					".\Release"
+		$IntermediateDirectory				".\Release"
+		$ConfigurationType					"Application (.exe)"
+		$UseOfMFC							"Use Standard Windows Libraries"
+		$MinimizeCRTUseInATL				"No"
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$Compiler
+	{
+		$Optimization						"Maximize Speed (/O2)"
+		$InlineFunctionExpansion			"Only __inline (/Ob1)"
+		$PreprocessorDefinitions			"WIN32;NDEBUG;_CONSOLE"
+		$EnableStringPooling				"Yes (/GF)"
+		$RuntimeLibrary						"Single-threaded (/ML)"
+		$EnableFunctionLevelLinking			"Yes (/Gy)"
+		$Create/UsePrecompiledHeader		"Automatically Generate (/YX)"
+		$PrecompiledHeaderFile				".\Release/test.pch"
+		$ASMListLocation					".\Release/"
+		$ObjectFileName						".\Release/"
+		$ProgramDatabaseFileName			".\Release/"
+		$WarningLevel						"3"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+	}
+
+	$CustomBuildStep
+	{
+		$CommandLine						"copy &quot;$(TargetPath)&quot; d:\quiver"
+		$Outputs							"d:\quiver\test.exe"
+	}
+
+	$Linker
+	{
+		$OutputFile							".\Release/test.exe"
+		$EnableIncrementalLinking			"No (/INCREMENTAL:NO)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$GenerateProgramDatabaseFile		".\Release/test.pdb"
+		$SubSystem							"Console (/SUBSYSTEM:CONSOLE)"
+		$TargetMachine						"MachineX86 (/MACHINE:X86)"
+	}
+
+	$Resources
+	{
+		$PreprocessorDefinitions			"NDEBUG"
+		$Culture							"1033"
+	}
+}
+
+$Project "Test"
+{
+	$File	"main.cpp"
+}

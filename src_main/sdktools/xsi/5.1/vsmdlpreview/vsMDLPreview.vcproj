@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="vsMDLPreview"
+	ProjectGUID="{F045DB25-D4C7-463C-B5A0-A7600939E409}">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\..\common;..\..\..\..\public;..\..\..\..\public\tier1;..\..\..\..\common\xsi\5.1;..\..\..\..\public\xsi\5.1"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM;_WIN32"
+				ExceptionHandling="TRUE"
+				RuntimeLibrary="1"
+				ForceConformanceInForLoopScope="TRUE"
+				ProgramDataBaseFileName="$(IntDir)/vsMDLPreview.pdb"
+				WarningLevel="4"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"
+				CommandLine="if exist ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll attrib -r ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll
+if exist &quot;$(TargetDir)&quot;vsMDLPreview.dll copy &quot;$(TargetDir)&quot;vsMDLPreview.dll ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll
+if exist ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb attrib -r ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb
+if exist &quot;$(TargetDir)&quot;vsMDLPreview.pdb copy &quot;$(TargetDir)&quot;vsMDLPreview.pdb ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb
+"
+				Outputs="..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll;..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="FALSE"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386"
+				AdditionalDependencies="comctl32.lib opengl32.lib sicppsdk.lib"
+				OutputFile="Debug\vsMDLPreview.dll"
+				AdditionalLibraryDirectories="..\..\..\..\lib\common\xsi\5.1;..\..\..\..\lib\public\xsi\5.1"
+				IgnoreDefaultLibraryNames="libc.lib;libcd.lib;libcmt.lib"
+				ProgramDatabaseFile="Debug/vsMDLPreview.pdb"
+				ImportLibrary=""/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				AdditionalIncludeDirectories="..\..\..\..\common;..\..\..\..\public;..\..\..\..\public\tier1;..\..\..\..\common\xsi\5.1;..\..\..\..\public\xsi\5.1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM;_WIN32"
+				ExceptionHandling="TRUE"
+				RuntimeLibrary="0"
+				ForceConformanceInForLoopScope="TRUE"
+				ProgramDataBaseFileName="$(IntDir)/vsMDLPreview.pdb"
+				WarningLevel="4"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"
+				CommandLine="if exist ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll attrib -r ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll
+if exist &quot;$(TargetDir)&quot;vsMDLPreview.dll copy &quot;$(TargetDir)&quot;vsMDLPreview.dll ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll
+if exist ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb attrib -r ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb
+if exist &quot;$(TargetDir)&quot;vsMDLPreview.pdb copy &quot;$(TargetDir)&quot;vsMDLPreview.pdb ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb
+"
+				Outputs="..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.dll;..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\bin\vsMDLPreview.pdb"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="TRUE"
+				AdditionalDependencies="comctl32.lib opengl32.lib "
+				OutputFile="Release\vsMDLPreview.vll"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\..\lib\common\xsi\5.1;..\..\..\..\lib\public\xsi\5.1"
+				IgnoreDefaultLibraryNames="libc.lib;libcd.lib;libcmtd.lib"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="Release/vsMDLPreview.pdb"
+				ImportLibrary=""/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp">
+			<File
+				RelativePath="..\..\..\..\public\interpolatortypes.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\public\tier0\memoverride.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\..\public\vgui_controls\vgui_controls.cpp">
+			</File>
+			<File
+				RelativePath=".\vsMDLPreview.cpp">
+			</File>
+			<File
+				RelativePath=".\vsMDLPreviewInit.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h">
+		</Filter>
+		<Filter
+			Name="Miscellaneous Files"
+			Filter="txt">
+			<File
+				RelativePath="..\..\..\..\common\maya\7.0\maya\flib.h">
+			</File>
+			<File
+				RelativePath="..\..\..\..\common\maya\7.0\maya\ilib.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="mel"
+			Filter="">
+			<File
+				RelativePath="..\..\..\..\..\game\sdktools\maya\7.0\modules\utilities\scripts\vsMDLPreview.mel">
+			</File>
+		</Filter>
+		<Filter
+			Name="icons"
+			Filter="">
+			<File
+				RelativePath="..\..\..\..\..\game\sdktools\maya\7.0\modules\vsmdlpreview\icons\out_vsMDLPreviewLocator.xpm">
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\..\..\lib\public\dme_controls.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\mathlib.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\matsys_controls.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\movieobjects.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\scenedatabase.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\tier0.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\tier1.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\tier2.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\tier3.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\xsi\5.1\valveMaya.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\vgui_controls.lib">
+		</File>
+		<File
+			RelativePath="..\..\..\..\lib\public\vstdlib.lib">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

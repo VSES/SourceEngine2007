@@ -1,0 +1,261 @@
+//-----------------------------------------------------------------------------
+//	SCENEMANAGER.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_win_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,..\common,$SRCDIR\game\shared"
+		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"cbase.h"
+		$PrecompiledHeaderFile				"Debug/scenemanager.pch"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE Winmm.lib Msimg32.lib comctl32.lib odbc32.lib odbccp32.lib"
+		$EntryPoint							"mainCRTStartup"
+	}
+}
+
+$Project "Scenemanager"
+{
+	$Folder	"Precompiled Header"
+	{
+		$File	"cbase.cpp"
+		{
+			$Configuration
+			{
+				$Compiler
+				{
+					$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+				}
+			}
+		}
+	}
+
+	$Folder	"Source Files"
+	{
+		$File	"basedialogparams.cpp"
+		$File	"basedialogparams.h"
+		$File	"cbase.h"
+		$File	"drawhelper.cpp"
+		$File	"drawhelper.h"
+		$File	"fileloaderthread.cpp"
+		$File	"ifileloader.h"
+		$File	"inputproperties.cpp"
+		$File	"inputproperties.h"
+		$File	"itreeitem.h"
+		$File	"multiplerequest.cpp"
+		$File	"multiplerequest.h"
+		$File	"project.cpp"
+		$File	"project.h"
+		$File	"scene.cpp"
+		$File	"scene.h"
+		$File	"scenemanager.cpp"
+		$File	"scenemanager_tools.cpp"
+		$File	"scenemanager_tools.h"
+		$File	"soundbrowser.cpp"
+		$File	"soundbrowser.h"
+		$File	"soundentry.cpp"
+		$File	"soundentry.h"
+		$File	"$SRCDIR\public\SoundParametersInternal.cpp"
+		$File	"soundproperties.cpp"
+		$File	"soundproperties.h"
+		$File	"soundproperties_multiple.cpp"
+		$File	"soundproperties_multiple.h"
+		$File	"statuswindow.cpp"
+		$File	"statuswindow.h"
+		$File	"tabwindow.cpp"
+		$File	"tabwindow.h"
+		$File	"vcdfile.cpp"
+		$File	"vcdfile.h"
+		$File	"vssproperties.cpp"
+		$File	"vssproperties.h"
+		$File	"wavebrowser.cpp"
+		$File	"wavebrowser.h"
+		$File	"wavefile.cpp"
+		$File	"wavefile.h"
+		$File	"waveproperties.cpp"
+		$File	"waveproperties.h"
+		$File	"workspace.cpp"
+		$File	"workspace.h"
+		$File	"workspacebrowser.cpp"
+		$File	"workspacebrowser.h"
+		$File	"workspacemanager.cpp"
+		$File	"workspacemanager.h"
+
+		$File	"..\common\cmdlib.cpp"				\
+			"$SRCDIR\public\filesystem_helpers.cpp"	\
+			"$SRCDIR\public\filesystem_init.cpp"	\
+			"..\common\filesystem_tools.cpp"		\
+			"$SRCDIR\public\interpolatortypes.cpp"	\
+			"$SRCDIR\game\shared\interval.cpp"		\
+			"itreeitem.cpp"							\
+			"..\common\scriplib.cpp"
+			{
+				$Configuration
+				{
+					$Compiler
+					{
+						$Create/UsePrecompiledHeader		"Not Using Precompiled Headers"
+					}
+				}
+			}
+	}
+
+	$Folder	"Resource Files"
+	{
+		$File	"ico00001.ico"
+		$File	"ico00002.ico"
+		$File	"ico00003.ico"
+		$File	"ico00004.ico"
+		$File	"ico00005.ico"
+		$File	"ico00006.ico"
+		$File	"ico00007.ico"
+		$File	"icon1.ico"
+		$File	"project1.ico"
+		$File	"resource.h"
+		$File	"scenemanager.rc"
+		$File	"vcd1.ico"
+		$File	"wav1.ico"
+		$File	"workspac.ico"
+	}
+
+	$Folder	"Public Headers"
+	{
+		$File	"$SRCDIR\Public\mathlib\amd3dx.h"
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\public\tier1\characterset.h"
+		$File	"..\common\cmdlib.h"
+		$File	"$SRCDIR\Public\commonmacros.h"
+		$File	"$SRCDIR\public\tier1\convar.h"
+		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\game\shared\ExpressionSample.h"
+		$File	"$SRCDIR\public\tier0\fasttimer.h"
+		$File	"$SRCDIR\Public\FileSystem.h"
+		$File	"$SRCDIR\public\filesystem_helpers.h"
+		$File	"..\common\filesystem_tools.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\game\shared\ichoreoeventcallback.h"
+		$File	"$SRCDIR\Public\engine\IEngineSound.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"$SRCDIR\public\interpolatortypes.h"
+		$File	"$SRCDIR\game\shared\interval.h"
+		$File	"$SRCDIR\public\irecipientfilter.h"
+		$File	"$SRCDIR\game\shared\iscenetokenprocessor.h"
+		$File	"$SRCDIR\public\tier1\KeyValues.h"
+		$File	"$SRCDIR\Public\mathlib\MATHLIB.H"
+		$File	"$SRCDIR\public\tier0\mem.h"
+		$File	"$SRCDIR\public\tier0\memdbgoff.h"
+		$File	"$SRCDIR\public\tier0\memdbgon.h"
+		$File	"$SRCDIR\public\tier1\mempool.h"
+		$File	"..\mxtk\include\mx\mx.h"
+		$File	"..\mxtk\include\mx\mxButton.h"
+		$File	"..\mxtk\include\mx\mxCheckBox.h"
+		$File	"..\mxtk\include\mx\mxChoice.h"
+		$File	"..\mxtk\include\mx\mxChooseColor.h"
+		$File	"..\mxtk\include\mx\mxEvent.h"
+		$File	"..\mxtk\include\mx\mxFileDialog.h"
+		$File	"..\mxtk\include\mx\mxGlWindow.h"
+		$File	"..\mxtk\include\mx\mxGroupBox.h"
+		$File	"..\mxtk\include\mx\mxInit.h"
+		$File	"..\mxtk\include\mx\mxLabel.h"
+		$File	"..\mxtk\include\mx\mxLineEdit.h"
+		$File	"..\mxtk\include\mx\mxLinkedList.h"
+		$File	"..\mxtk\include\mx\mxListBox.h"
+		$File	"..\mxtk\include\mx\mxlistview.h"
+		$File	"..\mxtk\include\mx\mxMenu.h"
+		$File	"..\mxtk\include\mx\mxMenuBar.h"
+		$File	"..\mxtk\include\mx\mxMessageBox.h"
+		$File	"..\mxtk\include\mx\mxpath.h"
+		$File	"..\mxtk\include\mx\mxPopupMenu.h"
+		$File	"..\mxtk\include\mx\mxProgressBar.h"
+		$File	"..\mxtk\include\mx\mxRadioButton.h"
+		$File	"..\mxtk\include\mx\mxScrollbar.h"
+		$File	"..\mxtk\include\mx\mxSlider.h"
+		$File	"..\mxtk\include\mx\mxstring.h"
+		$File	"..\mxtk\include\mx\mxTab.h"
+		$File	"..\mxtk\include\mx\mxToggleButton.h"
+		$File	"..\mxtk\include\mx\mxToolTip.h"
+		$File	"..\mxtk\include\mx\mxTreeView.h"
+		$File	"..\mxtk\include\mx\mxWidget.h"
+		$File	"..\mxtk\include\mx\mxWindow.h"
+		$File	"$SRCDIR\public\networkvar.h"
+		$File	"$SRCDIR\public\tier0\platform.h"
+		$File	"$SRCDIR\public\tier1\processor_detect.h"
+		$File	"$SRCDIR\public\protected_things.h"
+		$File	"$SRCDIR\public\vstdlib\random.h"
+		$File	"..\common\scriplib.h"
+		$File	"$SRCDIR\game\shared\sharedInterface.h"
+		$File	"$SRCDIR\Public\soundflags.h"
+		$File	"$SRCDIR\public\string_t.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utldict.h"
+		$File	"$SRCDIR\public\tier1\utllinkedlist.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlrbtree.h"
+		$File	"$SRCDIR\public\tier1\utlsymbol.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\mathlib\vector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+	}
+
+	$Folder	"Choreography"
+	{
+		$File	"$SRCDIR\game\shared\choreoactor.h"
+		$File	"$SRCDIR\game\shared\choreochannel.h"
+		$File	"$SRCDIR\game\shared\choreoevent.h"
+		$File	"$SRCDIR\game\shared\choreoscene.h"
+	}
+
+	$Folder	"Audio"
+	{
+		$File	"audiowaveoutput.h"
+		$File	"iscenemanagersound.h"
+		$File	"$SRCDIR\Public\sentence.h"
+		$File	"snd_audio_source.cpp"
+		$File	"snd_audio_source.h"
+		$File	"snd_wave_mixer.cpp"
+		$File	"snd_wave_mixer.h"
+		$File	"snd_wave_mixer_adpcm.cpp"
+		$File	"snd_wave_mixer_adpcm.h"
+		$File	"snd_wave_mixer_private.h"
+		$File	"snd_wave_source.cpp"
+		$File	"snd_wave_source.h"
+		$File	"sound.cpp"
+		$File	"sound.h"
+
+		$File	"$SRCDIR\public\sentence.cpp"
+			{
+				$Configuration
+				{
+					$Compiler
+					{
+						$Create/UsePrecompiledHeader		"Not Using Precompiled Headers"
+					}
+				}
+			}
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\appframework.lib"
+		$File	"$SRCDIR\lib\public\choreoobjects.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\common\mxtoolkitwin32.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+	}
+}

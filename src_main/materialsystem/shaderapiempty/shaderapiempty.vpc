@@ -1,0 +1,41 @@
+//-----------------------------------------------------------------------------
+//	SHADEREMPTY.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Linux
+{
+	$BuildForLinux 1
+}
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;..\"
+		$PreprocessorDefinitions			"$BASE;SHADER_DLL_EXPORT;PROTECTED_THINGS_ENABLE"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"odbc32.lib odbccp32.lib"
+	}
+}
+
+$Project "shaderapiempty"
+{
+	$Folder	"Source Files"
+	{
+		$File	"ShaderAPIEmpty.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\tier0\platform.h"
+	}
+}

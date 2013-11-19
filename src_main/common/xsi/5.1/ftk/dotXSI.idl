@@ -1,0 +1,456 @@
+//*****************************************************************************************
+//
+// File supervisor: Dominic Lessard
+// Date: 06/12/2000
+//
+// (c) Copyright 1996 - 2000 Avid Corporation
+//
+// $Archive: /Storm/src/dotXSI/dotXSI.idl $
+// $Revision: 1 $  $Date: 24/05/00 $
+// Checkin by: $Author: dlessard$
+//
+// @module  dotXSI.idl
+//
+//*****************************************************************************************
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+/////////////////////////////////////////////////////////////////////////////////////
+// Forward declaration
+/////////////////////////////////////////////////////////////////////////////////////
+interface IParam;
+interface IParams;
+interface ITemplate;
+interface ITemplates;
+interface IdotXSIFileHandler;
+
+/////////////////////////////////////////////////////////////////////////////////////
+// Enums
+/////////////////////////////////////////////////////////////////////////////////////
+typedef enum {
+    DOTXSI_FORMAT_TEXT=0,
+    DOTXSI_FORMAT_BINARY=1,
+	DOTXSI_FORMAT_COMPRESS=2,
+	DOTXSI_FORMAT_ENCRYPTED=4
+} eDotXSIFileFormat; 
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// IParam interface
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	[
+		object,
+		uuid(5E611818-3B0B-11D4-B77F-00A0C9EC5EA3),
+		dual,
+		helpstring("IParam Interface"),
+		pointer_default(unique)
+	]
+	interface IParam : IDispatch
+	{
+		[id(1), helpstring("method SetName")]       HRESULT SetName([in] BSTR in_bstrName);
+        [id(2), helpstring("method GetName")]       HRESULT GetName([out] BSTR* out_pbstrName);
+        [id(3), helpstring("method SetValue")]      HRESULT SetValue([in] VARIANT in_vValue);
+		[id(4), helpstring("method GetValue")]      HRESULT GetValue([out] VARIANT* out_pvValue);
+        [id(5), helpstring("method AllocateArray")] HRESULT AllocateArray([out] VARIANT* out_pvValue, [in] int in_lSize);
+        [id(6), helpstring("method FreeStringVariant")] HRESULT FreeStringVariant([in] VARIANT in_vValue );
+	};
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// IParams interface
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	[
+		object,
+		uuid(5E611819-3B0B-11D4-B77F-00A0C9EC5EA3),
+		dual,
+		helpstring("IParams Interface"),
+		pointer_default(unique)
+	]
+	interface IParams : IDispatch
+	{
+		[id(1), helpstring("method GetCount")]      HRESULT GetCount([out] int* out_plCount);
+		[id(2), helpstring("method Item")]          HRESULT Item([in] int in_nIndex, [out] IParam** out_ppParam);
+		[id(3), helpstring("method Add")]           HRESULT Add([in] IParam* in_pParam, [in] int in_nPos);
+		[id(4), helpstring("method Remove")]        HRESULT Remove([in] int in_nIndex);
+		[id(5), helpstring("method CreateParam")]   HRESULT CreateParam([out] IParam** out_ppParam);
+	};
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// ITemplate interface
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	[
+		object,
+		uuid(5E61181A-3B0B-11D4-B77F-00A0C9EC5EA3),
+		dual,
+		helpstring("ITemplate Interface"),
+		pointer_default(unique)
+	]
+	interface ITemplate : IDispatch
+	{
+		[id(1), helpstring("method Children")]          HRESULT Children([out] ITemplates** out_ppTemplates);
+		[id(2), helpstring("method SetInstanceName")]   HRESULT SetInstanceName([in] BSTR in_bstrName);
+		[id(3), helpstring("method GetInstanceName")]   HRESULT GetInstanceName([out] BSTR* out_pbstrName);
+		[id(4), helpstring("method SetUserDataType")]   HRESULT SetUserDataType([in] BSTR in_DataType);
+		[id(5), helpstring("method GetUserDataType")]   HRESULT GetUserDataType([out] BSTR* out_pbstrDataType);
+		[id(6), helpstring("method SetParent")]         HRESULT SetParent([in] ITemplate* in_pParent);
+		[id(7), helpstring("method GetParent")]         HRESULT GetParent([out] ITemplate** out_ppParent);
+		[id(8), helpstring("method SetSystemFlags")]    HRESULT SetSystemFlags([in] int in_nSysFlags);
+		[id(9), helpstring("method GetSystemFlags")]    HRESULT GetSystemFlags([out] int* out_pnSysFlags);
+		[id(10), helpstring("method SetUserFlags")]     HRESULT SetUserFlags([in] int in_nUserFlags );
+		[id(11), helpstring("method GetUserFlags")]     HRESULT GetUserFlags([out] int* out_pnUserFlags);
+		[id(12), helpstring("method Params")]           HRESULT Params([out] IParams ** out_ppParams);
+		[id(13), helpstring("method SetTemplateName")]  HRESULT SetTemplateName([in] BSTR in_bstrTemplateName);
+		[id(14), helpstring("method GetTemplateName")]  HRESULT GetTemplateName([out] BSTR* out_pbstrTemplateName);
+        [id(15), helpstring("method CreateTemplates")]  HRESULT CreateTemplates([out] ITemplates** out_ppTemplates);
+    };
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// ITemplates
+//
+/////////////////////////////////////////////////////////////////////////////////////
+	[
+		object,
+		uuid(5E61181B-3B0B-11D4-B77F-00A0C9EC5EA3),
+		dual,
+		helpstring("ITemplates Interface"),
+		pointer_default(unique)
+	]
+	interface ITemplates : IDispatch
+	{
+		[id(1), helpstring("method GetCount")] HRESULT GetCount([out] int* out_plCount);
+		[id(2), helpstring("method Item")] HRESULT Item([in] int in_nIndex, [out] ITemplate** out_ppTemplate);
+		[id(3), helpstring("method Add")] HRESULT Add([in] ITemplate* in_pTemplate, [in] int in_nPos);
+		[id(4), helpstring("method Remove")] HRESULT Remove([in] int in_nIndex);
+		[id(5), helpstring("method CreateTemplate")] HRESULT CreateTemplate([out] ITemplate** out_ppTemplate);
+	};
+
+///////////////////////////////////////////////////////////////////////
+//
+// dotXSIFileHandler interface
+//
+///////////////////////////////////////////////////////////////////////
+
+//*********************************************************************************************
+// (c) Copyright 2000  Softimage Co. All rights reserved.
+//
+// Author:	Nancy Nadeau
+// Date  :	24/May/00
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	Open
+//
+// @methoddesc	Open an existing XSI file
+//
+// @arg			FileName |  | No | Input | String
+//
+// @returnvalue	S_OK | Success
+// @returnvalue E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.Open "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.Open "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	Close
+//
+// @methoddesc	Close the file
+//
+// @arg			
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.Close "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.Close "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	Read
+//
+// @methoddesc	Read the XSI file (import)
+//
+// @arg			
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.Read "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.Read "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	Write
+//
+// @methoddesc	Write the XSI file (export)
+//
+// @arg			FileName |  | No | Input | String
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.Write "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.Write "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	ReadString
+//
+// @methoddesc	ReadString, not implemented yet
+//
+// @arg			FileName |  | No | Input | String
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.ReadString "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.ReadString "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	WriteString
+//
+// @methoddesc	WriteString, not implemented yet
+//
+// @arg			FileName |  | No | Input | String
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.WriteString "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.WriteString "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+// ******************* METHOD SCRIPTING DOCUMENTATION ******************************
+//
+// @start
+//
+// @object		dotXSIFileHandler
+//
+// @accesstype	method
+//
+// @methodname	RootTemplates
+//
+// @methoddesc	Get the root templates from the dotXSI file
+//
+// @arg			FileName |  | No | Input | String
+//
+// @returnvalue	S_OK | Success	
+// @returnvalue	E_FAIL | Fail
+//
+// @vbscript	
+// ' example 1: <BR>
+// set x = CreateObject("XSI.dotXSIFileHandler")<BR>
+// x.RootTemplates "c:\myfile.xsi"<BR>
+//<BR>
+// ' example 2: <BR>
+// dotXSIFileHandler.RootTemplates "c:\myfile.xsi"<BR>
+//<BR>
+//
+// @cplusplus	
+//
+// @seealso	
+//
+// @end
+//
+//*********************************************************************************************
+	[
+		object,
+		uuid(5E61181E-3B0B-11D4-B77F-00A0C9EC5EA3),
+		dual,
+		helpstring("IdotXSIFileHandler Interface"),
+		pointer_default(unique)
+	]
+	interface IdotXSIFileHandler : IDispatch
+	{
+   		[id(1), helpstring("method Open")]			HRESULT Open([in] BSTR in_bstrFilename);
+		[id(2), helpstring("method Create")]        HRESULT Create([in] BSTR in_bstrFilename, [in] eDotXSIFileFormat in_bOpenMode);
+        [id(3), helpstring("method Close")]			HRESULT Close();
+		[id(4), helpstring("method Read")]			HRESULT Read();
+		[id(5), helpstring("method Write")]			HRESULT Write();
+		[id(6), helpstring("method ReadString")]	HRESULT ReadString();
+		[id(7), helpstring("method WriteString")]	HRESULT WriteString();
+		[id(8), helpstring("method RootTemplates")]	HRESULT RootTemplates([out] ITemplates** out_ppTemplates);
+        [id(9), helpstring("method GetFileVersionMajor")]
+            HRESULT GetFileVersionMajor([out] int* out_plVersionMajor);
+        [id(10),helpstring("method GetFileVersionMinor")]
+            HRESULT GetFileVersionMinor([out] int* out_plVersionMinor); 
+        [id(11), helpstring("method SetFileVersion")]
+            HRESULT SetFileVersion([in] int in_lVersionMajor, [in] int in_lVersionMinor);
+		[id(12), helpstring("method GetNumVersion")]
+			HRESULT GetNumVersion([out] int * out_plNumVersion );
+		[id(13), helpstring("method GetVersionInfo")]
+			HRESULT GetVersionInfo([in] int in_lIndex,[out] int * out_plMajor, [out] int * out_plMinor );
+	};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// TYPE LIBRARY
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+[
+	uuid(5E61180C-3B0B-11D4-B77F-00A0C9EC5EA3),
+	version(1.0),
+	helpstring("dotXSI 1.0 Type Library")
+]
+library DOTXSILib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(0F0AC51C-3AF9-11D4-B77F-00A0C9EC5EA3),
+		helpstring("Param Class")
+	]
+	coclass Param
+	{
+		[default] interface IParam;
+	};
+	[
+		uuid(0F0AC51E-3AF9-11D4-B77F-00A0C9EC5EA3),
+		helpstring("Params Class")
+	]
+	coclass Params
+	{
+		[default] interface IParams;
+	};
+	[
+		uuid(0F0AC520-3AF9-11D4-B77F-00A0C9EC5EA3),
+		helpstring("Template Class")
+	]
+	coclass Template
+	{
+		[default] interface ITemplate;
+	};
+	[
+		uuid(5E61181C-3B0B-11D4-B77F-00A0C9EC5EA3),
+		helpstring("Templates Class")
+	]
+	coclass Templates
+	{
+		[default] interface ITemplates;
+	};
+	[
+		uuid(5ADB71B8-5F53-11d5-8983-00D0B71DA41F),
+		helpstring("dotXSIFileHandler Class")
+	]
+	coclass dotXSIFileHandler
+	{
+		[default] interface IdotXSIFileHandler;
+	};
+};

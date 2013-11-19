@@ -1,0 +1,64 @@
+//-----------------------------------------------------------------------------
+//	VCDBLOCK.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\tools"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,.\,..\common;$SRCDIR\game\shared"
+		$PreprocessorDefinitions			"$BASE;VCDBLOCK_EXPORTS"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"Psapi.lib"
+	}
+}
+
+$Project "Vcdblock"
+{
+	$Folder	"Source Files"
+	{
+		$File	"dmevmfentity.cpp"
+		$File	"infotargetbrowserpanel.cpp"
+		$File	"infotargetpropertiespanel.cpp"
+		$File	"$SRCDIR\public\interpolatortypes.cpp"
+		$File	"$SRCDIR\public\registry.cpp"
+		$File	"vcdblockdoc.cpp"
+		$File	"vcdblocktool.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"dmevmfentity.h"
+		$File	"infotargetbrowserpanel.h"
+		$File	"infotargetpropertiespanel.h"
+		$File	"$SRCDIR\public\mathlib\mathlib.h"
+		$File	"vcdblockdoc.h"
+		$File	"vcdblocktool.h"
+	}
+
+	$Folder "Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\datamodel.lib"
+		$File	"$SRCDIR\lib\public\dme_controls.lib"
+		$File	"$SRCDIR\lib\public\dmserializers.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\matsys_controls.lib"
+		$File	"$SRCDIR\lib\public\movieobjects.lib"
+		$File	"$SRCDIR\lib\public\sfmobjects.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\toolutils.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+	}
+}

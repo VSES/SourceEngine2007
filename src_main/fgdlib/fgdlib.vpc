@@ -1,0 +1,44 @@
+//-----------------------------------------------------------------------------
+//	FGDLIB.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\utils\common"
+	}
+}
+
+$Project "Fgdlib"
+{
+	$Folder	"Source Files"
+	{
+		$File	"gamedata.cpp"
+		$File	"gdclass.cpp"
+		$File	"gdvar.cpp"
+		$File	"inputoutput.cpp"
+		$File	"stdafx.h"
+		$File	"wckeyvalues.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\fgdlib\fgdlib.h"
+		$File	"$SRCDIR\public\fgdlib\gamedata.h"
+		$File	"$SRCDIR\public\fgdlib\gamepalette.h"
+		$File	"$SRCDIR\public\fgdlib\gdclass.h"
+		$File	"$SRCDIR\public\fgdlib\gdvar.h"
+		$File	"$SRCDIR\public\fgdlib\helperinfo.h"
+		$File	"$SRCDIR\public\fgdlib\ieditortexture.h"
+		$File	"$SRCDIR\public\fgdlib\inputoutput.h"
+		$File	"$SRCDIR\public\fgdlib\wckeyvalues.h"
+	}
+}

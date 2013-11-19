@@ -1,0 +1,54 @@
+//-----------------------------------------------------------------------------
+//	VSTSMDIO_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\common\boost\boost-1_33_1"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE comctl32.lib"
+		$IgnoreSpecificLibrary				"$BASE;advapi32.lib"
+		$AdditionalLibraryDirectories		"$BASE;$SRCDIR\lib\common\boost"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"QciExport.cpp"
+		$File	"SmdExport.cpp"
+		$File	"SmdImport.cpp"
+		$File	"VProjectUtil.cpp"
+		$File	"VstSmdIOCmd.cpp"
+		$File	"VstSmdIOInit.cpp"
+		$File	"VstSmdIOTranslator.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"QciExport.h"
+		$File	"SmdExport.h"
+		$File	"SmdImport.h"
+		$File	"VProjectUtil.h"
+		$File	"VstSmdIOCmd.h"
+		$File	"VstSmdIOTranslator.h"
+	}
+
+	$Folder	"external"
+	{
+	}
+}

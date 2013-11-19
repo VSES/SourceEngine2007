@@ -1,0 +1,5 @@
+P4Win Tools File from chrisn
+>>Main/GoldSrc Mutex				0	0	0	1
+>>Lock Main/GoldSrc	p4mutex.exe	lock main_goldsrc 3 $u $p	c:\	1	0	1	0
+>>Release Main/GoldSrc	p4mutex.exe	release main_goldsrc 3 $u $p	c:\	1	0	1	0
+>>Query Main/GoldSrc lock	p4mutex.exe	query main_goldsrc 3 $u $p	c:\	1	0	1	0

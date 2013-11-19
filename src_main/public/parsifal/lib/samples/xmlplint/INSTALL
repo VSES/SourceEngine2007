@@ -1,0 +1,46 @@
+LINUX
+=====
+    
+    Install libcurl. Check that your
+    curl-config --libs
+    gives same libraries as in CURL_LIBS section in xmlplint Makefile 
+    (modify if needed)
+    
+    make
+    make install
+
+Visual Studio
+=============
+
+1)  download Libcurl curl-7.14.0 (or similar)
+    run 2 targets in lib dir:
+
+    command line:
+    nmake /f makefile.vc6 CFG=release
+    builds static library \release\libcurl.lib which is linked with 
+    /MD (Multithreaded DLL)
+
+    command line:
+    nmake /f makefile.vc6 CFG=debug
+    builds static library \debug\libcurld.lib which is linked with 
+    /MDd (Debug Multithreaded DLL)
+
+    put *.h files into Visual Studio\include\curl directory (md curl)
+    put *.lib files into Visual Studio\lib directory
+
+2)  Download libiconv win binaries (libiconv-1.9.1.bin.woe32.zip or similar)
+    
+    put iconv.h file into Visual Studio\include directory
+    put *.lib files into Visual Studio\lib directory
+    
+3)  Build parsifal library target: "parsifal - Win32 Release ICONV using MultiTh RTL DLL".
+    It is essential that all components use same kind of runtime library (in this
+    case Multithreaded DLL)
+
+4)  Build xmlplint
+
+MinGW
+=====
+
+see Visual Studio section 1 (download libcurl etc.). Build *.m32 libcurl target
+and modify Makefile where needed.

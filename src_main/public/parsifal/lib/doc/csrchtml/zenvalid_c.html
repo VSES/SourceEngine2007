@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\zenvalid\zenvalid.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="dir">#include &lt;stdio.h&gt;</span>
+<span class="dir">#include &lt;string.h&gt;</span>
+<span class="dir">#include &lt;stdlib.h&gt;</span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/parsifal.h&quot;</span><span class="dir"></span>
+<span class="dir">#include</span> <span class="dstr">&quot;libparsifal/dtdvalid.h&quot;</span><span class="dir"></span>
+
+<span class="dir">#define ASSERT_MEM_ABORT(p) \</span>
+<span class="dir">  if (!(p)) { printf(</span><span class="dstr">&quot;Out of memory! Line: %d</span><span class="esc">\n</span><span class="dstr">&quot;</span><span class="dir">, __LINE__); return XML_ABORT; }</span>
+<span class="dir">#define STORYP ((STORYPARSER*)v-&gt;UserData)</span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">Characters</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>Chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">);</span>
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">);</span>
+<span class="kwb">int</span> <span class="kwd">cstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">);</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagZENSTORY <span class="sym">{</span>
+  <span class="kwb">char</span> <span class="sym">*</span>title<span class="sym">;</span>
+  <span class="kwb">char</span> <span class="sym">*</span>author<span class="sym">;</span>
+  <span class="kwb">char</span> <span class="sym">*</span>body<span class="sym">;</span>
+<span class="sym">}</span> ZENSTORY<span class="sym">;</span>
+
+<span class="kwc">typedef</span> <span class="kwb">struct</span> tagSTORYPARSER <span class="sym">{</span>
+  LPXMLPARSER parser<span class="sym">;</span>
+  XMLSTRINGBUF textBuf<span class="sym">;</span>
+  LPXMLVECTOR stories<span class="sym">;</span>
+  ZENSTORY <span class="sym">*</span>curStory<span class="sym">;</span>
+  <span class="kwb">char</span> <span class="sym">**</span>curStr<span class="sym">;</span>
+<span class="sym">}</span> STORYPARSER<span class="sym">;</span>
+
+<span class="kwb">int</span> <span class="kwd">StartElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">,</span> LPXMLVECTOR atts<span class="sym">)</span>
+<span class="sym">{</span>
+  LPXMLDTDVALIDATOR v <span class="sym">= (</span>LPXMLDTDVALIDATOR<span class="sym">)</span>UserData<span class="sym">;</span>
+  <span class="com">/* initialize new story: */</span>
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;story&quot;</span><span class="sym">)) {</span>
+    STORYP<span class="sym">-&gt;</span>curStory <span class="sym">=</span> <span class="kwd">XMLVector_Append</span><span class="sym">(</span>STORYP<span class="sym">-&gt;</span>stories<span class="sym">,</span> NULL<span class="sym">);</span>
+    <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span>STORYP<span class="sym">-&gt;</span>curStory<span class="sym">);</span>
+    STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>title <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>author <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>body <span class="sym">= (</span><span class="kwb">char</span><span class="sym">*)</span>NULL<span class="sym">;</span>
+    STORYP<span class="sym">-&gt;</span>curStr <span class="sym">=</span> NULL<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">else if</span> <span class="sym">(!</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;title&quot;</span><span class="sym">))</span>
+    STORYP<span class="sym">-&gt;</span>curStr <span class="sym">= &amp;</span>STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>title<span class="sym">;</span>
+  <span class="kwa">else if</span> <span class="sym">(!</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;author&quot;</span><span class="sym">))</span>
+    STORYP<span class="sym">-&gt;</span>curStr <span class="sym">= &amp;</span>STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>author<span class="sym">;</span>
+  <span class="kwa">else if</span> <span class="sym">(!</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;body&quot;</span><span class="sym">))</span>
+    STORYP<span class="sym">-&gt;</span>curStr <span class="sym">= &amp;</span>STORYP<span class="sym">-&gt;</span>curStory<span class="sym">-&gt;</span>body<span class="sym">;</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EndElement</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>uri<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>localName<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>qName<span class="sym">)</span>
+<span class="sym">{</span>
+  LPXMLDTDVALIDATOR v <span class="sym">= (</span>LPXMLDTDVALIDATOR<span class="sym">)</span>UserData<span class="sym">;</span>
+  <span class="kwa">if</span> <span class="sym">(</span>STORYP<span class="sym">-&gt;</span>curStr<span class="sym">) {</span>
+    <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">strcmp</span><span class="sym">(</span>qName<span class="sym">,</span> <span class="str">&quot;b&quot;</span><span class="sym">))</span>
+      <span class="kwa">return</span> XML_OK<span class="sym">;</span> <span class="com">/* handles mixed content elements simply here */</span>
+
+    <span class="sym">*</span>STORYP<span class="sym">-&gt;</span>curStr <span class="sym">=</span> <span class="kwd">strdup</span><span class="sym">(</span><span class="kwd">XMLStringbuf_ToString</span><span class="sym">(&amp;</span>STORYP<span class="sym">-&gt;</span>textBuf<span class="sym">));</span>
+    <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(*</span>STORYP<span class="sym">-&gt;</span>curStr<span class="sym">);</span>
+    <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span><span class="kwd">XMLStringbuf_SetLength</span><span class="sym">(&amp;</span>STORYP<span class="sym">-&gt;</span>textBuf<span class="sym">,</span> <span class="num">0</span><span class="sym">));</span>
+    STORYP<span class="sym">-&gt;</span>curStr <span class="sym">=</span> NULL<span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">Characters</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>Chars<span class="sym">,</span> <span class="kwb">int</span> cbChars<span class="sym">)</span>
+<span class="sym">{</span>
+  LPXMLDTDVALIDATOR v <span class="sym">= (</span>LPXMLDTDVALIDATOR<span class="sym">)</span>UserData<span class="sym">;</span>
+  <span class="kwd">ASSERT_MEM_ABORT</span><span class="sym">(</span><span class="kwd">XMLStringbuf_Append</span><span class="sym">(&amp;</span>STORYP<span class="sym">-&gt;</span>textBuf<span class="sym">, (</span>XMLCH<span class="sym">*)</span>Chars<span class="sym">,</span> cbChars<span class="sym">));</span>
+  <span class="kwa">return</span> XML_OK<span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">void</span> <span class="kwd">ErrorHandler</span><span class="sym">(</span>LPXMLPARSER parser<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwa">if</span> <span class="sym">(</span>parser<span class="sym">-&gt;</span>ErrorCode <span class="sym">==</span> ERR_XMLP_VALIDATION<span class="sym">) {</span>
+    LPXMLDTDVALIDATOR vp <span class="sym">= (</span>LPXMLDTDVALIDATOR<span class="sym">)</span>parser<span class="sym">-&gt;</span>UserData<span class="sym">;</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Validation Error: %s</span><span class="esc">\n</span><span class="str">ErrorLine: %d ErrorColumn: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span>
+      vp<span class="sym">-&gt;</span>ErrorString<span class="sym">,</span> vp<span class="sym">-&gt;</span>ErrorLine<span class="sym">,</span> vp<span class="sym">-&gt;</span>ErrorColumn<span class="sym">);</span>
+  <span class="sym">}</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;Parsing Error: %s</span><span class="esc">\n</span><span class="str">ErrorLine: %d ErrorColumn: %d</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span>
+      parser<span class="sym">-&gt;</span>ErrorString<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorLine<span class="sym">,</span> parser<span class="sym">-&gt;</span>ErrorColumn<span class="sym">);</span>
+  <span class="sym">}</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">cstream</span><span class="sym">(</span>BYTE <span class="sym">*</span>buf<span class="sym">,</span> <span class="kwb">int</span> cBytes<span class="sym">,</span> <span class="kwb">int</span> <span class="sym">*</span>cBytesActual<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>inputData<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="sym">*</span>cBytesActual <span class="sym">=</span> <span class="kwd">fread</span><span class="sym">(</span>buf<span class="sym">,</span> <span class="num">1</span><span class="sym">,</span> cBytes<span class="sym">, (</span><span class="kwb">FILE</span><span class="sym">*)</span>inputData<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="sym">(*</span>cBytesActual <span class="sym">&lt;</span> cBytes<span class="sym">);</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">main</span><span class="sym">(</span><span class="kwb">int</span> argc<span class="sym">,</span> <span class="kwb">char</span><span class="sym">*</span> argv<span class="sym">[])</span>
+<span class="sym">{</span>
+  STORYPARSER sparser<span class="sym">;</span>
+  LPXMLPARSER parser<span class="sym">;</span>
+  LPXMLDTDVALIDATOR vp<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLParser_Create</span><span class="sym">(&amp;</span>parser<span class="sym">)) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating parser!&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  vp <span class="sym">=</span> <span class="kwd">XMLParser_CreateDTDValidator</span><span class="sym">();</span>
+  <span class="kwa">if</span> <span class="sym">(!</span>vp<span class="sym">) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating DTDValidator in main()&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(!</span><span class="kwd">XMLVector_Create</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>stories<span class="sym">,</span> <span class="num">6</span><span class="sym">,</span> <span class="kwa">sizeof</span><span class="sym">(</span>ZENSTORY<span class="sym">))) {</span>
+    <span class="kwd">puts</span><span class="sym">(</span><span class="str">&quot;Error creating stories vector in main()&quot;</span><span class="sym">);</span>
+    <span class="kwa">return</span> <span class="num">1</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="com">/* init Stringbuf: blockSize 256, no pre-allocation: */</span>
+  <span class="kwd">XMLStringbuf_Init</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>textBuf<span class="sym">,</span> <span class="num">256</span><span class="sym">,</span> <span class="num">0</span><span class="sym">);</span>
+
+  sparser<span class="sym">.</span>parser <span class="sym">=</span> parser<span class="sym">;</span>
+  sparser<span class="sym">.</span>curStr <span class="sym">=</span> NULL<span class="sym">;</span>
+  vp<span class="sym">-&gt;</span>UserData <span class="sym">= &amp;</span>sparser<span class="sym">;</span>
+
+  parser<span class="sym">-&gt;</span>errorHandler <span class="sym">=</span> ErrorHandler<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>startElementHandler <span class="sym">=</span> StartElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>endElementHandler <span class="sym">=</span> EndElement<span class="sym">;</span>
+  parser<span class="sym">-&gt;</span>charactersHandler <span class="sym">=</span> Characters<span class="sym">;</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span><span class="kwd">XMLParser_ParseValidateDTD</span><span class="sym">(</span>vp<span class="sym">,</span> parser<span class="sym">,</span> cstream<span class="sym">,</span> stdin<span class="sym">,</span> <span class="num">0</span><span class="sym">)) {</span>
+
+    <span class="com">/* present the stories (we'll free the strings in the same loop) : */</span>
+    <span class="kwb">int</span> i<span class="sym">;</span>
+    ZENSTORY <span class="sym">*</span>story<span class="sym">;</span>
+    <span class="kwa">for</span> <span class="sym">(</span>i<span class="sym">=</span><span class="num">0</span><span class="sym">;</span> i<span class="sym">&lt;</span>sparser<span class="sym">.</span>stories<span class="sym">-&gt;</span>length<span class="sym">;</span> i<span class="sym">++) {</span>
+      story <span class="sym">=</span> <span class="kwd">XMLVector_Get</span><span class="sym">(</span>sparser<span class="sym">.</span>stories<span class="sym">,</span> i<span class="sym">);</span>
+      <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">) {</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>title<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;title: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> story<span class="sym">-&gt;</span>title<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>title<span class="sym">);</span>
+        <span class="sym">}</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>author<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;author: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> story<span class="sym">-&gt;</span>author<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>author<span class="sym">);</span>
+        <span class="sym">}</span>
+        <span class="kwa">if</span> <span class="sym">(</span>story<span class="sym">-&gt;</span>body<span class="sym">) {</span>
+          <span class="kwd">printf</span><span class="sym">(</span><span class="str">&quot;story: %s</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span>story<span class="sym">-&gt;</span>body<span class="sym">);</span>
+          <span class="kwd">free</span><span class="sym">(</span>story<span class="sym">-&gt;</span>body<span class="sym">);</span>
+        <span class="sym">}</span>
+      <span class="sym">}</span>
+    <span class="sym">}</span>
+  <span class="sym">}</span>
+
+  <span class="kwd">XMLParser_FreeDTDValidator</span><span class="sym">(</span>vp<span class="sym">);</span>
+  <span class="kwd">XMLParser_Free</span><span class="sym">(</span>parser<span class="sym">);</span>
+  <span class="kwd">XMLStringbuf_Free</span><span class="sym">(&amp;</span>sparser<span class="sym">.</span>textBuf<span class="sym">);</span>
+  <span class="kwd">XMLVector_Free</span><span class="sym">(</span>sparser<span class="sym">.</span>stories<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

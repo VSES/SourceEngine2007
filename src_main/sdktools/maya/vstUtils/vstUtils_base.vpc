@@ -1,0 +1,58 @@
+//-----------------------------------------------------------------------------
+//	VSTUTILS_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\public\maya"
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE wsock32.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"CVstInfoCmd.cpp"
+		$File	"CVstInfoTransform.cpp"
+		$File	"VstAimCmd.cpp"
+		$File	"VstAimNode.cpp"
+		$File	"VstAttachmentCmd.cpp"
+		$File	"VstAttachmentLocator.cpp"
+		$File	"VstHelperBoneCmd.cpp"
+		$File	"VstHelperBoneNode.cpp"
+		$File	"VstSelectCoincidentFacesCmd.cpp"
+		$File	"VstSendmailCmd.cpp"
+		$File	"VstCheckerCmd.cpp"
+		$File	"vstEyeballNode.cpp"
+		$File	"vstEyeballCmd.cpp"
+		$File	"vstUtilsInit.cpp"
+		$File	"vstWeldNode.cpp"
+		$File	"vstWeldCmd.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"VstHelperBoneNode.h"
+		$File	"vstEyeballNode.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+	}
+}

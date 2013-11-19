@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshConvert", "MeshConvert_2003.vcproj", "{A0763B6A-73EC-42D1-A283-F07D7613AC3C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A0763B6A-73EC-42D1-A283-F07D7613AC3C}.Debug.ActiveCfg = Debug|Win32
+		{A0763B6A-73EC-42D1-A283-F07D7613AC3C}.Debug.Build.0 = Debug|Win32
+		{A0763B6A-73EC-42D1-A283-F07D7613AC3C}.Release.ActiveCfg = Release|Win32
+		{A0763B6A-73EC-42D1-A283-F07D7613AC3C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

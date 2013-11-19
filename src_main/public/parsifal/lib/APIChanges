@@ -1,0 +1,82 @@
+Parsifal API changes
+====================
+
+0.9.1 -> 0.9.2
+
+Added XMLParser_GetContextBytes function which can be used
+to retrieve current context buffer + it returns current
+column position in bytes. XMLParser_GetCurrentBuffer returned
+column bytes previously - now it returns column position in
+characters.
+
+
+0.8.2 -> 0.8.3
+
+Added XMLParser_GetVersionString function
+
+
+0.7.3 -> 0.7.4
+
+No significant changes. Only encoding parameter for XMLParser_Parse
+works differently. Input source callback can specify new return 
+value BIS_ERR_INPUT. See documentation.
+
+
+0.7.1 -> 0.7.2
+
+flag
+#define XMLFLAG_CONVERT_EOL 0x40
+isn't currently working (although present in parsifal.h)
+Parser does the conversion even when you set this flag to false.
+Converting all CRLFs and CRs to LFs simplifies the parser and
+is something that all conformant parsers do. CRs must
+be handled in application level.
+
+new location functions:
+int XMLAPI XMLParser_GetCurrentLine(LPXMLPARSER parser);
+int XMLAPI XMLParser_GetCurrentColumn(LPXMLPARSER parser);
++
+ErrorColumn member for LPXMLPARSER struct
+
+See documention for more details about these.
+
+
+0.6.8 -> 0.7.0
+
+API has changed considerably but is now consistent - 
+types and stuff are better thought over and WON'T
+CHANGE in the upcoming versions.
+
+Note: These changes might seem more annoying than
+they actually are, they're mostly simple search and
+replace type changes.
+
+
+- LPXMLVECTOR and attributes cannot be enumerated with void* ++ anymore 
+  (there isn't NULL item at the end of vector). You must use 
+  XMLVector_Get(atts, index) format.
+
+- type RUNTIMEATT and type RUNTIMETAG have now XML prefix i.e. it's
+  XMLRUNTIMEATT (and LPXMLRUNTIMEATT) etc.
+  
+- LPVECTOR type has changed to LPXMLVECTOR and all
+  names of vector routines now have prefix XML i.e. it's XMLVector_Append
+  instead of Vector_Append.
+  
+- Most XMLCH* parameters to callbacks have been changed to const XMLCH*
+
+- Whitespace property removed. Attribute whitespace can be controlled
+  with XMLFlags now. Whitespace in element content can be normalized
+  with XMLNormalizeBuf helper function.
+
+- Member encoding of LPXMLPARSER struct has been removed. XML declaration
+  is now reported through xmlDeclHandler.
+  
+- Member features of LPXMLPARSER struct has been removed. Features are
+  now handled by XMLFlags. See manual.
+
+- XML_DTD_HANDLER event type has been removed. There's startDTDHandler
+  and endDTDHandler instead.
+  
+- Many event type names have changed e.g. from XML_END_HANDLER to
+  XML_END_ELEMENT_HANDLER. I guess this won't affect many existing apps.

@@ -1,0 +1,292 @@
+Changelog for parsifal
+======================
+
+0.9.3, 21.08.2005
+    - Added XMLFLAG_VALIDATION_WARNINGS flag/feature (false by default).
+      Now Parsifal can collect all validation errors (they can be treated as
+      warnings) and doesn't abort on first error encountered.
+    - Added xmlplint command line tool that has for example limited xml 
+      catalogs support + needed features for easy integration with text 
+      editors. See docs/xmlplint for more info. Xmlplint includes a lot
+      of useful code to be used when working with Parsifal for example
+      libcurl "pull interface" curlread.c 
+    - Altered localName behaviour for startElementHandler (should have done this
+      earlier). Now when element is in the default namespace localName will be
+      correctly set and isn't empty string anymore. Thanks to Hans Dykstra for
+      the fix/for the remainder about the existence of this old issue - if 
+      someone needs an ability to determine whether element is in the default 
+      namespace or is in a namespace defined by namespace prefix he/she can 
+      easily test for ':'. Need for this SHOULD be very rare - semantically
+      these two case are equivalent and that's it.
+    - Fixed elementDecl bug: occurred when XMLFLAG_REPORT_DTD_EXT (validating
+      mode) and elementDeclHandler were set + document contained both internal
+      and external DTD. Cause: ParseDTD didn't reset RT->cpNames and
+      RT->cpNodesPool to NULL when freeing/destroying them.
+    - Fixed resolveEntityHandler bug: if resolveEntityHandler was skipping DTD 
+      - by returning XML_OK but w/o setting any reader data for entity (for 
+      example when using XMLParser_SetExternalSubset for DTD loading) this led 
+      to segfault (bogus reader after ResolveExternalDTD). cause: 
+      ResolveExternalDTD didn't restore the main reader.
+    - Fixed xmltest for better validating mode support; only test types valid 
+      and invalid are validated (others are parsed with XMLFLAG_VALIDATION_
+      WARNINGS=True (warnings are not displayed). Xmltest is still the old
+      hackish version though.
+
+0.9.2, 17.4.2005    
+    - Added element hint to certain validation errors. For example if you leave
+      XHTML head element empty you get the following error: "Content model for 
+      'head' doesn't allow it to end here. Try: script, style, meta, link..."
+      Gives also hint for mismatching enumeration attribute values.
+    - Fixed bug for ignorableWhitespace and entity references - references 
+      triggered isWS=0 so this was a major bug. Now ParseEntityRef
+      also keeps isWS=1 flag properly for &#10; for example.
+    - XMLParser_GetCurrentColumn/ErrorColumn fixed to return correct UTF-8 
+      character count value and not byte offset.
+    - XMLParser_GetContextBytes function added. Returns column byte offset info
+      that was previously returned by GetCurrentColumn + is used to get
+      pointer to current context line/buffer. Helper.c includes routine
+      that returns formatted context for example when document contains invalid 
+      token, < unescaped in attribute value, GetFormattedContext returns:
+      <e a="va<l"></e>
+      --------^
+      Context is available during parsing - including DTD parsing/errors. This
+      is very nice feature when tracking down well-formedness/validation errors
+      expecially when streaming data from network.
+    - Now doesn't scope xml:id attribute - xml:id isn't available via
+      XMLParser_GetPrefixMapping anymore.
+    - Added some new parsifal_tests testcases.
+    - Tweaked some example files
+    Fixes for dtdvalid.c: 
+    - Included correction for #REQUIRED enumeration attributes checking bug.
+    - Now checks that doctype name matches root element name WHEN validation
+      filter hasn't been specified - which is the default case.
+    - Other minor fixes for out of memory conditions.
+
+0.9.1, 14.2.2005
+    - Implemented validation for EnumeratedType and NotationType attributes. 
+      Still no support for TokenizedType attributes like IDs and no checking 
+      for existence of NOTATIONs etc. (maybe they're on the wrong side of 
+      80/20 - they should be implemented outside the core?).
+    - Fixed memory leak issues when parsing certain malformed DTDs in
+      validating mode; where endDTD for DTDValidator wasn't called and
+      thus dtd->ElementTable and dtd->cpNodesPool weren't set. There
+      was also an issue with checking the need for freeing the validator
+      instance for reuse: whether dtd->ElementDecls existed wasn't good for
+      that check (for reason mentioned above), testing for existence of 
+      dtd->cpNodesPool is better way. Also set dtd->ElementTable and 
+      dtd->cpNodesPool to NULL in ParseValidateDTD() - otherwise they would 
+      contain invalid value in DTDValidate_StartElement WHEN REUSING 
+      validator AND current doc doesn't have DTD.
+    - Preliminary conformance testing in validating mode implemented for 
+      xmltest. Xmltest still uses clumsy html output - should switch to xml 
+      sometime for better post-processing options. Xmltest also needs a lot 
+      of fixing in the other areas and canonxml.c needs some fixing too.
+      However, currently tests are passed W/O ANY MEMORY LEAKS in validating 
+      mode too and although there's things to be done in validating mode,
+      testing tells that parsifal validation is already VERY STABLE.
+    - Better base directory handling added for nsvalid.c and winurl.c. 
+      Base directory handling is left out of the core parser - this is a 
+      conscious choice as well as leaving checking for legal systemID chars
+      for higher level i.e. for http library etc.
+    - Added samples/misc/helper.c that will be a place for some helper
+      routines like UTF8BufToLatin, GetBaseDir etc.
+    - Also tweaked nsvalid.c error reporting.
+    - Docs said (in validation section): "Of course you can use LPXMLPARSER 
+      UserData too but you must get it via LPXMLDTDVALIDATOR parser
+      parameter". And before that: "UserData parameter for your LPXMLPARSER 
+      will be LPXMLDTDVALIDATOR" - duh!
+
+0.9.0, 31.1.2005
+    - Preliminary DTD validation support. Quite comprehensive actually,
+      missing support for validation of TokenizedType and EnumeratedType 
+      attributes but in other respects very useful feature expecially in 
+      SAX parsing; simplifies state handling code a lot.    
+    - Fixed some code uselessly included when DTD_SUPPORT was not defined:
+      in ParseAttributes (defaulted attributes handling) and TrieTok.
+    - Fixed "exotic" bug which occurred when for exampe
+      <!ENTITY % pe SYSTEM "out.pe">
+      <!ENTITY ent "%pe;">
+      AND out.pe would contain encoding declaration; parsing of encodingDecl
+      used same buffer (RT->charsBuf) that entity parsing was using - fixed
+      by creating own XMLSTRINGBUF in ParseXmlDecl as a safety measure.
+    - fixed memory leak which was introduced in 0.8.3 (occurred when 
+      DTD_SUPPORT was off and <!DOCTYPE was present)
+    - fixed memory leak when startDocument returned XML_ABORT: iconv wasn't
+      released in that case. 
+    - Fixed bistream BISFIXBUF to set initial bufsize to blocksize*2 (this
+      results in fewer reallocs and fiddling of outbut buffer when parsing
+      internal entities for example)
+    - Added XMLParser_SetExternalSubset that provides similar features
+      as SAX getExternalSubset
+    - Now doesn't report error in non-validating mode when DOCTYPE and root
+      element names don't match. Infact we don't currently test this at all
+      to allow "selective validation".
+    - Fixed xmlcfg.h to use stdint.h for UINT32 if platform can't be 
+      otherwise determined
+    - Fixed bug in XMLVector_Remove(!)
+    - Moved some infrequently needed dtd specific definitions into xmldtd.h
+
+0.8.3, 11.8.2004
+    This release introduces many improvements to the parsing algorithms;
+    New Trie algorithm based routines speed up DTD tokenizer and improves
+    overall performance. Other optimizations have also been done bringing
+    parser performance very close to the perfomance of the fastest 
+    XML 1.0 parsers available while still retaining lightweight 
+    implementation and without compromising XML conformance. Portability 
+    has been improved (see News) and of course a few bugs have been fixed:
+    - Parser reported inaccurate ErrorLine in some cases where DTD token 
+      (name) ended with LF
+    - Xmltest VC project files were screwed up because they were 
+      accidentally run thru CRLF to LF conversion.
+
+0.8.2, 1.7.2004
+    This release fixes some bugs that occurred when parsing deeply nested 
+    parameter entities. Also improved tokenizer a bit. These improved 
+    some XML 1.0 conformance issues as well.
+
+0.8.1, 13.6.2004
+    Two bugfixes:
+    - GetSystemID/GetPublicID returned wrong values (and sometimes even 
+    garbage). This is now fixed and tested properly.
+    - Was unable to parse documents starting with xml-stylesheet PI 
+    (w/o xml declaration) Also updated XMLCONF testsuite to current version
+    and added some other tricky regression tests that process for example 
+    docbook.dtd etc. Examples were also revisited.
+
+0.8.0, 1.6.2004
+    This release adds DTD processing support; parameter entities, attribute
+    defaulting and DTD declaration events such as elementDeclHandler, 
+    attributeDeclHandler etc.  are now available.
+    - Added GetCurrentEntity function. see manual
+    - Fixed GetSystemID/GetPublicID to return accurate info. see manual
+    - Fixed inaccuracy in column position reporting on certain error conditions
+    - Fixed bug that make parser try to free invalid pointer when error occurred
+    parsing attributes - this lead to crash in some cases.
+
+0.7.5, 23.3.2004
+    Dinand Vanvelzen pointed out a bug in XMLStringbuf_Init when parameter
+    initSize was 0; _Init was calling malloc with 0 byte allocation request!
+    This infact succeeded when m$ RTL was used and same with linux C runtime
+    but Borland RTL malloc implementation failed because of this! Also fixed
+    some other minor things like XMLNormalizeBuf which now trims the buffer too
+    - one could ask why it didn't do this before... ;-)
+    Dinand also pointed out an old BYTE #define problem in windows which I've 
+    ignored in the past. (win API uses BYTE typedef which conflicts with 
+    parsifal definition). Actually I should replace all occurrences of BYTE
+    with char but I keep it for bacwards compatibility! Sorry Dinand - putting
+    parsifal.h include AFTER windows.h for example works for me. Other option
+    is to use:
+    #include "libparsifal/parsifal.h"
+    #undef BYTE
+    #include "windows.h"
+
+0.7.4, 15.2.2004
+    Support for linking with GNU libiconv; Now it's possible to parse documents
+    in various encodings such as UTF-16, UTF-32, EUC-JP, SHIFT_JIS, 
+    ISO-8859-{1,2,3,4,5,7,9,10,13,14,15,16} etc. Internal encoding routines and
+    encoding detection has also changed considerably and is now more mature
+    implementing XML spec appendix F "Autodetection of Character Encodings".
+    
+    - Memory corruption bug has been fixed (occurred when attribute
+      count grew bigger than 16 or tagstack grew bigger than 16) - added 
+      XMLPool routines that make memory handling more sophisticated and safe.
+    - Added BIS_ERR_INPUT/XMLP_ERR_IO for easier handling of input source
+      callback errors. Input source errors should be distinguished from EOF
+      condition expecially when external entities are parsed; entity can appear
+      well-formed and ok even when infact there is a stream error when only EOF 
+      is checked.
+    - Now reports line and column position for all illegal characters too
+    - Many other minor fixes and code clean-up
+
+0.7.3, 23.10.2003
+    Fixed stupid pointer relocating/reallocation bug in ReadCh()'s CR to LF
+    conversion routine. Thanks to Andrew Gray for tracing the bug for me -
+    actually I found this bug myself today too not knowing about Andrew... 
+    What a scary syncronized world ;)
+    Added mingw/dev-cpp (free IDE for mingw) static library project.
+    see win32/mingw/dev-cpp/static directory for more info.
+
+0.7.2, 30.9.2003
+    Parsing engine has been somewhat rewritten. New parser makes
+    more accurate position info and error info possible; see doc for info 
+    about XMLParser_GetCurrentColumn etc. Parser is now much more simple
+    and there is some performance benefit too.
+    API hasn't changed much, only XMLFLAG_CONVERT_EOL got to go. 
+    See also APIchanges. 
+    Fixed bugs:
+    - ISO-8859-1 encoded document with long whitespace section made
+      parsing fail because of faulty CRLF conversion routine.
+
+0.7.1, 24.7.2003 
+    Fixed bugs:
+    - EOL conversion bug when using ISO-8859-1 encoding (was converting
+      CRLF to LFLF in some cases).
+    - Duplicate attribute checking when XMLFLAG_NAMESPACE_PREFIXES is off
+    - Several error condition memory leaks plugged in attribute/namespacedecl 
+      containing internal entities.
+    - Eliminated some GCC warnings
+    
+    Also added some new conformance testcases and fixed some sample code.
+
+0.7.0, 3.7.2003 
+    Added internal and external general entity support. Optimizations (about 
+    50% performance increase). Optimizations in memory management: XMLVector
+    improved and optimized. Major code clean up (got rid of stupid and
+    confusing LPXMLPARSER object-global temp variables). Major well-formedness
+    / XML spec tests and corrections - sources now include OASIS XML testsuite 
+    parser. API clean up. See APIChanges for more details. Better samples 
+    included. Some C++ tests done too.
+    
+0.6.8, 10.3.2003
+    Various bugs fixed: internal DTD subset parsing bug fixed (
+    TOK_END_DTD string ']>' length was 1 in BufferedIStream_Read 3. param!!!). 
+    There's still an issue about entity declarations 
+    containing ]> in quotes which causes Parsifal to reject document (solving 
+    this would require some sort of simple subset validator). See ISSUES.
+    Fixed "1 tag document error" bug (this is for all authors of documents
+    that contain only  1 element!)
+    Bug fixed in BufferedIStream_Peek (assumed memcmp returns 1 or 0 when
+    infact it can return < -1 which means false "fatal errors" from
+    BufferedIStream_Peek). Thanks to Keijiro Takahashi for pointing this out.
+    Added isrcmem.h helper macros and declarations for parsing memory buffers
+    (adding more build-in inputsources to Parsifal isn't currently in my TODO 
+    list) Also added new sample program xmlcopy (a great piece of s**tware 
+    I tell you!)
+    
+    I've run many more OASIS conformance tests and it seems that Parsifal
+    is quite loyal to XML spec at least when it comes to well-formedness. 
+    Namespaces seems to be ok too (although there's no "mandatory" 
+    http://www.w3.org/XML/1998/namespace uris set for xmlns declarations 
+    for example). Still no new test results included in this release.
+    Done little benchmarking too. See html docs.
+
+0.6.7, 1.3.2003
+    Added Whitespace property; gives more control over how Parsifal
+    treats whitespace in element content and in attributes.
+    Whitespace handling info also added to Manual.html. 
+    Fixed attribute parsing bug: name=XXX'value' 
+    where junk in XXX was possible! Strange I never bumped into this 
+    until running some OASIS tests...
+    Now tests illegal entities like &#1; also and
+    reports illegal characters as ERR_XMLP_ILLEGAL_CHAR (new PARSER_ERRCODE) 
+    not ERR_XMLP_ENCODING (also reports char value itself inside single
+    quotes in ErrorString). Fixed also BUFFEREDISTREAM encoding bug.
+
+0.6.6, 23.2.2003
+    Critical bug fix for unicode (UTF-8) validator. Now tested with
+    OASIS XML Conformance Subcommittee japanese UTF-8 test files.
+    Planning to release "test packs" separately for wfparser -
+    current distribution is still including basic well formedness
+    tests. Solved some ANSI C header issues as well.
+
+0.6.5, 15.2.2003
+    Multi platform release; makefiles for building shared library
+    for unix and stuff. Some bug fixes.
+
+0.6.4, 15.11.2002
+    Initial release as "xmlproc"
+    
+    Name changed to "parsifal" 18.11.2002. Thanks for Mr. Lars Marius Garshol 
+    who kindly pointed out about the existence of his parser xmlproc! No harm 
+    done? (He has an very nice site at http://www.garshol.priv.no which 
+    includes for example very thorough info about free XML tools).

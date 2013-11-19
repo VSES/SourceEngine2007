@@ -1,0 +1,78 @@
+//-----------------------------------------------------------------------------
+//	SHADERLIB.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+	$BuildForLinux 1
+}
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;..\"
+		$PreprocessorDefinitions		"$BASE;fopen=dont_use_fopen;FAST_MATERIALVAR_ACCESS"
+	}
+}
+
+
+$Project "shaderlib"
+{
+	$Folder	"Source Files"
+	{
+		$File	"BaseShader.cpp"
+		$File	"ShaderDLL.cpp"
+		$File	"shaderlib_cvar.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"shaderDLL_Global.h"
+		$File	"shaderlib_cvar.h"
+		$File	"$SRCDIR\public\shaderlib\BaseShader.h"
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\Public\commonmacros.h"
+		$File	"$SRCDIR\public\shaderlib\cshader.h"
+		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\public\tier0\fasttimer.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\public\vstdlib\ICommandLine.h"
+		$File	"$SRCDIR\Public\icvar.h"
+		$File	"$SRCDIR\Public\ImageLoader.h"
+		$File	"$SRCDIR\public\materialsystem\imaterial.h"
+		$File	"$SRCDIR\public\materialsystem\imaterialsystem.h"
+		$File	"$SRCDIR\public\materialsystem\imaterialsystemhardwareconfig.h"
+		$File	"$SRCDIR\public\materialsystem\imaterialvar.h"
+		$File	"$SRCDIR\public\materialsystem\imesh.h"
+		$File	"$SRCDIR\public\materialsystem\IShader.h"
+		$File	"$SRCDIR\public\materialsystem\ishaderapi.h"
+		$File	"..\IShaderSystem.h"
+		$File	"$SRCDIR\public\materialsystem\itexture.h"
+		$File	"$SRCDIR\public\materialsystem\materialsystem_config.h"
+		$File	"$SRCDIR\Public\MATHLIB.H"
+		$File	"$SRCDIR\public\tier0\memdbgoff.h"
+		$File	"$SRCDIR\public\tier0\memdbgon.h"
+		$File	"$SRCDIR\public\tier0\platform.h"
+		$File	"$SRCDIR\public\protected_things.h"
+		$File	"$SRCDIR\public\shaderlib\ShaderDLL.h"
+		$File	"$SRCDIR\public\string_t.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\vector.h"
+		$File	"$SRCDIR\Public\vector2d.h"
+		$File	"$SRCDIR\Public\vector4d.h"
+		$File	"$SRCDIR\Public\vmatrix.h"
+		$File	"$SRCDIR\Public\vplane.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+	}
+}

@@ -1,0 +1,3943 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.50727.42 (d02d2ace).
+//
+// e:\se2008\src\src\utils\vpc\vpc\vpc\debug\vcprojectengine.tlh
+//
+// C++ source equivalent of Win32 type library VCProjectEngine.dll
+// compiler-generated file created 07/23/12 at 20:16:40 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+namespace VCProjectEngineLibrary {
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("fbbf3c60-2428-11d7-8bf6-00b0d03daa06"))
+/* LIBID */ __VCProjectEngineLibrary;
+struct __declspec(uuid("fbbf3c62-2428-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ IVCProjectEngineEvents;
+enum enumSccEvent;
+struct __declspec(uuid("fbbf3c63-2428-11d7-8bf6-00b0d03daa06"))
+/* dispinterface */ _dispVCProjectEngineEvents;
+struct __declspec(uuid("fbbf3c64-2428-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ _VCProjectEngineEvents;
+struct /* coclass */ VCProjectEngineEvents;
+struct /* coclass */ VCProjectEngineObject;
+struct __declspec(uuid("238b5186-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCProjectEngine;
+struct __declspec(uuid("238b5187-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCToolFile;
+struct __declspec(uuid("238b5170-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ IVCCollection;
+struct __declspec(uuid("238b5171-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCPlatform;
+struct __declspec(uuid("238b5173-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCProjectItem;
+struct __declspec(uuid("238b5174-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCProject;
+enum enumFileFormat;
+struct __declspec(uuid("238b5182-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCConfiguration;
+enum ConfigurationTypes;
+enum useOfMfc;
+enum useOfATL;
+enum charSet;
+enum compileAsManagedOptions;
+enum WholeProgramOptimizationTypes;
+struct __declspec(uuid("238b5183-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCPropertySheet;
+struct __declspec(uuid("238b5188-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCUserMacro;
+enum BuildWithPropertySheetType;
+enum eSqlClrPermissionLevel;
+struct __declspec(uuid("238b5177-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCReferences;
+struct __declspec(uuid("238b5178-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCReference;
+struct __declspec(uuid("238b5179-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCAssemblyReference;
+struct __declspec(uuid("238b5180-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCProjectReference;
+struct __declspec(uuid("238b5181-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCActiveXReference;
+struct __declspec(uuid("52fcb870-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCXMLDataGeneratorTool;
+struct __declspec(uuid("238b5172-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCDebugSettings;
+enum TypeOfDebugger;
+enum RemoteDebuggerType;
+enum eDebuggerTypes;
+enum enumMPIAcceptModes;
+struct __declspec(uuid("52fcb856-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCCLCompilerTool;
+enum warningLevelOption;
+enum debugOption;
+enum optimizeOption;
+enum inlineExpansionOption;
+enum favorSizeOrSpeedOption;
+enum preprocessOption;
+enum cppExceptionHandling;
+enum basicRuntimeCheckOption;
+enum runtimeLibraryOption;
+enum structMemberAlignOption;
+enum floatingPointModel;
+enum pchOption;
+enum asmListingOption;
+enum browseInfoOption;
+enum callingConventionOption;
+enum CompileAsOptions;
+enum enhancedInstructionSetType;
+enum compilerErrorReportingType;
+struct __declspec(uuid("52fcb860-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCMidlTool;
+enum midlWarningLevelOption;
+enum midlCharOption;
+enum midlTargetEnvironment;
+enum midlErrorCheckOption;
+enum midlStructMemberAlignOption;
+struct __declspec(uuid("52fcb857-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCLinkerTool;
+enum linkProgressOption;
+enum linkIncrementalType;
+enum subSystemOption;
+enum addressAwarenessType;
+enum termSvrAwarenessType;
+enum driverOption;
+enum optRefType;
+enum optFoldingType;
+enum optWin98Type;
+enum LinkTimeCodeGenerationOption;
+enum machineTypeOption;
+enum eCLRThreadAttribute;
+enum eCLRImageType;
+enum linkFixedBaseAddress;
+enum linkAssemblyDebug;
+enum linkerErrorReportingType;
+struct __declspec(uuid("52fcb861-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCResourceCompilerTool;
+enum enumResourceLangID;
+struct __declspec(uuid("52fcb859-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCCustomBuildTool;
+struct __declspec(uuid("52fcb863-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCALinkTool;
+struct __declspec(uuid("52fcb862-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCManagedResourceCompilerTool;
+struct __declspec(uuid("52fcb876-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCManifestTool;
+struct __declspec(uuid("52fcb877-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCXDCMakeTool;
+struct __declspec(uuid("238b5176-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCFilter;
+enum eWebRefUrlBehavior;
+struct __declspec(uuid("238b5175-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCFile;
+enum eFileType;
+struct __declspec(uuid("238b5184-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCFileConfiguration;
+struct __declspec(uuid("52fcb864-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCPreBuildEventTool;
+struct __declspec(uuid("52fcb865-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCPreLinkEventTool;
+struct __declspec(uuid("52fcb866-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCPostBuildEventTool;
+struct __declspec(uuid("52fcb867-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCBscMakeTool;
+struct __declspec(uuid("52fcb871-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCWebDeploymentTool;
+enum eAppProtectionOption;
+struct __declspec(uuid("52fcb869-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCWebServiceProxyGeneratorTool;
+enum genProxyLanguage;
+struct __declspec(uuid("52fcb858-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCLibrarianTool;
+struct __declspec(uuid("52fcb868-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCNMakeTool;
+struct __declspec(uuid("52fcb878-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCAppVerifierTool;
+enum AppVrfBaseLayerOptions;
+enum AVPageHeapProtectionDirection;
+struct __declspec(uuid("01b8e469-7081-4b35-9d08-994b0e96d8b6"))
+/* dual interface */ VCFxCopTool;
+struct __declspec(uuid("52fcb875-2429-11d7-8bf6-00b0d03daa06"))
+/* dual interface */ VCCustomBuildRule;
+struct __declspec(uuid("9c894c02-b512-4b23-9b29-e3195b26c6ba"))
+/* dual interface */ VCRuntimeStringProperty;
+struct __declspec(uuid("17d1b7b3-5827-43be-a70b-6a91bd4cb154"))
+/* dual interface */ VCRuntimeProperty;
+struct __declspec(uuid("368263d3-70b8-49ce-b473-46ff42a2e79b"))
+/* dual interface */ VCRuntimeIntegerProperty;
+struct __declspec(uuid("9d622602-4147-4f90-b458-c497f08f4301"))
+/* dual interface */ VCRuntimeEnumProperty;
+struct __declspec(uuid("ddda0c6b-f8e7-4a9a-8a7e-91d7600afa96"))
+/* dual interface */ VCRuntimeEnumValue;
+struct __declspec(uuid("8667a38d-e190-42ec-b856-a862ba4baa23"))
+/* dual interface */ VCRuntimeBooleanProperty;
+struct __declspec(uuid("4f0f5fc0-a5c3-4ffe-b2ac-0d4782f0e835"))
+/* interface */ ISimplePropertyContainer;
+struct __declspec(uuid("4f0f5fc1-a5c3-4ffe-b2ac-0d4782f0e835"))
+/* interface */ IToolPropertyWriter;
+struct __declspec(uuid("4f0f5fc2-a5c3-4ffe-b2ac-0d4782f0e835"))
+/* interface */ ISimpleErrorContext;
+struct __declspec(uuid("4f0f5fbf-a5c3-87e4-b2ac-1d4782f0e835"))
+/* interface */ IGenericUserDefinedTool;
+struct __declspec(uuid("4f0f5fbf-a5c3-4ffe-b2ac-0d4782f0e835"))
+/* interface */ IUserDefinedTool;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(IVCProjectEngineEvents, __uuidof(IVCProjectEngineEvents));
+_COM_SMARTPTR_TYPEDEF(_dispVCProjectEngineEvents, __uuidof(_dispVCProjectEngineEvents));
+_COM_SMARTPTR_TYPEDEF(_VCProjectEngineEvents, __uuidof(_VCProjectEngineEvents));
+_COM_SMARTPTR_TYPEDEF(IVCCollection, __uuidof(IVCCollection));
+_COM_SMARTPTR_TYPEDEF(VCToolFile, __uuidof(VCToolFile));
+_COM_SMARTPTR_TYPEDEF(VCProjectEngine, __uuidof(VCProjectEngine));
+_COM_SMARTPTR_TYPEDEF(VCPlatform, __uuidof(VCPlatform));
+_COM_SMARTPTR_TYPEDEF(VCProjectItem, __uuidof(VCProjectItem));
+_COM_SMARTPTR_TYPEDEF(VCProject, __uuidof(VCProject));
+_COM_SMARTPTR_TYPEDEF(VCReferences, __uuidof(VCReferences));
+_COM_SMARTPTR_TYPEDEF(VCReference, __uuidof(VCReference));
+_COM_SMARTPTR_TYPEDEF(VCAssemblyReference, __uuidof(VCAssemblyReference));
+_COM_SMARTPTR_TYPEDEF(VCProjectReference, __uuidof(VCProjectReference));
+_COM_SMARTPTR_TYPEDEF(VCActiveXReference, __uuidof(VCActiveXReference));
+_COM_SMARTPTR_TYPEDEF(VCXMLDataGeneratorTool, __uuidof(VCXMLDataGeneratorTool));
+_COM_SMARTPTR_TYPEDEF(VCDebugSettings, __uuidof(VCDebugSettings));
+_COM_SMARTPTR_TYPEDEF(VCCLCompilerTool, __uuidof(VCCLCompilerTool));
+_COM_SMARTPTR_TYPEDEF(VCMidlTool, __uuidof(VCMidlTool));
+_COM_SMARTPTR_TYPEDEF(VCLinkerTool, __uuidof(VCLinkerTool));
+_COM_SMARTPTR_TYPEDEF(VCResourceCompilerTool, __uuidof(VCResourceCompilerTool));
+_COM_SMARTPTR_TYPEDEF(VCCustomBuildTool, __uuidof(VCCustomBuildTool));
+_COM_SMARTPTR_TYPEDEF(VCALinkTool, __uuidof(VCALinkTool));
+_COM_SMARTPTR_TYPEDEF(VCManagedResourceCompilerTool, __uuidof(VCManagedResourceCompilerTool));
+_COM_SMARTPTR_TYPEDEF(VCManifestTool, __uuidof(VCManifestTool));
+_COM_SMARTPTR_TYPEDEF(VCXDCMakeTool, __uuidof(VCXDCMakeTool));
+_COM_SMARTPTR_TYPEDEF(VCFilter, __uuidof(VCFilter));
+_COM_SMARTPTR_TYPEDEF(VCFile, __uuidof(VCFile));
+_COM_SMARTPTR_TYPEDEF(VCFileConfiguration, __uuidof(VCFileConfiguration));
+_COM_SMARTPTR_TYPEDEF(VCPreBuildEventTool, __uuidof(VCPreBuildEventTool));
+_COM_SMARTPTR_TYPEDEF(VCPreLinkEventTool, __uuidof(VCPreLinkEventTool));
+_COM_SMARTPTR_TYPEDEF(VCPostBuildEventTool, __uuidof(VCPostBuildEventTool));
+_COM_SMARTPTR_TYPEDEF(VCBscMakeTool, __uuidof(VCBscMakeTool));
+_COM_SMARTPTR_TYPEDEF(VCWebDeploymentTool, __uuidof(VCWebDeploymentTool));
+_COM_SMARTPTR_TYPEDEF(VCWebServiceProxyGeneratorTool, __uuidof(VCWebServiceProxyGeneratorTool));
+_COM_SMARTPTR_TYPEDEF(VCLibrarianTool, __uuidof(VCLibrarianTool));
+_COM_SMARTPTR_TYPEDEF(VCNMakeTool, __uuidof(VCNMakeTool));
+_COM_SMARTPTR_TYPEDEF(VCAppVerifierTool, __uuidof(VCAppVerifierTool));
+_COM_SMARTPTR_TYPEDEF(VCFxCopTool, __uuidof(VCFxCopTool));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeProperty, __uuidof(VCRuntimeProperty));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeStringProperty, __uuidof(VCRuntimeStringProperty));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeIntegerProperty, __uuidof(VCRuntimeIntegerProperty));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeEnumValue, __uuidof(VCRuntimeEnumValue));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeEnumProperty, __uuidof(VCRuntimeEnumProperty));
+_COM_SMARTPTR_TYPEDEF(VCRuntimeBooleanProperty, __uuidof(VCRuntimeBooleanProperty));
+_COM_SMARTPTR_TYPEDEF(VCCustomBuildRule, __uuidof(VCCustomBuildRule));
+_COM_SMARTPTR_TYPEDEF(ISimplePropertyContainer, __uuidof(ISimplePropertyContainer));
+_COM_SMARTPTR_TYPEDEF(IToolPropertyWriter, __uuidof(IToolPropertyWriter));
+_COM_SMARTPTR_TYPEDEF(ISimpleErrorContext, __uuidof(ISimpleErrorContext));
+_COM_SMARTPTR_TYPEDEF(IGenericUserDefinedTool, __uuidof(IGenericUserDefinedTool));
+_COM_SMARTPTR_TYPEDEF(IUserDefinedTool, __uuidof(IUserDefinedTool));
+_COM_SMARTPTR_TYPEDEF(VCConfiguration, __uuidof(VCConfiguration));
+_COM_SMARTPTR_TYPEDEF(VCPropertySheet, __uuidof(VCPropertySheet));
+_COM_SMARTPTR_TYPEDEF(VCUserMacro, __uuidof(VCUserMacro));
+
+//
+// Type library items
+//
+
+enum enumSccEvent
+{
+    eProjectInScc = 0,
+    ePreDirtyNotification = 1
+};
+
+struct __declspec(uuid("fbbf3c62-2428-11d7-8bf6-00b0d03daa06"))
+IVCProjectEngineEvents : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall ItemAdded (
+        IDispatch * Item,
+        IDispatch * ItemParent ) = 0;
+      virtual HRESULT __stdcall ItemRemoved (
+        IDispatch * Item,
+        IDispatch * ItemParent ) = 0;
+      virtual HRESULT __stdcall ItemRenamed (
+        IDispatch * Item,
+        IDispatch * ItemParent,
+        BSTR OldName ) = 0;
+      virtual HRESULT __stdcall ItemMoved (
+        IDispatch * Item,
+        IDispatch * NewParent,
+        IDispatch * OldParent ) = 0;
+      virtual HRESULT __stdcall ItemPropertyChange (
+        IDispatch * Item,
+        IDispatch * Tool,
+        long dispid ) = 0;
+      virtual HRESULT __stdcall SccEvent (
+        IDispatch * Item,
+        enum enumSccEvent event,
+        /*[out,retval]*/ VARIANT_BOOL * Ret ) = 0;
+      virtual HRESULT __stdcall ReportError (
+        BSTR ErrMsg,
+        HRESULT hr,
+        BSTR HelpKeyword ) = 0;
+      virtual HRESULT __stdcall ProjectBuildStarted (
+        IDispatch * Cfg ) = 0;
+      virtual HRESULT __stdcall ProjectBuildFinished (
+        IDispatch * Cfg,
+        long warnings,
+        long errors,
+        VARIANT_BOOL Cancelled ) = 0;
+      virtual HRESULT __stdcall SolutionLoaded ( ) = 0;
+};
+
+struct __declspec(uuid("fbbf3c63-2428-11d7-8bf6-00b0d03daa06"))
+_dispVCProjectEngineEvents : IDispatch
+{};
+
+struct __declspec(uuid("fbbf3c64-2428-11d7-8bf6-00b0d03daa06"))
+_VCProjectEngineEvents : IDispatch
+{};
+
+struct __declspec(uuid("fbbf3c65-2428-11d7-8bf6-00b0d03daa06"))
+VCProjectEngineEvents;
+    // [ default ] interface _VCProjectEngineEvents
+    // [ default, source ] dispinterface _dispVCProjectEngineEvents
+
+struct __declspec(uuid("fbbf3c66-2428-11d7-8bf6-00b0d03daa06"))
+VCProjectEngineObject;
+    // [ default ] interface VCProjectEngine
+
+struct __declspec(uuid("238b5170-2429-11d7-8bf6-00b0d03daa06"))
+IVCCollection : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall _NewEnum (
+        /*[out,retval]*/ IUnknown * * Enumerator ) = 0;
+      virtual HRESULT __stdcall Item (
+        VARIANT Index,
+        /*[out,retval]*/ IDispatch * * Item ) = 0;
+      virtual HRESULT __stdcall get_Count (
+        /*[out,retval]*/ long * Val ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+};
+
+struct __declspec(uuid("238b5187-2429-11d7-8bf6-00b0d03daa06"))
+VCToolFile : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_Path (
+        /*[out,retval]*/ BSTR * Path ) = 0;
+      virtual HRESULT __stdcall get_CustomBuildRules (
+        /*[out,retval]*/ struct IVCCollection * * BuildRules ) = 0;
+      virtual HRESULT __stdcall Save (
+        /*[in]*/ BSTR Path ) = 0;
+      virtual HRESULT __stdcall AddCustomBuildRule (
+        /*[in]*/ BSTR Name,
+        /*[in]*/ BSTR CommandLine,
+        /*[in]*/ BSTR Outputs,
+        /*[in]*/ BSTR FileExtensions,
+        /*[out,retval]*/ IDispatch * * CustomBuildRule ) = 0;
+      virtual HRESULT __stdcall RemoveCustomBuildRule (
+        /*[in]*/ IDispatch * CustomBuildRule ) = 0;
+};
+
+struct __declspec(uuid("238b5186-2429-11d7-8bf6-00b0d03daa06"))
+VCProjectEngine : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_BuildLogging (
+        /*[out,retval]*/ VARIANT_BOOL * Log ) = 0;
+      virtual HRESULT __stdcall put_BuildLogging (
+        /*[in]*/ VARIANT_BOOL Log ) = 0;
+      virtual HRESULT __stdcall get_BuildTiming (
+        /*[out,retval]*/ VARIANT_BOOL * Time ) = 0;
+      virtual HRESULT __stdcall put_BuildTiming (
+        /*[in]*/ VARIANT_BOOL Time ) = 0;
+      virtual HRESULT __stdcall get_PerformanceLogging (
+        /*[out,retval]*/ VARIANT_BOOL * Time ) = 0;
+      virtual HRESULT __stdcall put_PerformanceLogging (
+        /*[in]*/ VARIANT_BOOL Time ) = 0;
+      virtual HRESULT __stdcall IsSystemInclude (
+        /*[in]*/ BSTR Include,
+        /*[out,retval]*/ VARIANT_BOOL * IsSystem ) = 0;
+      virtual HRESULT __stdcall get_Events (
+        /*[out,retval]*/ IDispatch * * ProjectEngineEvents ) = 0;
+      virtual HRESULT __stdcall get_Platforms (
+        /*[out,retval]*/ IDispatch * * Platforms ) = 0;
+      virtual HRESULT __stdcall get_Projects (
+        /*[out,retval]*/ IDispatch * * Projects ) = 0;
+      virtual HRESULT __stdcall CreateProject (
+        /*[in]*/ BSTR projectName,
+        /*[out,retval]*/ IDispatch * * project ) = 0;
+      virtual HRESULT __stdcall LoadProject (
+        /*[in]*/ BSTR projectName,
+        /*[out,retval]*/ IDispatch * * project ) = 0;
+      virtual HRESULT __stdcall RemoveProject (
+        /*[in]*/ IDispatch * project ) = 0;
+      virtual HRESULT __stdcall get_PropertySheets (
+        /*[out,retval]*/ IDispatch * * PropertySheets ) = 0;
+      virtual HRESULT __stdcall LoadPropertySheet (
+        /*[in]*/ BSTR bstrName,
+        /*[out,retval]*/ IDispatch * * PropertySheet1 ) = 0;
+      virtual HRESULT __stdcall CreatePropertySheet (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ IDispatch * * PropertySheet1 ) = 0;
+      virtual HRESULT __stdcall RemovePropertySheet (
+        /*[in]*/ IDispatch * PropertySheet1 ) = 0;
+      virtual HRESULT __stdcall Evaluate (
+        /*[in]*/ BSTR In,
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall get_ShowEnvironmentInBuildLog (
+        /*[out,retval]*/ VARIANT_BOOL * showEnvironment ) = 0;
+      virtual HRESULT __stdcall put_ShowEnvironmentInBuildLog (
+        /*[in]*/ VARIANT_BOOL showEnvironment ) = 0;
+      virtual HRESULT __stdcall AddFakeProps (
+        /*[in]*/ long idStart,
+        /*[in]*/ long idEnd,
+        /*[in]*/ long idOffset ) = 0;
+      virtual HRESULT __stdcall get_ToolFileSearchPaths (
+        /*[out,retval]*/ BSTR * SearchPaths ) = 0;
+      virtual HRESULT __stdcall put_ToolFileSearchPaths (
+        /*[in]*/ BSTR SearchPaths ) = 0;
+      virtual HRESULT __stdcall get_ToolFiles (
+        /*[out,retval]*/ IDispatch * * ToolFiles ) = 0;
+      virtual HRESULT __stdcall LoadToolFile (
+        /*[in]*/ BSTR File,
+        /*[out,retval]*/ struct VCToolFile * * ToolFile ) = 0;
+      virtual HRESULT __stdcall CreateToolFile (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ struct VCToolFile * * ToolFile ) = 0;
+      virtual HRESULT __stdcall get_ValidateSchemas (
+        /*[out,retval]*/ VARIANT_BOOL * Validate ) = 0;
+      virtual HRESULT __stdcall put_ValidateSchemas (
+        /*[in]*/ VARIANT_BOOL Validate ) = 0;
+};
+
+struct __declspec(uuid("238b5171-2429-11d7-8bf6-00b0d03daa06"))
+VCPlatform : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_ExecutableDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_ExecutableDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_IncludeDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_IncludeDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_ReferenceDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_ReferenceDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_LibraryDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_LibraryDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_SourceDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_SourceDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_ExcludeDirectories (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_ExcludeDirectories (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall get_Tools (
+        /*[out,retval]*/ IDispatch * * Dir ) = 0;
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR NameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * IsMatch ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall Evaluate (
+        /*[in]*/ BSTR In,
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall get_DefaultDirectory (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall CommitChanges ( ) = 0;
+      virtual HRESULT __stdcall GetToolNameForKeyword (
+        /*[in]*/ BSTR keyword,
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_DeploymentTool (
+        /*[out,retval]*/ IDispatch * * Tool ) = 0;
+      virtual HRESULT __stdcall get_DebuggerTool (
+        /*[out,retval]*/ IDispatch * * Tool ) = 0;
+      virtual HRESULT __stdcall get_GeneralPageTool (
+        /*[out,retval]*/ IDispatch * * Page ) = 0;
+      virtual HRESULT __stdcall get_NumberOfPlatformMacros (
+        /*[out,retval]*/ long * numMacros ) = 0;
+      virtual HRESULT __stdcall get_PlatformMacro (
+        /*[in]*/ long Index,
+        /*[out,retval]*/ BSTR * macroName ) = 0;
+      virtual HRESULT __stdcall GetMacroValue (
+        /*[in]*/ BSTR In,
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall get_DisableAlternateDebuggers (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall get_ExecutableExtensions (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall get_DumpfileExtensions (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall IsExecutable (
+        /*[in]*/ BSTR Path,
+        /*[out,retval]*/ VARIANT_BOOL * Ret ) = 0;
+      virtual HRESULT __stdcall IsDumpfile (
+        /*[in]*/ BSTR Path,
+        /*[out,retval]*/ VARIANT_BOOL * Ret ) = 0;
+};
+
+struct __declspec(uuid("238b5173-2429-11d7-8bf6-00b0d03daa06"))
+VCProjectItem : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR NameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * IsMatch ) = 0;
+      virtual HRESULT __stdcall get_project (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_Parent (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_ItemName (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall get_Kind (
+        /*[out,retval]*/ BSTR * Kind ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+};
+
+enum enumFileFormat
+{
+    eANSI = 0,
+    eUTF8 = 1,
+    eUnicode = 2
+};
+
+struct __declspec(uuid("238b5174-2429-11d7-8bf6-00b0d03daa06"))
+VCProject : VCProjectItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_ProjectDirectory (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall get_ProjectFile (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_ProjectFile (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_Platforms (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddPlatform (
+        /*[in]*/ BSTR PlatformName ) = 0;
+      virtual HRESULT __stdcall RemovePlatform (
+        /*[in]*/ IDispatch * Platform ) = 0;
+      virtual HRESULT __stdcall get_Configurations (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddConfiguration (
+        BSTR ConfigurationName ) = 0;
+      virtual HRESULT __stdcall RemoveConfiguration (
+        IDispatch * Config ) = 0;
+      virtual HRESULT __stdcall get_Files (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddFile (
+        /*[in]*/ BSTR File,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall AddFile (
+        BSTR bstrPath,
+        /*[out,retval]*/ IDispatch * * Disp ) = 0;
+      virtual HRESULT __stdcall RemoveFile (
+        /*[in]*/ IDispatch * File ) = 0;
+      virtual HRESULT __stdcall get_Filters (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddFilter (
+        /*[in]*/ BSTR Filter,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall AddFilter (
+        BSTR bstrFilterName,
+        /*[out,retval]*/ IDispatch * * Disp ) = 0;
+      virtual HRESULT __stdcall RemoveFilter (
+        /*[in]*/ IDispatch * Filter ) = 0;
+      virtual HRESULT __stdcall get_Items (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddWebReference (
+        /*[in]*/ BSTR URL,
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ IDispatch * * File ) = 0;
+      virtual HRESULT __stdcall Save ( ) = 0;
+      virtual HRESULT __stdcall get_IsDirty (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall get_FileFormat (
+        /*[out,retval]*/ enum enumFileFormat * FileType ) = 0;
+      virtual HRESULT __stdcall put_FileFormat (
+        /*[in]*/ enum enumFileFormat FileType ) = 0;
+      virtual HRESULT __stdcall get_FileEncoding (
+        /*[out,retval]*/ BSTR * encoding ) = 0;
+      virtual HRESULT __stdcall put_FileEncoding (
+        /*[in]*/ BSTR encoding ) = 0;
+      virtual HRESULT __stdcall SaveProjectOptions (
+        /*[in]*/ IUnknown * StreamUnk ) = 0;
+      virtual HRESULT __stdcall LoadProjectOptions (
+        /*[in]*/ IUnknown * StreamUnk ) = 0;
+      virtual HRESULT __stdcall get_SccProjectName (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_SccProjectName (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_SccAuxPath (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_SccAuxPath (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_SccLocalPath (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_SccLocalPath (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_SccProvider (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_SccProvider (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_keyword (
+        /*[out,retval]*/ BSTR * keyword ) = 0;
+      virtual HRESULT __stdcall put_keyword (
+        /*[in]*/ BSTR keyword ) = 0;
+      virtual HRESULT __stdcall put_OwnerKey (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_OwnerKey (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_ProjectGUID (
+        /*[in]*/ BSTR guid ) = 0;
+      virtual HRESULT __stdcall get_ProjectGUID (
+        /*[out,retval]*/ BSTR * guid ) = 0;
+      virtual HRESULT __stdcall AddAssemblyReference (
+        /*[in]*/ BSTR Path,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddActiveXReference (
+        /*[in]*/ BSTR typeLibGuid,
+        /*[in]*/ long majorVersion,
+        /*[in]*/ long minorVersion,
+        /*[in]*/ long localeID,
+        /*[in]*/ BSTR wrapper,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddProjectReference (
+        /*[in]*/ IDispatch * proj,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddAssemblyReference (
+        /*[in]*/ BSTR bstrRef,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall CanAddActiveXReference (
+        /*[in]*/ BSTR typeLibGuid,
+        /*[in]*/ long majorVersion,
+        /*[in]*/ long minorVersion,
+        /*[in]*/ long localeID,
+        /*[in]*/ BSTR wrapper,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall CanAddProjectReference (
+        /*[in]*/ IDispatch * proj,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall RemoveReference (
+        /*[in]*/ IDispatch * pDispRef ) = 0;
+      virtual HRESULT __stdcall get_VCReferences (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_References (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_ReferencesConsumableByDesigners (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall put_RootNamespace (
+        /*[in]*/ BSTR guid ) = 0;
+      virtual HRESULT __stdcall get_RootNamespace (
+        /*[out,retval]*/ BSTR * guid ) = 0;
+      virtual HRESULT __stdcall get_Object (
+        /*[out,retval]*/ IDispatch * * vsObject ) = 0;
+      virtual HRESULT __stdcall get_Version (
+        /*[out]*/ long * major,
+        /*[out]*/ long * minor ) = 0;
+      virtual HRESULT __stdcall get_ShowAllFiles (
+        /*[out,retval]*/ VARIANT_BOOL * pbShowAllFiles ) = 0;
+      virtual HRESULT __stdcall put_ShowAllFiles (
+        /*[in]*/ VARIANT_BOOL pbShowAllFiles ) = 0;
+      virtual HRESULT __stdcall AddToolFile (
+        /*[in]*/ struct VCToolFile * ToolFile ) = 0;
+      virtual HRESULT __stdcall RemoveToolFile (
+        /*[in]*/ struct VCToolFile * ToolFile ) = 0;
+      virtual HRESULT __stdcall get_ToolFiles (
+        /*[out,retval]*/ struct IVCCollection * * ToolFiles ) = 0;
+      virtual HRESULT __stdcall put_ManagedDBConnection (
+        /*[in]*/ BSTR con ) = 0;
+      virtual HRESULT __stdcall get_ManagedDBConnection (
+        /*[out,retval]*/ BSTR * con ) = 0;
+      virtual HRESULT __stdcall put_ManagedDBProvider (
+        /*[in]*/ BSTR con ) = 0;
+      virtual HRESULT __stdcall get_ManagedDBProvider (
+        /*[out,retval]*/ BSTR * con ) = 0;
+      virtual HRESULT __stdcall MakeManagedDBConnection (
+        /*[in]*/ VARIANT_BOOL forceNew ) = 0;
+      virtual HRESULT __stdcall get_AssemblyReferenceSearchPaths (
+        /*[out,retval]*/ BSTR * Paths ) = 0;
+      virtual HRESULT __stdcall put_AssemblyReferenceSearchPaths (
+        /*[in]*/ BSTR Paths ) = 0;
+      virtual HRESULT __stdcall LoadUserFile ( ) = 0;
+      virtual HRESULT __stdcall SaveUserFile ( ) = 0;
+      virtual HRESULT __stdcall IncludeHeaderFile (
+        /*[in]*/ BSTR HeaderFile,
+        /*[in]*/ BSTR FileName ) = 0;
+};
+
+enum ConfigurationTypes
+{
+    typeUnknown = 0,
+    typeApplication = 1,
+    typeDynamicLibrary = 2,
+    typeStaticLibrary = 4,
+    typeGeneric = 10
+};
+
+enum useOfMfc
+{
+    useMfcStdWin = 0,
+    useMfcStatic = 1,
+    useMfcDynamic = 2
+};
+
+enum useOfATL
+{
+    useATLNotSet = 0,
+    useATLStatic = 1,
+    useATLDynamic = 2
+};
+
+enum charSet
+{
+    charSetNotSet = 0,
+    charSetUnicode = 1,
+    charSetMBCS = 2
+};
+
+enum compileAsManagedOptions
+{
+    managedNotSet = 0,
+    managedAssembly = 1,
+    managedAssemblyPure = 2,
+    managedAssemblySafe = 3,
+    managedAssemblyOldSyntax = 4
+};
+
+enum WholeProgramOptimizationTypes
+{
+    WholeProgramOptimizationNone = 0,
+    WholeProgramOptimizationLinkTimeCodeGen = 1,
+    WholeProgramOptimizationPGOInstrument = 2,
+    WholeProgramOptimizationPGOOptimize = 3,
+    WholeProgramOptimizationPGOUpdate = 4
+};
+
+enum BuildWithPropertySheetType
+{
+    BuildWithPropertySheetTypeBuild = 0,
+    BuildWithPropertySheetTypeRebuild = 1,
+    BuildWithPropertySheetTypeLink = 2
+};
+
+enum eSqlClrPermissionLevel
+{
+    eSafe = 0,
+    eExternal = 1,
+    eUnsafe = 2
+};
+
+struct __declspec(uuid("238b5177-2429-11d7-8bf6-00b0d03daa06"))
+VCReferences : VCProjectItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall AddAssemblyReference (
+        /*[in]*/ BSTR bstrRef,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall AddActiveXReference (
+        /*[in]*/ BSTR typeLibGuid,
+        /*[in]*/ long majorVersion,
+        /*[in]*/ long minorVersion,
+        /*[in]*/ long localeID,
+        /*[in]*/ BSTR wrapper,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall AddProjectReference (
+        /*[in]*/ IDispatch * proj,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall CanAddAssemblyReference (
+        /*[in]*/ BSTR bstrRef,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall CanAddActiveXReference (
+        /*[in]*/ BSTR typeLibGuid,
+        /*[in]*/ long majorVersion,
+        /*[in]*/ long minorVersion,
+        /*[in]*/ long localeID,
+        /*[in]*/ BSTR wrapper,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall CanAddProjectReference (
+        /*[in]*/ IDispatch * proj,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall RemoveReference (
+        /*[in]*/ IDispatch * Reference ) = 0;
+      virtual HRESULT __stdcall _NewEnum (
+        /*[out,retval]*/ IUnknown * * Enumerator ) = 0;
+      virtual HRESULT __stdcall Item (
+        VARIANT Index,
+        /*[out,retval]*/ IDispatch * * Item ) = 0;
+      virtual HRESULT __stdcall get_Count (
+        /*[out,retval]*/ long * Count ) = 0;
+      virtual HRESULT __stdcall get_References (
+        /*[out,retval]*/ IDispatch * * Refs ) = 0;
+      virtual HRESULT __stdcall AddAssemblyReferenceWithStrongName (
+        /*[in]*/ BSTR bstrRef,
+        /*[in]*/ BSTR bstrAssemblyName,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall CanAddAssemblyReferenceWithStrongName (
+        /*[in]*/ BSTR bstrRef,
+        /*[in]*/ BSTR bstrAssemblyName,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall AddProjectReferenceByIdentifier (
+        /*[in]*/ BSTR Identifier,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall CanAddProjectReferenceByIdentifier (
+        /*[in]*/ BSTR Identifier,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall AddReferenceToFile (
+        /*[in]*/ BSTR Path,
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall CanAddReferenceToFile (
+        /*[in]*/ BSTR Path,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+};
+
+struct __declspec(uuid("238b5178-2429-11d7-8bf6-00b0d03daa06"))
+VCReference : VCProjectItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall get_Identity (
+        /*[out,retval]*/ BSTR * Identity ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * Description ) = 0;
+      virtual HRESULT __stdcall get_Label (
+        /*[out,retval]*/ BSTR * Label ) = 0;
+      virtual HRESULT __stdcall get_CopyLocal (
+        /*[out,retval]*/ VARIANT_BOOL * CopyLocal ) = 0;
+      virtual HRESULT __stdcall put_CopyLocal (
+        /*[in]*/ VARIANT_BOOL CopyLocal ) = 0;
+      virtual HRESULT __stdcall get_FullPath (
+        /*[out,retval]*/ BSTR * FullPath ) = 0;
+      virtual HRESULT __stdcall get_Culture (
+        /*[out,retval]*/ BSTR * Culture ) = 0;
+      virtual HRESULT __stdcall get_majorVersion (
+        /*[out,retval]*/ long * majorVersion ) = 0;
+      virtual HRESULT __stdcall get_minorVersion (
+        /*[out,retval]*/ long * minorVersion ) = 0;
+      virtual HRESULT __stdcall get_Version (
+        /*[out,retval]*/ BSTR * Version ) = 0;
+      virtual HRESULT __stdcall get_StrongName (
+        /*[out,retval]*/ VARIANT_BOOL * StrongName ) = 0;
+      virtual HRESULT __stdcall get_PublicKeyToken (
+        /*[out,retval]*/ BSTR * PublicKeyToken ) = 0;
+      virtual HRESULT __stdcall get_BuildNumber (
+        /*[out,retval]*/ long * BuildNumber ) = 0;
+      virtual HRESULT __stdcall get_RevisionNumber (
+        /*[out,retval]*/ long * RevisionNumber ) = 0;
+      virtual HRESULT __stdcall Remove ( ) = 0;
+      virtual HRESULT __stdcall get_Reference (
+        /*[out,retval]*/ IDispatch * * Reference ) = 0;
+      virtual HRESULT __stdcall get_UseInBuild (
+        /*[out,retval]*/ VARIANT_BOOL * UseInBuild ) = 0;
+      virtual HRESULT __stdcall put_UseInBuild (
+        /*[in]*/ VARIANT_BOOL UseInBuild ) = 0;
+      virtual HRESULT __stdcall get_VCReferences (
+        /*[out,retval]*/ IDispatch * * References ) = 0;
+      virtual HRESULT __stdcall get_AssemblyName (
+        /*[out,retval]*/ BSTR * AssemblyName ) = 0;
+      virtual HRESULT __stdcall get_SubType (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_SubType (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_UseDependenciesInBuild (
+        /*[out,retval]*/ VARIANT_BOOL * UseDependenciesInBuild ) = 0;
+      virtual HRESULT __stdcall put_UseDependenciesInBuild (
+        /*[in]*/ VARIANT_BOOL UseDependenciesInBuild ) = 0;
+      virtual HRESULT __stdcall get_CopyLocalDependencies (
+        /*[out,retval]*/ VARIANT_BOOL * CopyLocalDependencies ) = 0;
+      virtual HRESULT __stdcall put_CopyLocalDependencies (
+        /*[in]*/ VARIANT_BOOL CopyLocalDependencies ) = 0;
+      virtual HRESULT __stdcall get_CopyLocalSatelliteAssemblies (
+        /*[out,retval]*/ VARIANT_BOOL * CopyLocalSatellites ) = 0;
+      virtual HRESULT __stdcall put_CopyLocalSatelliteAssemblies (
+        /*[in]*/ VARIANT_BOOL CopyLocalSatellites ) = 0;
+};
+
+struct __declspec(uuid("238b5179-2429-11d7-8bf6-00b0d03daa06"))
+VCAssemblyReference : VCReference
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_RelativePath (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+};
+
+struct __declspec(uuid("238b5180-2429-11d7-8bf6-00b0d03daa06"))
+VCProjectReference : VCReference
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_ReferencedProject (
+        /*[out,retval]*/ IDispatch * * ReferencedProject ) = 0;
+      virtual HRESULT __stdcall get_ReferencedProjectIdentifier (
+        /*[out,retval]*/ BSTR * referencedProjectID ) = 0;
+      virtual HRESULT __stdcall get_IsProjectLoaded (
+        /*[out,retval]*/ VARIANT_BOOL * IsLoaded ) = 0;
+};
+
+struct __declspec(uuid("238b5181-2429-11d7-8bf6-00b0d03daa06"))
+VCActiveXReference : VCReference
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_ControlGUID (
+        /*[out,retval]*/ BSTR * refGUID ) = 0;
+      virtual HRESULT __stdcall get_ControlVersion (
+        /*[out,retval]*/ BSTR * refVersion ) = 0;
+      virtual HRESULT __stdcall get_ControlLocale (
+        /*[out,retval]*/ long * refLocale ) = 0;
+      virtual HRESULT __stdcall get_WrapperTool (
+        /*[out,retval]*/ BSTR * wrapper ) = 0;
+      virtual HRESULT __stdcall put_WrapperTool (
+        /*[in]*/ BSTR wrapper ) = 0;
+      virtual HRESULT __stdcall get_ControlFullPath (
+        /*[out,retval]*/ BSTR * controlPath ) = 0;
+      virtual HRESULT __stdcall get_TypeLibraryName (
+        /*[out,retval]*/ BSTR * typelibName ) = 0;
+      virtual HRESULT __stdcall get_WrapperSuccessfullyGenerated (
+        /*[out,retval]*/ VARIANT_BOOL * Successful ) = 0;
+      virtual HRESULT __stdcall get_GenerationErrorMessage (
+        /*[out,retval]*/ BSTR * ErrorMessage ) = 0;
+};
+
+struct __declspec(uuid("52fcb870-2429-11d7-8bf6-00b0d03daa06"))
+VCXMLDataGeneratorTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_Output (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_Output (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * suppress ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL suppress ) = 0;
+      virtual HRESULT __stdcall get_Namespace (
+        /*[out,retval]*/ BSTR * Namespace ) = 0;
+      virtual HRESULT __stdcall put_Namespace (
+        /*[in]*/ BSTR Namespace ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+enum TypeOfDebugger
+{
+    DbgNativeOnly = 0,
+    DbgManagedOnly = 1,
+    DbgMixed = 2,
+    DbgAuto = 3
+};
+
+enum RemoteDebuggerType
+{
+    DbgRemote = 1,
+    DbgRemoteTCPIP = 2
+};
+
+enum eDebuggerTypes
+{
+    eLocalDebugger = 0,
+    eRemoteDebugger = 1,
+    eWebSvcDebugger = 2,
+    eClusterDebugger = 3,
+    eDebuggerTypeLast = 4
+};
+
+enum enumMPIAcceptModes
+{
+    eMPIAcceptSubnets = 0,
+    eMPIAcceptSpecific = 1,
+    eMPIAcceptAny = 2
+};
+
+struct __declspec(uuid("238b5172-2429-11d7-8bf6-00b0d03daa06"))
+VCDebugSettings : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Command (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_Command (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_CommandArguments (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_CommandArguments (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_WorkingDirectory (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_WorkingDirectory (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_Attach (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall put_Attach (
+        /*[in]*/ VARIANT_BOOL Val ) = 0;
+      virtual HRESULT __stdcall get_PDBPath (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_PDBPath (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_DebuggerType (
+        /*[out,retval]*/ enum TypeOfDebugger * Val ) = 0;
+      virtual HRESULT __stdcall put_DebuggerType (
+        /*[in]*/ enum TypeOfDebugger Val ) = 0;
+      virtual HRESULT __stdcall get_Environment (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_Environment (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_EnvironmentMerge (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall put_EnvironmentMerge (
+        /*[in]*/ VARIANT_BOOL Val ) = 0;
+      virtual HRESULT __stdcall get_SQLDebugging (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall put_SQLDebugging (
+        /*[in]*/ VARIANT_BOOL Val ) = 0;
+      virtual HRESULT __stdcall get_HttpUrl (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_HttpUrl (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_Remote (
+        /*[out,retval]*/ enum RemoteDebuggerType * Val ) = 0;
+      virtual HRESULT __stdcall put_Remote (
+        /*[in]*/ enum RemoteDebuggerType Val ) = 0;
+      virtual HRESULT __stdcall get_RemoteMachine (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_RemoteMachine (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_RemoteCommand (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_RemoteCommand (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_DebuggerFlavor (
+        /*[out,retval]*/ enum eDebuggerTypes * Val ) = 0;
+      virtual HRESULT __stdcall put_DebuggerFlavor (
+        /*[in]*/ enum eDebuggerTypes Val ) = 0;
+      virtual HRESULT __stdcall get_MPIRunCommand (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_MPIRunCommand (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_MPIRunArguments (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_MPIRunArguments (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_MPIRunWorkingDirectory (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_MPIRunWorkingDirectory (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_ApplicationCommand (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_ApplicationCommand (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_ApplicationArguments (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_ApplicationArguments (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_ShimCommand (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_ShimCommand (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_MPIAcceptMode (
+        /*[out,retval]*/ enum enumMPIAcceptModes * Val ) = 0;
+      virtual HRESULT __stdcall put_MPIAcceptMode (
+        /*[in]*/ enum enumMPIAcceptModes Val ) = 0;
+      virtual HRESULT __stdcall get_MPIAcceptFilter (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_MPIAcceptFilter (
+        /*[in]*/ BSTR Val ) = 0;
+};
+
+enum warningLevelOption
+{
+    warningLevel_0 = 0,
+    warningLevel_1 = 1,
+    warningLevel_2 = 2,
+    warningLevel_3 = 3,
+    warningLevel_4 = 4
+};
+
+enum debugOption
+{
+    debugDisabled = 0,
+    debugOldStyleInfo = 1,
+    debugEnabled = 3,
+    debugEditAndContinue = 4
+};
+
+enum optimizeOption
+{
+    optimizeDisabled = 0,
+    optimizeMinSpace = 1,
+    optimizeMaxSpeed = 2,
+    optimizeFull = 3,
+    optimizeCustom = 4
+};
+
+enum inlineExpansionOption
+{
+    expandDisable = 0,
+    expandOnlyInline = 1,
+    expandAnySuitable = 2
+};
+
+enum favorSizeOrSpeedOption
+{
+    favorNone = 0,
+    favorSpeed = 1,
+    favorSize = 2
+};
+
+enum preprocessOption
+{
+    preprocessNo = 0,
+    preprocessYes = 1,
+    preprocessNoLineNumbers = 2
+};
+
+enum cppExceptionHandling
+{
+    cppExceptionHandlingNo = 0,
+    cppExceptionHandlingYes = 1,
+    cppExceptionHandlingYesWithSEH = 2
+};
+
+enum basicRuntimeCheckOption
+{
+    runtimeBasicCheckNone = 0,
+    runtimeCheckStackFrame = 1,
+    runtimeCheckUninitVariables = 2,
+    runtimeBasicCheckAll = 3
+};
+
+enum runtimeLibraryOption
+{
+    rtMultiThreaded = 0,
+    rtMultiThreadedDebug = 1,
+    rtMultiThreadedDLL = 2,
+    rtMultiThreadedDebugDLL = 3
+};
+
+enum structMemberAlignOption
+{
+    alignNotSet = 0,
+    alignSingleByte = 1,
+    alignTwoBytes = 2,
+    alignFourBytes = 3,
+    alignEightBytes = 4,
+    alignSixteenBytes = 5
+};
+
+enum floatingPointModel
+{
+    FloatingPointPrecise = 0,
+    FloatingPointStrict = 1,
+    FloatingPointFast = 2
+};
+
+enum pchOption
+{
+    pchNone = 0,
+    pchCreateUsingSpecific = 1,
+    pchUseUsingSpecific = 2
+};
+
+enum asmListingOption
+{
+    asmListingNone = 0,
+    asmListingAssemblyOnly = 1,
+    asmListingAsmMachineSrc = 2,
+    asmListingAsmMachine = 3,
+    asmListingAsmSrc = 4
+};
+
+enum browseInfoOption
+{
+    brInfoNone = 0,
+    brAllInfo = 1,
+    brNoLocalSymbols = 2
+};
+
+enum callingConventionOption
+{
+    callConventionCDecl = 0,
+    callConventionFastCall = 1,
+    callConventionStdCall = 2
+};
+
+enum CompileAsOptions
+{
+    compileAsDefault = 0,
+    compileAsC = 1,
+    compileAsCPlusPlus = 2
+};
+
+enum enhancedInstructionSetType
+{
+    enhancedInstructionSetTypeNotSet = 0,
+    enhancedInstructionSetTypeSIMD = 1,
+    enhancedInstructionSetTypeSIMD2 = 2
+};
+
+enum compilerErrorReportingType
+{
+    compilerErrorReportingDefault = 0,
+    compilerErrorReportingPrompt = 1,
+    compilerErrorReportingQueue = 2
+};
+
+struct __declspec(uuid("52fcb856-2429-11d7-8bf6-00b0d03daa06"))
+VCCLCompilerTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_WarningLevel (
+        /*[out,retval]*/ enum warningLevelOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_WarningLevel (
+        /*[in]*/ enum warningLevelOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_WarnAsError (
+        /*[out,retval]*/ VARIANT_BOOL * WarnAsError ) = 0;
+      virtual HRESULT __stdcall put_WarnAsError (
+        /*[in]*/ VARIANT_BOOL WarnAsError ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_Detect64BitPortabilityProblems (
+        /*[out,retval]*/ VARIANT_BOOL * DetectPortabilityProblems ) = 0;
+      virtual HRESULT __stdcall put_Detect64BitPortabilityProblems (
+        /*[in]*/ VARIANT_BOOL DetectPortabilityProblems ) = 0;
+      virtual HRESULT __stdcall get_DebugInformationFormat (
+        /*[out,retval]*/ enum debugOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_DebugInformationFormat (
+        /*[in]*/ enum debugOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_CompileAsManaged (
+        /*[out,retval]*/ enum compileAsManagedOptions * optSetting ) = 0;
+      virtual HRESULT __stdcall put_CompileAsManaged (
+        /*[in]*/ enum compileAsManagedOptions optSetting ) = 0;
+      virtual HRESULT __stdcall get_AdditionalIncludeDirectories (
+        /*[out,retval]*/ BSTR * IncludePath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalIncludeDirectories (
+        /*[in]*/ BSTR IncludePath ) = 0;
+      virtual HRESULT __stdcall get_AdditionalUsingDirectories (
+        /*[out,retval]*/ BSTR * IncludePath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalUsingDirectories (
+        /*[in]*/ BSTR IncludePath ) = 0;
+      virtual HRESULT __stdcall get_Optimization (
+        /*[out,retval]*/ enum optimizeOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_Optimization (
+        /*[in]*/ enum optimizeOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_InlineFunctionExpansion (
+        /*[out,retval]*/ enum inlineExpansionOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_InlineFunctionExpansion (
+        /*[in]*/ enum inlineExpansionOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_EnableIntrinsicFunctions (
+        /*[out,retval]*/ VARIANT_BOOL * enableIntrinsic ) = 0;
+      virtual HRESULT __stdcall put_EnableIntrinsicFunctions (
+        /*[in]*/ VARIANT_BOOL enableIntrinsic ) = 0;
+      virtual HRESULT __stdcall get_FavorSizeOrSpeed (
+        /*[out,retval]*/ enum favorSizeOrSpeedOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_FavorSizeOrSpeed (
+        /*[in]*/ enum favorSizeOrSpeedOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_OmitFramePointers (
+        /*[out,retval]*/ VARIANT_BOOL * optSetting ) = 0;
+      virtual HRESULT __stdcall put_OmitFramePointers (
+        /*[in]*/ VARIANT_BOOL optSetting ) = 0;
+      virtual HRESULT __stdcall get_EnableFiberSafeOptimizations (
+        /*[out,retval]*/ VARIANT_BOOL * enable ) = 0;
+      virtual HRESULT __stdcall put_EnableFiberSafeOptimizations (
+        /*[in]*/ VARIANT_BOOL enable ) = 0;
+      virtual HRESULT __stdcall get_WholeProgramOptimization (
+        /*[out,retval]*/ VARIANT_BOOL * wholeProgOp ) = 0;
+      virtual HRESULT __stdcall put_WholeProgramOptimization (
+        /*[in]*/ VARIANT_BOOL wholeProgOp ) = 0;
+      virtual HRESULT __stdcall get_PreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * Defines ) = 0;
+      virtual HRESULT __stdcall put_PreprocessorDefinitions (
+        /*[in]*/ BSTR Defines ) = 0;
+      virtual HRESULT __stdcall get_IgnoreStandardIncludePath (
+        /*[out,retval]*/ VARIANT_BOOL * bIgnoreInclPath ) = 0;
+      virtual HRESULT __stdcall put_IgnoreStandardIncludePath (
+        /*[in]*/ VARIANT_BOOL bIgnoreInclPath ) = 0;
+      virtual HRESULT __stdcall get_GeneratePreprocessedFile (
+        /*[out,retval]*/ enum preprocessOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_GeneratePreprocessedFile (
+        /*[in]*/ enum preprocessOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_KeepComments (
+        /*[out,retval]*/ VARIANT_BOOL * bkeepComments ) = 0;
+      virtual HRESULT __stdcall put_KeepComments (
+        /*[in]*/ VARIANT_BOOL bkeepComments ) = 0;
+      virtual HRESULT __stdcall get_StringPooling (
+        /*[out,retval]*/ VARIANT_BOOL * optSetting ) = 0;
+      virtual HRESULT __stdcall put_StringPooling (
+        /*[in]*/ VARIANT_BOOL optSetting ) = 0;
+      virtual HRESULT __stdcall get_MinimalRebuild (
+        /*[out,retval]*/ VARIANT_BOOL * MinimalRebuild ) = 0;
+      virtual HRESULT __stdcall put_MinimalRebuild (
+        /*[in]*/ VARIANT_BOOL MinimalRebuild ) = 0;
+      virtual HRESULT __stdcall get_ExceptionHandling (
+        /*[out,retval]*/ enum cppExceptionHandling * optSetting ) = 0;
+      virtual HRESULT __stdcall put_ExceptionHandling (
+        /*[in]*/ enum cppExceptionHandling optSetting ) = 0;
+      virtual HRESULT __stdcall get_BasicRuntimeChecks (
+        /*[out,retval]*/ enum basicRuntimeCheckOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_BasicRuntimeChecks (
+        /*[in]*/ enum basicRuntimeCheckOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_SmallerTypeCheck (
+        /*[out,retval]*/ VARIANT_BOOL * smallerType ) = 0;
+      virtual HRESULT __stdcall put_SmallerTypeCheck (
+        /*[in]*/ VARIANT_BOOL smallerType ) = 0;
+      virtual HRESULT __stdcall get_RuntimeLibrary (
+        /*[out,retval]*/ enum runtimeLibraryOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_RuntimeLibrary (
+        /*[in]*/ enum runtimeLibraryOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_StructMemberAlignment (
+        /*[out,retval]*/ enum structMemberAlignOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_StructMemberAlignment (
+        /*[in]*/ enum structMemberAlignOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_BufferSecurityCheck (
+        /*[out,retval]*/ VARIANT_BOOL * Secure ) = 0;
+      virtual HRESULT __stdcall put_BufferSecurityCheck (
+        /*[in]*/ VARIANT_BOOL Secure ) = 0;
+      virtual HRESULT __stdcall get_EnableFunctionLevelLinking (
+        /*[out,retval]*/ VARIANT_BOOL * enable ) = 0;
+      virtual HRESULT __stdcall put_EnableFunctionLevelLinking (
+        /*[in]*/ VARIANT_BOOL enable ) = 0;
+      virtual HRESULT __stdcall get_floatingPointModel (
+        /*[out,retval]*/ enum floatingPointModel * fp ) = 0;
+      virtual HRESULT __stdcall put_floatingPointModel (
+        /*[in]*/ enum floatingPointModel fp ) = 0;
+      virtual HRESULT __stdcall get_FloatingPointExceptions (
+        /*[out,retval]*/ VARIANT_BOOL * enable ) = 0;
+      virtual HRESULT __stdcall put_FloatingPointExceptions (
+        /*[in]*/ VARIANT_BOOL enable ) = 0;
+      virtual HRESULT __stdcall get_DisableLanguageExtensions (
+        /*[out,retval]*/ VARIANT_BOOL * DisableExtensions ) = 0;
+      virtual HRESULT __stdcall put_DisableLanguageExtensions (
+        /*[in]*/ VARIANT_BOOL DisableExtensions ) = 0;
+      virtual HRESULT __stdcall get_DefaultCharIsUnsigned (
+        /*[out,retval]*/ VARIANT_BOOL * IsUnsigned ) = 0;
+      virtual HRESULT __stdcall put_DefaultCharIsUnsigned (
+        /*[in]*/ VARIANT_BOOL IsUnsigned ) = 0;
+      virtual HRESULT __stdcall get_TreatWChar_tAsBuiltInType (
+        /*[out,retval]*/ VARIANT_BOOL * BuiltInType ) = 0;
+      virtual HRESULT __stdcall put_TreatWChar_tAsBuiltInType (
+        /*[in]*/ VARIANT_BOOL BuiltInType ) = 0;
+      virtual HRESULT __stdcall get_ForceConformanceInForLoopScope (
+        /*[out,retval]*/ VARIANT_BOOL * conform ) = 0;
+      virtual HRESULT __stdcall put_ForceConformanceInForLoopScope (
+        /*[in]*/ VARIANT_BOOL conform ) = 0;
+      virtual HRESULT __stdcall get_RuntimeTypeInfo (
+        /*[out,retval]*/ VARIANT_BOOL * RTTI ) = 0;
+      virtual HRESULT __stdcall put_RuntimeTypeInfo (
+        /*[in]*/ VARIANT_BOOL RTTI ) = 0;
+      virtual HRESULT __stdcall get_OpenMP (
+        /*[out,retval]*/ VARIANT_BOOL * OpenMP ) = 0;
+      virtual HRESULT __stdcall put_OpenMP (
+        /*[in]*/ VARIANT_BOOL OpenMP ) = 0;
+      virtual HRESULT __stdcall get_UsePrecompiledHeader (
+        /*[out,retval]*/ enum pchOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_UsePrecompiledHeader (
+        /*[in]*/ enum pchOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_PrecompiledHeaderThrough (
+        /*[out,retval]*/ BSTR * File ) = 0;
+      virtual HRESULT __stdcall put_PrecompiledHeaderThrough (
+        /*[in]*/ BSTR File ) = 0;
+      virtual HRESULT __stdcall get_PrecompiledHeaderFile (
+        /*[out,retval]*/ BSTR * PCH ) = 0;
+      virtual HRESULT __stdcall put_PrecompiledHeaderFile (
+        /*[in]*/ BSTR PCH ) = 0;
+      virtual HRESULT __stdcall get_ExpandAttributedSource (
+        /*[out,retval]*/ VARIANT_BOOL * bExpandAttributedSource ) = 0;
+      virtual HRESULT __stdcall put_ExpandAttributedSource (
+        /*[in]*/ VARIANT_BOOL bExpandAttributedSource ) = 0;
+      virtual HRESULT __stdcall get_AssemblerOutput (
+        /*[out,retval]*/ enum asmListingOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_AssemblerOutput (
+        /*[in]*/ enum asmListingOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_AssemblerListingLocation (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_AssemblerListingLocation (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_ObjectFile (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_ObjectFile (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_ProgramDataBaseFileName (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_ProgramDataBaseFileName (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_BrowseInformation (
+        /*[out,retval]*/ enum browseInfoOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_BrowseInformation (
+        /*[in]*/ enum browseInfoOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_BrowseInformationFile (
+        /*[out,retval]*/ BSTR * File ) = 0;
+      virtual HRESULT __stdcall put_BrowseInformationFile (
+        /*[in]*/ BSTR File ) = 0;
+      virtual HRESULT __stdcall get_CallingConvention (
+        /*[out,retval]*/ enum callingConventionOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_CallingConvention (
+        /*[in]*/ enum callingConventionOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_CompileAs (
+        /*[out,retval]*/ enum CompileAsOptions * CompileAs ) = 0;
+      virtual HRESULT __stdcall put_CompileAs (
+        /*[in]*/ enum CompileAsOptions CompileAs ) = 0;
+      virtual HRESULT __stdcall get_DisableSpecificWarnings (
+        /*[out,retval]*/ BSTR * warnings ) = 0;
+      virtual HRESULT __stdcall put_DisableSpecificWarnings (
+        /*[in]*/ BSTR warnings ) = 0;
+      virtual HRESULT __stdcall get_ForcedIncludeFiles (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_ForcedIncludeFiles (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_ForcedUsingFiles (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_ForcedUsingFiles (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_ShowIncludes (
+        /*[out,retval]*/ VARIANT_BOOL * ShowInc ) = 0;
+      virtual HRESULT __stdcall put_ShowIncludes (
+        /*[in]*/ VARIANT_BOOL ShowInc ) = 0;
+      virtual HRESULT __stdcall get_UndefinePreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * Undefines ) = 0;
+      virtual HRESULT __stdcall put_UndefinePreprocessorDefinitions (
+        /*[in]*/ BSTR Undefines ) = 0;
+      virtual HRESULT __stdcall get_UndefineAllPreprocessorDefinitions (
+        /*[out,retval]*/ VARIANT_BOOL * undefinePredefinedMacros ) = 0;
+      virtual HRESULT __stdcall put_UndefineAllPreprocessorDefinitions (
+        /*[in]*/ VARIANT_BOOL undefinePredefinedMacros ) = 0;
+      virtual HRESULT __stdcall get_EnablePREfast (
+        /*[out,retval]*/ VARIANT_BOOL * pbEnablePREfast ) = 0;
+      virtual HRESULT __stdcall put_EnablePREfast (
+        /*[in]*/ VARIANT_BOOL pbEnablePREfast ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_FullIncludePath (
+        /*[out,retval]*/ BSTR * FullIncludePath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_CompileOnly (
+        /*[out,retval]*/ VARIANT_BOOL * CompileOnly ) = 0;
+      virtual HRESULT __stdcall put_CompileOnly (
+        /*[in]*/ VARIANT_BOOL CompileOnly ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_EnableEnhancedInstructionSet (
+        /*[out,retval]*/ enum enhancedInstructionSetType * setType ) = 0;
+      virtual HRESULT __stdcall put_EnableEnhancedInstructionSet (
+        /*[in]*/ enum enhancedInstructionSetType setType ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+      virtual HRESULT __stdcall get_UseUnicodeResponseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall put_UseUnicodeResponseFiles (
+        /*[in]*/ VARIANT_BOOL pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall get_GenerateXMLDocumentationFiles (
+        /*[out,retval]*/ VARIANT_BOOL * GenerateDocumentationFiles ) = 0;
+      virtual HRESULT __stdcall put_GenerateXMLDocumentationFiles (
+        /*[in]*/ VARIANT_BOOL GenerateDocumentationFiles ) = 0;
+      virtual HRESULT __stdcall get_XMLDocumentationFileName (
+        /*[out,retval]*/ BSTR * DocumentFile ) = 0;
+      virtual HRESULT __stdcall put_XMLDocumentationFileName (
+        /*[in]*/ BSTR DocumentFile ) = 0;
+      virtual HRESULT __stdcall get_UseFullPaths (
+        /*[out,retval]*/ VARIANT_BOOL * UseFullPaths ) = 0;
+      virtual HRESULT __stdcall put_UseFullPaths (
+        /*[in]*/ VARIANT_BOOL UseFullPaths ) = 0;
+      virtual HRESULT __stdcall get_OmitDefaultLibName (
+        /*[out,retval]*/ VARIANT_BOOL * omit ) = 0;
+      virtual HRESULT __stdcall put_OmitDefaultLibName (
+        /*[in]*/ VARIANT_BOOL omit ) = 0;
+      virtual HRESULT __stdcall get_ErrorReporting (
+        /*[out,retval]*/ enum compilerErrorReportingType * type ) = 0;
+      virtual HRESULT __stdcall put_ErrorReporting (
+        /*[in]*/ enum compilerErrorReportingType type ) = 0;
+};
+
+enum midlWarningLevelOption
+{
+    midlWarningLevel_0 = 0,
+    midlWarningLevel_1 = 1,
+    midlWarningLevel_2 = 2,
+    midlWarningLevel_3 = 3,
+    midlWarningLevel_4 = 4
+};
+
+enum midlCharOption
+{
+    midlCharUnsigned = 0,
+    midlCharSigned = 1,
+    midlCharAscii7 = 2
+};
+
+enum midlTargetEnvironment
+{
+    midlTargetNotSet = 0,
+    midlTargetWin32 = 1,
+    midlTargetIA64 = 2,
+    midlTargetAMD64 = 3
+};
+
+enum midlErrorCheckOption
+{
+    midlEnableCustom = 0,
+    midlDisableAll = 1,
+    midlEnableAll = 2
+};
+
+enum midlStructMemberAlignOption
+{
+    midlAlignNotSet = 0,
+    midlAlignSingleByte = 1,
+    midlAlignTwoBytes = 2,
+    midlAlignFourBytes = 3,
+    midlAlignEightBytes = 4
+};
+
+struct __declspec(uuid("52fcb860-2429-11d7-8bf6-00b0d03daa06"))
+VCMidlTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_PreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * Defines ) = 0;
+      virtual HRESULT __stdcall put_PreprocessorDefinitions (
+        /*[in]*/ BSTR Defines ) = 0;
+      virtual HRESULT __stdcall get_AdditionalIncludeDirectories (
+        /*[out,retval]*/ BSTR * IncludePath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalIncludeDirectories (
+        /*[in]*/ BSTR IncludePath ) = 0;
+      virtual HRESULT __stdcall get_IgnoreStandardIncludePath (
+        /*[out,retval]*/ VARIANT_BOOL * Ignore ) = 0;
+      virtual HRESULT __stdcall put_IgnoreStandardIncludePath (
+        /*[in]*/ VARIANT_BOOL Ignore ) = 0;
+      virtual HRESULT __stdcall get_MkTypLibCompatible (
+        /*[out,retval]*/ VARIANT_BOOL * Compatible ) = 0;
+      virtual HRESULT __stdcall put_MkTypLibCompatible (
+        /*[in]*/ VARIANT_BOOL Compatible ) = 0;
+      virtual HRESULT __stdcall get_WarningLevel (
+        /*[out,retval]*/ enum midlWarningLevelOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_WarningLevel (
+        /*[in]*/ enum midlWarningLevelOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_WarnAsError (
+        /*[out,retval]*/ VARIANT_BOOL * WarnAsError ) = 0;
+      virtual HRESULT __stdcall put_WarnAsError (
+        /*[in]*/ VARIANT_BOOL WarnAsError ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_DefaultCharType (
+        /*[out,retval]*/ enum midlCharOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_DefaultCharType (
+        /*[in]*/ enum midlCharOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_TargetEnvironment (
+        /*[out,retval]*/ enum midlTargetEnvironment * optSetting ) = 0;
+      virtual HRESULT __stdcall put_TargetEnvironment (
+        /*[in]*/ enum midlTargetEnvironment optSetting ) = 0;
+      virtual HRESULT __stdcall get_GenerateStublessProxies (
+        /*[out,retval]*/ VARIANT_BOOL * optSetting ) = 0;
+      virtual HRESULT __stdcall put_GenerateStublessProxies (
+        /*[in]*/ VARIANT_BOOL optSetting ) = 0;
+      virtual HRESULT __stdcall get_OutputDirectory (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_OutputDirectory (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_HeaderFileName (
+        /*[out,retval]*/ BSTR * HeaderFile ) = 0;
+      virtual HRESULT __stdcall put_HeaderFileName (
+        /*[in]*/ BSTR HeaderFile ) = 0;
+      virtual HRESULT __stdcall get_DLLDataFileName (
+        /*[out,retval]*/ BSTR * DLLData ) = 0;
+      virtual HRESULT __stdcall put_DLLDataFileName (
+        /*[in]*/ BSTR DLLData ) = 0;
+      virtual HRESULT __stdcall get_InterfaceIdentifierFileName (
+        /*[out,retval]*/ BSTR * IID ) = 0;
+      virtual HRESULT __stdcall put_InterfaceIdentifierFileName (
+        /*[in]*/ BSTR IID ) = 0;
+      virtual HRESULT __stdcall get_ProxyFileName (
+        /*[out,retval]*/ BSTR * ProxyFile ) = 0;
+      virtual HRESULT __stdcall put_ProxyFileName (
+        /*[in]*/ BSTR ProxyFile ) = 0;
+      virtual HRESULT __stdcall get_GenerateTypeLibrary (
+        /*[out,retval]*/ VARIANT_BOOL * optSetting ) = 0;
+      virtual HRESULT __stdcall put_GenerateTypeLibrary (
+        /*[in]*/ VARIANT_BOOL optSetting ) = 0;
+      virtual HRESULT __stdcall get_TypeLibraryName (
+        /*[out,retval]*/ BSTR * TLBFile ) = 0;
+      virtual HRESULT __stdcall put_TypeLibraryName (
+        /*[in]*/ BSTR TLBFile ) = 0;
+      virtual HRESULT __stdcall get_EnableErrorChecks (
+        /*[out,retval]*/ enum midlErrorCheckOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_EnableErrorChecks (
+        /*[in]*/ enum midlErrorCheckOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_ErrorCheckAllocations (
+        /*[out,retval]*/ VARIANT_BOOL * errorCheck ) = 0;
+      virtual HRESULT __stdcall put_ErrorCheckAllocations (
+        /*[in]*/ VARIANT_BOOL errorCheck ) = 0;
+      virtual HRESULT __stdcall get_ErrorCheckBounds (
+        /*[out,retval]*/ VARIANT_BOOL * errorCheck ) = 0;
+      virtual HRESULT __stdcall put_ErrorCheckBounds (
+        /*[in]*/ VARIANT_BOOL errorCheck ) = 0;
+      virtual HRESULT __stdcall get_ErrorCheckEnumRange (
+        /*[out,retval]*/ VARIANT_BOOL * errorCheck ) = 0;
+      virtual HRESULT __stdcall put_ErrorCheckEnumRange (
+        /*[in]*/ VARIANT_BOOL errorCheck ) = 0;
+      virtual HRESULT __stdcall get_ErrorCheckRefPointers (
+        /*[out,retval]*/ VARIANT_BOOL * errorCheck ) = 0;
+      virtual HRESULT __stdcall put_ErrorCheckRefPointers (
+        /*[in]*/ VARIANT_BOOL errorCheck ) = 0;
+      virtual HRESULT __stdcall get_ErrorCheckStubData (
+        /*[out,retval]*/ VARIANT_BOOL * errorCheck ) = 0;
+      virtual HRESULT __stdcall put_ErrorCheckStubData (
+        /*[in]*/ VARIANT_BOOL errorCheck ) = 0;
+      virtual HRESULT __stdcall get_ValidateParameters (
+        /*[out,retval]*/ VARIANT_BOOL * Validate ) = 0;
+      virtual HRESULT __stdcall put_ValidateParameters (
+        /*[in]*/ VARIANT_BOOL Validate ) = 0;
+      virtual HRESULT __stdcall get_RedirectOutputAndErrors (
+        /*[out,retval]*/ BSTR * Output ) = 0;
+      virtual HRESULT __stdcall put_RedirectOutputAndErrors (
+        /*[in]*/ BSTR Output ) = 0;
+      virtual HRESULT __stdcall get_StructMemberAlignment (
+        /*[out,retval]*/ enum midlStructMemberAlignOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_StructMemberAlignment (
+        /*[in]*/ enum midlStructMemberAlignOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_CPreprocessOptions (
+        /*[out,retval]*/ BSTR * Opt ) = 0;
+      virtual HRESULT __stdcall put_CPreprocessOptions (
+        /*[in]*/ BSTR Opt ) = 0;
+      virtual HRESULT __stdcall get_UndefinePreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * Undefines ) = 0;
+      virtual HRESULT __stdcall put_UndefinePreprocessorDefinitions (
+        /*[in]*/ BSTR Undefines ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_FullIncludePath (
+        /*[out,retval]*/ BSTR * FullIncludePath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+enum linkProgressOption
+{
+    linkProgressNotSet = 0,
+    linkProgressAll = 1,
+    linkProgressLibs = 2
+};
+
+enum linkIncrementalType
+{
+    linkIncrementalDefault = 0,
+    linkIncrementalNo = 1,
+    linkIncrementalYes = 2
+};
+
+enum subSystemOption
+{
+    subSystemNotSet = 0,
+    subSystemConsole = 1,
+    subSystemWindows = 2,
+    subSystemNative = 3,
+    subSystemEFIApplication = 4,
+    subSystemEFIBootService = 5,
+    subSystemEFIROM = 6,
+    subSystemEFIRuntime = 7,
+    subSystemPosix = 8,
+    subSystemWindowsCE = 9
+};
+
+enum addressAwarenessType
+{
+    addrAwareDefault = 0,
+    addrAwareNoLarge = 1,
+    addrAwareLarge = 2
+};
+
+enum termSvrAwarenessType
+{
+    termSvrAwareDefault = 0,
+    termSvrAwareNo = 1,
+    termSvrAwareYes = 2
+};
+
+enum driverOption
+{
+    driverDefault = 0,
+    driver = 1,
+    driverUpOnly = 2,
+    driverWDM = 3
+};
+
+enum optRefType
+{
+    optReferencesDefault = 0,
+    optNoReferences = 1,
+    optReferences = 2
+};
+
+enum optFoldingType
+{
+    optFoldingDefault = 0,
+    optNoFolding = 1,
+    optFolding = 2
+};
+
+enum optWin98Type
+{
+    optWin98Default = 0,
+    optWin98No = 1,
+    optWin98Yes = 2
+};
+
+enum LinkTimeCodeGenerationOption
+{
+    LinkTimeCodeGenerationOptionDefault = 0,
+    LinkTimeCodeGenerationOptionUse = 1,
+    LinkTimeCodeGenerationOptionInstrument = 2,
+    LinkTimeCodeGenerationOptionOptimize = 3,
+    LinkTimeCodeGenerationOptionUpdate = 4
+};
+
+enum machineTypeOption
+{
+    machineNotSet = 0,
+    machineX86 = 1,
+    machineAM33 = 2,
+    machineARM = 3,
+    machineEBC = 4,
+    machineIA64 = 5,
+    machineM32R = 6,
+    machineMIPS = 7,
+    machineMIPS16 = 8,
+    machineMIPSFPU = 9,
+    machineMIPSFPU16 = 10,
+    machineMIPSR41XX = 11,
+    machineSH3 = 12,
+    machineSH3DSP = 13,
+    machineSH4 = 14,
+    machineSH5 = 15,
+    machineTHUMB = 16,
+    machineAMD64 = 17
+};
+
+enum eCLRThreadAttribute
+{
+    CLRThreadAttributeNone = 0,
+    CLRThreadAttributeMTA = 1,
+    CLRThreadAttributeSTA = 2
+};
+
+enum eCLRImageType
+{
+    CLRImageTypeDefault = 0,
+    CLRImageTypeIJW = 1,
+    CLRImageTypePure = 2,
+    CLRImageTypeSafe = 3
+};
+
+enum linkFixedBaseAddress
+{
+    linkFixedBaseAddressDefault = 0,
+    linkFixedBaseAddressNo = 1,
+    linkFixedBaseAddressYes = 2
+};
+
+enum linkAssemblyDebug
+{
+    linkAssemblyDebugDefault = 0,
+    linkAssemblyDebugFull = 1,
+    linkAssemblyDebugDisable = 2
+};
+
+enum linkerErrorReportingType
+{
+    linkerErrorReportingDefault = 0,
+    linkerErrorReportingPrompt = 1,
+    linkerErrorReportingQueue = 2
+};
+
+struct __declspec(uuid("52fcb857-2429-11d7-8bf6-00b0d03daa06"))
+VCLinkerTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_OutputFile (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_OutputFile (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_ShowProgress (
+        /*[out,retval]*/ enum linkProgressOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_ShowProgress (
+        /*[in]*/ enum linkProgressOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_Version (
+        /*[out,retval]*/ BSTR * Version ) = 0;
+      virtual HRESULT __stdcall put_Version (
+        /*[in]*/ BSTR Version ) = 0;
+      virtual HRESULT __stdcall get_LinkIncremental (
+        /*[out,retval]*/ enum linkIncrementalType * optSetting ) = 0;
+      virtual HRESULT __stdcall put_LinkIncremental (
+        /*[in]*/ enum linkIncrementalType optSetting ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_IgnoreImportLibrary (
+        /*[out,retval]*/ VARIANT_BOOL * IgnoreImportLib ) = 0;
+      virtual HRESULT __stdcall put_IgnoreImportLibrary (
+        /*[in]*/ VARIANT_BOOL IgnoreImportLib ) = 0;
+      virtual HRESULT __stdcall get_RegisterOutput (
+        /*[out,retval]*/ VARIANT_BOOL * doRegister ) = 0;
+      virtual HRESULT __stdcall put_RegisterOutput (
+        /*[in]*/ VARIANT_BOOL doRegister ) = 0;
+      virtual HRESULT __stdcall get_AdditionalLibraryDirectories (
+        /*[out,retval]*/ BSTR * LibPath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalLibraryDirectories (
+        /*[in]*/ BSTR LibPath ) = 0;
+      virtual HRESULT __stdcall get_LinkDLL (
+        /*[out,retval]*/ VARIANT_BOOL * buildDLL ) = 0;
+      virtual HRESULT __stdcall put_LinkDLL (
+        /*[in]*/ VARIANT_BOOL buildDLL ) = 0;
+      virtual HRESULT __stdcall get_AdditionalDependencies (
+        /*[out,retval]*/ BSTR * Dependencies ) = 0;
+      virtual HRESULT __stdcall put_AdditionalDependencies (
+        /*[in]*/ BSTR Dependencies ) = 0;
+      virtual HRESULT __stdcall get_IgnoreAllDefaultLibraries (
+        /*[out,retval]*/ VARIANT_BOOL * NoDefaults ) = 0;
+      virtual HRESULT __stdcall put_IgnoreAllDefaultLibraries (
+        /*[in]*/ VARIANT_BOOL NoDefaults ) = 0;
+      virtual HRESULT __stdcall get_IgnoreDefaultLibraryNames (
+        /*[out,retval]*/ BSTR * Lib ) = 0;
+      virtual HRESULT __stdcall put_IgnoreDefaultLibraryNames (
+        /*[in]*/ BSTR Lib ) = 0;
+      virtual HRESULT __stdcall get_ModuleDefinitionFile (
+        /*[out,retval]*/ BSTR * DefFile ) = 0;
+      virtual HRESULT __stdcall put_ModuleDefinitionFile (
+        /*[in]*/ BSTR DefFile ) = 0;
+      virtual HRESULT __stdcall get_AddModuleNamesToAssembly (
+        /*[out,retval]*/ BSTR * moduleName ) = 0;
+      virtual HRESULT __stdcall put_AddModuleNamesToAssembly (
+        /*[in]*/ BSTR moduleName ) = 0;
+      virtual HRESULT __stdcall get_EmbedManagedResourceFile (
+        /*[out,retval]*/ BSTR * Res ) = 0;
+      virtual HRESULT __stdcall put_EmbedManagedResourceFile (
+        /*[in]*/ BSTR Res ) = 0;
+      virtual HRESULT __stdcall get_ForceSymbolReferences (
+        /*[out,retval]*/ BSTR * Symbol ) = 0;
+      virtual HRESULT __stdcall put_ForceSymbolReferences (
+        /*[in]*/ BSTR Symbol ) = 0;
+      virtual HRESULT __stdcall get_DelayLoadDLLs (
+        /*[out,retval]*/ BSTR * DLLName ) = 0;
+      virtual HRESULT __stdcall put_DelayLoadDLLs (
+        /*[in]*/ BSTR DLLName ) = 0;
+      virtual HRESULT __stdcall get_MidlCommandFile (
+        /*[out,retval]*/ BSTR * MidlCmdFile ) = 0;
+      virtual HRESULT __stdcall put_MidlCommandFile (
+        /*[in]*/ BSTR MidlCmdFile ) = 0;
+      virtual HRESULT __stdcall get_IgnoreEmbeddedIDL (
+        /*[out,retval]*/ VARIANT_BOOL * IgnoreIDL ) = 0;
+      virtual HRESULT __stdcall put_IgnoreEmbeddedIDL (
+        /*[in]*/ VARIANT_BOOL IgnoreIDL ) = 0;
+      virtual HRESULT __stdcall get_MergedIDLBaseFileName (
+        /*[out,retval]*/ BSTR * IDLFile ) = 0;
+      virtual HRESULT __stdcall put_MergedIDLBaseFileName (
+        /*[in]*/ BSTR IDLFile ) = 0;
+      virtual HRESULT __stdcall get_TypeLibraryFile (
+        /*[out,retval]*/ BSTR * TLBFile ) = 0;
+      virtual HRESULT __stdcall put_TypeLibraryFile (
+        /*[in]*/ BSTR TLBFile ) = 0;
+      virtual HRESULT __stdcall get_TypeLibraryResourceID (
+        /*[out,retval]*/ long * ResourceID ) = 0;
+      virtual HRESULT __stdcall put_TypeLibraryResourceID (
+        /*[in]*/ long ResourceID ) = 0;
+      virtual HRESULT __stdcall get_GenerateDebugInformation (
+        /*[out,retval]*/ VARIANT_BOOL * genDebug ) = 0;
+      virtual HRESULT __stdcall put_GenerateDebugInformation (
+        /*[in]*/ VARIANT_BOOL genDebug ) = 0;
+      virtual HRESULT __stdcall get_ProgramDatabaseFile (
+        /*[out,retval]*/ BSTR * File ) = 0;
+      virtual HRESULT __stdcall put_ProgramDatabaseFile (
+        /*[in]*/ BSTR File ) = 0;
+      virtual HRESULT __stdcall get_StripPrivateSymbols (
+        /*[out,retval]*/ BSTR * StrippedPDB ) = 0;
+      virtual HRESULT __stdcall put_StripPrivateSymbols (
+        /*[in]*/ BSTR StrippedPDB ) = 0;
+      virtual HRESULT __stdcall get_GenerateMapFile (
+        /*[out,retval]*/ VARIANT_BOOL * Map ) = 0;
+      virtual HRESULT __stdcall put_GenerateMapFile (
+        /*[in]*/ VARIANT_BOOL Map ) = 0;
+      virtual HRESULT __stdcall get_MapFileName (
+        /*[out,retval]*/ BSTR * MapFile ) = 0;
+      virtual HRESULT __stdcall put_MapFileName (
+        /*[in]*/ BSTR MapFile ) = 0;
+      virtual HRESULT __stdcall get_MapExports (
+        /*[out,retval]*/ VARIANT_BOOL * Exports ) = 0;
+      virtual HRESULT __stdcall put_MapExports (
+        /*[in]*/ VARIANT_BOOL Exports ) = 0;
+      virtual HRESULT __stdcall get_SubSystem (
+        /*[out,retval]*/ enum subSystemOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_SubSystem (
+        /*[in]*/ enum subSystemOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_HeapReserveSize (
+        /*[out,retval]*/ long * ReserveSize ) = 0;
+      virtual HRESULT __stdcall put_HeapReserveSize (
+        /*[in]*/ long ReserveSize ) = 0;
+      virtual HRESULT __stdcall get_HeapCommitSize (
+        /*[out,retval]*/ long * CommitSize ) = 0;
+      virtual HRESULT __stdcall put_HeapCommitSize (
+        /*[in]*/ long CommitSize ) = 0;
+      virtual HRESULT __stdcall get_StackReserveSize (
+        /*[out,retval]*/ long * ReserveSize ) = 0;
+      virtual HRESULT __stdcall put_StackReserveSize (
+        /*[in]*/ long ReserveSize ) = 0;
+      virtual HRESULT __stdcall get_StackCommitSize (
+        /*[out,retval]*/ long * CommitSize ) = 0;
+      virtual HRESULT __stdcall put_StackCommitSize (
+        /*[in]*/ long CommitSize ) = 0;
+      virtual HRESULT __stdcall get_LargeAddressAware (
+        /*[out,retval]*/ enum addressAwarenessType * optSetting ) = 0;
+      virtual HRESULT __stdcall put_LargeAddressAware (
+        /*[in]*/ enum addressAwarenessType optSetting ) = 0;
+      virtual HRESULT __stdcall get_TerminalServerAware (
+        /*[out,retval]*/ enum termSvrAwarenessType * optSetting ) = 0;
+      virtual HRESULT __stdcall put_TerminalServerAware (
+        /*[in]*/ enum termSvrAwarenessType optSetting ) = 0;
+      virtual HRESULT __stdcall get_SwapRunFromCD (
+        /*[out,retval]*/ VARIANT_BOOL * Run ) = 0;
+      virtual HRESULT __stdcall put_SwapRunFromCD (
+        /*[in]*/ VARIANT_BOOL Run ) = 0;
+      virtual HRESULT __stdcall get_SwapRunFromNet (
+        /*[out,retval]*/ VARIANT_BOOL * Run ) = 0;
+      virtual HRESULT __stdcall put_SwapRunFromNet (
+        /*[in]*/ VARIANT_BOOL Run ) = 0;
+      virtual HRESULT __stdcall get_driver (
+        /*[out,retval]*/ enum driverOption * pDriver ) = 0;
+      virtual HRESULT __stdcall put_driver (
+        /*[in]*/ enum driverOption pDriver ) = 0;
+      virtual HRESULT __stdcall get_OptimizeReferences (
+        /*[out,retval]*/ enum optRefType * optSetting ) = 0;
+      virtual HRESULT __stdcall put_OptimizeReferences (
+        /*[in]*/ enum optRefType optSetting ) = 0;
+      virtual HRESULT __stdcall get_EnableCOMDATFolding (
+        /*[out,retval]*/ enum optFoldingType * optSetting ) = 0;
+      virtual HRESULT __stdcall put_EnableCOMDATFolding (
+        /*[in]*/ enum optFoldingType optSetting ) = 0;
+      virtual HRESULT __stdcall get_OptimizeForWindows98 (
+        /*[out,retval]*/ enum optWin98Type * optSetting ) = 0;
+      virtual HRESULT __stdcall put_OptimizeForWindows98 (
+        /*[in]*/ enum optWin98Type optSetting ) = 0;
+      virtual HRESULT __stdcall get_FunctionOrder (
+        /*[out,retval]*/ BSTR * Order ) = 0;
+      virtual HRESULT __stdcall put_FunctionOrder (
+        /*[in]*/ BSTR Order ) = 0;
+      virtual HRESULT __stdcall get_LinkTimeCodeGeneration (
+        /*[out,retval]*/ enum LinkTimeCodeGenerationOption * CodeGen ) = 0;
+      virtual HRESULT __stdcall put_LinkTimeCodeGeneration (
+        /*[in]*/ enum LinkTimeCodeGenerationOption CodeGen ) = 0;
+      virtual HRESULT __stdcall get_EntryPointSymbol (
+        /*[out,retval]*/ BSTR * Entry ) = 0;
+      virtual HRESULT __stdcall put_EntryPointSymbol (
+        /*[in]*/ BSTR Entry ) = 0;
+      virtual HRESULT __stdcall get_ResourceOnlyDLL (
+        /*[out,retval]*/ VARIANT_BOOL * NoEntry ) = 0;
+      virtual HRESULT __stdcall put_ResourceOnlyDLL (
+        /*[in]*/ VARIANT_BOOL NoEntry ) = 0;
+      virtual HRESULT __stdcall get_SetChecksum (
+        /*[out,retval]*/ VARIANT_BOOL * Release ) = 0;
+      virtual HRESULT __stdcall put_SetChecksum (
+        /*[in]*/ VARIANT_BOOL Release ) = 0;
+      virtual HRESULT __stdcall get_BaseAddress (
+        /*[out,retval]*/ BSTR * Address ) = 0;
+      virtual HRESULT __stdcall put_BaseAddress (
+        /*[in]*/ BSTR Address ) = 0;
+      virtual HRESULT __stdcall get_TurnOffAssemblyGeneration (
+        /*[out,retval]*/ VARIANT_BOOL * noAssembly ) = 0;
+      virtual HRESULT __stdcall put_TurnOffAssemblyGeneration (
+        /*[in]*/ VARIANT_BOOL noAssembly ) = 0;
+      virtual HRESULT __stdcall get_SupportUnloadOfDelayLoadedDLL (
+        /*[out,retval]*/ VARIANT_BOOL * supportUnload ) = 0;
+      virtual HRESULT __stdcall put_SupportUnloadOfDelayLoadedDLL (
+        /*[in]*/ VARIANT_BOOL supportUnload ) = 0;
+      virtual HRESULT __stdcall get_ImportLibrary (
+        /*[out,retval]*/ BSTR * ImportLib ) = 0;
+      virtual HRESULT __stdcall put_ImportLibrary (
+        /*[in]*/ BSTR ImportLib ) = 0;
+      virtual HRESULT __stdcall get_MergeSections (
+        /*[out,retval]*/ BSTR * Merge ) = 0;
+      virtual HRESULT __stdcall put_MergeSections (
+        /*[in]*/ BSTR Merge ) = 0;
+      virtual HRESULT __stdcall get_TargetMachine (
+        /*[out,retval]*/ enum machineTypeOption * optSetting ) = 0;
+      virtual HRESULT __stdcall put_TargetMachine (
+        /*[in]*/ enum machineTypeOption optSetting ) = 0;
+      virtual HRESULT __stdcall get_Profile (
+        /*[out,retval]*/ VARIANT_BOOL * Profile ) = 0;
+      virtual HRESULT __stdcall put_Profile (
+        /*[in]*/ VARIANT_BOOL Profile ) = 0;
+      virtual HRESULT __stdcall get_CLRThreadAttribute (
+        /*[out,retval]*/ enum eCLRThreadAttribute * ta ) = 0;
+      virtual HRESULT __stdcall put_CLRThreadAttribute (
+        /*[in]*/ enum eCLRThreadAttribute ta ) = 0;
+      virtual HRESULT __stdcall get_CLRImageType (
+        /*[out,retval]*/ enum eCLRImageType * ta ) = 0;
+      virtual HRESULT __stdcall put_CLRImageType (
+        /*[in]*/ enum eCLRImageType ta ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR PropName,
+        /*[in]*/ long PropID,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_FixedBaseAddress (
+        /*[out,retval]*/ enum linkFixedBaseAddress * Fixed ) = 0;
+      virtual HRESULT __stdcall put_FixedBaseAddress (
+        /*[in]*/ enum linkFixedBaseAddress Fixed ) = 0;
+      virtual HRESULT __stdcall get_AssemblyDebug (
+        /*[out,retval]*/ enum linkAssemblyDebug * AssemblyDebug ) = 0;
+      virtual HRESULT __stdcall put_AssemblyDebug (
+        /*[in]*/ enum linkAssemblyDebug AssemblyDebug ) = 0;
+      virtual HRESULT __stdcall get_AssemblyLinkResource (
+        /*[out,retval]*/ BSTR * AssemblyLinkResource ) = 0;
+      virtual HRESULT __stdcall put_AssemblyLinkResource (
+        /*[in]*/ BSTR AssemblyLinkResource ) = 0;
+      virtual HRESULT __stdcall get_LinkLibraryDependencies (
+        /*[out,retval]*/ VARIANT_BOOL * LinkLibraryDependencies ) = 0;
+      virtual HRESULT __stdcall put_LinkLibraryDependencies (
+        /*[in]*/ VARIANT_BOOL LinkLibraryDependencies ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+      virtual HRESULT __stdcall put_KeyFile (
+        /*[in]*/ BSTR KeyFile ) = 0;
+      virtual HRESULT __stdcall get_KeyFile (
+        /*[out,retval]*/ BSTR * KeyFile ) = 0;
+      virtual HRESULT __stdcall put_KeyContainer (
+        /*[in]*/ BSTR KeyContainer ) = 0;
+      virtual HRESULT __stdcall get_KeyContainer (
+        /*[out,retval]*/ BSTR * KeyContainer ) = 0;
+      virtual HRESULT __stdcall put_DelaySign (
+        /*[in]*/ VARIANT_BOOL DelaySign ) = 0;
+      virtual HRESULT __stdcall get_DelaySign (
+        /*[out,retval]*/ VARIANT_BOOL * DelaySign ) = 0;
+      virtual HRESULT __stdcall get_UseUnicodeResponseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall put_UseUnicodeResponseFiles (
+        /*[in]*/ VARIANT_BOOL pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall get_ProfileGuidedDatabase (
+        /*[out,retval]*/ BSTR * pbstrDatabaseFile ) = 0;
+      virtual HRESULT __stdcall put_ProfileGuidedDatabase (
+        /*[in]*/ BSTR pbstrDatabaseFile ) = 0;
+      virtual HRESULT __stdcall get_GenerateManifest (
+        /*[out,retval]*/ VARIANT_BOOL * GenerateManifest ) = 0;
+      virtual HRESULT __stdcall put_GenerateManifest (
+        /*[in]*/ VARIANT_BOOL GenerateManifest ) = 0;
+      virtual HRESULT __stdcall get_ManifestFile (
+        /*[out,retval]*/ BSTR * ManifestFile ) = 0;
+      virtual HRESULT __stdcall put_ManifestFile (
+        /*[in]*/ BSTR ManifestFile ) = 0;
+      virtual HRESULT __stdcall get_AdditionalManifestDependencies (
+        /*[out,retval]*/ BSTR * Dependencies ) = 0;
+      virtual HRESULT __stdcall put_AdditionalManifestDependencies (
+        /*[in]*/ BSTR Dependencies ) = 0;
+      virtual HRESULT __stdcall get_AllowIsolation (
+        /*[out,retval]*/ VARIANT_BOOL * AllowIsolation ) = 0;
+      virtual HRESULT __stdcall put_AllowIsolation (
+        /*[in]*/ VARIANT_BOOL AllowIsolation ) = 0;
+      virtual HRESULT __stdcall get_ErrorReporting (
+        /*[out,retval]*/ enum linkerErrorReportingType * type ) = 0;
+      virtual HRESULT __stdcall put_ErrorReporting (
+        /*[in]*/ enum linkerErrorReportingType type ) = 0;
+      virtual HRESULT __stdcall get_UseLibraryDependencyInputs (
+        /*[out,retval]*/ VARIANT_BOOL * UseLibraryDependencyInputs ) = 0;
+      virtual HRESULT __stdcall put_UseLibraryDependencyInputs (
+        /*[in]*/ VARIANT_BOOL UseLibraryDependencyInputs ) = 0;
+      virtual HRESULT __stdcall get_CLRUnmanagedCodeCheck (
+        /*[out,retval]*/ VARIANT_BOOL * bVal ) = 0;
+      virtual HRESULT __stdcall put_CLRUnmanagedCodeCheck (
+        /*[in]*/ VARIANT_BOOL bVal ) = 0;
+};
+
+enum enumResourceLangID
+{
+    rcUseDefault = 0,
+    rcAfrikaans = 1078,
+    rcAlbanian = 1052,
+    rcArabicSaudi = 1025,
+    rcArabicIraq = 2049,
+    rcArabicEgypt = 3073,
+    rcArabicLibya = 4097,
+    rcArabicAlgeria = 5121,
+    rcArabicMorocco = 6145,
+    rcArabicTunisia = 7169,
+    rcArabicOman = 8193,
+    rcArabicYemen = 9217,
+    rcArabicSyria = 10241,
+    rcArabicJordan = 11265,
+    rcArabicLebanon = 12289,
+    rcArabicKuwait = 13313,
+    rcArabicUnitedArabEmirates = 14337,
+    rcArabicBahrain = 15361,
+    rcArabicQatar = 16385,
+    rcBasque = 1069,
+    rcBulgarian = 1026,
+    rcByelorussian = 1059,
+    rcCatalan = 1027,
+    rcChineseTaiwan = 1028,
+    rcChinesePRC = 2052,
+    rcChineseHongKong = 3076,
+    rcChineseSingapore = 4100,
+    rcCroatian = 1050,
+    rcCzech = 1029,
+    rcDanish = 1030,
+    rcDutchStandard = 1043,
+    rcDutchBelgium = 2067,
+    rcEnglishUS = 1033,
+    rcEnglishBritain = 2057,
+    rcEnglishAustralia = 3081,
+    rcEnglishCanada = 4105,
+    rcEnglishNewZealand = 5129,
+    rcEnglishIreland = 6153,
+    rcEnglishSouthAfrica = 7177,
+    rcEnglishJamaica = 8201,
+    rcEnglishCarribean = 9225,
+    rcEstonian = 1061,
+    rcFarsi = 1065,
+    rcFinnish = 1035,
+    rcFrenchStandard = 1036,
+    rcFrenchBelgium = 2060,
+    rcFrenchCanada = 3084,
+    rcFrenchSwitzerland = 4108,
+    rcFrenchLuxembourg = 5132,
+    rcGermanStandard = 1031,
+    rcGermanSwitzerland = 2055,
+    rcGermanAustria = 3079,
+    rcGermanLuxembourg = 4103,
+    rcGermanLichtenstein = 5127,
+    rcGreek = 1032,
+    rcHebrew = 1037,
+    rcHungarian = 1038,
+    rcIcelandic = 1039,
+    rcIndonesian = 1057,
+    rcItalianStandard = 1040,
+    rcItalianSwitzerland = 2064,
+    rcJapanese = 1041,
+    rcKorean = 1042,
+    rcKoreanJohab = 2066,
+    rcLatvian = 1062,
+    rcLithuanian = 1063,
+    rcNorwegianBokmal = 1044,
+    rcNorwegianNynorsk = 2068,
+    rcPolish = 1045,
+    rcPortugueseBrazilian = 1046,
+    rcPortugueseStandard = 2070,
+    rcRomanian = 1048,
+    rcRussian = 1049,
+    rcSlovak = 1051,
+    rcSpanishTraditional = 1034,
+    rcSpanishMexico = 2058,
+    rcSpanishModern = 3082,
+    rcSpanishGuatemala = 4106,
+    rcSpanishCostaRica = 5130,
+    rcSpanishPanama = 6154,
+    rcSpanishDominicanRepublic = 7178,
+    rcSpanishVenezuela = 8202,
+    rcSpanishColombia = 9226,
+    rcSpanishPeru = 10250,
+    rcSpanishArgentina = 11274,
+    rcSpanishEcuador = 12298,
+    rcSpanishChile = 13322,
+    rcSpanishUruguay = 14346,
+    rcSpanishParaguay = 15370,
+    rcSpanishBolivia = 16394,
+    rcSwedish = 1053,
+    rcThai = 1054,
+    rcTurkish = 1055,
+    rcUkrainian = 1058,
+    rcSerbian = 2074,
+    rcUrdu = 1056
+};
+
+struct __declspec(uuid("52fcb861-2429-11d7-8bf6-00b0d03daa06"))
+VCResourceCompilerTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * AdditionalOptions ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR AdditionalOptions ) = 0;
+      virtual HRESULT __stdcall get_PreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * Defines ) = 0;
+      virtual HRESULT __stdcall put_PreprocessorDefinitions (
+        /*[in]*/ BSTR Defines ) = 0;
+      virtual HRESULT __stdcall get_Culture (
+        /*[out,retval]*/ enum enumResourceLangID * LangID ) = 0;
+      virtual HRESULT __stdcall put_Culture (
+        /*[in]*/ enum enumResourceLangID LangID ) = 0;
+      virtual HRESULT __stdcall get_AdditionalIncludeDirectories (
+        /*[out,retval]*/ BSTR * IncludePath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalIncludeDirectories (
+        /*[in]*/ BSTR IncludePath ) = 0;
+      virtual HRESULT __stdcall get_IgnoreStandardIncludePath (
+        /*[out,retval]*/ VARIANT_BOOL * IgnoreInclPath ) = 0;
+      virtual HRESULT __stdcall put_IgnoreStandardIncludePath (
+        /*[in]*/ VARIANT_BOOL IgnoreInclPath ) = 0;
+      virtual HRESULT __stdcall get_ShowProgress (
+        /*[out,retval]*/ VARIANT_BOOL * ShowProgress ) = 0;
+      virtual HRESULT __stdcall put_ShowProgress (
+        /*[in]*/ VARIANT_BOOL ShowProgress ) = 0;
+      virtual HRESULT __stdcall get_ResourceOutputFileName (
+        /*[out,retval]*/ BSTR * ResFile ) = 0;
+      virtual HRESULT __stdcall put_ResourceOutputFileName (
+        /*[in]*/ BSTR ResFile ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_FullIncludePath (
+        /*[out,retval]*/ BSTR * FullIncludePath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb859-2429-11d7-8bf6-00b0d03daa06"))
+VCCustomBuildTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_CommandLine (
+        /*[out,retval]*/ BSTR * cmdLine ) = 0;
+      virtual HRESULT __stdcall put_CommandLine (
+        /*[in]*/ BSTR cmdLine ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * Desc ) = 0;
+      virtual HRESULT __stdcall put_Description (
+        /*[in]*/ BSTR Desc ) = 0;
+      virtual HRESULT __stdcall get_Outputs (
+        /*[out,retval]*/ BSTR * Outputs ) = 0;
+      virtual HRESULT __stdcall put_Outputs (
+        /*[in]*/ BSTR Outputs ) = 0;
+      virtual HRESULT __stdcall get_AdditionalDependencies (
+        /*[out,retval]*/ BSTR * Dependencies ) = 0;
+      virtual HRESULT __stdcall put_AdditionalDependencies (
+        /*[in]*/ BSTR Dependencies ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb863-2429-11d7-8bf6-00b0d03daa06"))
+VCALinkTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_OutputBaseFileName (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb862-2429-11d7-8bf6-00b0d03daa06"))
+VCManagedResourceCompilerTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_ResourceFileName (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall put_ResourceFileName (
+        /*[in]*/ BSTR FileName ) = 0;
+      virtual HRESULT __stdcall get_OutputFileName (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall get_DefaultLocalizedResources (
+        /*[out,retval]*/ VARIANT_BOOL * defaultResources ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb876-2429-11d7-8bf6-00b0d03daa06"))
+VCManifestTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_VerboseOutput (
+        /*[out,retval]*/ VARIANT_BOOL * VerboseOutput ) = 0;
+      virtual HRESULT __stdcall put_VerboseOutput (
+        /*[in]*/ VARIANT_BOOL VerboseOutput ) = 0;
+      virtual HRESULT __stdcall get_GenerateCatalogFiles (
+        /*[out,retval]*/ VARIANT_BOOL * GenerateCatalogs ) = 0;
+      virtual HRESULT __stdcall put_GenerateCatalogFiles (
+        /*[in]*/ VARIANT_BOOL GenerateCatalogs ) = 0;
+      virtual HRESULT __stdcall get_OutputManifestFile (
+        /*[out,retval]*/ BSTR * OutputFile ) = 0;
+      virtual HRESULT __stdcall put_OutputManifestFile (
+        /*[in]*/ BSTR OutputFile ) = 0;
+      virtual HRESULT __stdcall get_UpdateFileHashes (
+        /*[out,retval]*/ VARIANT_BOOL * UpdateHashes ) = 0;
+      virtual HRESULT __stdcall put_UpdateFileHashes (
+        /*[in]*/ VARIANT_BOOL UpdateHashes ) = 0;
+      virtual HRESULT __stdcall get_UpdateFileHashesSearchPath (
+        /*[out,retval]*/ BSTR * UpdateHashesSearchPath ) = 0;
+      virtual HRESULT __stdcall put_UpdateFileHashesSearchPath (
+        /*[in]*/ BSTR UpdateHashesSearchPath ) = 0;
+      virtual HRESULT __stdcall get_AssemblyIdentity (
+        /*[out,retval]*/ BSTR * Identity ) = 0;
+      virtual HRESULT __stdcall put_AssemblyIdentity (
+        /*[in]*/ BSTR Identity ) = 0;
+      virtual HRESULT __stdcall get_ReplacementsFile (
+        /*[out,retval]*/ BSTR * Replacements ) = 0;
+      virtual HRESULT __stdcall put_ReplacementsFile (
+        /*[in]*/ BSTR Replacements ) = 0;
+      virtual HRESULT __stdcall get_TypeLibraryFile (
+        /*[out,retval]*/ BSTR * TypeLibrary ) = 0;
+      virtual HRESULT __stdcall put_TypeLibraryFile (
+        /*[in]*/ BSTR TypeLibrary ) = 0;
+      virtual HRESULT __stdcall get_RegistrarScriptFile (
+        /*[out,retval]*/ BSTR * RegScript ) = 0;
+      virtual HRESULT __stdcall put_RegistrarScriptFile (
+        /*[in]*/ BSTR RegScript ) = 0;
+      virtual HRESULT __stdcall get_AdditionalManifestFiles (
+        /*[out,retval]*/ BSTR * AdditionalManifests ) = 0;
+      virtual HRESULT __stdcall put_AdditionalManifestFiles (
+        /*[in]*/ BSTR AdditionalManifests ) = 0;
+      virtual HRESULT __stdcall get_InputResourceManifests (
+        /*[out,retval]*/ BSTR * InputManifests ) = 0;
+      virtual HRESULT __stdcall put_InputResourceManifests (
+        /*[in]*/ BSTR InputManifests ) = 0;
+      virtual HRESULT __stdcall get_EmbedManifest (
+        /*[out,retval]*/ VARIANT_BOOL * EmbedManifest ) = 0;
+      virtual HRESULT __stdcall put_EmbedManifest (
+        /*[in]*/ VARIANT_BOOL EmbedManifest ) = 0;
+      virtual HRESULT __stdcall get_DependencyInformationFile (
+        /*[out,retval]*/ BSTR * DependencyFile ) = 0;
+      virtual HRESULT __stdcall put_DependencyInformationFile (
+        /*[in]*/ BSTR DependencyFile ) = 0;
+      virtual HRESULT __stdcall get_ComponentFileName (
+        /*[out,retval]*/ BSTR * ComponentFileName ) = 0;
+      virtual HRESULT __stdcall put_ComponentFileName (
+        /*[in]*/ BSTR ComponentFileName ) = 0;
+      virtual HRESULT __stdcall get_ManifestResourceFile (
+        /*[out,retval]*/ BSTR * ManifestResourceFile ) = 0;
+      virtual HRESULT __stdcall put_ManifestResourceFile (
+        /*[in]*/ BSTR ManifestResourceFile ) = 0;
+      virtual HRESULT __stdcall get_UseUnicodeResponseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * UseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall put_UseUnicodeResponseFiles (
+        /*[in]*/ VARIANT_BOOL UseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall get_UseFAT32Workaround (
+        /*[out,retval]*/ VARIANT_BOOL * UseWorkaround ) = 0;
+      virtual HRESULT __stdcall put_UseFAT32Workaround (
+        /*[in]*/ VARIANT_BOOL UseWorkaround ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb877-2429-11d7-8bf6-00b0d03daa06"))
+VCXDCMakeTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_ValidateIntelliSense (
+        /*[out,retval]*/ VARIANT_BOOL * Validate ) = 0;
+      virtual HRESULT __stdcall put_ValidateIntelliSense (
+        /*[in]*/ VARIANT_BOOL Validate ) = 0;
+      virtual HRESULT __stdcall get_AdditionalDocumentFiles (
+        /*[out,retval]*/ BSTR * AdditionalFiles ) = 0;
+      virtual HRESULT __stdcall put_AdditionalDocumentFiles (
+        /*[in]*/ BSTR AdditionalFiles ) = 0;
+      virtual HRESULT __stdcall get_OutputDocumentFile (
+        /*[out,retval]*/ BSTR * OutputFile ) = 0;
+      virtual HRESULT __stdcall put_OutputDocumentFile (
+        /*[in]*/ BSTR OutputFile ) = 0;
+      virtual HRESULT __stdcall get_DocumentLibraryDependencies (
+        /*[out,retval]*/ VARIANT_BOOL * DocDependencies ) = 0;
+      virtual HRESULT __stdcall put_DocumentLibraryDependencies (
+        /*[in]*/ VARIANT_BOOL DocDependencies ) = 0;
+      virtual HRESULT __stdcall get_UseUnicodeResponseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall put_UseUnicodeResponseFiles (
+        /*[in]*/ VARIANT_BOOL pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+enum eWebRefUrlBehavior
+{
+    eStaticUrl = 0,
+    eDynamicUrl = 1
+};
+
+struct __declspec(uuid("238b5176-2429-11d7-8bf6-00b0d03daa06"))
+VCFilter : VCProjectItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_UniqueIdentifier (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_UniqueIdentifier (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_CanonicalName (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall Remove ( ) = 0;
+      virtual HRESULT __stdcall get_Filter (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_Filter (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_Filters (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_Files (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall AddFilter (
+        BSTR bstrName,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddFilter (
+        /*[in]*/ BSTR Filter,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall AddFile (
+        BSTR bstrPath,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddFile (
+        /*[in]*/ BSTR bstrFile,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall RemoveFile (
+        /*[in]*/ IDispatch * File ) = 0;
+      virtual HRESULT __stdcall RemoveFilter (
+        /*[in]*/ IDispatch * Filter ) = 0;
+      virtual HRESULT __stdcall get_Items (
+        /*[out,retval]*/ IDispatch * * Items ) = 0;
+      virtual HRESULT __stdcall get_ParseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * Parse ) = 0;
+      virtual HRESULT __stdcall put_ParseFiles (
+        /*[in]*/ VARIANT_BOOL Parse ) = 0;
+      virtual HRESULT __stdcall get_SourceControlFiles (
+        /*[out,retval]*/ VARIANT_BOOL * SCC ) = 0;
+      virtual HRESULT __stdcall put_SourceControlFiles (
+        /*[in]*/ VARIANT_BOOL SCC ) = 0;
+      virtual HRESULT __stdcall AddWebReference (
+        /*[in]*/ BSTR bstrUrl,
+        /*[in]*/ BSTR bstrName,
+        /*[out,retval]*/ IDispatch * * File ) = 0;
+      virtual HRESULT __stdcall Move (
+        /*[in]*/ IDispatch * Parent ) = 0;
+      virtual HRESULT __stdcall CanMove (
+        /*[in]*/ IDispatch * Parent,
+        /*[out,retval]*/ VARIANT_BOOL * CanMove ) = 0;
+      virtual HRESULT __stdcall get_Object (
+        /*[out,retval]*/ IDispatch * * vsObject ) = 0;
+      virtual HRESULT __stdcall get_WebReference (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall get_UrlBehavior (
+        /*[out,retval]*/ enum eWebRefUrlBehavior * pVal ) = 0;
+};
+
+enum eFileType
+{
+    eFileTypeDefault = -1,
+    eFileTypeCppCode = 0,
+    eFileTypeCppClass = 1,
+    eFileTypeCppHeader = 2,
+    eFileTypeCppForm = 3,
+    eFileTypeCppControl = 4,
+    eFileTypeText = 5,
+    eFileTypeDEF = 6,
+    eFileTypeIDL = 7,
+    eFileTypeMakefile = 8,
+    eFileTypeRGS = 9,
+    eFileTypeRC = 10,
+    eFileTypeRES = 11,
+    eFileTypeXSD = 12,
+    eFileTypeXML = 13,
+    eFileTypeHTML = 14,
+    eFileTypeCSS = 15,
+    eFileTypeBMP = 16,
+    eFileTypeICO = 17,
+    eFileTypeResx = 18,
+    eFileTypeScript = 19,
+    eFileTypeBSC = 20,
+    eFileTypeXSX = 21,
+    eFileTypeCppWebService = 22,
+    eFileTypeAsax = 23,
+    eFileTypeAspPage = 24,
+    eFileTypeDocument = 25,
+    eFileTypeDiscomap = 26,
+    eFileTypeCSharpFile = 28,
+    eFileTypeClassDiagram = 29,
+    eFileTypeMHT = 30,
+    eFileTypePropertySheet = 31,
+    eFileTypeCUR = 32,
+    eFileTypeManifest = 33
+};
+
+struct __declspec(uuid("238b5175-2429-11d7-8bf6-00b0d03daa06"))
+VCFile : VCProjectItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall Remove ( ) = 0;
+      virtual HRESULT __stdcall get_RelativePath (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_RelativePath (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_FullPath (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall get_FileConfigurations (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_DeploymentContent (
+        /*[out,retval]*/ VARIANT_BOOL * Val ) = 0;
+      virtual HRESULT __stdcall put_DeploymentContent (
+        /*[in]*/ VARIANT_BOOL Val ) = 0;
+      virtual HRESULT __stdcall get_Extension (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall Move (
+        /*[in]*/ IDispatch * Parent ) = 0;
+      virtual HRESULT __stdcall CanMove (
+        /*[in]*/ IDispatch * Parent,
+        /*[out,retval]*/ VARIANT_BOOL * CanMove ) = 0;
+      virtual HRESULT __stdcall get_FileType (
+        /*[out,retval]*/ enum eFileType * pType ) = 0;
+      virtual HRESULT __stdcall put_FileType (
+        /*[in]*/ enum eFileType pType ) = 0;
+      virtual HRESULT __stdcall get_Items (
+        /*[out,retval]*/ IDispatch * * Items ) = 0;
+      virtual HRESULT __stdcall AddFile (
+        BSTR bstrPath,
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall CanAddFile (
+        /*[in]*/ BSTR bstrFile,
+        /*[out,retval]*/ VARIANT_BOOL * canAdd ) = 0;
+      virtual HRESULT __stdcall RemoveFile (
+        /*[in]*/ IDispatch * File ) = 0;
+      virtual HRESULT __stdcall get_CustomTool (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_CustomTool (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_SubType (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall put_SubType (
+        /*[in]*/ BSTR Val ) = 0;
+      virtual HRESULT __stdcall get_Object (
+        /*[out,retval]*/ IDispatch * * vsObject ) = 0;
+      virtual HRESULT __stdcall get_UnexpandedRelativePath (
+        /*[out,retval]*/ BSTR * bstrRelPath ) = 0;
+};
+
+struct __declspec(uuid("238b5184-2429-11d7-8bf6-00b0d03daa06"))
+VCFileConfiguration : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Val ) = 0;
+      virtual HRESULT __stdcall get_Tool (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall put_Tool (
+        /*[in]*/ IDispatch * Val ) = 0;
+      virtual HRESULT __stdcall get_ExcludedFromBuild (
+        /*[out,retval]*/ VARIANT_BOOL * ExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall put_ExcludedFromBuild (
+        /*[in]*/ VARIANT_BOOL ExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR bstrNameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * Match ) = 0;
+      virtual HRESULT __stdcall get_Parent (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall get_File (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall Evaluate (
+        /*[in]*/ BSTR bstrIn,
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ProjectConfiguration (
+        /*[out,retval]*/ IDispatch * * Val ) = 0;
+      virtual HRESULT __stdcall Compile (
+        /*[in]*/ VARIANT_BOOL forceBuild,
+        /*[in]*/ VARIANT_BOOL waitOnBuild ) = 0;
+      virtual HRESULT __stdcall get_OutputUpToDate (
+        /*[out,retval]*/ VARIANT_BOOL * UpToDate ) = 0;
+};
+
+struct __declspec(uuid("52fcb864-2429-11d7-8bf6-00b0d03daa06"))
+VCPreBuildEventTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_CommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_CommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_Description (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ExcludedFromBuild (
+        /*[out,retval]*/ VARIANT_BOOL * bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall put_ExcludedFromBuild (
+        /*[in]*/ VARIANT_BOOL bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb865-2429-11d7-8bf6-00b0d03daa06"))
+VCPreLinkEventTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_CommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_CommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_Description (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ExcludedFromBuild (
+        /*[out,retval]*/ VARIANT_BOOL * bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall put_ExcludedFromBuild (
+        /*[in]*/ VARIANT_BOOL bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb866-2429-11d7-8bf6-00b0d03daa06"))
+VCPostBuildEventTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_CommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_CommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_Description (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ExcludedFromBuild (
+        /*[out,retval]*/ VARIANT_BOOL * bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall put_ExcludedFromBuild (
+        /*[in]*/ VARIANT_BOOL bExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb867-2429-11d7-8bf6-00b0d03daa06"))
+VCBscMakeTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_OutputFile (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_OutputFile (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_DEPRECATED1 (
+        /*[out,retval]*/ VARIANT_BOOL * Run ) = 0;
+      virtual HRESULT __stdcall put_DEPRECATED1 (
+        /*[in]*/ VARIANT_BOOL Run ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+enum eAppProtectionOption
+{
+    eAppProtectLow = 0,
+    eAppProtectMedium = 1,
+    eAppProtectHigh = 2
+};
+
+struct __declspec(uuid("52fcb871-2429-11d7-8bf6-00b0d03daa06"))
+VCWebDeploymentTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ExcludedFromBuild (
+        /*[out,retval]*/ VARIANT_BOOL * disableDeploy ) = 0;
+      virtual HRESULT __stdcall put_ExcludedFromBuild (
+        /*[in]*/ VARIANT_BOOL disableDeploy ) = 0;
+      virtual HRESULT __stdcall get_RelativePath (
+        /*[out,retval]*/ BSTR * Dir ) = 0;
+      virtual HRESULT __stdcall put_RelativePath (
+        /*[in]*/ BSTR Dir ) = 0;
+      virtual HRESULT __stdcall get_AdditionalFiles (
+        /*[out,retval]*/ BSTR * Files ) = 0;
+      virtual HRESULT __stdcall put_AdditionalFiles (
+        /*[in]*/ BSTR Files ) = 0;
+      virtual HRESULT __stdcall get_UnloadBeforeCopy (
+        /*[out,retval]*/ VARIANT_BOOL * unloadFirst ) = 0;
+      virtual HRESULT __stdcall put_UnloadBeforeCopy (
+        /*[in]*/ VARIANT_BOOL unloadFirst ) = 0;
+      virtual HRESULT __stdcall get_RegisterOutput (
+        /*[out,retval]*/ VARIANT_BOOL * regDLL ) = 0;
+      virtual HRESULT __stdcall put_RegisterOutput (
+        /*[in]*/ VARIANT_BOOL regDLL ) = 0;
+      virtual HRESULT __stdcall get_VirtualDirectoryName (
+        /*[out,retval]*/ BSTR * virtRoot ) = 0;
+      virtual HRESULT __stdcall put_VirtualDirectoryName (
+        /*[in]*/ BSTR virtRoot ) = 0;
+      virtual HRESULT __stdcall get_ApplicationMappings (
+        /*[out,retval]*/ BSTR * mapping ) = 0;
+      virtual HRESULT __stdcall put_ApplicationMappings (
+        /*[in]*/ BSTR mapping ) = 0;
+      virtual HRESULT __stdcall get_ApplicationProtection (
+        /*[out,retval]*/ enum eAppProtectionOption * option ) = 0;
+      virtual HRESULT __stdcall put_ApplicationProtection (
+        /*[in]*/ enum eAppProtectionOption option ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+enum genProxyLanguage
+{
+    genProxyNative = 0,
+    genProxyManaged = 1
+};
+
+struct __declspec(uuid("52fcb869-2429-11d7-8bf6-00b0d03daa06"))
+VCWebServiceProxyGeneratorTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_Output (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_Output (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * suppress ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL suppress ) = 0;
+      virtual HRESULT __stdcall get_GeneratedProxyLanguage (
+        /*[out,retval]*/ enum genProxyLanguage * language ) = 0;
+      virtual HRESULT __stdcall put_GeneratedProxyLanguage (
+        /*[in]*/ enum genProxyLanguage language ) = 0;
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_URL (
+        /*[out,retval]*/ BSTR * urlPath ) = 0;
+      virtual HRESULT __stdcall put_URL (
+        /*[in]*/ BSTR urlPath ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_Namespace (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_Namespace (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_References (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_References (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("52fcb858-2429-11d7-8bf6-00b0d03daa06"))
+VCLibrarianTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_OutputFile (
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall put_OutputFile (
+        /*[in]*/ BSTR Out ) = 0;
+      virtual HRESULT __stdcall get_AdditionalDependencies (
+        /*[out,retval]*/ BSTR * Dependencies ) = 0;
+      virtual HRESULT __stdcall put_AdditionalDependencies (
+        /*[in]*/ BSTR Dependencies ) = 0;
+      virtual HRESULT __stdcall get_AdditionalLibraryDirectories (
+        /*[out,retval]*/ BSTR * LibPath ) = 0;
+      virtual HRESULT __stdcall put_AdditionalLibraryDirectories (
+        /*[in]*/ BSTR LibPath ) = 0;
+      virtual HRESULT __stdcall get_SuppressStartupBanner (
+        /*[out,retval]*/ VARIANT_BOOL * NoLogo ) = 0;
+      virtual HRESULT __stdcall put_SuppressStartupBanner (
+        /*[in]*/ VARIANT_BOOL NoLogo ) = 0;
+      virtual HRESULT __stdcall get_ModuleDefinitionFile (
+        /*[out,retval]*/ BSTR * DefFile ) = 0;
+      virtual HRESULT __stdcall put_ModuleDefinitionFile (
+        /*[in]*/ BSTR DefFile ) = 0;
+      virtual HRESULT __stdcall get_IgnoreAllDefaultLibraries (
+        /*[out,retval]*/ VARIANT_BOOL * NoDefault ) = 0;
+      virtual HRESULT __stdcall put_IgnoreAllDefaultLibraries (
+        /*[in]*/ VARIANT_BOOL NoDefault ) = 0;
+      virtual HRESULT __stdcall get_IgnoreDefaultLibraryNames (
+        /*[out,retval]*/ BSTR * Lib ) = 0;
+      virtual HRESULT __stdcall put_IgnoreDefaultLibraryNames (
+        /*[in]*/ BSTR Lib ) = 0;
+      virtual HRESULT __stdcall get_ExportNamedFunctions (
+        /*[out,retval]*/ BSTR * Symbols ) = 0;
+      virtual HRESULT __stdcall put_ExportNamedFunctions (
+        /*[in]*/ BSTR Symbols ) = 0;
+      virtual HRESULT __stdcall get_ForceSymbolReferences (
+        /*[out,retval]*/ BSTR * Symbol ) = 0;
+      virtual HRESULT __stdcall put_ForceSymbolReferences (
+        /*[in]*/ BSTR Symbol ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+      virtual HRESULT __stdcall get_UseUnicodeResponseFiles (
+        /*[out,retval]*/ VARIANT_BOOL * pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall put_UseUnicodeResponseFiles (
+        /*[in]*/ VARIANT_BOOL pbUseUnicodeRSP ) = 0;
+      virtual HRESULT __stdcall get_LinkTimeCodeGeneration (
+        /*[out,retval]*/ VARIANT_BOOL * CodeGen ) = 0;
+      virtual HRESULT __stdcall put_LinkTimeCodeGeneration (
+        /*[in]*/ VARIANT_BOOL CodeGen ) = 0;
+      virtual HRESULT __stdcall get_Inputs (
+        /*[out,retval]*/ BSTR * Inputs ) = 0;
+      virtual HRESULT __stdcall get_LinkLibraryDependencies (
+        /*[out,retval]*/ VARIANT_BOOL * LinkLibraryDependencies ) = 0;
+      virtual HRESULT __stdcall put_LinkLibraryDependencies (
+        /*[in]*/ VARIANT_BOOL LinkLibraryDependencies ) = 0;
+};
+
+struct __declspec(uuid("52fcb868-2429-11d7-8bf6-00b0d03daa06"))
+VCNMakeTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_BuildCommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_BuildCommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ReBuildCommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_ReBuildCommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_CleanCommandLine (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_CleanCommandLine (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_Output (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_Output (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_PreprocessorDefinitions (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_PreprocessorDefinitions (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_IncludeSearchPath (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_IncludeSearchPath (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ForcedIncludes (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_ForcedIncludes (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_AssemblySearchPath (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_AssemblySearchPath (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_ForcedUsingAssemblies (
+        /*[out,retval]*/ BSTR * pVal ) = 0;
+      virtual HRESULT __stdcall put_ForcedUsingAssemblies (
+        /*[in]*/ BSTR pVal ) = 0;
+      virtual HRESULT __stdcall get_CompileAsManaged (
+        /*[out,retval]*/ enum compileAsManagedOptions * optSetting ) = 0;
+      virtual HRESULT __stdcall put_CompileAsManaged (
+        /*[in]*/ enum compileAsManagedOptions optSetting ) = 0;
+};
+
+enum AppVrfBaseLayerOptions
+{
+    BaseLayerDisabled = 0,
+    BaseLayerBreakAndLog = 1,
+    BaseLayerBreak = 2,
+    BaseLayerLogAndContinue = 3
+};
+
+enum AVPageHeapProtectionDirection
+{
+    ProtectionDirectionOverrun = 0,
+    ProtectionDirectionUnderrun = 1
+};
+
+struct __declspec(uuid("52fcb878-2429-11d7-8bf6-00b0d03daa06"))
+VCAppVerifierTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_HeapVerification (
+        /*[out,retval]*/ enum AppVrfBaseLayerOptions * HeapOptions ) = 0;
+      virtual HRESULT __stdcall put_HeapVerification (
+        /*[in]*/ enum AppVrfBaseLayerOptions HeapOptions ) = 0;
+      virtual HRESULT __stdcall get_HandleVerification (
+        /*[out,retval]*/ enum AppVrfBaseLayerOptions * options ) = 0;
+      virtual HRESULT __stdcall put_HandleVerification (
+        /*[in]*/ enum AppVrfBaseLayerOptions options ) = 0;
+      virtual HRESULT __stdcall get_LocksVerification (
+        /*[out,retval]*/ enum AppVrfBaseLayerOptions * options ) = 0;
+      virtual HRESULT __stdcall put_LocksVerification (
+        /*[in]*/ enum AppVrfBaseLayerOptions options ) = 0;
+      virtual HRESULT __stdcall get_PageHeapConserveMemory (
+        /*[out,retval]*/ VARIANT_BOOL * ConserveMemory ) = 0;
+      virtual HRESULT __stdcall put_PageHeapConserveMemory (
+        /*[in]*/ VARIANT_BOOL ConserveMemory ) = 0;
+      virtual HRESULT __stdcall get_PageHeapProtectionLocation (
+        /*[out,retval]*/ enum AVPageHeapProtectionDirection * ProtectionType ) = 0;
+      virtual HRESULT __stdcall put_PageHeapProtectionLocation (
+        /*[in]*/ enum AVPageHeapProtectionDirection ProtectionType ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_PropertyOption (
+        /*[in]*/ BSTR Prop,
+        /*[in]*/ long dispidProp,
+        /*[out,retval]*/ BSTR * propVal ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("01b8e469-7081-4b35-9d08-994b0e96d8b6"))
+VCFxCopTool : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_InputAssemblyFileName (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall put_InputAssemblyFileName (
+        /*[in]*/ BSTR FileName ) = 0;
+      virtual HRESULT __stdcall get_Rules (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall put_Rules (
+        /*[in]*/ BSTR FileName ) = 0;
+      virtual HRESULT __stdcall get_RuleAssemblies (
+        /*[out,retval]*/ BSTR * RuleAssemblies ) = 0;
+      virtual HRESULT __stdcall put_RuleAssemblies (
+        /*[in]*/ BSTR RuleAssemblies ) = 0;
+      virtual HRESULT __stdcall get_OutputFile (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall put_OutputFile (
+        /*[in]*/ BSTR FileName ) = 0;
+      virtual HRESULT __stdcall get_EnableFxCop (
+        /*[out,retval]*/ VARIANT_BOOL * pbExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall put_EnableFxCop (
+        /*[in]*/ VARIANT_BOOL pbExcludedFromBuild ) = 0;
+      virtual HRESULT __stdcall get_FxCopUseTypeNameInSuppression (
+        /*[out,retval]*/ VARIANT_BOOL * pbFxCopUseTypeNameInSuppression ) = 0;
+      virtual HRESULT __stdcall put_FxCopUseTypeNameInSuppression (
+        /*[in]*/ VARIANT_BOOL pbFxCopUseTypeNameInSuppression ) = 0;
+      virtual HRESULT __stdcall get_FxCopModuleSuppressionsFile (
+        /*[out,retval]*/ BSTR * FileName ) = 0;
+      virtual HRESULT __stdcall put_FxCopModuleSuppressionsFile (
+        /*[in]*/ BSTR FileName ) = 0;
+      virtual HRESULT __stdcall get_toolName (
+        /*[out,retval]*/ BSTR * toolName ) = 0;
+      virtual HRESULT __stdcall get_ToolKind (
+        /*[out,retval]*/ BSTR * ToolKind ) = 0;
+      virtual HRESULT __stdcall get_ToolPath (
+        /*[out,retval]*/ BSTR * ToolPath ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_ExecutionBucket (
+        /*[out,retval]*/ long * pVal ) = 0;
+      virtual HRESULT __stdcall put_ExecutionBucket (
+        /*[in]*/ long pVal ) = 0;
+};
+
+struct __declspec(uuid("17d1b7b3-5827-43be-a70b-6a91bd4cb154"))
+VCRuntimeProperty : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * pbstrName ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR pbstrName ) = 0;
+      virtual HRESULT __stdcall get_IsReadOnly (
+        /*[out,retval]*/ VARIANT_BOOL * pbReadOnly ) = 0;
+      virtual HRESULT __stdcall put_IsReadOnly (
+        /*[in]*/ VARIANT_BOOL pbReadOnly ) = 0;
+      virtual HRESULT __stdcall get_DisplayName (
+        /*[out,retval]*/ BSTR * pbstrDisplayName ) = 0;
+      virtual HRESULT __stdcall put_DisplayName (
+        /*[in]*/ BSTR pbstrDisplayName ) = 0;
+      virtual HRESULT __stdcall get_PropertyPageName (
+        /*[out,retval]*/ BSTR * pbstrPropertyPageName ) = 0;
+      virtual HRESULT __stdcall put_PropertyPageName (
+        /*[in]*/ BSTR pbstrPropertyPageName ) = 0;
+      virtual HRESULT __stdcall get_Category (
+        /*[out,retval]*/ BSTR * pbstrCategory ) = 0;
+      virtual HRESULT __stdcall put_Category (
+        /*[in]*/ BSTR pbstrCategory ) = 0;
+      virtual HRESULT __stdcall get_Description (
+        /*[out,retval]*/ BSTR * pbstrDescription ) = 0;
+      virtual HRESULT __stdcall put_Description (
+        /*[in]*/ BSTR pbstrDescription ) = 0;
+      virtual HRESULT __stdcall get_HelpURL (
+        /*[out,retval]*/ BSTR * pbstrHelpURL ) = 0;
+      virtual HRESULT __stdcall put_HelpURL (
+        /*[in]*/ BSTR pbstrHelpURL ) = 0;
+      virtual HRESULT __stdcall get_HelpContext (
+        /*[out,retval]*/ long * plHelpContext ) = 0;
+      virtual HRESULT __stdcall put_HelpContext (
+        /*[in]*/ long plHelpContext ) = 0;
+      virtual HRESULT __stdcall get_HelpFile (
+        /*[out,retval]*/ BSTR * pbstrHelpFile ) = 0;
+      virtual HRESULT __stdcall put_HelpFile (
+        /*[in]*/ BSTR pbstrHelpFile ) = 0;
+      virtual HRESULT __stdcall get_HelpF1Keyword (
+        /*[out,retval]*/ BSTR * pbstrKeyword ) = 0;
+      virtual HRESULT __stdcall put_HelpF1Keyword (
+        /*[in]*/ BSTR pbstrKeyword ) = 0;
+};
+
+struct __declspec(uuid("9c894c02-b512-4b23-9b29-e3195b26c6ba"))
+VCRuntimeStringProperty : VCRuntimeProperty
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Switch (
+        /*[out,retval]*/ BSTR * pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall put_Switch (
+        /*[in]*/ BSTR pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall get_DefaultValue (
+        /*[out,retval]*/ BSTR * pbstrDefaultValue ) = 0;
+      virtual HRESULT __stdcall put_DefaultValue (
+        /*[in]*/ BSTR pbstrDefaultValue ) = 0;
+      virtual HRESULT __stdcall get_Delimited (
+        /*[out,retval]*/ VARIANT_BOOL * pbDelimited ) = 0;
+      virtual HRESULT __stdcall put_Delimited (
+        /*[in]*/ VARIANT_BOOL pbDelimited ) = 0;
+      virtual HRESULT __stdcall get_Delimiters (
+        /*[out,retval]*/ BSTR * pbstrDelimiter ) = 0;
+      virtual HRESULT __stdcall put_Delimiters (
+        /*[in]*/ BSTR pbstrDelimiter ) = 0;
+      virtual HRESULT __stdcall get_Inheritable (
+        /*[out,retval]*/ VARIANT_BOOL * pbInheritable ) = 0;
+      virtual HRESULT __stdcall put_Inheritable (
+        /*[in]*/ VARIANT_BOOL pbInheritable ) = 0;
+};
+
+struct __declspec(uuid("368263d3-70b8-49ce-b473-46ff42a2e79b"))
+VCRuntimeIntegerProperty : VCRuntimeProperty
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Switch (
+        /*[out,retval]*/ BSTR * pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall put_Switch (
+        /*[in]*/ BSTR pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall get_DefaultValue (
+        /*[out,retval]*/ long * plDefaultValue ) = 0;
+      virtual HRESULT __stdcall put_DefaultValue (
+        /*[in]*/ long plDefaultValue ) = 0;
+};
+
+struct __declspec(uuid("ddda0c6b-f8e7-4a9a-8a7e-91d7600afa96"))
+VCRuntimeEnumValue : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Switch (
+        /*[out,retval]*/ BSTR * pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall put_Switch (
+        /*[in]*/ BSTR pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall get_Value (
+        /*[out,retval]*/ long * plValue ) = 0;
+      virtual HRESULT __stdcall put_Value (
+        /*[in]*/ long plValue ) = 0;
+      virtual HRESULT __stdcall get_DisplayName (
+        /*[out,retval]*/ BSTR * pbstrDisplayName ) = 0;
+      virtual HRESULT __stdcall put_DisplayName (
+        /*[in]*/ BSTR pbstrDisplayName ) = 0;
+};
+
+struct __declspec(uuid("9d622602-4147-4f90-b458-c497f08f4301"))
+VCRuntimeEnumProperty : VCRuntimeProperty
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Values (
+        /*[out,retval]*/ struct IVCCollection * * ppValues ) = 0;
+      virtual HRESULT __stdcall get_DefaultValue (
+        /*[out,retval]*/ long * plDefaultValue ) = 0;
+      virtual HRESULT __stdcall put_DefaultValue (
+        /*[in]*/ long plDefaultValue ) = 0;
+      virtual HRESULT __stdcall AddValue (
+        /*[in]*/ long Value,
+        /*[out,retval]*/ struct VCRuntimeEnumValue * * EnumValue ) = 0;
+      virtual HRESULT __stdcall RemoveValue (
+        /*[in]*/ struct VCRuntimeEnumValue * EnumValue ) = 0;
+};
+
+struct __declspec(uuid("8667a38d-e190-42ec-b856-a862ba4baa23"))
+VCRuntimeBooleanProperty : VCRuntimeProperty
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Switch (
+        /*[out,retval]*/ BSTR * pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall put_Switch (
+        /*[in]*/ BSTR pbstrSwitch ) = 0;
+      virtual HRESULT __stdcall get_DefaultValue (
+        /*[out,retval]*/ VARIANT_BOOL * pbDefaultValue ) = 0;
+      virtual HRESULT __stdcall put_DefaultValue (
+        /*[in]*/ VARIANT_BOOL pbDefaultValue ) = 0;
+};
+
+struct __declspec(uuid("52fcb875-2429-11d7-8bf6-00b0d03daa06"))
+VCCustomBuildRule : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_AdditionalOptions (
+        /*[out,retval]*/ BSTR * options ) = 0;
+      virtual HRESULT __stdcall put_AdditionalOptions (
+        /*[in]*/ BSTR options ) = 0;
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_DisplayName (
+        /*[out,retval]*/ BSTR * Name ) = 0;
+      virtual HRESULT __stdcall put_DisplayName (
+        /*[in]*/ BSTR Name ) = 0;
+      virtual HRESULT __stdcall get_CommandLine (
+        /*[out,retval]*/ BSTR * cmdLine ) = 0;
+      virtual HRESULT __stdcall put_CommandLine (
+        /*[in]*/ BSTR cmdLine ) = 0;
+      virtual HRESULT __stdcall get_Outputs (
+        /*[out,retval]*/ BSTR * Outputs ) = 0;
+      virtual HRESULT __stdcall put_Outputs (
+        /*[in]*/ BSTR Outputs ) = 0;
+      virtual HRESULT __stdcall get_AdditionalDependencies (
+        /*[out,retval]*/ BSTR * Dependencies ) = 0;
+      virtual HRESULT __stdcall put_AdditionalDependencies (
+        /*[in]*/ BSTR Dependencies ) = 0;
+      virtual HRESULT __stdcall get_FileExtensions (
+        /*[out,retval]*/ BSTR * FileExtensions ) = 0;
+      virtual HRESULT __stdcall put_FileExtensions (
+        /*[in]*/ BSTR FileExtensions ) = 0;
+      virtual HRESULT __stdcall get_ExecutionDescription (
+        /*[out,retval]*/ BSTR * Description ) = 0;
+      virtual HRESULT __stdcall put_ExecutionDescription (
+        /*[in]*/ BSTR Description ) = 0;
+      virtual HRESULT __stdcall get_TargetRule (
+        /*[out,retval]*/ VARIANT_BOOL * pbTargetRule ) = 0;
+      virtual HRESULT __stdcall get_SupportsFileBatching (
+        /*[out,retval]*/ VARIANT_BOOL * pbSupportsBatching ) = 0;
+      virtual HRESULT __stdcall put_SupportsFileBatching (
+        /*[in]*/ VARIANT_BOOL pbSupportsBatching ) = 0;
+      virtual HRESULT __stdcall get_BatchingSeparator (
+        /*[out,retval]*/ BSTR * separator ) = 0;
+      virtual HRESULT __stdcall put_BatchingSeparator (
+        /*[in]*/ BSTR separator ) = 0;
+      virtual HRESULT __stdcall get_ShowOnlyRuleProperties (
+        /*[out,retval]*/ VARIANT_BOOL * pbShowOnlyRuleProps ) = 0;
+      virtual HRESULT __stdcall put_ShowOnlyRuleProperties (
+        /*[in]*/ VARIANT_BOOL pbShowOnlyRuleProps ) = 0;
+      virtual HRESULT __stdcall get_Properties (
+        /*[out,retval]*/ struct IVCCollection * * Properties ) = 0;
+      virtual HRESULT __stdcall AddStringProperty (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ struct VCRuntimeStringProperty * * StringProperty ) = 0;
+      virtual HRESULT __stdcall AddIntegerProperty (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ struct VCRuntimeIntegerProperty * * IntProperty ) = 0;
+      virtual HRESULT __stdcall AddEnumProperty (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ struct VCRuntimeEnumProperty * * EnumProperty ) = 0;
+      virtual HRESULT __stdcall AddBooleanProperty (
+        /*[in]*/ BSTR Name,
+        /*[out,retval]*/ struct VCRuntimeBooleanProperty * * BoolProperty ) = 0;
+      virtual HRESULT __stdcall RemoveProperty (
+        /*[in]*/ struct VCRuntimeProperty * Property ) = 0;
+};
+
+struct __declspec(uuid("4f0f5fc0-a5c3-4ffe-b2ac-0d4782f0e835"))
+ISimplePropertyContainer : IUnknown
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Configuration (
+        /*[out]*/ IUnknown * * ppUnkCfg ) = 0;
+      virtual HRESULT __stdcall PutProperty (
+        /*[in]*/ long id,
+        /*[in]*/ VARIANT Val ) = 0;
+      virtual HRESULT __stdcall GetProperty (
+        /*[in]*/ long id,
+        /*[out,retval]*/ VARIANT * pVal ) = 0;
+      virtual HRESULT __stdcall GetPropertyWithOffset (
+        /*[in]*/ long id,
+        /*[in]*/ long offset,
+        /*[out,retval]*/ VARIANT * pVal ) = 0;
+      virtual HRESULT __stdcall Evaluate (
+        /*[in]*/ BSTR inVal,
+        /*[out]*/ BSTR * pOutVal ) = 0;
+};
+
+struct __declspec(uuid("4f0f5fc1-a5c3-4ffe-b2ac-0d4782f0e835"))
+IToolPropertyWriter : IUnknown
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall WriteProperty (
+        /*[in]*/ BSTR Name,
+        /*[in]*/ BSTR Value ) = 0;
+};
+
+struct __declspec(uuid("4f0f5fc2-a5c3-4ffe-b2ac-0d4782f0e835"))
+ISimpleErrorContext : IUnknown
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall AddError (
+        /*[in]*/ BSTR text,
+        /*[in]*/ BSTR errorID,
+        /*[in]*/ BSTR File,
+        /*[in]*/ long line ) = 0;
+      virtual HRESULT __stdcall AddWarning (
+        /*[in]*/ BSTR text,
+        /*[in]*/ BSTR warningID,
+        /*[in]*/ BSTR File,
+        /*[in]*/ long line ) = 0;
+      virtual HRESULT __stdcall AddInfo (
+        /*[in]*/ BSTR text ) = 0;
+};
+
+struct __declspec(uuid("4f0f5fbf-a5c3-87e4-b2ac-1d4782f0e835"))
+IGenericUserDefinedTool : IUnknown
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out]*/ BSTR * pbstrName ) = 0;
+      virtual HRESULT __stdcall get_Identifier (
+        /*[out]*/ BSTR * pbstrIdentifier ) = 0;
+      virtual HRESULT __stdcall get_NumberOfProperties (
+        /*[out]*/ long * pdwNumProps ) = 0;
+      virtual HRESULT __stdcall get_NumberOfPropertiesObjects (
+        /*[out]*/ long * pdwNumPropObjs ) = 0;
+      virtual HRESULT __stdcall SetPropertyContainer (
+        /*[in]*/ struct ISimplePropertyContainer * pPropContainer ) = 0;
+      virtual HRESULT __stdcall GetPropertiesObject (
+        /*[in]*/ long Index,
+        /*[out]*/ IUnknown * * Object ) = 0;
+      virtual HRESULT __stdcall GetPropertiesObjectName (
+        /*[in]*/ long Index,
+        /*[out]*/ BSTR * bstrPageName ) = 0;
+      virtual HRESULT __stdcall SaveProperties (
+        /*[in]*/ struct IToolPropertyWriter * pXML ) = 0;
+      virtual HRESULT __stdcall SaveUserProperties (
+        /*[in]*/ struct IToolPropertyWriter * pXML ) = 0;
+};
+
+struct __declspec(uuid("4f0f5fbf-a5c3-4ffe-b2ac-0d4782f0e835"))
+IUserDefinedTool : IGenericUserDefinedTool
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_DefaultBucket (
+        /*[out]*/ long * pdwBucket ) = 0;
+      virtual HRESULT __stdcall get_DefaultFileExtensions (
+        /*[out]*/ BSTR * pbstrExt ) = 0;
+      virtual HRESULT __stdcall get_Outputs (
+        /*[out]*/ BSTR * pbstrOutputs ) = 0;
+      virtual HRESULT __stdcall get_SupportsSingleFileMode (
+        /*[out]*/ long * pbVal ) = 0;
+      virtual HRESULT __stdcall get_SupportsBatchMode (
+        /*[out]*/ long * pbVal ) = 0;
+      virtual HRESULT __stdcall get_SupportsTargetMode (
+        /*[out]*/ long * pbVal ) = 0;
+      virtual HRESULT __stdcall SetInputs (
+        /*[in]*/ BSTR * bstrInputs,
+        /*[in]*/ long numInputs ) = 0;
+      virtual HRESULT __stdcall Exec (
+        /*[in]*/ BSTR bstrProjectDirectory,
+        /*[in]*/ struct ISimpleErrorContext * pErrCtxt ) = 0;
+};
+
+struct __declspec(uuid("238b5182-2429-11d7-8bf6-00b0d03daa06"))
+VCConfiguration : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * cfgName ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR cfgName ) = 0;
+      virtual HRESULT __stdcall get_Platform (
+        /*[out,retval]*/ IDispatch * * assocPlatform ) = 0;
+      virtual HRESULT __stdcall get_OutputDirectory (
+        /*[out,retval]*/ BSTR * outDir ) = 0;
+      virtual HRESULT __stdcall put_OutputDirectory (
+        /*[in]*/ BSTR outDir ) = 0;
+      virtual HRESULT __stdcall get_IntermediateDirectory (
+        /*[out,retval]*/ BSTR * intDir ) = 0;
+      virtual HRESULT __stdcall put_IntermediateDirectory (
+        /*[in]*/ BSTR intDir ) = 0;
+      virtual HRESULT __stdcall Delete ( ) = 0;
+      virtual HRESULT __stdcall Build ( ) = 0;
+      virtual HRESULT __stdcall Rebuild ( ) = 0;
+      virtual HRESULT __stdcall Clean ( ) = 0;
+      virtual HRESULT __stdcall get_DebugSettings (
+        /*[out,retval]*/ IDispatch * * DbgSettings ) = 0;
+      virtual HRESULT __stdcall get_PrimaryOutput (
+        /*[out,retval]*/ BSTR * primaryOut ) = 0;
+      virtual HRESULT __stdcall get_ImportLibrary (
+        /*[out,retval]*/ BSTR * ImportLib ) = 0;
+      virtual HRESULT __stdcall get_ProgramDatabase (
+        /*[out,retval]*/ BSTR * PDB ) = 0;
+      virtual HRESULT __stdcall get_project (
+        /*[out,retval]*/ IDispatch * * proj ) = 0;
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR NameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * IsMatch ) = 0;
+      virtual HRESULT __stdcall get_Tools (
+        /*[out,retval]*/ IDispatch * * toolList ) = 0;
+      virtual HRESULT __stdcall get_FileTools (
+        /*[out,retval]*/ struct IVCCollection * * fileToolList ) = 0;
+      virtual HRESULT __stdcall get_ConfigurationName (
+        /*[out,retval]*/ BSTR * cfgName ) = 0;
+      virtual HRESULT __stdcall put_ConfigurationName (
+        /*[in]*/ BSTR cfgName ) = 0;
+      virtual HRESULT __stdcall get_UpToDate (
+        /*[out,retval]*/ VARIANT_BOOL * IsUpToDate ) = 0;
+      virtual HRESULT __stdcall get_ConfigurationType (
+        /*[out,retval]*/ enum ConfigurationTypes * ConfigType ) = 0;
+      virtual HRESULT __stdcall put_ConfigurationType (
+        /*[in]*/ enum ConfigurationTypes ConfigType ) = 0;
+      virtual HRESULT __stdcall CopyTo (
+        IDispatch * Config ) = 0;
+      virtual HRESULT __stdcall get_InheritedPropertySheets (
+        /*[out,retval]*/ BSTR * PropertySheets ) = 0;
+      virtual HRESULT __stdcall put_InheritedPropertySheets (
+        /*[in]*/ BSTR PropertySheets ) = 0;
+      virtual HRESULT __stdcall get_DEPRECATED1 (
+        /*[out,retval]*/ VARIANT_BOOL * Bsc ) = 0;
+      virtual HRESULT __stdcall put_DEPRECATED1 (
+        /*[in]*/ VARIANT_BOOL Bsc ) = 0;
+      virtual HRESULT __stdcall get_useOfMfc (
+        /*[out,retval]*/ enum useOfMfc * useMfc ) = 0;
+      virtual HRESULT __stdcall put_useOfMfc (
+        /*[in]*/ enum useOfMfc useMfc ) = 0;
+      virtual HRESULT __stdcall get_useOfATL (
+        /*[out,retval]*/ enum useOfATL * useATL ) = 0;
+      virtual HRESULT __stdcall put_useOfATL (
+        /*[in]*/ enum useOfATL useATL ) = 0;
+      virtual HRESULT __stdcall get_ATLMinimizesCRunTimeLibraryUsage (
+        /*[out,retval]*/ VARIANT_BOOL * UseCRT ) = 0;
+      virtual HRESULT __stdcall put_ATLMinimizesCRunTimeLibraryUsage (
+        /*[in]*/ VARIANT_BOOL UseCRT ) = 0;
+      virtual HRESULT __stdcall get_CharacterSet (
+        /*[out,retval]*/ enum charSet * optSetting ) = 0;
+      virtual HRESULT __stdcall put_CharacterSet (
+        /*[in]*/ enum charSet optSetting ) = 0;
+      virtual HRESULT __stdcall get_ManagedExtensions (
+        /*[out,retval]*/ enum compileAsManagedOptions * Managed ) = 0;
+      virtual HRESULT __stdcall put_ManagedExtensions (
+        /*[in]*/ enum compileAsManagedOptions Managed ) = 0;
+      virtual HRESULT __stdcall get_DeleteExtensionsOnClean (
+        /*[out,retval]*/ BSTR * ExtList ) = 0;
+      virtual HRESULT __stdcall put_DeleteExtensionsOnClean (
+        /*[in]*/ BSTR ExtList ) = 0;
+      virtual HRESULT __stdcall get_WholeProgramOptimization (
+        /*[out,retval]*/ enum WholeProgramOptimizationTypes * Optimize ) = 0;
+      virtual HRESULT __stdcall put_WholeProgramOptimization (
+        /*[in]*/ enum WholeProgramOptimizationTypes Optimize ) = 0;
+      virtual HRESULT __stdcall get_RegisterOutput (
+        /*[out,retval]*/ VARIANT_BOOL * doRegister ) = 0;
+      virtual HRESULT __stdcall Evaluate (
+        /*[in]*/ BSTR In,
+        /*[out,retval]*/ BSTR * Out ) = 0;
+      virtual HRESULT __stdcall get_PropertySheets (
+        /*[out,retval]*/ IDispatch * * PropertySheets ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_SatelliteDLLs (
+        /*[out,retval]*/ BSTR * satellites ) = 0;
+      virtual HRESULT __stdcall StopBuild ( ) = 0;
+      virtual HRESULT __stdcall WaitForBuild ( ) = 0;
+      virtual HRESULT __stdcall get_ExcludeBuckets (
+        /*[out,retval]*/ BSTR * Buckets ) = 0;
+      virtual HRESULT __stdcall put_ExcludeBuckets (
+        /*[in]*/ BSTR Buckets ) = 0;
+      virtual HRESULT __stdcall get_BuildLogFile (
+        /*[out,retval]*/ BSTR * pbstrBuildLogFile ) = 0;
+      virtual HRESULT __stdcall put_BuildLogFile (
+        /*[in]*/ BSTR pbstrBuildLogFile ) = 0;
+      virtual HRESULT __stdcall ClearToolProperty (
+        /*[in]*/ IDispatch * pTool,
+        /*[in]*/ BSTR bstrPropertyName ) = 0;
+      virtual HRESULT __stdcall Deploy ( ) = 0;
+      virtual HRESULT __stdcall BuildWithPropertySheet (
+        /*[in]*/ struct VCPropertySheet * pPropertySheet,
+        /*[in]*/ enum BuildWithPropertySheetType buildType ) = 0;
+      virtual HRESULT __stdcall BuildWithPropertySheetPath (
+        /*[in]*/ BSTR propertySheetPath,
+        /*[in]*/ enum BuildWithPropertySheetType buildType ) = 0;
+      virtual HRESULT __stdcall get_SqlDeploySource (
+        /*[out,retval]*/ VARIANT_BOOL * bDeploySrc ) = 0;
+      virtual HRESULT __stdcall put_SqlDeploySource (
+        /*[in]*/ VARIANT_BOOL bDeploySrc ) = 0;
+      virtual HRESULT __stdcall get_SqlDebugScript (
+        /*[out,retval]*/ BSTR * debugScript ) = 0;
+      virtual HRESULT __stdcall put_SqlDebugScript (
+        /*[in]*/ BSTR debugScript ) = 0;
+      virtual HRESULT __stdcall get_SqlPreDeployScript (
+        /*[out,retval]*/ BSTR * preDeployScript ) = 0;
+      virtual HRESULT __stdcall put_SqlPreDeployScript (
+        /*[in]*/ BSTR preDeployScript ) = 0;
+      virtual HRESULT __stdcall get_SqlPostDeployScript (
+        /*[out,retval]*/ BSTR * postDeployScript ) = 0;
+      virtual HRESULT __stdcall put_SqlPostDeployScript (
+        /*[in]*/ BSTR postDeployScript ) = 0;
+      virtual HRESULT __stdcall get_SqlPermissionLevel (
+        /*[out,retval]*/ enum eSqlClrPermissionLevel * permission ) = 0;
+      virtual HRESULT __stdcall put_SqlPermissionLevel (
+        /*[in]*/ enum eSqlClrPermissionLevel permission ) = 0;
+      virtual HRESULT __stdcall get_IntrinsicPropertySheets (
+        /*[out,retval]*/ BSTR * PropertySheets ) = 0;
+      virtual HRESULT __stdcall put_IntrinsicPropertySheets (
+        /*[in]*/ BSTR PropertySheets ) = 0;
+      virtual HRESULT __stdcall get_DeploymentTool (
+        /*[out,retval]*/ IDispatch * * deployTool ) = 0;
+      virtual HRESULT __stdcall get_SqlAssemblyOwner (
+        /*[out,retval]*/ BSTR * owner ) = 0;
+      virtual HRESULT __stdcall put_SqlAssemblyOwner (
+        /*[in]*/ BSTR owner ) = 0;
+      virtual HRESULT __stdcall Relink ( ) = 0;
+};
+
+struct __declspec(uuid("238b5183-2429-11d7-8bf6-00b0d03daa06"))
+VCPropertySheet : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * styleName ) = 0;
+      virtual HRESULT __stdcall put_Name (
+        /*[in]*/ BSTR styleName ) = 0;
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR NameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * IsMatch ) = 0;
+      virtual HRESULT __stdcall get_PropertySheetName (
+        /*[out,retval]*/ BSTR * PropertySheetName ) = 0;
+      virtual HRESULT __stdcall put_PropertySheetName (
+        /*[in]*/ BSTR PropertySheetName ) = 0;
+      virtual HRESULT __stdcall get_PropertySheetFile (
+        /*[out,retval]*/ BSTR * File ) = 0;
+      virtual HRESULT __stdcall put_PropertySheetFile (
+        /*[in]*/ BSTR File ) = 0;
+      virtual HRESULT __stdcall get_Tools (
+        /*[out,retval]*/ IDispatch * * Tools ) = 0;
+      virtual HRESULT __stdcall get_FileTools (
+        /*[out,retval]*/ struct IVCCollection * * fileToolList ) = 0;
+      virtual HRESULT __stdcall get_IsDirty (
+        /*[out,retval]*/ VARIANT_BOOL * dirty ) = 0;
+      virtual HRESULT __stdcall get_PropertySheets (
+        /*[out,retval]*/ IDispatch * * PropertySheets ) = 0;
+      virtual HRESULT __stdcall get_IntermediateDirectory (
+        /*[out,retval]*/ BSTR * intDir ) = 0;
+      virtual HRESULT __stdcall put_IntermediateDirectory (
+        /*[in]*/ BSTR intDir ) = 0;
+      virtual HRESULT __stdcall get_OutputDirectory (
+        /*[out,retval]*/ BSTR * outDir ) = 0;
+      virtual HRESULT __stdcall put_OutputDirectory (
+        /*[in]*/ BSTR outDir ) = 0;
+      virtual HRESULT __stdcall get_InheritedPropertySheets (
+        /*[out,retval]*/ BSTR * PropertySheetNames ) = 0;
+      virtual HRESULT __stdcall put_InheritedPropertySheets (
+        /*[in]*/ BSTR PropertySheetNames ) = 0;
+      virtual HRESULT __stdcall get_DEPRECATED1 (
+        /*[out,retval]*/ VARIANT_BOOL * Bsc ) = 0;
+      virtual HRESULT __stdcall put_DEPRECATED1 (
+        /*[in]*/ VARIANT_BOOL Bsc ) = 0;
+      virtual HRESULT __stdcall get_useOfMfc (
+        /*[out,retval]*/ enum useOfMfc * useMfc ) = 0;
+      virtual HRESULT __stdcall put_useOfMfc (
+        /*[in]*/ enum useOfMfc useMfc ) = 0;
+      virtual HRESULT __stdcall get_useOfATL (
+        /*[out,retval]*/ enum useOfATL * useATL ) = 0;
+      virtual HRESULT __stdcall put_useOfATL (
+        /*[in]*/ enum useOfATL useATL ) = 0;
+      virtual HRESULT __stdcall get_ATLMinimizesCRunTimeLibraryUsage (
+        /*[out,retval]*/ VARIANT_BOOL * UseCRT ) = 0;
+      virtual HRESULT __stdcall put_ATLMinimizesCRunTimeLibraryUsage (
+        /*[in]*/ VARIANT_BOOL UseCRT ) = 0;
+      virtual HRESULT __stdcall get_CharacterSet (
+        /*[out,retval]*/ enum charSet * optSetting ) = 0;
+      virtual HRESULT __stdcall put_CharacterSet (
+        /*[in]*/ enum charSet optSetting ) = 0;
+      virtual HRESULT __stdcall get_ManagedExtensions (
+        /*[out,retval]*/ enum compileAsManagedOptions * Managed ) = 0;
+      virtual HRESULT __stdcall put_ManagedExtensions (
+        /*[in]*/ enum compileAsManagedOptions Managed ) = 0;
+      virtual HRESULT __stdcall get_DeleteExtensionsOnClean (
+        /*[out,retval]*/ BSTR * ExtList ) = 0;
+      virtual HRESULT __stdcall put_DeleteExtensionsOnClean (
+        /*[in]*/ BSTR ExtList ) = 0;
+      virtual HRESULT __stdcall get_WholeProgramOptimization (
+        /*[out,retval]*/ VARIANT_BOOL * Optimize ) = 0;
+      virtual HRESULT __stdcall put_WholeProgramOptimization (
+        /*[in]*/ VARIANT_BOOL Optimize ) = 0;
+      virtual HRESULT __stdcall get_VCProjectEngine (
+        /*[out,retval]*/ IDispatch * * ProjectEngine ) = 0;
+      virtual HRESULT __stdcall get_PropertySheetDirectory (
+        /*[out,retval]*/ BSTR * PropertySheetDirectory ) = 0;
+      virtual HRESULT __stdcall get_BuildLogFile (
+        /*[out,retval]*/ BSTR * pbstrBuildLogFile ) = 0;
+      virtual HRESULT __stdcall put_BuildLogFile (
+        /*[in]*/ BSTR pbstrBuildLogFile ) = 0;
+      virtual HRESULT __stdcall get_FileFormat (
+        /*[out,retval]*/ enum enumFileFormat * FileType ) = 0;
+      virtual HRESULT __stdcall put_FileFormat (
+        /*[in]*/ enum enumFileFormat FileType ) = 0;
+      virtual HRESULT __stdcall get_FileEncoding (
+        /*[out,retval]*/ BSTR * encoding ) = 0;
+      virtual HRESULT __stdcall put_FileEncoding (
+        /*[in]*/ BSTR encoding ) = 0;
+      virtual HRESULT __stdcall get_ConfigurationType (
+        /*[out,retval]*/ enum ConfigurationTypes * ConfigType ) = 0;
+      virtual HRESULT __stdcall put_ConfigurationType (
+        /*[in]*/ enum ConfigurationTypes ConfigType ) = 0;
+      virtual HRESULT __stdcall ClearToolProperty (
+        /*[in]*/ IDispatch * pTool,
+        /*[in]*/ BSTR bstrPropertyName ) = 0;
+      virtual HRESULT __stdcall Save ( ) = 0;
+      virtual HRESULT __stdcall get_UserMacros (
+        /*[out,retval]*/ struct IVCCollection * * UserMacros ) = 0;
+      virtual HRESULT __stdcall AddUserMacro (
+        /*[in]*/ BSTR Name,
+        /*[in]*/ BSTR Value,
+        /*[out,retval]*/ struct VCUserMacro * * UserMacro ) = 0;
+      virtual HRESULT __stdcall RemoveUserMacro (
+        /*[in]*/ struct VCUserMacro * UserMacro ) = 0;
+      virtual HRESULT __stdcall RemoveAllUserMacros ( ) = 0;
+};
+
+struct __declspec(uuid("238b5188-2429-11d7-8bf6-00b0d03daa06"))
+VCUserMacro : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall get_Name (
+        /*[out,retval]*/ BSTR * variableName ) = 0;
+      virtual HRESULT __stdcall get_Value (
+        /*[out,retval]*/ BSTR * variableValue ) = 0;
+      virtual HRESULT __stdcall put_Value (
+        /*[in]*/ BSTR variableValue ) = 0;
+      virtual HRESULT __stdcall get_InheritsFromParent (
+        /*[out,retval]*/ VARIANT_BOOL * variableType ) = 0;
+      virtual HRESULT __stdcall put_InheritsFromParent (
+        /*[in]*/ VARIANT_BOOL variableType ) = 0;
+      virtual HRESULT __stdcall get_Delimiter (
+        /*[out,retval]*/ BSTR * variableDelimiter ) = 0;
+      virtual HRESULT __stdcall put_Delimiter (
+        /*[in]*/ BSTR variableDelimiter ) = 0;
+      virtual HRESULT __stdcall get_PerformEnvironmentSet (
+        /*[out,retval]*/ VARIANT_BOOL * pbSetInEnvironment ) = 0;
+      virtual HRESULT __stdcall put_PerformEnvironmentSet (
+        /*[in]*/ VARIANT_BOOL pbSetInEnvironment ) = 0;
+      virtual HRESULT __stdcall get_PropertySheet1 (
+        /*[out,retval]*/ struct VCPropertySheet * * ppPropertySheet ) = 0;
+      virtual HRESULT __stdcall MatchName (
+        /*[in]*/ BSTR NameToMatch,
+        /*[in]*/ VARIANT_BOOL FullOnly,
+        /*[out,retval]*/ VARIANT_BOOL * IsMatch ) = 0;
+};
+
+} // namespace VCProjectEngineLibrary
+
+#pragma pack(pop)

@@ -1,0 +1,5 @@
+P4Win Tools File from chrisn
+>>Imported from chrisn				0	0	0	1
+>>Lock Main/Src	p4mutex.exe	lock main_src 3 $u $p	c:\	1	0	1	0
+>>Release Main/Src	p4mutex.exe	release main_src 3 $u $p	c:\	1	0	1	0
+>>Query Main/Src lock	p4mutex.exe	query main_src 3 $u $p	c:\	1	0	1	0

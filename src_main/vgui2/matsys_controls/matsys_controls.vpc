@@ -1,0 +1,49 @@
+//-----------------------------------------------------------------------------
+//	MATSYS_CONTROLS.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Project "matsys_controls"
+{
+	$Folder	"Source Files"
+	{
+		$File	"assetpicker.cpp"
+		$File	"baseassetpicker.cpp"
+		$File	"colorpickerpanel.cpp"
+		$File	"curveeditorpanel.cpp"
+		$File	"gamefiletreeview.cpp"
+		$File	"matsyscontrols.cpp"
+		$File	"picker.cpp"
+		$File	"proceduraltexturepanel.cpp"
+		$File	"QCGenerator.cpp"
+		$File	"tgapreviewpanel.cpp"
+		$File	"vmtpicker.cpp"
+		$File	"vmtpreviewpanel.cpp"
+		$File	"vtfpicker.cpp"
+		$File	"vtfpreviewpanel.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\matsys_controls\assetpicker.h"
+		$File	"$SRCDIR\public\matsys_controls\baseassetpicker.h"
+		$File	"$SRCDIR\public\matsys_controls\colorpickerpanel.h"
+		$File	"$SRCDIR\public\matsys_controls\gamefiletreeview.h"
+		$File	"$SRCDIR\public\matsys_controls\matsyscontrols.h"
+		$File	"$SRCDIR\public\matsys_controls\picker.h"
+		$File	"$SRCDIR\public\matsys_controls\proceduraltexturepanel.h"
+		$File	"$SRCDIR\public\matsys_controls\QCGenerator.h"
+		$File	"$SRCDIR\public\matsys_controls\tgapreviewpanel.h"
+		$File	"$SRCDIR\public\matsys_controls\vmtpicker.h"
+		$File	"$SRCDIR\public\matsys_controls\vmtpreviewpanel.h"
+		$File	"$SRCDIR\public\matsys_controls\vtfpicker.h"
+		$File	"$SRCDIR\public\matsys_controls\vtfpreviewpanel.h"
+	}
+}

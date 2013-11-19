@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+//	APPFRAMEWORK.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		".."
+$macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]	
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+		$BuildForLinux 1
+
+	-$File "WinApp.cpp"
+	$File "linuxapp.cpp"
+}
+
+$Project "appframework"
+{
+	$Folder	"Source Files"
+	{
+		$File	"AppSystemGroup.cpp"
+		$File	"$SRCDIR\public\filesystem_init.cpp"
+		$File	"VguiMatSysApp.cpp"	[$WIN32]
+		$File	"WinApp.cpp"
+	}
+
+	$Folder	"Interface"
+	{
+		$File	"$SRCDIR\public\appframework\AppFramework.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\public\appframework\IAppSystemGroup.h"
+		$File	"$SRCDIR\public\appframework\tier2app.h"
+		$File	"$SRCDIR\public\appframework\tier3app.h"
+		$File	"$SRCDIR\public\appframework\VguiMatSysApp.h"
+	}
+}

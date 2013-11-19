@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 1st April 2002), see www.w3.org">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Parsifal XML parser</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+<h1 style="margin-left: 0px;">xmlplint command line tool</h1>
+<br>
+<p>
+	Xmlplint is command line tool for parsing/validating XML documents. Xmlplint
+means something like "xml parsing/parsifal lint"
+(<a href="http://en.wikipedia.org/wiki/Lint_programming_tool">http://en.wikipedia.org/wiki/Lint_programming_tool</a>). Name resemblance with xmllint
+is obvious of
+course (xmlllint is very similar command line tool based on libxml framework). I chose the name just because I think it's easy to remember - not
+because I wanted people to mix up these tools. Xmllint/libxml offers quite
+impressive list of features but xmlplint offers some unique features like for
+instance streaming DTD validation (read: <b>very fast and using memory sparingly</b>) and partial DTD validation 
+based on uris.
+</p>
+<br>
+<p>
+Xmlplint in action:
+</p>
+<p>
+<img src="pics/uevalid1.gif">	
+</p>
+<br><br>
+<p>
+<b>Features:</b>
+<ul>
+<li>Outputs: roundtrip, sax events, canonical form 
+  (http://www.jclark.com/xml/canonxml.html). Also verbose or simple error
+  reporting modes are available -  xmlplint can be easily integrated with text
+  editors.</li>
+<li>Inputs: stdin, FILE* or protocols available by libcurl (HTTP, FTP, HTTPS 
+  etc.)</li>
+<li>Simple XML Catalogs support (useful for mapping known publicIDs for local
+  resources for example).</li>
+<li>Well-formedness checking and validation with extensive error/warning location
+  information.</li>
+<li>Filtered DTD validation (based on namespace uris); this is kind of having 
+  XML namespaces support in DTDs on parser level.</li>
+<li>Support for extensive number of encodings via libiconv library</li>
+<li>Parsing benchmarking</li>
+</ul>
+<br><p>
+<b>Installation</b>
+</p>
+<p>
+Xmlplint is included in the parsifal library distribution files in source form. Win32 binary files
+are also available. You can find them at the <a href="download.html" target="main">Download</a> section.
+Xmlplint uses libiconv library so you must have one too. Get it for example here <a href="http://ftp.gnu.org/pub/gnu/libiconv/" target="_top">
+	GNU.ORG libiconv</a>. Also Win32 binary distribution doesn't include iconv.dll so you must download
+	<code>libiconv-1.9.1.bin.woe32.zip</code> or similar.
+</p>
+<br>
+<p>
+<b>Licence</b>
+</p>
+<p>
+Xmlplint uses libcurl library. Curl and libcurl are licensed under a <a href="http://curl.haxx.se/docs/copyright.html" target="_top"> MIT/X derivate license</a>.<br>
+GNU libiconv uses <a href="http://www.gnu.org/licenses/lgpl.txt">LGPL licence</a><br>
+Parsifal XML Parser and xmlplint command line tool are <a href="../COPYING" target="main">Public Domain software</a><br>
+</p>
+<br>
+<table><tr><th>xmlplint usage</th></tr><tr><td>
+<code><pre>
+C:\xmlplint>xmlplint -?
+Usage: xmlplint [options] <file/url>
+Options:
+  -V Validate document
+  -a Sort attributes
+  -v Show version info
+  -x Skip external entities
+  -M Load document into memory before processing
+     (useful for benchmarking)
+  -i Report ignorable whitespace
+  -c Use catalogs file /etc/xml/catalog or files set by
+     XML_CATALOG_FILES environment variable (semicolon separated)
+  -W Treat validation errors as warnings
+  -s Show error/warning status
+  -d Load foreign DTD e.g. -d /home/mydtd.dtd
+  -o Output to file
+  -f Output format (default: roundtrip)
+     1: SAX events
+     2: canonical form (http://www.jclark.com/xml/canonxml.html)
+     3: silent - errors only
+  -e Force input encoding e.g. -e ISO-8859-1
+  -X General entity settings
+     1: Preserve general entities
+     2: Treat undefined entities as errors
+  -n Namespace handling (default: on)
+     1: off
+     2: report declarations
+  -u Base uri
+  -U Uri for DTD validation filter
+  -t Benchmark processing time for specified iterations
+     e.g. -t 1000
+  -E Error reporting (default: verbose)
+     1: simple (useful for editors)
+     2: output displays UTF-8 (for column info)
+Example:
+  xmlplint -V -f1 xmlfile.xml -o outfile.xml
+</pre></code>
+</td></tr></table>
+<br>
+<table><tr><th>catalog.xml example</th></tr><tr><td>
+<code><pre>
+&lt;!DOCTYPE catalog
+  PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
+        "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd"&gt;
+        
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+         prefer="public"&gt;
+  &lt;group xml:base="file://c:/xmlplint/DTD/"&gt;
+  
+    &lt;public publicId="-//W3C//DTD XHTML 1.0 Transitional//EN" 
+            uri="xhtml/xhtml1-transitional.dtd"/&gt;
+              
+  &lt;/group&gt;
+&lt;/catalog&gt;
+</pre></code>
+</td></tr></table>
+<br>
+<p>
+This catalog example shows how to map publicIDs into local files:
+<br>
+<ol>
+<li>Download xhtml 1.0 dtds from w3c.org and extract them into <code>c:\xmlplint\DTD\xhtml</code> directory.</li>
+<li>Save this catalog.xml into xmlplint directory and set environment variable <code>XML_CATALOG_FILES</code> =
+	<code>c:\xmlplint\catalog.xml</code></li>
+<li>Now when your document uses publicId "-//W3C//DTD XHTML 1.0 Transitional//EN" xmlplint will fetch dtds
+	from the local directory instead of loading them from the internet. You must of course use -c flag for
+xmlplint to enable xml catalogs support.</li>
+</ol>
+</p>
+<p>
+	More info on xml catalogs can be found <a href="http://www.oasis-open.org/committees/entity/spec-2001-08-06.html" target="_top">here</a>
+   and <a href="http://www.xmlsoft.org/catalog.html" target="_top">here</a>
+</p>
+<br>
+<br>
+<p>
+<b>Integration with text editors</b></p>
+<br>
+<p>
+Here are settings for adding XML validation into UltraEdit-32 text editor. Tool configuration command line:
+<div class="codebox">
+<pre>
+<code>C:\xmlplint\xmlplint.exe -W -c -f 3 -E 1 -s -X 2 "%f"</pre></code></div>
+</p>
+<p>
+Remove -c flag if you do not intent to use xml catalogs support (described above).
+</p>
+<p>Choose appropriate settings for the tool "XML Validation":</p>
+<br>
+<p>
+<img src="pics/uetool1.gif">	
+</p>
+<br>
+<p>Now choose preferred key combination/mapping for your tool and you can simply press that
+	key combination to validate document that is currently active document in ultraedit. (If 
+	XML validation is at the top of the tool list in the tool configuration dialog the default
+  key mapping is CTRL+SHIFT+0).</p>
+<hr>
+<p><font color="#004040">Copyright &copy; 2002-2005 Toni
+Uusitalo.<br>
+Send mail, suggestions and bug reports to<br><img src="pics/semail.gif"><br>
+Last modified: 15.08.2005 23:00</font></p>
+</div>
+</body>
+</html>

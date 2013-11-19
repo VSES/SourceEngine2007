@@ -1,0 +1,63 @@
+//-----------------------------------------------------------------------------
+//	VMPI_SERVICE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_win_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,..\..\common,..\"
+		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"pdh.lib ws2_32.lib odbc32.lib odbccp32.lib"
+	}
+}
+
+$Project "Vmpi_service"
+{
+	$Folder	"Source Files"
+	{
+		$File	"..\iphelpers.cpp"
+		$File	"service_conn_mgr.cpp"
+		$File	"service_helpers.cpp"
+		$File	"perf_counters.cpp"
+		$File	"vmpi_service.rc"
+		$File	"StdAfx.cpp"
+		$File	"..\tcpsocket_helpers.cpp"
+		$File	"..\ThreadedTCPSocket.cpp"
+		$File	"..\ThreadedTCPSocketEmu.cpp"
+		$File	"..\threadhelpers.cpp"
+		$File	"vmpi_service.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"service_conn_mgr.h"
+		$File	"service_helpers.h"
+		$File	"perf_counters.h"
+		$File	"StdAfx.h"
+		$File	"resource.h"
+		$File	"vmpi_service.h"
+	}
+
+	$Folder	"Resource Files"
+	{
+		$File	"idi_busy_icon.ico"
+		$File	"idi_disabled_icon.ico"
+		$File	"idi_waiting_icon.ico"
+		$File	"small.ico"
+		$File	"vmpi_service.ico"
+	}
+	
+	$File	"ReadMe.txt"
+}

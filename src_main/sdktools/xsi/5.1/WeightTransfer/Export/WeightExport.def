@@ -1,0 +1,13 @@
+EXPORTS
+	XSIOnCommand	@1 PRIVATE
+	XSIOnInit		@2 PRIVATE
+	XSIOnTerminate  @3 PRIVATE
+	XSIOnEvent		@4 PRIVATE
+	XSILoadPlugin	@5 PRIVATE
+	XSIUnloadPlugin @6 PRIVATE
+	WeightExportMenu_Init @7 PRIVATE
+	OnWeightExport @8 PRIVATE
+	WeightExport_Init @9 PRIVATE
+	WeightExport_Execute @10 PRIVATE
+	WeightExportProperty_Define @11 PRIVATE
+	WeightExportProperty_DefineLayout @12 PRIVATE

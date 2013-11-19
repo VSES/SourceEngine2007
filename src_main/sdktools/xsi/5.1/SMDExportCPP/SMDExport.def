@@ -1,0 +1,16 @@
+EXPORTS
+	XSIOnCommand	@1 PRIVATE
+	XSIOnInit		@2 PRIVATE
+	XSIOnTerminate  @3 PRIVATE
+	XSIOnEvent		@4 PRIVATE
+	XSILoadPlugin	@5 PRIVATE
+	XSIUnloadPlugin	@6 PRIVATE
+	SMDExportProperty2_DefineLayout	@7 PRIVATE
+	SMDExportProperty2_Define		@8 PRIVATE
+	CPPExportSMD_Init	@9 PRIVATE
+	OnSMDExportMenu		@10 PRIVATE
+	SMDExport2_Execute	@11 PRIVATE
+	SMDExport2_Init		@12 PRIVATE
+	SMDExportBatch_Execute	@13 PRIVATE
+	SMDExportBatch_Init		@14 PRIVATE
+	

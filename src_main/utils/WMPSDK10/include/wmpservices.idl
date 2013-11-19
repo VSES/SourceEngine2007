@@ -1,0 +1,162 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Microsoft Windows Media Technologies
+// Copyright (C) Microsoft Corporation. All rights reserved.
+// 
+// Filename: wmpservices.idl
+//
+// Interfaces for plugin services
+//
+/////////////////////////////////////////////////////////////////////////////////
+cpp_quote( "//=========================================================================" )
+cpp_quote( "//" )
+cpp_quote( "// Microsoft Windows Media Technologies" )
+cpp_quote( "// Copyright (C) Microsoft Corporation. All rights reserved." )
+cpp_quote( "//" )
+cpp_quote( "//=========================================================================" )
+
+#ifndef REFERENCE_TIME
+#define REFERENCE_TIME LONGLONG
+#endif
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+typedef
+[
+    helpstring( "WMPServices stream state" ),
+    public
+]
+enum WMPServices_StreamState
+{
+    [ helpstring( "Stream is stopped" ) ]   WMPServices_StreamState_Stop,
+    [ helpstring( "Stream is paused" ) ]    WMPServices_StreamState_Pause,
+    [ helpstring( "Stream is playing" ) ]   WMPServices_StreamState_Play,
+} WMPServices_StreamState;
+
+[
+    object,
+    uuid(AFB6B76B-1E20-4198-83B3-191DB6E0B149),
+    helpstring("IWMPServices: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPServices : IUnknown
+{
+    [helpstring("method Get the current stream time")] 
+    HRESULT GetStreamTime( [out, retval] REFERENCE_TIME * prt );
+    [helpstring("method Get the current stream state")] 
+    HRESULT GetStreamState( [out, retval] WMPServices_StreamState * pState );
+};
+
+// {5569e7f5-424b-4b93-89ca-79d17924689a}
+cpp_quote("EXTERN_GUID( CLSID_WMPMediaPluginRegistrar, 0x5569e7f5,0x424b,0x4b93, 0x89, 0xca, 0x79, 0xd1, 0x79, 0x24, 0x68, 0x9a );")
+
+// {6434BAEA-4954-498d-ABD5-2B07123E1F4F}
+cpp_quote("EXTERN_GUID( WMP_PLUGINTYPE_DSP, 0x6434baea, 0x4954, 0x498d, 0xab, 0xd5, 0x2b, 0x7, 0x12, 0x3e, 0x1f, 0x4 );")
+
+// {A8554541-115D-406a-A4C7-51111C330183}
+cpp_quote("EXTERN_GUID( WMP_PLUGINTYPE_RENDERING, 0xa8554541, 0x115d, 0x406a, 0xa4, 0xc7, 0x51, 0x11, 0x1c, 0x33, 0x1, 0x83 );")
+
+[
+    local,
+    object,
+    uuid(68E27045-05BD-40b2-9720-23088C78E390),
+    helpstring("IWMPMediaPluginRegistrar: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPMediaPluginRegistrar : IUnknown
+{
+    HRESULT WMPRegisterPlayerPlugin( LPWSTR pwszFriendlyName, LPWSTR pwszDescription, LPWSTR pwszUninstallString,
+                DWORD dwPriority, GUID guidPluginType, CLSID clsid, UINT cMediaTypes, LPVOID pMediaTypes );
+
+    HRESULT WMPUnRegisterPlayerPlugin( GUID guidPluginType, CLSID clsid );
+};
+
+typedef
+[
+    helpstring( "WMPPlugin capabilities" ),
+    public
+]
+enum WMPPlugin_Caps
+{
+    [ helpstring( "Plugin cannot produce output of a different media type than its input" ) ]   WMPPlugin_Caps_CannotConvertFormats = 1,
+} WMPPlugin_Caps;
+
+[
+    object,
+    uuid(f1392a70-024c-42bb-a998-73dfdfe7d5a7),
+    helpstring("IWMPPlugin: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPPlugin : IUnknown
+{
+    [helpstring("method Init")]
+    HRESULT Init( DWORD dwPlaybackContext );
+
+    [helpstring("method Shutdown")]
+    HRESULT Shutdown();
+
+    [helpstring("method GetID")] 
+    HRESULT GetID( [out, retval] GUID *pGUID );
+
+    [helpstring("method GetCaps")] 
+    HRESULT GetCaps( [out, retval] DWORD * pdwFlags );
+
+    [helpstring("method AdviseWMPServices")] 
+    HRESULT AdviseWMPServices( [in] IWMPServices * pWMPServices );
+
+    [helpstring("method UnAdviseWMPServices")] 
+    HRESULT UnAdviseWMPServices();
+};
+
+[
+    object,
+    uuid( 5FCA444C-7AD1-479d-A4EF-40566A5309D6 ),
+    helpstring("IWMPPluginEnable: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPPluginEnable : IUnknown
+{
+    [helpstring("method SetEnable")] 
+    HRESULT SetEnable( [ in ] BOOL fEnable );
+
+    [helpstring("method GetEnable")] 
+    HRESULT GetEnable( [ out ] BOOL *pfEnable );
+};
+
+[
+    object,
+    uuid( bfb377e5-c594-4369-a970-de896d5ece74 ),
+    helpstring("IWMPGraphCreation: Public interface for Windows Media Player SDK."),
+    pointer_default(unique)
+]
+interface IWMPGraphCreation : IUnknown
+{
+    //
+    // method called post filter graph creation, pre file render
+    // return a failure code to abort playback
+    //
+    HRESULT GraphCreationPreRender( [in] IUnknown * pFilterGraph,
+                                    [in] IUnknown * pReserved );
+
+    //
+    // method called post filter graph creation, post file render
+    // return a failure code to abort playback
+    //
+    HRESULT GraphCreationPostRender( [in] IUnknown * pFilterGraph );
+
+    //
+    // method called to get graph creation preferences
+    //
+    HRESULT GetGraphCreationFlags( [out] DWORD * pdwFlags );
+};
+
+cpp_quote("#define WMPGC_FLAGS_ALLOW_PREROLL    0x00000001")
+cpp_quote("#define WMPGC_FLAGS_SUPPRESS_DIALOGS 0x00000002")
+cpp_quote("#define WMPGC_FLAGS_IGNORE_AV_SYNC   0x00000004")
+cpp_quote("#define WMPGC_FLAGS_DISABLE_PLUGINS  0x00000008")
+
+
+///////////
+// EOF
+///////////

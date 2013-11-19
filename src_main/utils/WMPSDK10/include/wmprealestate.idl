@@ -1,0 +1,145 @@
+//*****************************************************************************
+//
+// Microsoft Windows Media Technologies
+// Copyright (C) Microsoft Corporation. All rights reserved.
+//
+// FileName:            wmprealestate.idl
+//
+// Interfaces for managing real estate within WMP.  Also includes an interface
+// for receiving window messages from within the video region of the player.
+//
+//*****************************************************************************
+cpp_quote( "//=========================================================================" )
+cpp_quote( "//" )
+cpp_quote( "// Microsoft Windows Media Technologies" )
+cpp_quote( "// Copyright (C) Microsoft Corporation. All rights reserved." )
+cpp_quote( "//" )
+cpp_quote( "//=========================================================================" )
+
+import "unknwn.idl";
+import "ocidl.idl";
+
+//************************************************************
+// IWMPNodeRealEstate Interface
+//************************************************************
+[
+    object,
+    uuid(42751198-5A50-4460-BCB4-709F8BDC8E59),
+    helpstring("IWMPNodeRealEstate: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeRealEstate : IUnknown
+{
+    HRESULT GetDesiredSize( [out] LPSIZE pSize );
+    HRESULT SetRects( [in] const RECT *pSrc, [in] const RECT *pDest, [in] const RECT *pClip );
+    HRESULT GetRects( [out] RECT *pSrc, [out] RECT *pDest, [out] RECT *pClip );
+    HRESULT SetWindowless( [in] BOOL fWindowless );
+    HRESULT GetWindowless( [out] BOOL *pfWindowless );
+    HRESULT SetFullScreen( [in] BOOL fFullScreen );
+    HRESULT GetFullScreen( [out] BOOL *pfFullScreen);
+}
+
+//************************************************************
+// IWMPNodeRealEstateHost Interface
+//************************************************************
+[
+    object,
+    uuid(1491087D-2C6B-44c8-B019-B3C929D2ADA9),
+    helpstring("IWMPNodeRealEstateHost: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeRealEstateHost : IUnknown
+{
+    HRESULT OnDesiredSizeChange( [in] LPSIZE pSize );
+    HRESULT OnFullScreenTransition( [in] BOOL fFullScreen );
+}
+
+// We are using OLE_HANDLE instead HWND because HWND is not a valid
+// oleautomation compatible data type.
+typedef OLE_HANDLE OLE_HWND;
+
+//************************************************************
+// IWMPNodeWindowed Interface
+//************************************************************
+[
+    object,
+    uuid(96740BFA-C56A-45d1-A3A4-762914D4ADE9),
+    helpstring("IWMPNodeWindowed: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeWindowed : IUnknown
+{
+    HRESULT SetOwnerWindow( [in] OLE_HWND hwnd );
+    HRESULT GetOwnerWindow( [out] OLE_HWND *phwnd );
+}
+
+//************************************************************
+// IWMPNodeWindowedHost Interface
+//************************************************************
+[
+    object,
+    uuid(A300415A-54AA-4081-ADBF-3B13610D8958),
+    helpstring("IWMPNodeWindowedHost: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeWindowedHost : IUnknown
+{
+    HRESULT OnWindowMessageFromRenderer( [in] UINT uMsg,
+                                         [in] WPARAM wparam,
+                                         [in] LPARAM lparam,
+                                         [out] LRESULT *plRet, 
+                                         [out] BOOL *pfHandled );
+}
+
+//************************************************************
+// IWMPNodeMessageSink Interface
+//************************************************************
+[
+    object,
+    uuid(3A0DAA30-908D-4789-BA87-AED879B5C49B),
+    helpstring("IWMPWindowMessageSink: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPWindowMessageSink : IUnknown
+{
+    [] HRESULT OnWindowMessage( UINT uMsg, 
+                                WPARAM wparam, 
+                                LPARAM lparam, 
+                                LRESULT *plRet, 
+                                BOOL *pfHandled );
+}
+
+
+// We are using OLE_HANDLE instead HDC because creating proxy-stub code for this interface
+// generates certain symbols that are not recognized on Win98.
+typedef OLE_HANDLE OLE_HDC;
+
+//************************************************************
+// IWMPNodeWindowless Interface
+//************************************************************
+[
+    object,    
+    uuid(9B9199AD-780C-4eda-B816-261EBA5D1575),
+    helpstring("IWMPNodeWindowless: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeWindowless : IWMPWindowMessageSink
+{
+    HRESULT OnDraw( [in] OLE_HDC hdc, [in] const RECT *prcDraw );
+}
+
+//************************************************************
+// IWMPNodeWindowlessHost Interface
+//************************************************************
+[
+    object,
+    uuid(BE7017C6-CE34-4901-8106-770381AA6E3E),
+    helpstring("IWMPNodeWindowlessHost: Public interface for Windows Media Player SDK."),
+    oleautomation
+]
+interface IWMPNodeWindowlessHost : IUnknown
+{
+    HRESULT InvalidateRect( [in] const RECT *prc, [in] BOOL fErase );
+}
+
+

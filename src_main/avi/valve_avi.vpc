@@ -1,0 +1,45 @@
+//-----------------------------------------------------------------------------
+//	VALVE_AVI.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Linker
+	{
+		$IgnoreImportLibrary				"Yes"
+		$AdditionalDependencies				"$BASE vfw32.lib"
+	}
+}
+
+$Project "Valve_avi"
+{
+	$Folder	"Source Files"
+	{
+		$File	"avi.cpp"
+		$File	"bink.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"avi.h"
+		$File	"$SRCDIR\BinkSDK\bink.h"
+		$File	"$SRCDIR\public\pixelwriter.h"
+	}
+
+	$Folder	"Interface"
+	{
+		$File	"$SRCDIR\public\avi\iavi.h"
+		$File	"$SRCDIR\public\avi\ibik.h"
+	}
+
+	$File	"$SRCDIR\lib\common\binkw32.lib"
+	$File	"$SRCDIR\lib\public\tier2.lib"
+	$File	"$SRCDIR\lib\public\tier3.lib"
+}

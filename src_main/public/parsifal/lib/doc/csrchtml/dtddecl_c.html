@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>samples\dtddecl\dtddecl.c</title>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+</head>
+<body class="hl">
+<pre class="hl"><span class="dir">#define PFOUT stdout</span>
+
+<span class="kwb">int</span> <span class="kwd">AttributeDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>eName<span class="sym">,</span>
+  <span class="kwb">const</span> XMLCH <span class="sym">*</span>aName<span class="sym">,</span> <span class="kwb">int</span> type<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>typeStr<span class="sym">,</span> <span class="kwb">int</span> valueDef<span class="sym">,</span>
+  <span class="kwb">const</span> XMLCH <span class="sym">*</span>def<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;&lt;!ATTLIST %s %s &quot;</span><span class="sym">,</span> eName<span class="sym">,</span> aName<span class="sym">);</span>
+  <span class="kwa">switch</span><span class="sym">(</span>type<span class="sym">) {</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_CDATA<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;CDATA&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_ID<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;ID&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_IDREF<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;IDREF&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_IDREFS<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;IDREFS&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_ENTITY<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;ENTITY&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_ENTITIES<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;ENTITIES&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_NMTOKEN<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;NMTOKEN&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_NMTOKENS<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;NMTOKENS&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_NOTATION<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;NOTATION &quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="com">/* fall through */</span>
+    <span class="kwa">case</span> XMLATTDECL_TYPE_ENUMERATED<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span>typeStr<span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+  <span class="sym">}</span>
+  <span class="kwa">switch</span><span class="sym">(</span>valueDef<span class="sym">) {</span>
+    <span class="kwa">case</span> XMLATTDECL_DEF_FIXED<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot; #FIXED&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_DEF_REQUIRED<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot; #REQUIRED&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+    <span class="kwa">case</span> XMLATTDECL_DEF_IMPLIED<span class="sym">:</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot; #IMPLIED&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span> <span class="kwa">break</span><span class="sym">;</span>
+  <span class="sym">}</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>def<span class="sym">)</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> def<span class="sym">);</span>
+  <span class="kwa">else</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">ElementDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span> <span class="kwb">void</span> <span class="sym">*</span>contentModel<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;&lt;!ELEMENT %s %s&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> name<span class="sym">, (</span>XMLCH<span class="sym">*)</span>contentModel<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">EntityDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> LPXMLENTITY entity<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;&lt;!ENTITY &quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>entity<span class="sym">-&gt;</span>type <span class="sym">==</span> XML_ENTITY_INT_PARAM <span class="sym">||</span> entity<span class="sym">-&gt;</span>type <span class="sym">==</span> XML_ENTITY_EXT_PARAM<span class="sym">)</span>
+    <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;%% %s&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>name<span class="sym">+</span><span class="num">1</span><span class="sym">);</span>
+  <span class="kwa">else</span>
+    <span class="kwd">fputs</span><span class="sym">(</span>entity<span class="sym">-&gt;</span>name<span class="sym">,</span> PFOUT<span class="sym">);</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>entity<span class="sym">-&gt;</span>value<span class="sym">)</span>
+    <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>value<span class="sym">);</span>
+  <span class="kwa">else</span> <span class="sym">{</span>
+    <span class="kwa">if</span> <span class="sym">(</span>entity<span class="sym">-&gt;</span>publicID<span class="sym">)</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot; PUBLIC</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot; \&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>publicID<span class="sym">,</span> entity<span class="sym">-&gt;</span>systemID<span class="sym">);</span>
+    <span class="kwa">else</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot; SYSTEM</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>systemID<span class="sym">);</span>
+
+    <span class="kwa">if</span> <span class="sym">(</span>entity<span class="sym">-&gt;</span>notation<span class="sym">)</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot; NDATA %s&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> entity<span class="sym">-&gt;</span>notation<span class="sym">);</span>
+    <span class="kwa">else</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span>
+  <span class="sym">}</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+
+<span class="kwb">int</span> <span class="kwd">NotationDecl</span><span class="sym">(</span><span class="kwb">void</span> <span class="sym">*</span>UserData<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>name<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>publicID<span class="sym">,</span> <span class="kwb">const</span> XMLCH <span class="sym">*</span>systemID<span class="sym">)</span>
+<span class="sym">{</span>
+  <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;&lt;!NOTATION %s &quot;</span><span class="sym">,</span> name<span class="sym">);</span>
+  <span class="kwa">if</span> <span class="sym">(</span>publicID<span class="sym">)</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;PUBLIC</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&quot;</span><span class="sym">,</span> publicID<span class="sym">);</span>
+  <span class="kwa">else</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;SYSTEM&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span>
+
+  <span class="kwa">if</span> <span class="sym">(</span>systemID<span class="sym">)</span> <span class="kwd">fprintf</span><span class="sym">(</span>PFOUT<span class="sym">,</span> <span class="str">&quot;</span> <span class="esc">\&quot;</span><span class="str">%s</span><span class="esc">\&quot;</span><span class="str">&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> systemID<span class="sym">);</span>
+  <span class="kwa">else</span> <span class="kwd">fputs</span><span class="sym">(</span><span class="str">&quot;&gt;</span><span class="esc">\n</span><span class="str">&quot;</span><span class="sym">,</span> PFOUT<span class="sym">);</span>
+  <span class="kwa">return</span> <span class="num">0</span><span class="sym">;</span>
+<span class="sym">}</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by highlight 2.4-1, http://www.andre-simon.de/-->

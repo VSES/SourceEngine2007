@@ -1,0 +1,61 @@
+//-----------------------------------------------------------------------------
+//	VSDMXIO_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;_AFXDLL;_MBCS;NT_PLUGIN;REQUIRE_IOSTREAM"
+		$EnableC++Exceptions				"Yes (/EHsc)"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE comctl32.lib"
+		$IgnoreSpecificLibrary				"$BASE;advapi32.lib"
+	}
+}
+
+$Project
+{
+	$Folder	"Source Files"
+	{
+		$File	"CVsDmxIOCmd.cpp"
+		$File	"CVsDmxIOTranslator.cpp"
+		$File	"DmeExport.cpp"
+		$File	"DmeImport.cpp"
+		$File	"vsDmxIOInit.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"DmeExport.h"
+		$File	"DmeImport.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\datamodel.lib"
+		$File	"$SRCDIR\lib\public\dmserializers.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\movieobjects.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+	}
+
+	$Folder	"external"
+	{
+		$File	"$SRCDIR\public\interpolatortypes.cpp"
+		$File	"$SRCDIR\public\interpolatortypes.h"
+		$File	"$SRCDIR\public\movieobjects\movieobjects.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+}

@@ -1,0 +1,33 @@
+//-----------------------------------------------------------------------------
+//	RAYTRACE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32]
+$Include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+	$BuildForLinux 1
+}
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\utils\common"
+	}
+}
+
+$Project "Raytrace"
+{
+	$Folder	"Source Files"
+	{
+		$File	"raytrace.cpp"
+		$File	"trace2.cpp"
+		$File	"trace3.cpp"
+	}
+}

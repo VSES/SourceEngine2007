@@ -1,0 +1,42 @@
+//-----------------------------------------------------------------------------
+//	PARTICLES.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]
+$Include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Linux
+{
+	$BuildForLinux 1
+}
+
+$Project "Particles"
+{
+	$Folder	"Source Files"
+	{
+		$File	"builtin_constraints.cpp"
+		$File	"builtin_initializers.cpp"
+		$File	"builtin_particle_emitters.cpp"
+		$File	"builtin_particle_forces.cpp"
+		$File   "addbuiltin_ops.cpp"
+		$File	"builtin_particle_ops.cpp"
+		$File	"builtin_particle_render_ops.cpp"
+		$File	"particle_sort.cpp"		
+		$File	"particles.cpp"
+		$File	"psheet.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\public\particles\particles.h"
+		$File	"random_floats.h"
+		$File	"particles_internal.h"
+	}
+
+	$File	"VTune\particles.vpj"
+}

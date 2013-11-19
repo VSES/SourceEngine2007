@@ -1,0 +1,38 @@
+LIBRARY parsifal
+
+EXPORTS
+XMLParser_Create @1
+XMLParser_Parse @2
+XMLParser_Free @3
+XMLParser_GetNamedItem @4
+XMLVector_Create @5
+XMLVector_Replace @6
+XMLVector_Remove @7
+XMLVector_Get @8
+XMLVector_Resize @9
+XMLVector_Append @10
+XMLVector_InsertBefore @11
+XMLVector_Free @12
+XMLStringbuf_Append @13
+XMLStringbuf_AppendCh @14
+XMLStringbuf_Init @15
+XMLStringbuf_SetLength @16
+XMLStringbuf_Free @17
+XMLStringbuf_ToString @18
+XMLNormalizeBuf @19
+XMLParser_GetSystemID @20
+XMLParser_GetPublicID @21
+XMLParser_GetPrefixMapping @22
+XMLParser_GetCurrentLine @23
+XMLParser_GetCurrentColumn @24
+XMLStringbuf_InitUsePool @25
+XMLPool_Create @26
+XMLPool_FreePool @27
+XMLPool_Alloc @28
+XMLPool_Free @29
+XMLParser_GetCurrentEntity @30
+
+
+
+
+

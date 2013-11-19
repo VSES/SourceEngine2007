@@ -1,0 +1,327 @@
+//-----------------------------------------------------------------------------
+//	SMDEXPORTCPP.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+$Macro OUTBINNAME	"SMDExport"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"		[$WIN32||$LINUX]
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					".\Debug"
+		$IntermediateDirectory				".\Debug"
+		$ConfigurationType					"Dynamic Library (.dll)"
+		$UseOfMFC							"Use Standard Windows Libraries"
+		$MinimizeCRTUseInATL				"No"
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$Compiler
+	{
+		$Optimization						"Disabled (/Od)"
+		$AdditionalIncludeDirectories		"..\..\..\..\common;..\..\..\..\public;..\..\..\..\common\xsi\5.1;..\..\..\..\common\xsi\5.1\ftk"
+		$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;_WIN32"
+		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+		$RuntimeLibrary						"Multi-threaded Debug DLL (/MDd)"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"stdafx.h"
+		$PrecompiledHeaderFile				".\Debug/SMDExportCPP.pch"
+		$ASMListLocation					".\Debug/"
+		$ObjectFileName						".\Debug/"
+		$ProgramDatabaseFileName			".\Debug/"
+		$EnableBrowseInformation			"None"
+		$WarningLevel						"4"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
+		$CompileAs							"Default"
+	}
+
+	$CustomBuildStep
+	{
+		$CommandLine						"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll $SRCDIR" \ "\n"
+											"if exist &quot;$(TargetDir)&quot;SMDExport2.dll copy &quot;$(TargetDir)&quot;SMDExport2.dll ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll" \ "\n"
+											"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb $SRCDIR" \ "\n"
+											"if exist &quot;$(TargetDir)&quot;SMDExport2.pdb copy &quot;$(TargetDir)&quot;SMDExport2.pdb ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb"
+		$Outputs							"..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll;..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb"
+	}
+
+	$Linker
+	{
+		$IgnoreImportLibrary				"Yes"
+		$AdditionalDependencies				"odbc32.lib odbccp32.lib sicppsdk.lib sicoresdk.lib xsicore_static.lib"
+		$OutputFile							"Debug\SMDExport2.dll"
+		$EnableIncrementalLinking			"No (/INCREMENTAL:NO)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$AdditionalLibraryDirectories		"..\..\..\..\lib\common\xsi\5.1"
+		$IgnoreSpecificLibrary				"MSVCRT.lib"
+		$GenerateDebugInfo					"Yes (/DEBUG)"
+		$GenerateProgramDatabaseFile		".\Debug/SMDExport2.pdb"
+		$ImportLibrary						""
+		$TargetMachine						"MachineX86 (/MACHINE:X86)"
+	}
+
+	$Resources
+	{
+		$PreprocessorDefinitions			"_DEBUG"
+		$Culture							"1033"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					".\Release"
+		$IntermediateDirectory				".\Release"
+		$ConfigurationType					"Dynamic Library (.dll)"
+		$UseOfMFC							"Use Standard Windows Libraries"
+		$MinimizeCRTUseInATL				"No"
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$Compiler
+	{
+		$Optimization						"Maximize Speed (/O2)"
+		$InlineFunctionExpansion			"Only __inline (/Ob1)"
+		$AdditionalIncludeDirectories		"..\..\..\..\common;..\..\..\..\public;..\..\..\..\common\xsi\5.1;..\..\..\..\common\xsi\5.1\ftk"
+		$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;_WIN32"
+		$EnableStringPooling				"Yes (/GF)"
+		$RuntimeLibrary						"Multi-threaded DLL (/MD)"
+		$EnableFunctionLevelLinking			"Yes (/Gy)"
+		$ForceConformanceInForLoopScope		"Yes (/Zc:forScope)"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"stdafx.h"
+		$PrecompiledHeaderFile				".\Release/SMDExportCPP.pch"
+		$ASMListLocation					".\Release/"
+		$ObjectFileName						".\Release/"
+		$ProgramDatabaseFileName			".\Release/"
+		$WarningLevel						"4"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$DebugInformationFormat				"Program Database (/Zi)"
+		$CompileAs							"Default"
+	}
+
+	$CustomBuildStep
+	{
+		$CommandLine						"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll $SRCDIR" \ "\n"
+											"if exist &quot;$(TargetDir)&quot;SMDExport2.dll copy &quot;$(TargetDir)&quot;SMDExport2.dll ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll" \ "\n"
+											"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb $SRCDIR" \ "\n"
+											"if exist &quot;$(TargetDir)&quot;SMDExport2.pdb copy &quot;$(TargetDir)&quot;SMDExport2.pdb ..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb"
+		$Outputs							"..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.dll;..\..\..\..\..\game\sdktools\xsi\5.1\valveSource\application\plugins\SMDExport2.pdb"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"XSICore_static.lib odbc32.lib odbccp32.lib sicppsdk.lib sicoresdk.lib"
+		$OutputFile							"Release\SMDExport2.dll"
+		$EnableIncrementalLinking			"No (/INCREMENTAL:NO)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$AdditionalLibraryDirectories		"..\..\..\..\lib\common\xsi\5.1"
+		$IgnoreSpecificLibrary				"MSVCRTD.lib"
+		$GenerateDebugInfo					"Yes (/DEBUG)"
+		$GenerateProgramDatabaseFile		".\Release/SMDExport2.pdb"
+		$ImportLibrary						".\Release/SMDExport.lib"
+		$TargetMachine						"MachineX86 (/MACHINE:X86)"
+	}
+
+	$Resources
+	{
+		$PreprocessorDefinitions			"NDEBUG"
+		$Culture							"1033"
+	}
+}
+
+$Project "SMDExport"
+{
+	$Folder	"Source Files"
+	{
+		$File	"Script1.rc"
+		$File	"SMDExport.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+				}
+			}
+		}
+
+		$File	"SMDExport.def"
+		$File	"SMDNode.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+				}
+			}
+		}
+
+		$File	"SMDSkeleton.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+				}
+			}
+		}
+
+		$File	"SMDTriangle.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+				}
+			}
+		}
+
+		$File	"StdAfx.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+				}
+			}
+		}
+
+		$File	"VertexAnimation.cpp"
+		{
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$Optimization						"Disabled (/Od)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+					$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+					$EnableBrowseInformation			"Include All Browse Information (/FR)"
+				}
+			}
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$Optimization						"Maximize Speed (/O2)"
+					$AdditionalIncludeDirectories		""
+					$PreprocessorDefinitions			"WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;SMDEXPORT_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;XSI351;$(NoInherit)"
+				}
+			}
+		}
+
+
+		$Folder	"SOFTIMAGE"
+		{
+			$File	".\SIBCMath.h"
+			$File	".\SIBCMathLib.h"
+			$File	".\SIBCMatrix.h"
+			$File	".\SIBCMatrix33d.h"
+			$File	".\SIBCMatrix44d.h"
+			$File	".\SIBCMatrixMNd.h"
+			$File	".\SIBCString.h"
+			$File	".\SIBCUtil.h"
+			$File	".\SIBCVector.h"
+			$File	".\SIBCVector2Dd.h"
+			$File	".\SIBCVector3Dd.h"
+			$File	".\SIBCVector4Dd.h"
+			$File	".\SIBCVectorwd.h"
+		}
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"SMDNode.h"
+		$File	"SMDSkeleton.h"
+		$File	"SMDTriangle.h"
+		$File	"StdAfx.h"
+		$File	"VertexAnimation.h"
+	}
+
+	$Folder	"Resource Files"
+	{
+	}
+
+	$File	"install.vbs"
+	$File	"SMDExport.vbs"
+	$File	"SMDExportOptions.spdl"
+}

@@ -1,0 +1,63 @@
+//-----------------------------------------------------------------------------
+//	VSTEXAMPLE_MAYA7.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro OUTBINDIR	"$SRCDIR\..\game\sdktools\maya\7.0\modules\utilities\plug-ins"
+
+$Include "vstExample_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\common\maya\7.0"
+	}
+}
+
+$Configuration	"Debug"
+{
+	$General
+	{
+		$OutputDirectory					"Debug_Maya7"
+		$IntermediateDirectory				"Debug_Maya7"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Debug_Maya7\vstExample.mll"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$OutputDirectory					"Release_Maya7"
+		$IntermediateDirectory				"Release_Maya7"
+	}
+
+	$Linker
+	{
+		$OutputFile							"Release_Maya7\vstExample.mll"
+	}
+}
+
+
+$Project "VstExample_Maya7"
+{
+	// Source files in vstExample_base.vpc
+	
+	$Folder	"Link Libraries"
+	{
+		$File   "$SRCDIR\lib\public\maya\7.0\valveMaya.lib"
+
+		$Folder	"Maya"
+		{
+			$File	"$SRCDIR\lib\common\maya\7.0\Foundation.lib"
+			$File	"$SRCDIR\lib\common\maya\7.0\OpenMaya.lib"
+			$File	"$SRCDIR\lib\common\maya\7.0\OpenMayaUI.lib"
+		}
+	}
+}

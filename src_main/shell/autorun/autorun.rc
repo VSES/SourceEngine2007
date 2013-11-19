@@ -1,0 +1,214 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Autorun.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Autorun.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AUTORUN_DIALOG DIALOGEX 0, 0, 195, 254
+STYLE WS_POPUP | WS_VISIBLE
+EXSTYLE WS_EX_APPWINDOW
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Play Half-Life",IDC_PLAY,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,126,177,14
+    CONTROL         "Install Half-Life",IDC_INSTALL,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,139,177,14
+    CONTROL         "Visit Half-Life Website",IDC_WEB,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,202,177,14
+    CONTROL         "Order Half-Life",IDC_ORDER,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,185,177,14
+    CONTROL         "View the Readme.txt",IDC_README,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,170,177,14
+    CONTROL         "Exit",IDC_EXIT,"Button",BS_OWNERDRAW | WS_TABSTOP,11,
+                    218,177,14
+    CONTROL         "Reinstall HL",IDC_REINSTALL,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,11,153,177,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "AUTORUN MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "AUTORUN\0"
+            VALUE "LegalCopyright", "Copyright © 1998\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "AUTORUN.EXE\0"
+            VALUE "ProductName", "AUTORUN Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_AUTORUN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 11
+        RIGHTMARGIN, 188
+        TOPMARGIN, 9
+        BOTTOMMARGIN, 247
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTORUN_INSTALL_HL  "Install Half-Life"
+    IDS_AUTORUN_PLAY_HL     "Play Half-Life"
+    IDS_AUTORUN_HL_WEB_SITE "Visit Half-Life Website"
+    IDS_AUTORUN_ORDER_HL    "Order Half-Life"
+    IDS_AUTORUN_VIEW_README "View the Readme.txt"
+    IDS_AUTORUN_EXIT        "Exit"
+    IDS_AUTORUN_REINSTALL_HL "Reinstall Half-Life"
+    IDS_AUTORUN_URL_ORDER   "media\\order\\default.html"
+    IDS_AUTORUN_URL_HL      "http://studio.sierra.com/games/half-life/"
+    IDS_AUTORUN_INSTALL_DX  "Install DirectX"
+    IDS_AUTORUN_REINST_DX   "Reinstall DirectX"
+    IDS_AUTORUN_GAME_EXE_NAME "hl.exe"
+    IDS_AUTORUN_DX_INST_PATH "DirectX\\dx6core.exe"
+    IDS_AUTORUN_SETUP_EXE_NAME "setup.exe"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTORUN_README_TXT_NAME "Readme.txt"
+    IDS_AUTORUN_GAME_NAME   "Half-Life"
+    IDS_AUTORUN_OEM_GAME_NAME "Half-Life: Day One"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Autorun.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

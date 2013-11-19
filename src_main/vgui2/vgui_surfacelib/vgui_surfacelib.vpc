@@ -1,0 +1,50 @@
+//-----------------------------------------------------------------------------
+//	VGUI_SURFACELIB.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32||$LINUX]
+$include "$SRCDIR\vpc_scripts\source_lib_x360_base.vpc"		[$X360]
+
+$Configuration
+{
+	$Compiler
+	{
+//		$TreatWchar_tAsBuiltinType	"No"
+	}
+}
+
+$Project "vgui_surfacelib"
+{
+	$Folder	"Source Files"
+	{
+		$File	"BitmapFont.cpp"
+		$File	"FontAmalgam.cpp"
+		$File	"FontManager.cpp"
+		$File	"FontEffects.cpp"
+		$File	"FontEffects.h"
+		$File	"Win32Font.cpp"			[$WIN32]
+		$File	"Win32Font_x360.cpp"	[$X360]
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\BitmapFont.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\FontAmalgam.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\FontManager.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+		$File	"$SRCDIR\common\vgui_surfacelib\Win32Font.h"
+	}
+}

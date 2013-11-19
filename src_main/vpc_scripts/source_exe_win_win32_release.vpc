@@ -1,0 +1,330 @@
+//-----------------------------------------------------------------------------
+//	SOURCE_EXE_WIN_WIN32_RELEASE.VPC
+//
+//	Base Settings for Source(TM) Projects
+//-----------------------------------------------------------------------------
+
+$IgnoreRedundancyWarning	"ON"
+
+$MacroRequired				"SRCDIR"
+$MacroRequired				"OUTBINNAME"
+$MacroRequired				"OUTBINDIR"
+
+$Configuration "Release"
+{
+	$General
+	{
+		// General
+		$OutputDirectory						".\Release"
+		$IntermediateDirectory					".\Release"
+		$ExtensionsToDeleteOnClean
+		$BuildLogFile
+		$InheritedProjectPropertySheets
+
+		// Project Defaults
+		$ConfigurationType						"Application (.exe)"
+		$UseOfMFC
+		$UseOfATL
+		$MinimizeCRTUseInATL
+		$CharacterSet							"Use Multi-Byte Character Set"
+		$CommonLanguageRuntimeSupport
+		$WholeProgramOptimization
+	}
+
+	$Debugging
+	{
+		// Action
+		$Command
+		$CommandArguments
+		$WorkingDirectory
+		$Attach
+		$DebuggerType
+		$Environment
+		$MergeEnvironment
+		$SQLDebugging
+	}
+
+	$Compiler
+	{
+		// General
+		$AdditionalIncludeDirectories			"$SRCDIR\common;$SRCDIR\public;$SRCDIR\public\tier0;$SRCDIR\public\tier1"
+		$Resolve#UsingReferences
+		$DebugInformationFormat					"Program Database (/Zi)"
+		$SuppressStartupBanner
+		$WarningLevel							"Level 4 (/W4)"
+		$Detect64bitPortabilityIssues			"Yes (/Wp64)"
+		$TreatWarningsAsErrors
+		$UseUnicodeResponseFiles
+
+		// Optimization
+		$Optimization							"Maximize Speed (/O2)"
+		$InlineFunctionExpansion				"Any Suitable (/Ob2)"
+		$EnableIntrinsicFunctions				"Yes (/Oi)"
+		$FavorSizeOrSpeed						"Favor Fast Code (/Ot)"
+		$OmitFramePointers
+		$EnableFiberSafeOptimizations
+		$WholeProgramOptimization
+
+		// Preprocessor
+		$PreprocessorDefinitions				"WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE"
+		$IgnoreStandardIncludePath
+		$GeneratePreprocessedFile
+		$KeepComments
+
+		// Code Generation
+		$EnableStringPooling					"Yes (/GF)"
+		$EnableMinimalRebuild
+		$EnableC++Exceptions					"No"
+		$SmallerTypeCheck
+		$BasicRuntimeChecks
+		$RuntimeLibrary							"Multi-threaded (/MT)"
+		$StructMemberAlignment
+		$BufferSecurityCheck					"No"
+		$EnableFunctionLevelLinking				"Yes (/Gy)"
+		$EnableEnhancedInstructionSet
+		$FloatingPointModel						"Fast (/fp:fast)"
+		$EnableFloatingPointExceptions
+
+		// Language
+		$DisableLanguageExtensions
+		$DefaultCharUnsigned					"No"
+		$TreatWCHAR_TAsBuiltInType				"Yes (/Zc:wchar_t)"
+		$ForceConformanceInForLoopScope			"Yes (/Zc:forScope)"
+		$EnableRunTimeTypeInfo					"Yes (/GR)"
+		$OpenMPSupport							"No"
+
+		// Precompiled Headers
+		$Create/UsePrecompiledHeader			"Not Using Precompiled Headers"
+		$Create/UsePCHThroughFile
+		$PrecompiledHeaderFile
+
+		// Output Files
+		$ExpandAttributedSource					"No"
+		$AssemblerOutput						"No Listing"
+		$ASMListLocation						"$(IntDir)/"
+		$ObjectFileName							"$(IntDir)/"
+		$ProgramDatabaseFileName				"$(IntDir)/"
+		$GenerateXMLDocumentationFiles
+		$XMLDocumentationFileName
+
+		// Browse Information
+		$EnableBrowseInformation				"None"
+		$BrowseFile								"$(IntDir)/"
+
+		// Advanced
+		$CallingConvention
+		$CompileAs								"Compile as C++ Code (/TP)"
+		$DisableSpecificWarnings
+		$ForceIncludes
+		$Force#Using
+		$ShowIncludes
+		$UndefinePreprocessorDefinitions
+		$UndefineAllPreprocessorDefinitions
+		$UseFullPaths
+		$OmitDefaultLibraryNames
+		$ErrorReporting							"Prompt Immediately (/errorReport:prompt)"
+
+		// Command Line
+		$AdditionalOptions
+	}
+
+	$Linker
+	{
+		// General
+		$OutputFile								"$(OutDir)/$OUTBINNAME.exe"
+		$ShowProgress							"Not Set"
+		$Version
+		$EnableIncrementalLinking				"No (/INCREMENTAL:NO)"
+		$SuppressStartupBanner					"Yes (/NOLOGO)"
+		$IgnoreImportLibrary
+		$RegisterOutput
+		$AdditionalLibraryDirectories
+		$LinkLibraryDependencies
+		$UseLibraryDependencyInputs
+		$UseUNICODEResponseFiles				"No"
+
+		// Input
+		$AdditionalDependencies
+		$IgnoreAllDefaultLibraries
+		$IgnoreSpecificLibrary					"libc;libcd;libcmtd"
+		$ModuleDefinitionFile
+		$AddModuleToAssembly
+		$EmbedManagedResourceFile
+		$ForceSymbolReferences
+		$DelayLoadedDLLs
+		$AssemblyLinkResource
+
+		// Manifest File
+		$GenerateManifest						"No"
+		$ManifestFile
+		$AdditionalManifestDependencies
+		$AllowIsolation
+
+		// Debugging
+		$GenerateDebugInfo						"Yes (/DEBUG)"
+		$GenerateProgramDatabaseFile			"$(IntDir)/$(TargetName).pdb"
+		$StripPrivateSymbols
+		$GenerateMapFile						"Yes (/MAP)"
+		$MapFileName							"$(IntDir)/$(TargetName).map"
+		$MapExports
+		$DebuggableAssembly
+
+		// System
+		$SubSystem								"Windows (/SUBSYSTEM:WINDOWS)"
+		$HeapReserveSize
+		$HeapCommitSize
+		$StackReserveSize
+		$StackCommitSize
+		$EnableLargeAddresses
+		$TerminalServer
+		$SwapRunFromCD
+		$SwapRunFromNetwork
+		$Driver
+
+		// Optimization
+		$References							"Eliminate Unreferenced Data (/OPT:REF)"
+		$EnableCOMDATFolding				"Remove Redundant COMDATs (/OPT:ICF)"
+		$OptimizeForWindows98
+		$FunctionOrder
+		$ProfileGuidedDatabase
+		$LinkTimeCodeGeneration
+
+		// Embedded IDL
+		$MIDLCommands
+		$IgnoreEmbeddedIDL
+		$MergeIDLBaseFileName
+		$TypeLibrary
+		$TypeLibResourceID
+
+		// Advanced
+		$EntryPoint
+		$NoEntryPoint
+		$SetChecksum
+		$BaseAddress							"$LOADADDRESS_DEVELOPMENT"
+		$BaseAddress							"$LOADADDRESS_RETAIL" [$RETAIL]
+		$FixedBaseAddress
+		$TurnOffAssemblyGeneration
+		$DelayLoadedDLL
+		$ImportLibrary
+		$MergeSections
+		$TargetMachine							"MachineX86 (/MACHINE:X86)"
+		$Profile
+		$CLRThreadAttribute
+		$CLRImageType
+		$KeyFile
+		$KeyContainer
+		$DelaySign
+		$ErrorReporting							"Prompt Immediately (/ERRORREPORT:PROMPT)"
+		$CLRUnmanagedCodeCheck
+
+		// Command Line
+		$AdditionalOptions						
+	}
+
+	$ManifestTool
+	{
+		// General
+		$SuppressStartupBanner				"Yes (/nologo)"
+		$VerboseOutput
+		$AssemblyIdentity
+		$UseUNICODEResponseFiles
+		$UseFAT32WorkAround
+
+		// Input And Output
+		$AdditionalManifestFiles
+		$InputResourceManifests
+		$EmbedManifest
+		$OutputManifestFile
+		$ManifestResourceFile
+		$GenerateCatalogFiles
+		$DependencyInformationFile
+
+		// Isolated COM
+		$TypeLibraryFile
+		$RegistrarScriptFile
+		$ComponentFileName
+		$ReplacementsFile
+
+		// Advanced
+		$UpdateFileHashes
+		$UpdateFileHashesSearchPath
+
+		// Command Line
+		$AdditionalOptions						
+	}
+
+	$XMLDocumentGenerator
+	{
+		// General
+		$SuppressStartupBanner				"Yes (/nologo)"
+		$ValidateIntelliSense
+		$AdditionalDocumentFiles
+		$OutputDocumentFile
+		$DocumentLibraryDependencies
+		$UseUNICODEResponseFiles
+	}
+
+	$BrowseInformation
+	{
+		$SuppressStartupBanner				"Yes (/nologo)"	
+		$OutputFile							"$(OutDir)/$OUTBINNAME.bsc"
+		$AdditionalOptions
+	}
+
+	$Resources
+	{
+		// General
+		$PreprocessorDefinitions				"NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE"
+		$Culture								"English (United States) (0x409)"
+		$AdditionalIncludeDirectories
+		$IgnoreStandardIncludePath
+		$ShowProgress
+		$ResourceFileName
+
+		// Command Line
+		$AdditionalOptions						
+	}
+
+	$PreBuildEvent
+	{
+		$CommandLine
+		$Description
+		$ExcludedFromBuild						"No"
+	}
+
+	$PreLinkEvent
+	{
+		$CommandLine
+		$Description
+		$ExcludedFromBuild						"No"
+	}
+
+	$PostBuildEvent
+	{
+		$CommandLine		"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $OUTBINDIR\$(TargetFileName) $SRCDIR" "\n" \
+							"copy $QUOTE$(TargetDir)$QUOTE$(TargetFileName) $OUTBINDIR\$(TargetFileName)" "\n" \
+							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" \
+							"if exist $QUOTE$(TargetDir)$QUOTE$(TargetName).map copy $QUOTE$(TargetDir)$QUOTE$(TargetName).map $OUTBINDIR\$(TargetName).map" "\n" \
+							"call $SRCDIR\vpc_scripts\valve_p4_edit.cmd $OUTBINDIR\$(TargetName).pdb $SRCDIR" "\n" \
+							"copy $QUOTE$(TargetDir)$QUOTE$(TargetName).pdb $OUTBINDIR\$(TargetName).pdb" "\n" \
+							"if ERRORLEVEL 1 goto BuildEventFailed" "\n" \
+							"goto BuildEventOK" "\n" \
+							":BuildEventFailed" "\n" \
+							"echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***" "\n" \
+							"del /q $QUOTE$(TargetDir)$QUOTE$(TargetFileName)" "\n" \
+							"exit 1" "\n" \
+							":BuildEventOK" "\n" \
+							"call $SRCDIR\devtools\bin\vsign.bat -noforcewritable $OUTBINDIR\$(TargetFileName)" "\n"
+		$Description		"Publishing to $OUTBINDIR"
+		$ExcludedFromBuild	"No"
+	}
+
+	$CustomBuildStep
+	{
+		// General
+		$CommandLine
+		$Description
+		$Outputs
+		$AdditionalDependencies
+	}
+}

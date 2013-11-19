@@ -1,0 +1,89 @@
+//-----------------------------------------------------------------------------
+//	VLOCALIZE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_win_win32_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\vgui2\controls,$SRCDIR\vgui2\include"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE odbc32.lib odbccp32.lib WS2_32.LIB"
+	}
+}
+
+$Project "Vlocalize"
+{
+	$Folder	"Source Files"
+	{
+		$File	"CreateTokenDialog.cpp"
+		$File	"LocalizationDialog.cpp"
+		$File	"main.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"CreateTokenDialog.h"
+		$File	"$SRCDIR\public\dbg\dbg.h"
+		$File	"$SRCDIR\public\platform\fasttimer.h"
+		$File	"$SRCDIR\Public\FileSystem.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"LocalizationDialog.h"
+		$File	"$SRCDIR\public\platform\platform.h"
+		$File	"$SRCDIR\public\vstdlib\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlrbtree.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\Public\mathlib\vector2d.h"
+		$File	"..\include\VGUI.h"
+		$File	"..\controls\VGUI_Button.h"
+		$File	"..\include\VGUI_Color.h"
+		$File	"..\controls\VGUI_Controls.h"
+		$File	"..\include\VGUI_Dar.h"
+		$File	"..\controls\VGUI_EditablePanel.h"
+		$File	"..\controls\VGUI_FileOpenDialog.h"
+		$File	"..\controls\VGUI_FocusNavGroup.h"
+		$File	"..\controls\VGUI_Frame.h"
+		$File	"..\include\VGUI_IClientPanel.h"
+		$File	"..\include\VGUI_IHTML.h"
+		$File	"..\include\VGUI_ILocalize.h"
+		$File	"..\include\VGUI_IScheme.h"
+		$File	"..\include\VGUI_ISurface.h"
+		$File	"..\include\VGUI_IVGui.h"
+		$File	"..\include\VGUI_KeyCode.h"
+		$File	"..\include\VGUI_KeyValues.h"
+		$File	"..\controls\VGUI_Label.h"
+		$File	"..\controls\VGUI_ListPanel.h"
+		$File	"..\controls\VGUI_Menu.h"
+		$File	"..\controls\VGUI_MenuButton.h"
+		$File	"..\controls\VGUI_MessageBox.h"
+		$File	"..\include\VGUI_MessageMap.h"
+		$File	"..\include\VGUI_MouseCode.h"
+		$File	"..\controls\VGUI_Panel.h"
+		$File	"..\controls\VGUI_PHandle.h"
+		$File	"..\controls\VGUI_TextEntry.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+		$File	"$SRCDIR\public\winlite.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\appframework.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+	}
+}

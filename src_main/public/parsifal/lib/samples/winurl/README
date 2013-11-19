@@ -1,0 +1,11 @@
+WINURL.C SAMPLE
+---------------
+
+This sample demonstrates parsing url using windows COM (urlmon.dll)
+as an inputsource for Parsifal.
+
+Inputsource handling is just tiny part of this sample so winurl.c
+also demonstrates many basic Parsifal features.
+
+VC6 users can build sample by running build.bat.
+Executable will be build into WIN32\BIN directory by default.

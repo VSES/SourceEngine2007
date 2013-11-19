@@ -1,0 +1,40 @@
+DATATYPE.C SAMPLE
+-----------------
+
+This sample demonstrates one possible approach of handling datatypes 
+in C SAX parsing. It uses simple ANSI C sscanf for data conversion,
+in the real world you're likely to use some more sophisticated 
+approach, atleast using snscanf is recommended.
+
+Here is the books DTD:
+
+<!ELEMENT books (book*)>
+<!ELEMENT book (author,title,genre,price,publish_date,description)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT publish_date (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ATTLIST book id ID #REQUIRED>
+
+datatype.c uses standard offsetof macro for "storing" the current
+field pointer into book->fld member. In the EndElement event
+it's quite easy to determine whether this is offset of string
+member which doesn't need conversion or offset of some other 
+datatype that needs conversion.
+
+see also http://www.eskimo.com/~scs/C-faq/q2.15.html
+
+You might also want to normalize string content in string members,
+see XMLNormalizeBuf function in the documentation.
+
+WIN32
+
+    VC6 users can build sample by running build.bat.
+    Executable will be build into WIN32\BIN directory by default.
+
+UNIX
+
+    make
+    make install

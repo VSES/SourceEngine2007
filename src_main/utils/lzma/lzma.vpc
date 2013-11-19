@@ -1,0 +1,101 @@
+//-----------------------------------------------------------------------------
+//	LZMA.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTLIBDIR	"$SRCDIR\lib\common\vc8"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"	[$WIN32]
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"C"
+		$PreprocessorDefinitions			"$BASE;_NO_EXCEPTIONS;_LZMA_PROB32"
+	}
+}
+
+$Project "lzma"
+{
+	$Folder	"Source Files"
+	{
+		$File	"Lzma.cpp"
+	
+		$Folder	"7Zip Common"
+		{
+			$File	"C\7zip\Common\OutBuffer.cpp"
+			$File	"C\7zip\Common\OutBuffer.h"
+			$File	"C\7zip\Common\StreamUtils.cpp"
+			$File	"C\7zip\Common\StreamUtils.h"
+		}
+
+		$Folder	"Common"
+		{
+			$File	"C\Common\Alloc.cpp"
+			$File	"C\Common\Alloc.h"
+			$File	"C\Common\CRC.cpp"
+			$File	"C\Common\CRC.h"
+			$File	"C\Common\Defs.h"
+			$File	"C\Common\MyCom.h"
+			$File	"C\Common\MyWindows.h"
+			$File	"C\Common\Types.h"
+		}
+
+		$Folder	"Compress"
+		{
+			$Folder	"LZ"
+			{
+				$File	"C\7zip\Compress\LZ\IMatchFinder.h"
+				$File	"C\7zip\Compress\LZ\LZInWindow.cpp"
+				$File	"C\7zip\Compress\LZ\LZInWindow.h"
+				$File	"C\7zip\Compress\LZ\LZOutWindow.cpp"
+				$File	"C\7zip\Compress\LZ\LZOutWindow.h"
+
+				$Folder	"BT"
+				{
+					$File	"C\7zip\Compress\LZ\BinTree\BinTree.h"
+					$File	"C\7zip\Compress\LZ\BinTree\BinTree2.h"
+					$File	"C\7zip\Compress\LZ\BinTree\BinTree3.h"
+					$File	"C\7zip\Compress\LZ\BinTree\BinTree3Z.h"
+					$File	"C\7zip\Compress\LZ\BinTree\BinTree4.h"
+					$File	"C\7zip\Compress\LZ\BinTree\BinTreeMain.h"
+				}
+
+				$Folder	"HC"
+				{
+					$File	"C\7zip\Compress\LZ\HashChain\HC4.h"
+					$File	"C\7zip\Compress\LZ\HashChain\HCMain.h"
+				}
+			}
+
+			$Folder	"LZMA"
+			{
+				$File	"C\7zip\Compress\LZMA\LZMA.h"
+				$File	"C\7zip\Compress\LZMA\LZMADecoder.cpp"
+				$File	"C\7zip\Compress\LZMA\LZMADecoder.h"
+				$File	"C\7zip\Compress\LZMA\LZMAEncoder.cpp"
+				$File	"C\7zip\Compress\LZMA\LZMAEncoder.h"
+			}
+
+			$Folder	"LZMA_C"
+			{
+				$File	"C\7zip\Compress\LZMA_C\LzmaDecode.c"
+				$File	"C\7zip\Compress\LZMA_C\LzmaDecode.h"
+				$File	"C\7zip\Compress\LZMA_C\LzmaTypes.h"
+			}
+
+			$Folder	"RangeCoder"
+			{
+				$File	"C\7zip\Compress\RangeCoder\RangeCoder.h"
+				$File	"C\7zip\Compress\RangeCoder\RangeCoderBit.cpp"
+				$File	"C\7zip\Compress\RangeCoder\RangeCoderBit.h"
+				$File	"C\7zip\Compress\RangeCoder\RangeCoderBitTree.h"
+				$File	"C\7zip\Compress\RangeCoder\RangeCoderOpt.h"
+			}
+		}
+	}
+}
+

@@ -1,0 +1,8 @@
+parsifal-knownbugs01062004-3
+parsifal-encoding19072003-173
+parsifal-encoding19072003-174
+parsifal-encoding19072003-175
+parsifal-encoding19072003-176
+parsifal-encoding19072003-178
+parsifal-encoding19072003-179
+parsifal-encoding19072003-180

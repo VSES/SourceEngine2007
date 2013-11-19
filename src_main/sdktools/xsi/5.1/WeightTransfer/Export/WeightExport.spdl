@@ -1,0 +1,98 @@
+SPDL
+Version = "2.0.0.1";
+Reference = "{7F9E271B-ED61-4944-8475-45664257E241}";
+
+BEGIN PROPERTIES
+PropertySet "customparamset"
+{
+	Parameter "Name"
+	{
+		Name	= "Name";
+		Guid	= "{7F9E271B-ED61-4944-8475-45664257E241}";
+		Type	= VT_LPWSTR;
+		Caps	= Persistable;
+		Class	= MetaData;
+	}
+
+	Parameter "Custom parameter instance ID"
+	{
+		Name	= "Custom parameter instance ID";
+		Guid	= "{29DC00A9-855D-4a40-8294-13B75017EFAD}";
+		Type	= VT_CLSID;
+		Caps	= Persistable, UnInspectable;
+		Class	= Unknown;
+	}
+
+	Parameter "Filename"
+	{
+		Name	= "Filename";
+		Guid	= "{2D2FC33F-EE26-43a1-97E8-0B075A62CCE4}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+	}
+
+	Parameter "Fullname" input
+	{
+		title = "Export Fullnames";
+		guid = "{648AAD96-8364-420a-838D-A14D6972B3C2}";
+		type = boolean;
+		value = 1;
+		texturable = off;
+		flags = 0;
+		animatable = off;
+	}
+
+}
+END
+
+BEGIN "{24810490-56FF-11d2-BF23-00A0C982CE5D}"
+Defaults
+{
+	"Name"
+	{
+		UIType	= "String";
+	}
+
+	"Custom parameter instance ID"
+	{
+	}
+
+	"Filename"
+	{
+		UIType = "dscontrol"
+		{
+			 Class = "edit";
+			 Caption = ";file=1;initialdir=project;filefilter=Weight Map Files (*.xsiwm)|*.xsiwm|All Files (*.*)|*.*||";
+		}
+	}
+
+	"Fullname"
+	{
+		Name = "Output Fullname";
+		Description = "Trigger the output of fullnames yes or no";
+	}
+
+}
+
+Logic {
+Sub OnInit()
+
+End Sub
+
+}
+
+
+Layout "Default"
+{
+	Tab "File Output" {
+		"Name";
+		"Custom parameter instance ID";
+		Group "File" {
+			"Filename";
+			"Fullname",aligncenter;
+		}
+	}
+
+}
+END

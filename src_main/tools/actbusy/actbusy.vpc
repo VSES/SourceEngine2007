@@ -1,0 +1,53 @@
+//-----------------------------------------------------------------------------
+//	ACTBUSY.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin\tools"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_win32_base.vpc"
+
+$Configuration
+{
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE Psapi.lib"
+	}
+}
+
+$Project "Actbusy"
+{
+	$Folder	"Source Files"
+	{
+		$File	"actbusydoc.cpp"
+		$File	"actbusytool.cpp"
+		$File	"$SRCDIR\public\interpolatortypes.cpp"
+		$File	"$SRCDIR\public\movieobjects\movieobjects.cpp"
+		$File	"$SRCDIR\public\registry.cpp"
+		$File	"$SRCDIR\public\vgui_controls\vgui_controls.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"actbusydoc.h"
+		$File	"actbusytool.h"
+		$File	"$SRCDIR\public\interpolatortypes.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\public\datamodel.lib"
+		$File	"$SRCDIR\lib\public\dme_controls.lib"
+		$File	"$SRCDIR\lib\public\dmserializers.lib"
+		$File	"$SRCDIR\lib\public\mathlib.lib"
+		$File	"$SRCDIR\lib\public\matsys_controls.lib"
+		$File	"$SRCDIR\lib\public\movieobjects.lib"
+		$File	"$SRCDIR\lib\public\sfmobjects.lib"
+		$File	"$SRCDIR\lib\public\tier2.lib"
+		$File	"$SRCDIR\lib\public\tier3.lib"
+		$File	"$SRCDIR\lib\public\toolutils.lib"
+		$File	"$SRCDIR\lib\public\vgui_controls.lib"
+	}
+}

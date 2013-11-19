@@ -1,0 +1,23 @@
+These are available MTypeId's to use in Maya nodes.
+
+These must be unique so when creating a new node type add it to the
+list so that particular id will never be used for two node types.
+
+If we run out, we need to request another block from Alias.
+
+Testing Range:	0x00000000 - 0x0007ffff
+
+Valve Range:	0x0010e4c0 - 0x0010e5bf
+
+0x0010e4c0	CVsMaterialToTextureNode
+0x0010e4c1	CVstExampleLocator
+0x0010e4c2	CVstInfoTransform
+0x0010e4c3	CVstHelperBoneNode
+0x0010e4c4	CVstAimNode
+0x0010e4c5	CVstAttachmentLocator
+0x0010e4c6	CVstExampleTransform
+0x0010e4c7	CVsSkinner
+0x0010e4c8	CVsSkinnerBone
+0x0010e4c9	CVstEyeballNode
+0x0010e4ca	CVsShader
+0x0010e4cb	CVstWeldNode

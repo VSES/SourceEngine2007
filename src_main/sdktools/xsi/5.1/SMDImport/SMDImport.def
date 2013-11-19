@@ -1,0 +1,12 @@
+EXPORTS
+	XSIOnInit		@1 PRIVATE
+	XSIOnTerminate  @2 PRIVATE
+	XSILoadPlugin	@3 PRIVATE
+	XSIUnloadPlugin	@4 PRIVATE
+	SMDImportProperty_DefineLayout	@5 PRIVATE
+	SMDImportProperty_Define		@6 PRIVATE
+	ImportSMD_Init	@7 PRIVATE
+	OnSMDImportMenu		@8 PRIVATE
+	SMDImport_Init @9 PRIVATE
+	SMDImport_Execute @10 PRIVATE
+

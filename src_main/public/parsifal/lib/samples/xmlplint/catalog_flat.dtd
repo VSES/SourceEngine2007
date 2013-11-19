@@ -1,0 +1,82 @@
+<!ELEMENT catalog (public|system|uri|rewriteSystem|rewriteURI|delegatePublic|delegateSystem|delegateURI|nextCatalog|group)+>
+<!ATTLIST catalog 
+	xmlns CDATA #FIXED "urn:oasis:names:tc:entity:xmlns:xml:catalog"
+	prefer (system|public) #IMPLIED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT public EMPTY>
+<!ATTLIST public
+	id ID #IMPLIED
+	publicId CDATA #REQUIRED
+	uri CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT system EMPTY>
+<!ATTLIST system
+	id ID #IMPLIED
+	systemId CDATA #REQUIRED
+	uri CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT uri EMPTY>
+<!ATTLIST uri
+	id ID #IMPLIED
+	name CDATA #REQUIRED
+	uri CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT rewriteSystem EMPTY>
+<!ATTLIST rewriteSystem
+	id ID #IMPLIED
+	systemIdStartString CDATA #REQUIRED
+	rewritePrefix CDATA #REQUIRED
+>
+
+<!ELEMENT rewriteURI EMPTY>
+<!ATTLIST rewriteURI
+	id ID #IMPLIED
+	uriStartString CDATA #REQUIRED
+	rewritePrefix CDATA #REQUIRED
+>
+
+<!ELEMENT delegatePublic EMPTY>
+<!ATTLIST delegatePublic
+	id ID #IMPLIED
+	publicIdStartString CDATA #REQUIRED
+	catalog CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT delegateSystem EMPTY>
+<!ATTLIST delegateSystem
+	id ID #IMPLIED
+	systemIdStartString CDATA #REQUIRED
+	catalog CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT delegateURI EMPTY>
+<!ATTLIST delegateURI
+	id ID #IMPLIED
+	uriStartString CDATA #REQUIRED
+	catalog CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT nextCatalog EMPTY>
+<!ATTLIST nextCatalog
+	id ID #IMPLIED
+	catalog CDATA #REQUIRED
+	xml:base CDATA #IMPLIED
+>
+
+<!ELEMENT group (public|system|uri|rewriteSystem|rewriteURI|delegatePublic|delegateSystem|delegateURI|nextCatalog)+>
+<!ATTLIST group
+	id ID #IMPLIED
+	prefer (system|public) #IMPLIED
+	xml:base CDATA #IMPLIED
+>

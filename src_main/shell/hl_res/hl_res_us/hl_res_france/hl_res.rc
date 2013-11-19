@@ -1,0 +1,787 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LANGUAGE            "Français"
+    IDS_BORDERLESS_REGFAIL  "Impossible d'enregistrer les modifications des contrôles du jeu."
+    IDS_CHAT_IGNORE_MISLINKED 
+                            "Ignore salle de discussion car mauvaise connexion"
+    IDS_CHAT_IGNORE_UNLINKED 
+                            "Ignore salle de discussion car aucune connexion"
+    IDS_CREATE_MAPSCHANGED  "Le nombre de cartes dans le répertoire map a changé."
+    IDS_CREATE_LIBLISTBAD   "Le fichier 'liblist.gam' dans le répertoire du jeu est mal formaté. Voir /valve/liblist.gam pour plus d'informations sur les formats."
+    IDS_SOCKET_CONNECTIONFAILURE 
+                            "Erreur de connexion réseau. Tentative de connexion continue…"
+    IDS_PLAYERINFO_NOMEM    "Impossible d'allouer de la mémoire pour les informations sur le joueur.."
+    IDS_CHAT_NOCONNECTION   "Impossible de créer une connexion sur un serveur de discussion."
+    IDS_CHAT_NOSTREAM       "Impossible de créer un flux de données vers le serveur de discussion."
+    IDS_CHAT_NOSELECT       "Impossible de préparer la connexion pour le client de discussion."
+    IDS_CONTROLS_DELETE_LINKED "Efface action liée à cette touche."
+    IDS_CONTROLS_KBLIST_EMPTY 
+                            "Le fichier des liens de clavier 'kb_act.lst' est vide."
+    IDS_CONTROLS_KBLIST_PARSEERROR 
+                            "Erreur d'écriture du fichier 'kb_act.lst'."
+    IDS_CONTROLS_KBKEYS_EMPTY 
+                            "Le fichier des liens de clavier 'kb_keys.lst' est vide."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONTROLS_KBKEYS_PARSEERROR 
+                            "Erreur d'écriture du fichier 'kb_keys.lst'."
+    IDS_CONTROLS_KBKEYS_OVERFLOW 
+                            "Trop d'actions dans le fichier 'kb_keys.lst'."
+    IDS_PROFILE_COLOR       "Couleurs"
+    IDS_MAIN_NOCAPS         "Impossible de vérifier les fonctions graphiques."
+    IDS_MAIN_INSUFFICIENTCAPS 
+                            "Votre carte graphique ne peut pas gérer certaines opérations indispensables."
+    IDS_MAIN_REGWNDCLSFAIL  "Impossible d'enregistrer les classes de fenêtre de Half-Life."
+    IDS_MAIN_INSUFFICIENTSOCKETS 
+                            "Nombre de prises de fenêtres insuffisant, le réseau ne fonctionne peut-être pas correctement."
+    IDS_MAIN_MEMMAPFAILURE  "Erreur d'initialisation du fichier i/o en mémoire."
+    IDS_PROFILE_NOMEM       "Impossible d'allouer de la mémoire pour le profil du joueur. Sortie du jeu."
+    IDS_BTN_STRANGESIZE     "La taille des graphismes du bouton semble invalide."
+    IDS_MAIN_NOUSERMSGS     "Impossible d'enregistrer les messages utilisateur."
+    IDS_MAIN_NOFILEMAPPING  "Impossible de créer un fichier de texturage pour le moteur."
+    IDS_MAIN_NOMEMMAPCONNECT "Impossible de se connecter au serveur '%s'."
+    IDS_MSG_OVERFLOW        "SZ_GetSpace overflow sans configuration m_bAllowOverflow"
+    IDS_MSG_REQTOOBIG       "SZ_GetSpace longueur requise supérieure à la mémoire tampon disponible."
+    IDS_MULTI_NOROOMSTATIC  "Impossible d'allouer contrôle texte statique "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_NOROOMTAB     "Impossible d'allouer contrôle tab"
+    IDS_MULTI_NOCHATWINDOW  "Impossible d'allouer contrôle fenêtre de discussion"
+    IDS_MULTI_NOCHATINPUT   "Impossible d'allouer contrôle retour écho de texte"
+    IDS_MULTI_NOUSERLIST    "Impossible d'allouer contrôle liste des utilisateurs"
+    IDS_MULTI_NOSERVERLIST  "Impossible d'allouer contrôle liste des serveurs"
+    IDS_MULTI_NOSELECTION   "Aucun Serveur Sélectionné"
+    IDS_MULTI_NOARCHIVE     "Half-Life n'a pas pu ouvrir le fichier archive :  '%s'."
+    IDS_CHAT_USER_NOMEM     "Impossible d'allouer de l'espace pour nouvel utilisateur dans salle de discussion."
+    IDS_MULTI_SERVER_NOMEM  "Impossible d'allouer de l'espace pour un nouveau serveur."
+    IDS_MULTI_MASTER_BADLISTFILE 
+                            "Impossible d'ouvrir fichier maître de liste de serveur."
+    IDS_MULTI_NODIALOG      "SetDialog pas de dialogue !"
+    IDS_PROFILE_REQUIRED    "Vous devez créer ou choisir un profil de personnage pour continuer."
+    IDS_ODCOMBO_REGFAIL     "Impossible d'enregistrer la classe combobox Half-Life."
+    IDS_ODEDIT_REGFAIL      "Impossible d'enregistrer les modifications des contrôles du jeu."
+    IDS_ODLIST_REGFAIL      "Impossible d'enregistrer la classe de contrôle de liste de Half-Life."
+    IDS_ODSCROLL_REGFAIL    "Impossible d'enregistrer la classe d'ascenseur de Half-Life."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ODSLIDER_REGFAIL    "Impossible d'enregistrer la classe de molette de Half-Life."
+    IDS_ODTAB_REGFAIL       "Impossible d'enregistrer la classe de contrôle tab de Half-Life."
+    IDS_PROFILE_NICKREMOVEFAIL 
+                            "Impossible de retirer les surnoms de discussion."
+    IDS_PROFILE_NOPROFILE   "Aucun profil choisi"
+    IDS_QUICK_NOSERVERS     "Impossible de trouver un serveur %s actif."
+    IDS_QUICK_NOACTIVE      "Impossible de se connecter à un serveur %s actif."
+    IDS_README_NOMEM        "Impossible d'allouer tampon pour lisezmoi: %i bytes"
+    IDS_ROOM_BADNAME        "Nom de la salle invalide."
+    IDS_SINGLE_NOSELECTION  "Vous devez choisir un emplacement de sauvegarde dans les emplacements disponibles."
+    IDS_SINGLE_CANTSAVE     "Vous devez jouer en solitaire pour pouvoir enregistrer la partie."
+    IDS_ODLISTBOX_REGFAIL   "Impossible d'enregistrer la classe de boîtes de Half-Life."
+    IDS_DIB_OPENFAIL        "Impossible d'ouvrir le fichier bitmap '%s'."
+    IDS_MCI_OPENFAIL        "Impossible d'ouvrir le fichier MCI : %s"
+    IDS_MCI_GETIDFAIL       "Impossible de trouver l'ID du périphérique MCI"
+    IDS_MCI_WINDOWFAIL      "Impossible de paramétrer une fenêtre MCI pour le périphérique MCI : %s"
+    IDS_MCI_PUTFAIL         "Impossible d'afficher la lecture MCI pour le périphérique MCI dans la fenêtre : %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MCI_SEEKFAIL        "Impossible de trouver le début des données MCI : %s"
+    IDS_MCI_BREAKFAIL       "Impossible de paramétrer la touche break pour les données MCI : %s"
+    IDS_MCI_PLAYFAIL        "Impossible de jouer les données MCI : %s"
+    IDS_MCI_STOPFAIL        "Impossible d'arrêter la lecture des données MCI : %s"
+    IDS_MCI_CLOSEFAIL       "Impossible de fermer les données MCI :  %s"
+    IDS_CONTROLS_RESTOREFAIL 
+                            "Impossible de restaurer les liens par défaut pour le joueur."
+    IDS_SND_BADNAME         "Nom de son invalide"
+    IDS_PROFILE_ALLOCFAIL   "Impossible d'allouer de l'espace pour les liens de touches"
+    IDS_AUDIO_NOPROFILE     "Impossible de modifier les paramètres audio sans un profil."
+    IDS_VIDEO_NOPROFILE     "Impossible de modifier les paramètres vidéo sans un profil."
+    IDS_CONTROLS_KEYHELP    "Utilisez la souris ou les touches Flèche pour sélectionner un objet. Double-cliquez sur cet objet ou appuyez sur la touche Entrée pour le modifier. Appuyez sur la touche Effacer pour supprimer un objet."
+    IDS_ENDDEMO_URL         "media/order/default.html"
+    IDS_ORDER_URL           "media/order/default.html"
+    IDS_LOADSAVE_HINT       "En cours de partie, vous pouvez effectuer un enregistrement rapide de votre partie en appuyant sur la touche %s."
+    IDS_LAUNCHER_BUTTONSIZE "176 26"
+    IDS_MEM_INSUFFICIENT    "Votre système ne dispose que de %.2fK de mémoire RAM. Half-Life nécessite au moins 16Mo de mémoire RAM."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MEM_ALLOCFAIL       "Impossible de libérer %.2fK de mémoire à l'usage de Half-Life."
+    IDS_EVENT_CREATEFAIL    "Half-Life n'est pas parvenu à créer un objet système."
+    IDS_OSVER_FAIL          "Half-Life ne parvient pas à retrouver les informations système."
+    IDS_OSVER_OUTDATED      "Half-Life ne fonctionne que sous Windows/95, Windows/NT 4.0 et supérieur."
+    IDS_OSVER_NTSP3         "Half-Life recquiert le Service Pack 3 ou supérieur."
+    IDS_OSVER_16BIT         "Half-Life ne fonctionne qu'en couleurs 16 bit ou supérieur. Veuillez changer les paramètres d'affichage en fonction. Le mode 16 bit est parfois appelé ""32767 couleurs""ou""65535 couleurs""."
+    IDS_BINDING_ACTIONHEADING "Action"
+    IDS_BINDING_PRIMARYHEADING "Touche / bouton"
+    IDS_BINDING_ALTERNATEHEADING "Alterné"
+    IDS_BINDING_PROMPT      "Cliquez/ Appuyez sur une touche"
+    IDS_URL_BROWSERFAIL     "Half-Life ne parvient pas à afficher la page web '%s', veuillez vous assurer qu'un navigateur web est installé sur votre ordinateur, et que les fichiers .htm sont associés à cette application."
+    IDS_SAVELOAD_TIMECOL    "Temps"
+    IDS_SAVELOAD_GAMECOL    "Partie"
+    IDS_SAVELOAD_ELAPSEDCOL "Temps Ecoulé"
+    IDS_SERVER_GAMESERVER   "Partie"
+    IDS_SERVER_SPEED        "Vitesse"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MAP          "Carte"
+    IDS_SERVER_PLAYERS      "Joueurs"
+    IDS_SERVER_GAME         "Type de Partie"
+    IDS_SERVER_NETWORK      "Réseau"
+    IDS_QUERY_STARTING      "Préparez-vous…"
+    IDS_QUERY_COMPLETED     "%s terminé."
+    IDS_SERVER_REMOVE       "Effacer définitivement les serveurs %i de la liste ?"
+    IDS_SERVER_CONNECT      "Tentative de connexion à %s..."
+    IDS_SERVER_LANTAG       "LAN"
+    IDS_SERVER_INTERNETTAG  "Internet"
+    IDS_SERVER_MENU_CONNECT "Connexion"
+    IDS_SERVER_MENU_PLAYERINFO 
+                            "Afficher informations sur les joueurs et les règles"
+    IDS_SERVER_MENU_RULEINFO "Afficher règles"
+    IDS_SERVER_MENU_FILTER  "Filtrer serveur"
+    IDS_SERVER_MENU_ADDTOFAVORITE "Ajouter aux favoris"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SERVER_MENU_REMOVEFROMFAV "Effacer des favoris"
+    IDS_SERVER_MENU_REMOVE  "Effacer définitivement serveur"
+    IDS_SERVER_MENU_NOPLAYERINFO "Pas d'informations sur le joueur"
+    IDS_SERVER_MENU_NOLANPLAYERINFO 
+                            "Pas d'informations sur les joueurs lors des parties en réseau local."
+    IDS_SAVELOAD_QUICKLISTTEXT "[enr. rapide] %s"
+    IDS_SAVELOAD_AUTOLISTITEM "[enr. auto] %s"
+    IDS_PLAYERINFO_NUMBER   "#"
+    IDS_PLAYERINFO_NAME     "Nom du Joueur"
+    IDS_PLAYERINFO_KILLS    "Tués"
+    IDS_PLAYERINFO_TIME     "Temps"
+    IDS_PLAYERINFO_SUIT     "Combinaison"
+    IDS_QUICK_REQUEST       "Chargement de la liste des serveurs..., %i secondes restantes"
+    IDS_QUICK_GOTLIST       "Liste reçue…"
+    IDS_QUICK_CONTACTING    "Connexion aux serveurs..."
+    IDS_QUICK_COMPLETEDSERVER "%s terminé."
+    IDS_SAVE_NEWCOMMENT     "Nouvelle Partie Enregistrée"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_NEWTIME        "Nouveau"
+    IDS_SAVE_NEWFILETIME    "Actuel"
+    IDS_DDRAW_FAILEINIT     "Init Direct Draw Echoué (%08lx):%s\n"
+    IDS_DDRAW_DX4FAIL       "Init Direct Draw 4 Echoué (%08lx):%s\n"
+    IDS_VIDEO_MODECOL       "Résolution"
+    IDS_ROOM_NAMECOL        "Nom"
+    IDS_ROOM_PEOPLECOL      "Joueurs"
+    IDS_ROOM_SERVERSCOL     "Serveurs"
+    IDS_DDRAW_REQUIRED      "Half-Life nécessite DirectDraw"
+    IDS_DLL_LOADFAIL        "Impossible de charger les Engine DLL"
+    IDS_CMDLINE_VTOPTS      "-vt doit être logicielle, gl, ou d3d."
+    IDS_SAVE_NUMCHANGED     "Le nombre de parties enregistrées a changé ?"
+    IDS_BINDINGS_ALLOCFAIL  "Impossible d'allouer de l'espace pour réunir les parties"
+    IDS_GAMMA_LOADFAIL      "Impossible de trouver l'image d'exemple gamma 'gamma.bmp'."
+    IDS_DDRAW_RESTOREMODEFAIL 
+                            "Impossible de relancer le mode vidéo DirectDraw."
+    IDS_AUDIO_VOLUME        "Volume Sonore"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUDIO_SUITVOL       "Volume Combinaison"
+    IDS_AUDIO_USECD         "Ecouter la Musique sur CD"
+    IDS_AUDIO_HIGHQUALITY   "Son Grande Qualité (ordinateurs rapides)"
+    IDS_CFG_VIDHELP         "Pour modifier la taille de l'écran, le mode vidéo, la correction gamma et la brillance."
+    IDS_CFG_AUDIOHELP       "Pour modifier le volume et la qualité des effets sonores."
+    IDS_CFG_CONTROLHELP     "Pour modifier les paramètres de contrôles au clavier, à la souris ou au joystick."
+    IDS_CFG_RETURNTOMAIN    "Retour au Menu Principal."
+    IDS_CREATEROOM_TITLE    "Créer une Salle Privée"
+    IDS_CREATEROOM_ROOMNAME "Nom de la Salle"
+    IDS_CREATEROOM_ROOMTOPIC "Sujet de la Salle"
+    IDS_CREATESERVER_NAME   "Nom du Serveur :"
+    IDS_CREATESERVER_MAP    "Carte :"
+    IDS_CREATESERVER_ROOM   "Salle Associée :"
+    IDS_CREATESERVER_GAMETYPE "Type de Partie :"
+    IDS_CREATESERVER_MAXPLAYERS "Joueurs Max. :"
+    IDS_FILTER_TITLE        "Filtrer la liste des parties de Half-Life"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILTER_HEADING      "Montrer uniquement serveurs qui :"
+    IDS_FILTER_RESPONDING   "répondent"
+    IDS_FILTER_RESPONSETIME "répondent plus rapidement que"
+    IDS_FILTER_NOTFULL      "ne sont pas remplis"
+    IDS_FILTER_NOTEMPTY     "hébergent actuellement des parties"
+    IDS_FILTER_ONFAVORITES  "sont dans ma liste 'favoris'"
+    IDS_FILTER_INCHATROOM   "sont associés à la salle de discussion choisie"
+    IDS_FINDPLAYER_PLAYER   "Joueur à rechercher :"
+    IDS_OPTS_CROSSHAIR      "Viseur"
+    IDS_OPTS_REVERSE        "Souris Inversée"
+    IDS_OPTS_MLOOK          "VueSouris"
+    IDS_OPTS_LOOKSPRING     "VueCentre"
+    IDS_OPTS_LOOKSTRAFE     "VueEsquive"
+    IDS_OPTS_MFILTER        "Filtre Souris"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JOYSTICK       "Joystick"
+    IDS_OPTS_CROSSHAIRHELP  "Afficher le viseur à l'écran."
+    IDS_OPTS_REVERSEHELP    "Intervertir Axe Vertical de la souris."
+    IDS_OPTS_MLOOKHELP      "Utilisez la souris pour regarder plutôt que pour vous déplacez."
+    IDS_OPTS_LOOKSPRINGHELP "L'écran va alors""sauter""retour au point de vue horizontal lorsque vous avancez."
+    IDS_OPTS_LOOKSTRAFEHELP "En combinaison avec le touche VueSouris, déplacez la souris vers la droite ou la gauche correspond à faire une esquive plutôt qu'à pivoter."
+    IDS_OPTS_MFILTERHELP    "Réduit les impulsions de la souris pour rendre les mouvements plus fluides."
+    IDS_OPTS_JOYSTICKHELP   "Activer contrôle au joystick."
+    IDS_OPTS_SENSITIVITYHELP "Sensibilité de la souris."
+    IDS_LOADSAVE_LOADHELP   "Charger une partie préalablement enregistrée."
+    IDS_LOADSAVE_SAVEHELP   "Enregistrer la partie en cours."
+    IDS_LOADSAVE_RETURN     "Retour au Menu Principal"
+    IDS_MAIN_RETURNHELP     "Retour au Jeu."
+    IDS_MAIN_NEWGAMEHELP    "Lancer une nouvelle partie."
+    IDS_MAIN_TRAININGHELP   "Apprendre à jouer à Half-Life."
+    IDS_MAIN_LOADHELP       "Charger une partie préalablement enregistrée."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_LOADSAVEHELP   "Charger une partie, enregistrer la partie en cours."
+    IDS_MAIN_CONFIGUREHELP  "Modifier les paramètres et les contrôles du jeu."
+    IDS_MAIN_READMEHELP     "Lire le fichier Lisezmoi.txt."
+    IDS_MAIN_ORDERHELP      "Commander la version commerciale de Half-Life."
+    IDS_MAIN_QUITHELP       "Arrêter de jouer à Half-Life."
+    IDS_MAIN_QUICKHELP      "Connexion au serveur de jeu Internet le plus rapide."
+    IDS_MAIN_MULTIPLAYERHELP 
+                            "Recherche des serveurs Half-Life, dialoguer avec d'autres joueurs, personnaliser le personnage."
+    IDS_CHAT_PROMPT         "Entrer Message :"
+    IDS_NEWGAME_EASYHELP    "Jouer à Half-Life en mode facile."
+    IDS_NEWGAME_MEDIUMHELP  "Jouer à Half-Life en mode moyen."
+    IDS_NEWGAME_DIFFICULTHELP "Jouer à Half-Life en mode difficile."
+    IDS_NEWGAME_RETURNHELP  "Retour au Menu Principal."
+    IDS_NEWPROFILE_TITLE    "Choisir Joueur"
+    IDS_NEWPROFILE_NAME     "No&m :"
+    IDS_NEWPROFILE_PASSWORD "Mot de Passe :"
+    IDS_NEWPROFILE_REMEMBER "Se souvenir du mot de passe"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROFILE_MODEL       "Modèle"
+    IDS_PROFILE_NICKNAME    "Nom du Joueur"
+    IDS_PROFILE_SELECT      "Profil du Joueur :"
+    IDS_PROFILE_PROCEEDHELP "Discuter avec utilisateurs et chercher les serveurs."
+    IDS_PROFILE_RETURNHELP  "Retour au Menu Principal."
+    IDS_VIDEO_SCREENSIZE    "Taille de l'Ecran"
+    IDS_VIDEO_GAMMA         "Gamma"
+    IDS_VIDEO_GLARE         "Brillance"
+    IDS_VIDEO_GAMMAHELP     "Gamma :  Ajuste l'équilibre des couleurs du jeu pour mieux correspondre à votre moniteur. Déplacez la molette jusqu'à ce que le personnage qui se tient dans l'ombre soit visible."
+    IDS_VIDEO_GLAREHELP     "Brillance : Ajuste les couleurs sombres pour diminuer le contraste des couleurs à l'écran."
+    IDS_VIDMODE_WINDOWED    "Lancer en mode fenêtré (&W)"
+    IDS_VIDMODE_MOUSE       "&Utiliser Souris"
+    IDS_VIDMODE_GLLISTHEADER "Pilote OpenGL"
+    IDS_VIDMODE_D3DHEADER   "Périphérique D3D"
+    IDS_VIDSELECT_OPTIONSHELP 
+                            "Pour paramétrer les options vidéo : taille écran, gamma et brillance."
+    IDS_VIDSELECT_MODESHELP "Définir la résolution et configurer les cartes 3D."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VIDSELECT_RETURNHELP "Retour au menu précédent."
+    IDS_SERVERS_REFRESH     "Rafraîchir Serveurs..."
+    IDS_PROGRESS_START      "Jouer"
+    IDS_QUICK_CONTACT       "Connexion aux serveurs..."
+    IDS_QUICK_REQUESTLIST   "Recherche de la liste des serveurs..."
+    IDS_README_NOFILE       "Impossible de trouver le fichier Lisezmoi.txt"
+    IDS_STATUS_CONNECTING   "Connexion au serveur '%s'"
+    IDS_STATUS_CONNECTIONESTABLISHED 
+                            "Connexion établie sur %s, connexion sur la partie"
+    IDS_STATUS_SKIPSERVER   "Sauter..."
+    IDS_STATUS_ELPASEDTIME  "%s\n%3.1f Secondes Ecoulées"
+    IDS_TRAINING_EXITCURRENT 
+                            "Attention, vous rendre au Parcours d'Obstacles vous fera quitter la partie en cours. Cliquez sur OK pour confirmer."
+    IDS_MAIN_QUITPROMPTINGAME 
+                            "Quitter Half-Life sans enregistrer la partie ?"
+    IDS_MAIN_QUITPROMPT     "Souhaitez-vous vraiment quitter la partie ?"
+    IDS_CONTROLS_CANCELPROMPT "Quitter sans enregistrer les changements ?"
+    IDS_LOAD_LOADPROMPT     "Charger une partie vous fera quitter la partie en cours. Cliquez sur OK pour confirmer."
+    IDS_LOADSAVE_DELETEPROMPT "Effacer la partie sélectionnée ?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEWGAME_NEWPROMPT   "Lancer une nouvelle partie vous fera quitter la partie en cours. Cliquez sur OK pour confirmer."
+    IDS_NICKNAME_ADD        "Tapez un nom :"
+    IDS_PROFILE_CANCELPROMPT "Enregistrer les changements ?"
+    IDS_SAVE_INGAMEPROMPT   "Impossible d'enregistrer, aucune partie n'est actuellement en cours."
+    IDS_SAVE_OVERWRITE      "Vous allez effacer la partie préalablement enregistrée. Veuillez confirmer."
+    IDS_VIDEO_BADSETTINGS   "La configuration vidéo indiquée ne semble pas valide. Utiliser tout de même les paramètres indiqués ?"
+    IDS_AUDIO_A3D           "Activer les périphériques A3D"
+    IDS_BTN_DONE            "Terminer (&Q) was A"
+    IDS_BTN_CONTROLS        "&Contrôles"
+    IDS_BTN_AUDIO           "&NAudio"
+    IDS_BTN_VIDEO           "&GVidéo"
+    IDS_BTN_CANCEL          "Annuler (&A)"
+    IDS_BTN_CREATE          "&Créer Salle "
+    IDS_BTN_FILTER          "Filtr&e"
+    IDS_BTN_FIND            "Rechercher (&S)"
+    IDS_BTN_RETURN          "&IRetour was r"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_NEWGAME         "&Nouvelle Partie"
+    IDS_BTN_TRAINING        "Parcours d'Obstacles (&P)"
+    IDS_BTN_CONFIGURE       "&Configuration"
+    IDS_BTN_LOADSAVE        "&Enregistrer/Charger Partie"
+    IDS_BTN_LOAD            "Charger Partie (&H)"
+    IDS_BTN_MULTIPLAYER     "&Multijoueur"
+    IDS_BTN_README          "Lire Lisezmoi (&F)"
+    IDS_BTN_ORDER           "Commander (&O)"
+    IDS_BTN_QUIT            "&Quitter"
+    IDS_BTN_ADVANCED        "&Contrôles Avancés"
+    IDS_BTN_REVERT          "Annuler (&A)"
+    IDS_BTN_RESTORE         "&PUtiliser Contrôles par Défaut"
+    IDS_BTN_DELETE          "Effacer (&D)"
+    IDS_BTN_SAVE            "&Enregistrer Partie"
+    IDS_BTN_LOGIN           "&Login"
+    IDS_BTN_CONNECT         "&Connexion"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_CREATESV        "Créer Partie (&C)"
+    IDS_BTN_REFRESH         "Ra&fraîchir"
+    IDS_BTN_ROOM            "&Lister Salles"
+    IDS_BTN_EASY            "&Facile"
+    IDS_BTN_MEDIUM          "&Moyen"
+    IDS_BTN_HARD            "&Difficile"
+    IDS_BTN_YES             "Oui (&Y)"
+    IDS_BTN_NO              "&Non"
+    IDS_BTN_OK              "&Ok"
+    IDS_BTN_OPTIONS         "&Options Vidéo"
+    IDS_BTN_MODES           "&Modes Vidéo"
+    IDS_BTN_QUICK           "Partie Rapide (&J)"
+    IDS_PROFILE_LOGO        "Graffiti"
+    IDS_BTN_BROWSE          "Partie I&nternet"
+    IDS_MULTI_BROWSEHELP    "Afficher une liste des serveurs Half-Life et rejoindre le serveur de votre choix."
+    IDS_BTN_CHAT            "Salles de Discussion (&S)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MULTI_CHATHELP      "Dialoguer online avec d'autres joueurs de Half-Life."
+    IDS_BTN_LAN             "Partie Réseau (&L)"
+    IDS_MULTI_LANHELP       "Créer ou rejoindre une partie de Half-Life sur un réseau local."
+    IDS_BTN_CUSTOMIZE       "Personnaliser (&P)"
+    IDS_MULTI_CUSTOMIZEHELP "Choisissez un nom pour votre personnage et son aspect physique."
+    IDS_CREATEROOM_ROOMPASSWORD "Mot de Passe (optionnel)"
+    IDS_PLAYERINFO_RULENAME "Règles Utilisées"
+    IDS_PLAYERINFO_RULEVALUE "Valeur"
+    IDS_BTN_SEARCH          "Rechercher Partie (&S)"
+    IDS_BTN_CHATMODE        "Dialoguer"
+    IDS_BTN_LISTMODE        "Partie I&nternet"
+    IDS_BTN_EXIT            "Quitter (&Q)"
+    IDS_SERVER_MANUALADD    "Ajouter un serveur en indiquant son adresse IP…"
+    IDS_SERVER_REQUESTNEWLIST "Rafraîchir la liste des serveurs."
+    IDS_PLAYERINFO_SERVERNAME "Nom du Serveur :"
+    IDS_PLAYERINFO_SERVERIP "Adresse IP du Serveur :"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLAYERINFO_SERVERPING "Ping' du Serveur :"
+    IDS_PROFILE_FACE        "Visage"
+    IDS_PROFILE_SKIN        "Skin"
+    IDS_BTN_JOIN            "&Rejoindre Partie"
+    IDS_BTN_FINDGAME        "R&echercher Partie"
+    IDS_BTN_START           "Créer Partie (&C)"
+    IDS_PROFILE_LOGOCOLOR   "Couleur"
+    IDS_MULTI_RESUMEHELP    "Reprendre la partie multijoueur."
+    IDS_MULTI_DISCONNECTHELP "Déconnexion du serveur."
+    IDS_BTN_RESUME          "&IContinuer"
+    IDS_BTN_DISCONNECT      "&Déconnexion"
+    IDS_BTN_ADDSERVER       "&Ajouter Serveur"
+    IDS_BTN_UPDATE          "Mise à Jour (&U)"
+    IDS_BTN_INFO            "Afficher Informations (&L)"
+    IDS_QUICKSTART_TITLE    "Partie multijoueur rapide"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_LISTROOMS       "&Lister Salles"
+    IDS_BTN_GORE            "Contrôle du C&ontenu"
+    IDS_BTN_AUTOPATCH       "Mise à Jour deHalf-Life (&U)."
+    IDS_CONFIGURE_GOREHELP  "Désactiver les images inappropriées pour les joueurs les plus jeunes et en multijoueur."
+    IDS_CONFIGURE_AUTOPATCHHELP 
+                            "Télécharger la dernière mise à jour de Half-Life."
+    IDS_CHAT_NOSERVERS      "Impossible de trouver un serveur WON."
+    IDS_CHAT_NOPROFILE      "Impossible de trouver le joueur"
+    IDS_INIT_DX6REQUIRED    "Half-Life ne fonctionnera que si DirectX 6 ou supérieur est installé sur votre ordinateur. Veuillez installer DirectX 6 et relancez Half-Life."
+    IDS_WON_VALIDATIONFAIL  "Validation refusée\n'%s'"
+    IDS_WON_VALIDATIONFAIL2 "Validation refusée."
+    IDS_WON_AUTHOUTOFORDER  "Authentification impossible (1)."
+    IDS_WON_AUTHPROBLEM     "Problème d'Authentification (2)"
+    IDS_WON_ENCRYPTBAD      "Erreur lors de la création du message (1)."
+    IDS_WON_BADPUBLICKEY    "Signal non valide envoyé par le serveur d'authentification (1)."
+    IDS_WON_AUTHNOMEM       "Mémoire insuffisante pour recevoir une réponse d'authentification."
+    IDS_CD_NEEDCDKEY        "Vous devez entrer une clé de CD valide pour jouer à Half-Life"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CD_BADKEY           "La clé CD que vous avez entrée n'est pas valide."
+    IDS_CD_BADKEYTYPED      "Votre clé CD est invalide, veuillez retaper votre clé CD"
+    IDS_MD5_HASHFAIL        "Impossible de valider Half-Life"
+    IDS_MAIN_REGISTERMSGFAIL 
+                            "Impossible d'enregistrer le message utilisateur Half-Life"
+    IDS_CDCHECK_PROMPT      "Veuillez insérer le CD-Rom d'Half-Life dans le lecteur de CD-Rom."
+    IDS_SETTINGS_SERVERTYPEINVALID "Type de liste Bogus en %s"
+    IDS_TOKEN_EXPECTLEFTBRACE "Attend { en %s"
+    IDS_TOKEN_EXPECTRIGHTBRACE "Attend } en %s"
+    IDS_MULTI_ADDIPUNRESOLVABLE "Impossible de trouver cette adresse IP."
+    IDS_CHATCTRL_NOMEM      "Impossible d'allouer de l'espace pour le nom utilisateur"
+    IDS_CHATCTRL_NOTEXTMEM  "Impossible d'allouer de l'espace pour le texte des messages"
+    IDS_CHATCTRL_WINREGFAIL "Impossible d'enregistrer le contrôle d'édition des messages"
+    IDS_PROFILE_DEFAULTMISSING 
+                            "Impossible de trouver le fichier de validation de clé %s"
+    IDS_QUICK_NOMASTER      "Impossible de télécharger la liste des serveurs, veuillez vérifier que votre connexion internet est établie et fonctionne correctement."
+    IDS_QUICK_USINGPREVIOUSLIST 
+                            "Impossible de se connecter au serveur maître, utilisation de la liste précédente…"
+    IDS_CHAT_NOROOMLIST     "Impossible de télécharger la liste des salles."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVELOAD_NUMBEROFGAMESCHANGED 
+                            "Le nombre de parties enregistrées a changé ?"
+    IDS_MAIN_EXITMULTIPLAYERPROMPT 
+                            " Passer en mode multijoueur vous fera arrêter la partie en solitaire que vous avez commencé. Cliquez sur OK pour quitter sans enregistrer la partie en cours."
+    IDS_CD_ENTERPROMPT      "Veuillez taper la clé CD indiquée sur votre boîte Half-Life"
+    IDS_MULTISELECT_EXITGAMEPROMPT 
+                            "Si vous quittez le mode multijoueur, la partie multijoueur que vous avez commencée va s'arrêter. Cliquez sur OK pour confirmer."
+    IDS_MULTI_ADDSERVERPROMPT 
+                            "Entrez l'adresse Internet du serveur (par exemple, \r\n209.255.10.255:27015)"
+    IDS_ROOM_NEEDPASS       "Tapez le Mot de Passe :"
+    IDS_SAVE_CANTSAVE       "Impossible d'enregistrer, aucune partie n'est actuellement en cours."
+    IDS_SAVE_OVERWRITEPROMPT 
+                            "Vous allez effacer la partie préalablement enregistrée. Veuillez confirmer."
+    IDS_SAVE_DELETEPROMPT   "Effacer la partie sélectionnée ?"
+    IDS_AUTH_INUSE          "Compte déjà utilisé"
+    IDS_AUTH_BADACCOUNT     "Compte non valide"
+    IDS_AUTH_BADREQ         "Requête serveur non valide"
+    IDS_AUTH_BADCERTIFICATE "Certificat client non valide"
+    IDS_AUTH_BADEXE         "Valeur client non valide"
+    IDS_AUTH_BADCERTIFICATE2 "Certificat client non valide"
+    IDS_AUTH_BADLOOKUP      "Valeur vérification client non valide"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTH_BADBITS        "Valeur authentification client non valide"
+    IDS_AUTH_CORRUPT        "Exécutable corrompu"
+    IDS_AUTH_INVALIDACCOUNT "Erreur de compte inconnue"
+    IDS_CHAT_STATUSUNCONNECTED "Déconnecté."
+    IDS_CHAT_WONCONNECT     "Tentative de connexion…"
+    IDS_CHAT_USERENTER      "%s a rejoint...\r\n"
+    IDS_CHAT_USERLEFT       "%s a quitté...\r\n"
+    IDS_ENG_STARTING        "Lancement du moteur..."
+    IDS_SERVERS_SEARCHING   "Recherche des serveurs..."
+    IDS_SERVERS_LISTREC     "Réception de la liste des serveurs..."
+    IDS_SERVERS_CONNECTING  "Connexion aux serveurs..."
+    IDS_SERVERS_REQUESTINFO "Demande informations serveur"
+    IDS_ROOM_CREATENOTICE   "Création de la salle '%s', veuillez patienter"
+    IDS_ROOM_CREATEPROMPTTITLE "Création de la salle"
+    IDS_SAVE_TIMEHEADING    "Temps"
+    IDS_SAVE_GAMEHEADING    "Partie"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_ELAPSEDHEADING "Temps Ecoulé"
+    IDS_SAVE_NEWCAPTION     "Nouvelle Partie Enregistrée"
+    IDS_SAVE_NEWGAMETXT     "Nouveau"
+    IDS_SAVE_FILETIME       "Actuel"
+    IDS_STATUS_CONNECTINGNOTIME "Connexion au serveur '%s'...\n\n%s"
+    IDS_MULTI_CHATROOMCAPTION "Salle :"
+    IDS_GORE_CHECKBOX       "Activez contrôle de contenu"
+    IDS_GORE_HELP           "Cliquez sur cette boîte et entrez un mot de passe pour désactiver les images inappropriées pour les joueurs les plus jeunes et en multijoueur. Le mot de passe sera réclamé pour tout changement."
+    IDS_GORE_PWPROMPT1      "Tapez Mot de Passe :"
+    IDS_GORE_PWPROMPT2      "Veuillez retaper le Mot de Passe :"
+    IDS_GORE_PWMISMATCHED   "Les Mots de Passe que vous avez indiqués ne sont pas identiques, veuillez recommencer."
+    IDS_GORE_BADPW          "Mot de Passe Incorrect"
+    IDS_BTN_ADVANCEDSVR     "O&ptions Avancées"
+    IDS_OPTS_AUTOAIM        "Visée Automatique"
+    IDS_OPTS_AUTOAIMHELP    "Activer Assistance de visée."
+    IDS_BTN_PREVIEWS        "Avant-Premières (&A)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAIN_PREVIEWSHELP   "Voir les produits en cours de développement, notamment Team Fortress."
+    IDS_SECONDS_LEFT        "%i secondes restantes…"
+    IDS_MEDIA_PREVIEWURL    "media/previews/previews.htm"
+    IDS_ADVANCEDSVR_PAGE    "Page %i sur %i"
+    IDS_EMPTY               " "
+    IDS_MULTI_TYPE          "Vitesse Internet"
+    IDS_MULTI_LAN           "LAN - T1 > 1M"
+    IDS_MULTI_ISDN          "ISDN - 112K"
+    IDS_MODEM56K            "Modem - 56K"
+    IDS_MODEM28K            "Modem - 28.8K"
+    IDS_OPTS_HIMODELS       "Modèles &Haute Qualité (ordinateurs rapides)"
+    IDS_OPTS_HIMODELSHELP   " "
+    IDS_CHAT_SOCKETERROR    "Problème de connexion, tentative de connexion…"
+    IDS_CHAT_RECONNECTFAIL  "Tentative de reconnexion échouée, veuillez vérifier que vous êtes connecté sur Internet et recommencez."
+    IDS_CHAT_RECONNECTSUCCESS "Reconnexion…"
+    IDS_CHAT_JOINFAILED     "Impossible de rejoindre la salle '%s'.  Cliquez sur 'Lister Salles' pour choisir une autre salle de discussion."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BTN_WON             "Visiter &WON.net"
+    IDS_WON_URL             "www.won.net"
+    IDS_AUDIO_CDHINT        "Modifiez le volume du CD-Audio dans le panneau de contrôle du volume de Windows."
+    IDS_PREVIOUS            "Préc."
+    IDS_NEXT                "Suiv."
+    IDS_MODEM33K            "Modem - 33.6K"
+    IDS_MODEM14K            "Modem - 14.4K"
+    IDS_ROOM_PERMANENT      "Salles permanentes"
+    IDS_ROOM_USER           "Salles créées par des joueurs"
+    IDS_MULTI_DONEHELP      "Retour au Menu Principal."
+    IDS_MULTI_WONHELP       "Aller au World Opponent Network (WON)."
+    IDS_AUDIO_EAX           "Activer la prise en charge matérielle EAX"
+    IDS_GL_NOMODE           "Votre carte graphique n'est pas compatible avec ce mode OpenGL."
+    IDS_D3D_NOMODE          "Votre carte graphique n'est pas compatible avec ce mode D3D."
+    IDS_VID_NOMODE          "Le mode vidéo choisi n'est pas disponible."
+    IDS_VID_RESELECT        "Veuillez choisir un autre mode vidéo."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VID_INITFAIL        "Le sous-système vidéo n'a pu être initialisé."
+    IDS_NET_WONCONNFAIL     "Impossible de se connecter à un serveur WON. Vérifiez votre connexion Internet."
+    IDS_NET_CORRUPT         "L'installation de Half-Life est corrompue ou n'est plus à jour. Half-Life va tenter de mettre votre version du jeu à jour."
+    IDS_CDKEY_BAD           "Votre clé CD Half-Life n'est pas valide."
+    IDS_MULTI_REFRESH       "Demande informations serveur"
+    IDS_CHAT_NOROOM         "Pas de connexion"
+    IDS_RUN_PATCH           "Chercher des mises à jour sur Internet ?"
+    IDS_WON_AUTHFAILURE     "Impossible d'authentifier les serveurs WON."
+    IDS_WON_LOGIN           "Inscription sur WON"
+    IDS_LOGO_SIZEMISMATCH   "La hauteur et la largeur des graffitis personnalisés doivent être identiques."
+    IDS_LOGO_OVERSIZED      "Les graffitis personnalisés ne peuvent pas dépasser 64 x 64 pixels."
+    IDS_LOGO_POWEROF2       "La hauteur et la largeur des graffitis personnalisés doivent être de 2, 4, 8, 16, 32, ou 64."
+    IDS_MODEM_CUSTOM        "Personnalisé "
+    IDS_MODEM_RATE          "Entrez taux de transfert ( 100 - 9999 )"
+    IDS_REGISTRY_UPDATE     "Mise à jour des registres pour Half-Life. Vous devrez redéfinir vos paramètres de configuration."
+    IDS_CHAT_JOIN           "Essayez de contacter %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CHAT_FLOOD          "Trop de texte, veuillez patienter."
+    IDS_CHAT_SEARCH         "Recherche de l'utilisateur %s..."
+    IDS_CHAT_NOINFO         "Le serveur n'est pas parvenu à trouver l'utilisateur indiqué."
+    IDS_CHAT_NOFIND         "Impossible de trouver l'utilisateur %s"
+    IDS_CHAT_FIND           "%s trouvé dans %s"
+    IDS_CHAT_NOAUTH         "Impossible d'obtenir les informations d'authentification."
+    IDS_CHAT_NODIR          "Le Serveur ne renvoie aucune information d'annuaire."
+    IDS_CHAT_NOSUCHROOM     "Impossible de trouver la salle %s"
+    IDS_CHAT_ROOMFULL       "Impossible de contacter %s..., trop d'utilisateurs ( %i ) dans la salle, réessayez ultérieurement."
+    IDS_CREATESV_NOADVANCED "Aucune des options avancées n'est disponible."
+    IDS_WON_CDINUSE         "Votre Clé CD de Half-Life est actuellement utilisée. Essayez à nouveau ultérieurement."
+    IDS_CHAT_JOINHINT       "Entrez /join [nomdelasalle] pour vous rendre dans une autre salle de discussion."
+    IDS_WON_BANNED          "Votre Clé CD ne peut être utilisée sur WON.net"
+    IDS_CONTENT_NOMULTIPLAYER "Contrôle du Contenu - on"
+    IDS_PATCH_ERROR         "Erreur de Mise à Jour Automatique de Half-Life."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PATCH_NOUTIL        "Les Utilitaires Sierra n'ont pas été correctement installés. Veuillez les réinstaller depuis le CD."
+    IDS_PATCH_FAIL          "Impossible de lancer le Programme de Mise à Jour Automatique."
+    IDS_PATCH_BADINSTALL    "Half-Life n'est pas correctement installé."
+    IDS_CONNECT_FAILURE     "Impossible de se connecter au serveur de jeu\r\nRaison :  %s"
+    IDS_MULTI_NEEDPASSWORD  "Vous devez donner un Mot de Passe, veuillez entrer un Mot de Passe et essayez de vous connecter."
+    IDS_VID_HINT            "La résolution 640 x 480 est recommandée en mode OpenGL. Les autres résolutions ne sont accessibles que sur certaines cartes spécifiques.\n\nSi vous disposez d'une carte 3D architecturée autour d'un chipset Voodoo, Voodoo 2 ou Banshee, choisissez le pilote 3DFX Mini Driver comme pilote OpenGL."
+    IDS_MULTI_LOGODISCONNECT 
+                            "Si vous changez de graffiti, vous devez quitter la partie multijoueur en cours."
+    IDS_3D_WARNING          "Pour que Half-Life tire parti de vos périphériques d'accélération 3D, veuillez télécharger les pilotes les plus récents pour votre matériel. Les liens indiqués sur la page 3DInfo vous permettront de vérifier que vous disposez des pilotes les plus récents."
+    IDS_3DSITE_URL          "www.sierrastudios.com/games/half-life/support/3Dinfo/"
+    IDS_WON_MODIFIED        "L'exécutable d'Half-Life a subi une modification. Vérifiez que votre ordinateur est exempt de virus et réinstallez Half-Life."
+    IDS_ADVANCEDMP_OFFSETS  "0"
+    IDS_AUDIO_OFFSET        "0 0 0 0"
+    IDS_CONFIGURE_OFFSET    "0 5"
+    IDS_CREATEROOM_OFFSET   "0"
+    IDS_CREATESERVER_OFFSET "0"
+    IDS_GAMEOPTIONS_OFFSET  "0 0 0 0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HLMAIN_OFFSET       "0"
+    IDS_KEYBOARD_OFFSET     "0"
+    IDS_LAN_OFFSET          "110 75 75 80 100"
+    IDS_LOAD_OFFSET         "0 0"
+    IDS_NETGAMEDLG_OFFSET   "0 0 0"
+    IDS_NEWGAMEDLG_OFFSET   "0"
+    IDS_PLAYERINFODLG_OFFSET "0"
+    IDS_PLAYERPROFILEDLG_OFFSET "-40 0"
+    IDS_PROMPT_OFFSET       "50 0"
+    IDS_ROOM_OFFSET         "0"
+    IDS_VIDEODLG_OFFSET     "0"
+    IDS_VIDEOMODEDLG_OFFSET "0 0"
+    IDS_VIDSELECTDLG_OFFSET "0 0"
+    IDS_UPDATERREGISTRYINSTALLDIR "HALFLIFE"
+    IDS_SPANISH             "0"
+    IDS_FRENCH              "1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPTS_JLOOKHELP      "Utilisez la joystick pour regarder en lieu pour bouger."
+    IDS_OPTS_JLOOK          "Apparence de la joystick"
+    IDS_GERMAN              "0"
+    IDS_CONNECT_PROTOCOLBAD "Vous ne pouvez pas vous connecter à un serveur qui fonctionne avec un protocole de version différente."
+    IDS_SERVER_MENU_QUICK   "Trier la liste d'après l'évaluation des serveurs"
+    IDS_DECAL_LIMIT         "Nombre maximum d'éclaboussures en mode multi-joueurs."
+    IDS_SPRITE_SKIP         "Accélérer le dessin des objets graphiques mobiles"
+    IDS_MODEL_NAME          "Modèle de joueur :  %s"
+    IDS_FILTER_BYGAME       "exécutent le jeu "
+    IDS_BTN_SETINFO         "Options &avancées"
+    IDS_MODLIST_TYPE        "Type"
+    IDS_MODLIST_NAME        "Nom"
+    IDS_MODLIST_VERSION     "Version"
+    IDS_MODLIST_SIZE        "Taille"
+    IDS_MODLIST_RATING      "Évaluation"
+    IDS_MODLIST_INSTALLED   "Installé"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MODLIST_SERVERS     "Serveurs"
+    IDS_MODLIST_PLAYERS     "Joueurs"
+    IDS_MOD_DOWNLOADING     "Téléchargement de '%s'"
+    IDS_MOD_DLSIZEMB        "Durée de téléchargement total du jeu %s\r\n%.2fmb"
+    IDS_MOD_DLSIZEKB        "Durée de téléchargement total du jeu %s\r\n%.2fkb"
+    IDS_MOD_DLSTATUS        "Téléchargement de %s à partir du\r\n%s\r\nfichier :  %s\r\n%.0f%%"
+    IDS_MOD_TIME            "%.1f secondes"
+    IDS_MOD_CONNECT         "Connexion à %s"
+    IDS_MOD_GETTINGSIZE     "Estimation de la durée de téléchargement"
+    IDS_MOD_DLSTATUSSHORT   "Téléchargement de %s à partir de\r\n%s"
+    IDS_MOD_NOFILES         "Rien à télécharger"
+    IDS_MOD_NOLIBLIST       "Impossible de trouver le fichier liblist.gam sur l'hôte distant\r\nAssurez-vous que %s est un site de jeu personnalisé valide"
+    IDS_INTERNET_CURRENTTOTALS "%i serveurs ( %i joueurs en ligne )"
+    IDS_SERVER_REFRESH      "Rafraîchir le serveur sélectionné"
+    IDS_CONNECT_NEEDMOD     "Vous ne pouvez pas vous connecter à un serveur exécutant le jeu personnalisé %s avant d'avoir installé ce jeu."
+    IDS_MOD_REMOTEOPENFAIL  "Impossible d'ouvrir %s sur l'ordinateur distant"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_LOCALOPENFAIL   "Impossible d'ouvrir %s sur l'ordinateur local"
+    IDS_BTN_CUSTOMGAME      "Partie personnalisée"
+    IDS_MAIN_CUSTOMHELP     "Sélectionner une partie personnalisée, effectuer une recherche de parties personnalisées sur Internet"
+    IDS_BTN_ACTIVATE        "&Activer"
+    IDS_BTN_INSTALL         "&Installer"
+    IDS_BTN_DETAILS         "Détails"
+    IDS_BTN_VISIT           "Site Internet"
+    IDS_BTN_REFRESHMODS     "&Rafraîchir"
+    IDS_BTN_DEACTIVATE      "D&ésactiver"
+    IDS_MOD_INFO            "Info:"
+    IDS_YES                 "Oui"
+    IDS_NO                  "Non"
+    IDS_UPDATE              "Mettre à jour"
+    IDS_MODREQ_TITLE        "Demande d'informations partie personnalisée"
+    IDS_DOWNLOAD_WARNING    "Vous allez télécharger un jeu personnalisé. Le téléchargement d'un jeu personnalisé pour Half-Life pose les même problèmes et présente les mêmes risques que le téléchargement de programmes à partir d'Internet. Ceux-ci riquent de contenir des virus ou des bogues capables de bloquer votre système et d'entraîner la perte des fichiers non enregistrés, ou bien d'effectuer des opérations susceptibles d'endommager votre ordinateur.\r\nVous pouvez éviter l'affichage systématique de cet avertissement en cochant l'option 'Ne plus afficher cet avertissement' au bas du formulaire."
+    IDS_WARN_CHECKPROMPT    "Ne plus afficher cet avertissement"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOD_VERSION         "Une nouvelle version de l'Editeur de partie personnalisé %s est disponible. Souhaitez-vous sélectionner cette partie personnalisée avant d'installer une version mise à jour?"
+    IDS_MOD_REINSTALL       "L'Editeur de partie personnalisé %s est déjà installé, voulez-vous vraiment le réinstaller?"
+    IDS_WARN_TITLE          "Téléchargement d'une partie personnalisée"
+    IDS_MOD_ENGINEVERSION   "La partie personnalisée '%s' a été créée pour une version de Half-Life différente de la vôtre. Etes-vous certain de vouloir la sélectionner avant d'installer une version mise à jour?"
+    IDS_MOD_CONNVERSION     "Vous ne pouvez pas vous connecter à un serveur utilisant la version %i de la partie personnalisée '%s' sans mettre votre version à jour au préalable. La version installée sur votre ordinateur est la %i"
+    IDS_CONNHLVERSION       "Vous ne pouvez pas vous connecter au serveur utilisant la version '%s' pour Half-Life version %s tant que votre version de Half-Life n'a pas été mise à jour. La version de Half-Life installée sur votre ordinateur est la %s"
+    IDS_MOD_NOTINSTALLED    "Impossible de jouer à la partie personnalisée '%s'. Vous devez copier la partie personnalisée sur votre ordinateur avant d'y jouer."
+    IDS_REFRESH_SERVERS     "%i servers remaining"
+    IDS_DEDICATED           "Serveur dédié (ce type de serveur est plus rapide, mais vous ne pouvez y accéder à partir de ce PC)."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

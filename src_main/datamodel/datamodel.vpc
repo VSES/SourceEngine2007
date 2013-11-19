@@ -1,0 +1,108 @@
+//-----------------------------------------------------------------------------
+//	DATAMODEL.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTLIBDIR	"$SRCDIR\lib\public"
+
+$Include "$SRCDIR\vpc_scripts\source_lib_win32_base.vpc"
+
+//$Linux
+//{
+//		$BuildForLinux 1
+//}
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions			"$BASE;DATAMODEL_LIB"
+		$PrecompiledHeaderFile				"Debug/datamodel.pch"
+	}
+}
+
+$Project "Datamodel"
+{
+	$Folder	"Source Files"
+	{
+		$File	"clipboardmanager.cpp"
+		$File	"datamodel.cpp"
+		{
+			$Configuration	"Release"
+			{
+				$Compiler
+				{
+					$PreprocessorDefinitions			"NDEBUG;_WINDOWS;_MBCS;_USRDLL;DATAMODEL_LIB;_WIN32;$(NoInherit)"
+				}
+			}
+			$Configuration	"Debug"
+			{
+				$Compiler
+				{
+					$PreprocessorDefinitions			"_DEBUG;_WINDOWS;_MBCS;_USRDLL;DATAMODEL_LIB;_WIN32;$(NoInherit)"
+				}
+			}
+		}
+
+		$File	"dependencygraph.cpp"
+		$File	"dmattribute.cpp"
+		$File	"dmelement.cpp"
+		$File	"dmelementdictionary.cpp"
+		$File	"dmelementfactoryhelper.cpp"
+		$File	"DmElementFramework.cpp"
+		$File	"dmserializerbinary.cpp"
+		$File	"dmserializerkeyvalues.cpp"
+		$File	"dmserializerkeyvalues2.cpp"
+		$File	"dmserializerxml.cpp"
+		$File	"dmserializerxml.h"
+		$File	"undomanager.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"clipboardmanager.h"
+		$File	"datamodel.h"
+		$File	"dependencygraph.h"
+		$File	"dmattributeinternal.h"
+		$File	"dmelementdictionary.h"
+		$File	"$SRCDIR\public\datamodel\dmelementfactoryhelper.h"
+		$File	"DmElementFramework.h"
+		$File	"$SRCDIR\public\datamodel\dmelementhandle.h"
+		$File	"$SRCDIR\public\datamodel\dmelementinternal.h"
+		$File	"dmserializerbinary.h"
+		$File	"dmserializerkeyvalues.h"
+		$File	"dmserializerkeyvalues2.h"
+		$File	"undomanager.h"
+	}
+
+	$Folder	"external"
+	{
+		$File	"$SRCDIR\Public\tier0\basetypes.h"
+		$File	"$SRCDIR\Public\commonmacros.h"
+		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\public\tier0\fasttimer.h"
+		$File	"$SRCDIR\public\appframework\IAppSystem.h"
+		$File	"$SRCDIR\Public\interface.h"
+		$File	"$SRCDIR\public\tier0\platform.h"
+		$File	"$SRCDIR\public\protected_things.h"
+		$File	"$SRCDIR\Public\string_t.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\lib\common\parsifal.lib"
+	}
+
+	$Folder	"Interface"
+	{
+		$File	"$SRCDIR\public\datamodel\attributeflags.h"
+		$File	"$SRCDIR\public\datamodel\dmattributetypes.h"
+		$File	"$SRCDIR\public\datamodel\dmattributevar.h"
+		$File	"$SRCDIR\public\datamodel\dmelement.h"
+		$File	"$SRCDIR\public\datamodel\dmehandle.h"
+		$File	"$SRCDIR\public\datamodel\idatamodel.h"
+		$File	"$SRCDIR\public\datamodel\idmattribute.h"
+	}
+}
