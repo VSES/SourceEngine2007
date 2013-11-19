@@ -1,0 +1,297 @@
+//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =======
+//
+// Purpose: Counter-Strike: Source game definition file (.fgd) 
+//
+//=============================================================================
+
+@include "base.fgd"
+
+//-------------------------------------------------------------------------
+//
+// Base Classes
+//
+//-------------------------------------------------------------------------
+
+
+@BaseClass = Target 
+[ 
+	target(target_destination) : "Target" 
+]
+
+@BaseClass = TeamNum
+[
+	TeamNum(choices) : "Team Number (int)" : 0 =
+	[
+		2 : "Terrorist"
+		3 : "Counter-Terrorist"
+	]
+	input SetTeam(integer) : "Changes the entity's team"
+]
+
+@BaseClass color(0 0 200) base(Targetname, Angles) = Weapon
+[
+	spawnflags(Flags) =
+	[
+		1 : "Start constrained" : 0
+	]
+
+	output OnPlayerUse(void) : "Fires when the player +uses this weapon"
+	output OnPlayerPickup(void) : "Fires when the player picks up this weapon"
+]
+
+@FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : "The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Terrorist"
+		3 : "Counter-Terrorist"
+	]
+]
+
+//-------------------------------------------------------------------------
+//
+// Point Classes
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Angles) studio("models/player/ct_urban.mdl") = info_player_counterterrorist :
+	"This entity marks the start point for counter-terrorists. One of these needs to be placed for each team member. " +
+	"20 start points is typical. Should be placed at least 128 units away from each other and surrounding walls"
+[
+]
+
+@PointClass base(Angles) studio("models/player/t_phoenix.mdl") = info_player_terrorist :
+	"This entity marks the start point for terrorists. One of these needs to be placed for each team member. " +
+	"20 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
+[
+]
+
+@PointClass base(Angles) studio("models/editor/playerstart.mdl") = info_player_logo :
+	"This is for logo maps for demos. All players will spawn here, and there will be no " +
+	"class menu, team menu, or HUD."
+[
+]
+
+@PointClass base(Angles) studio("models/Characters/hostage_04.mdl") = hostage_entity :
+	"Hostage. A hostage NPC will spawn at this point.\n\n" +
+	"There are usually four hostages placed in each hostage rescue map. The model for each Hostage is randomly chosen."
+[
+
+	HostageType(choices) : "Hostage Model (int)" : 0 : "Not used. Hostage models are chosen randomly by the game." =
+	[
+		0 : "A"
+		1 : "B"
+		1 : "C"
+		1 : "D"
+	]
+]
+
+@PointClass base(Angles) = info_view_parameters :
+	"This entity selects whether or not this level uses the Half-Life 2 view parameters (eye height: 64, FOV: 75) " +
+	"or the old Counter-Strike settings (eye height: 53.5, FOV: 90)."
+[
+	ViewMode(choices) : "View Mode" : 0 =
+	[
+		0 : "Old"
+		1 : "New"
+	]
+]
+
+@PointClass base(Targetname,Angles) = info_map_parameters :
+	"Map parameters. Used to set which teams can buys, and the C4 bomb detonation radius."
+[
+	buying(choices) : "Teams that can buy" : 0 =
+	[
+		0 : "Everyone"
+		1 : "Only Counter-Terrorists"
+		2 : "Only Terrorists"
+		3 : "Nobody"
+	]
+
+	bombradius(float) : "C4 Explosion Radius" : 500 : "Overrides the default radius of the explosion when the C4 bomb explodes. Max range is 2048"
+	input FireWinCondition(integer) : "Fires win conditions for the win."
+]
+
+@PointClass base(Angles) = env_detail_controller : "An entity that lets you control the fade distances for detail props."
+[
+	fademindist(float) : "Start Fade Dist/Pixels" : 400 : "Distance at which the prop starts to fade."
+	fademaxdist(float) : "End Fade Dist/Pixels" : 1200 : "Maximum distance at which the prop is visible."
+]
+
+//-------------------------------------------------------------------------
+//
+// Weapons
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Weapon) studio("models/weapons/w_knife_t.mdl") = weapon_knife : "Knife" []
+
+@PointClass base(Weapon) studio("models/weapons/w_eq_fraggrenade.mdl") = weapon_flashbang : "Flashbang" []
+@PointClass base(Weapon) studio("models/weapons/w_eq_fraggrenade.mdl") = weapon_hegrenade : "HE Grenade" []
+@PointClass base(Weapon) studio("models/weapons/w_eq_smokegrenade.mdl") = weapon_smokegrenade : "Smoke Grenade" []
+
+@PointClass base(Weapon) studio("models/weapons/w_defuser.mdl") = item_defuser : "Defuse Kit" []
+@PointClass base(Weapon) studio("models/weapons/w_c4.mdl") = weapon_c4 : "C4 Bomb" []
+
+@PointClass base(Weapon) studio("models/weapons/w_pist_glock18.mdl") = weapon_glock : "9X19mm Sidearm" []
+@PointClass base(Weapon) studio("models/weapons/w_pist_usp.mdl") = weapon_usp : "K&M .45 Tactical" []
+@PointClass base(Weapon) studio("models/weapons/w_pist_p228.mdl") = weapon_p228 : "228 Compact" []
+@PointClass base(Weapon) studio("models/weapons/w_pist_deagle.mdl") = weapon_deagle : "Night Hawk .50C" []
+@PointClass base(Weapon) studio("models/weapons/w_pist_fiveseven.mdl") = weapon_fiveseven : "ES Five-Seven" []
+@PointClass base(Weapon) studio("models/weapons/w_pist_elite.mdl") = weapon_elite : ".40 Dual Elites" []
+
+@PointClass base(Weapon) studio("models/weapons/w_shot_m3super90.mdl") = weapon_m3 : "Leone 12 Gauge Super" []
+@PointClass base(Weapon) studio("models/weapons/w_shot_xm1014.mdl") = weapon_xm1014 : "Leone YG1265 Auto Shotgun" []
+
+@PointClass base(Weapon) studio("models/weapons/w_smg_tmp.mdl") = weapon_tmp : "Schmidt Machine Pistol" []
+@PointClass base(Weapon) studio("models/weapons/w_smg_mp5.mdl") = weapon_mp5navy : "K&M Sub-Machine Gun" []
+@PointClass base(Weapon) studio("models/weapons/w_smg_ump45.mdl") = weapon_ump45 : "K&M UMP45" []
+@PointClass base(Weapon) studio("models/weapons/w_smg_p90.mdl") = weapon_p90 : "ES C90" []
+@PointClass base(Weapon) studio("models/weapons/w_smg_mac10.mdl") = weapon_mac10 : "Ingram MAC-10" []
+
+@PointClass base(Weapon) studio("models/weapons/w_rif_galil.mdl") = weapon_galil : "IDF Defender" []
+@PointClass base(Weapon) studio("models/weapons/w_rif_ak47.mdl") = weapon_ak47 : "CV-47" []
+@PointClass base(Weapon) studio("models/weapons/w_rif_sg552.mdl") = weapon_sg552 : "Krieg 552 Commando" []
+@PointClass base(Weapon) studio("models/weapons/w_rif_famas.mdl") = weapon_famas : "Clarion 5.56" []
+@PointClass base(Weapon) studio("models/weapons/w_rif_m4a1.mdl") = weapon_m4a1 : "Maverick M4A1 Carbine" []
+@PointClass base(Weapon) studio("models/weapons/w_rif_aug.mdl") = weapon_aug : "Bullpup" []
+
+@PointClass base(Weapon) studio("models/weapons/w_snip_scout.mdl") = weapon_scout : "Schmidt Scout" []
+@PointClass base(Weapon) studio("models/weapons/w_snip_g3sg1.mdl") = weapon_g3sg1 : "D3/AU-1 Semi-Auto Sniper Rifle" []
+@PointClass base(Weapon) studio("models/weapons/w_snip_sg550.mdl") = weapon_sg550 : "Krieg 550 Commando" []
+@PointClass base(Weapon) studio("models/weapons/w_snip_awp.mdl") = weapon_awp : "Magnum Sniper Rifle" []
+
+@PointClass base(Weapon) studio("models/weapons/w_mach_m249para.mdl") = weapon_m249 : "ES M249 Para" []
+
+//-------------------------------------------------------------------------
+//
+// Solid Classes
+//
+//-------------------------------------------------------------------------
+
+@SolidClass = func_ladder : 
+	"Ladder. Players will be able to freely along this brush, as if it was a ladder. If you are using a model prop " +
+	"for the visual representation of the ladder in the map, apply the toolsinvisibleladder material to the " +
+	"func_ladder brush."
+[
+]
+
+@SolidClass base(func_physbox) = func_physbox_multiplayer : 
+	"This class is the same as func_physbox, except the runtime collisions use a more bouncy method that avoids " +
+	"the prediction errors normal physics objects get."
+[
+]
+
+@SolidClass base(Targetname, TeamNum) = func_buyzone:  
+	"Buy Zone. Players can buy equipment while standing in this zone, if the zone matches their current team.\n\n" +
+	"A single Buy Zone entity must be either terrorist or counter-terrorist, it cannot be both. Should have " +
+	"the toolstrigger material applied to all sides"
+[
+]
+
+@SolidClass base(Targetname, Parentname ) = func_bomb_target:  
+	"Bomb Target. The terrorists can place C4 explosives while standing in this zone.\n\n" +
+	"When the bomb is planted and explodes inside this area, the BombExplode outputs are fired. The game handles " +
+	"all of the bomb planting and scoring logic – the BombExplode outputs are provided to add visual and damage effects."
+[
+	output BombExplode(void): "Fires when C4 explodes"
+	output BombPlanted(void): "Fires when a C4 is planted"
+	output BombDefused(void): "Fires when a C4 is defused"
+
+	heistbomb(choices) : "Heist Mode bomb target" : 0 : "This is a Bomb Target designed for the Heist game mode." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	bomb_mount_target(string) : "Bomb Mount Target" 
+]
+
+@SolidClass base(Targetname) = func_hostage_rescue:  
+	"Hostage Rescue Zone. When a hostage is led into this zone, it is marked as rescued."
+[
+]
+
+//-------------------------------------------------------------------------
+//
+// Sound Test Map Entities
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Targetname) size(-8 -8 -8, 8 8 8) = point_surroundtest
+	: "Surround Sound Test"
+[
+	input FireCorrectOutput(void)	: "Fire output based on snd_surround_speaker cvar value"
+	output On2Speakers(void)	: "Fired if player is using 2 speakers."
+	output On4Speakers(void)	: "Fired if player is using 4 speakers."
+	output On51Speakers(void)	: "Fired if player is using 5.1 speakers."
+]
+
+
+@BaseClass base(Targetname, Angles) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = Territory 
+[ 
+	respawn_area(string) : "Respawn area name" 
+	buyzone(string)	:	"Buy Zone name"
+]
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_hospital : "Hospital Territory Control Point"
+[
+
+
+]
+
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_terrorist : "Terrorists' Base Territory Point (Non-Capturable)"
+[
+
+
+]
+
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_counterterrorist : "Counter-Terrorists' Base Territory Point (Non-Capturable)"
+[
+
+
+]
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_barracks : "Barracks Territory Control Point"
+[
+
+
+]
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_bank : "Bank Territory Control Point"
+[
+
+
+]
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_encryption : "Encryption Center Territory Control Point"
+[
+
+
+]
+
+@PointClass base(Territory) studio( "models/props/cs_assault/consolepanelloadingbay.mdl" ) = info_territory_control_surveillance : "Surveillance Center Territory Control Point"
+[
+
+
+]
+
+
+@PointClass base(Targetname) size(-8 -8 -8, 8 8 8) = point_territory_control_rules
+	: "The Territory Control rules entity (VERY IMPORTANT!)"
+[
+	respawntime(float) : "Wave Respawn Time" : 30 : "Respawn time in seconds."
+]
+
+@SolidClass base(Targetname) = func_territory_respawn_area:  
+	"Players will respawn inside this area."
+[
+]
+
+
+

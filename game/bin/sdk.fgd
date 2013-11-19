@@ -1,0 +1,119 @@
+@SolidClass base(Targetname, RenderFields, Global, Shadow) = my_brush_entity : "Tutorial brush entity."
+[
+	// Inputs
+	input Toggle(void) : "Toggles the entity visible and invisible."
+]
+
+@PointClass base(Targetname) = my_logical_entity : "Tutorial logical entity."
+[
+	threshold(integer) : "Threshold" : 1 : "Number of ticks before the entity will fire its OnThreshold output."
+	// Inputs
+	input Tick(void) : "Adds one tick to the entity's count."
+
+	// Outputs
+	output OnThreshold(void) : "Fired when the number of recorded ticks reaches the specified threshold."
+]
+
+@PointClass base(Targetname, Angles) studio("models/gibs/airboat_broken_engine.mdl") = my_model_entity : "Tutorial model entity."
+[
+	// Inputs
+	input Toggle(void) : "Starts and stops the entity moving."
+]
+
+@PointClass base(Angles,Targetname,Parentname) = env_sparkler : "Tutorial special effect."
+[
+	scale(float) : "Scale" : 1 : "Scale of the effect in world units."
+
+	// Inputs
+	input Toggle(void) : "Toggles the state of the effect on and off."
+	input Scale(float) : "Scales the effect up and down via a float parameters."
+]
+
+@PointClass base(Targetname) = logic_game_message : "Tutorial entity to post message to player."
+[
+	text(string) : "Text" : "" : "Text to be posted to the player."
+	
+	// Inputs
+	input DisplayMessage(void) : "Causes the message stored in the text field to be displayed to the local player."
+]
+
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_deathmatch :
+	"This entity marks the start point for players in deathmatch."
+[
+]
+
+@PointClass base(Angles,Targetname,EnableDisable) size(-16 -16 0, 16 16 72) = info_player_blue :
+	"This entity marks the start point for Blue team players, in teamplay."
+[
+]
+
+@PointClass base(Angles,Targetname,EnableDisable) size(-16 -16 0, 16 16 72) = info_player_red :
+	"This entity marks the start point for Red team players, in teamplay."
+[
+]
+
+//-------------------------------------------------------------------------
+//
+// Vehicles.
+//
+//-------------------------------------------------------------------------
+@BaseClass base(Targetname, Origin, Global, prop_static_base) = BaseVehicle
+[
+	vehiclescript(string) : "Vehicle Script File" : "scripts/vehicles/jeep_test.txt"
+	actionScale(float) : "Scale of action input / framerate" : "1"
+
+	// Inputs
+	input Action(float) : "Set the speed of the action animation"
+
+	input TurnOn(void) : "Turn on: Start engine & enable throttle"
+	input TurnOff(void) : "Turn off: Stop engine, disable throttle, engage brakes."
+
+	input Lock(void) : "Prevent the player from entering or exiting the vehicle."
+	input Unlock(void) : "Re-allow the player to enter or exit the vehicle."
+]
+
+
+@BaseClass base(BaseVehicle) = BaseDriveableVehicle
+[
+	VehicleLocked(choices) : "Start locked" : 0 =
+	[
+		0 : "No"
+		1 : "Yes"
+	]	
+
+	// Outputs
+	output PlayerOn(void) : "Player entered the vehicle"
+	output PlayerOff(void) : "Player exited the vehicle"
+	
+	output PressedAttack(void) : "Player Pressed attack key"
+	output PressedAttack2(void) : "Player Pressed attack2 key"
+
+	output AttackAxis(string) : "State of attack button [0,1]"
+	output Attack2Axis(string) : "State of attack2 button [0,1]"
+	
+	// Inputs
+	input HandBrakeOn(void) : "Turns the handbrake on"
+	input HandBrakeOff(void): "Releases the handbrake"
+]
+
+@PointClass base(BaseVehicle) studioprop() = prop_vehicle :
+	"Studiomodel vehicle that can be driven via inputs."
+[
+	// Inputs
+	input Steer(float) : "Steer the vehicle +/-1"
+	input Throttle(float) : "Throttle +/-1"
+
+	spawnflags(flags) =
+	[
+		1 : "Always Think (Run physics every frame)" : 0
+	]
+]
+
+
+@PointClass base(BaseDriveableVehicle) studioprop() = prop_vehicle_driveable :
+	"Generic driveable studiomodel vehicle."
+[
+]
+@PointClass base(BaseDriveableVehicle) studioprop() = prop_vehicle_jeep : "Driveable studiomodel jeep."
+[
+]

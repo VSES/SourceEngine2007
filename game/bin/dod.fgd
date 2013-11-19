@@ -1,0 +1,278 @@
+//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =======
+//
+// Purpose: Day of Defeat: Source game definition file (.fgd) 
+//
+//=============================================================================
+
+@include "base.fgd"
+
+//-------------------------------------------------------------------------
+//
+// Base Classes
+//
+//-------------------------------------------------------------------------
+
+
+@BaseClass = Target 
+[ 
+	target(target_destination) : "Target" 
+]
+
+@BaseClass = TeamNum
+[
+	TeamNum(choices) : "Team Number (int)" : 0 =
+	[
+		2 : "Allies"
+		3 : "Axis"
+	]
+	input SetTeam(integer) : "Changes the entity's team"
+]
+
+@FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : "The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Allies"
+		3 : "Axis"
+	]
+]
+
+//-------------------------------------------------------------------------
+//
+// Point Classes
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_allies :
+	"This entity marks the start point for Allied players."
+[
+]
+
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_axis :
+	"This entity marks the start point for Axis players."
+[
+]
+
+@PointClass base(EnableDisable) = info_doddetect : "DoD Gamerules" 
+ [  
+	//Respawn factor
+	//==============
+	detect_allies_respawnfactor(string) : "Allies Respawn delay factor" : "1.0"
+	detect_axis_respawnfactor(string) : "Axis Respawn delay factor" : "1.0"
+	 
+	detect_allies_startroundvoice(choices) : "Start round command for Allies" : 0 = [
+		0 : "Attack"
+		1 : "Defend"
+		2 : "Beach"
+		3 : "Timed Attack"
+		4 : "Timed Defend"
+		5 : "Flags"
+	]
+
+	detect_axis_startroundvoice(choices) : "Start round command for Axis" : 0 = [
+		0 : "Attack"
+		1 : "Defend"
+		2 : "Beach"
+		3 : "Timed Attack"
+		4 : "Timed Defend"
+		5 : "Flags"
+	]
+]
+
+@PointClass base(Targetname,TeamNum) = dod_scoring : "Custom Scoring"
+[
+	point_give_delay(integer) : "Seconds between point gives" : 60
+	
+	point_give_amount(integer) : "Points to give each time" : 1
+	
+	point_give_max_times(integer) : "Max number of times to give points" : 10
+	
+	input GiveTickPoints(integer) : "Give tick points to the selected team"
+]
+
+@PointClass base(Targetname,EnableDisable) = dod_control_point_master : "Control Point Master"
+[
+	cpm_use_timer(choices) : "Use round timer?" : 0  =  [ 
+		0 : "No"  
+		1 : "Yes" 
+	] 
+
+	cpm_timer_length(integer) : "Round timer length in seconds" : 300
+
+	cpm_timer_team(choices) : "Which team wins when timer expires" : 0  =  [ 
+		0 : "Neither"  
+		2 : "Allies"
+		3 : "Axis" 
+	] 
+
+	output OnAlliesWin(void) : "Output sent when Allies win the round"
+	output OnAxisWin(void) : "Output sent when Axis win the round"
+	
+	input AddTimerSeconds(integer) : "Add seconds to the duration of the round timer"
+]
+
+@PointClass base(Targetname) iconsprite("editor/env_soundscape.vmt") =  dod_location : "Location" 
+[  
+	location_name(string) : "Name of this location" : "" 
+]
+
+@PointClass base(EnableDisable,Targetname,Angles) studio("models/mapmodels/flags.mdl") = dod_control_point : "Control Point"
+[
+	spawnflags(flags) =
+	[
+		1: "Hide Control Point on HUD" : 0
+		2: "Start with model hidden" : 0
+		4: "Give tick points for bombs remaining" : 0
+	]
+
+	point_printname(string) : "LOCALIZED name to print on the hud" : "TODO: Set Name"
+	
+	point_timedpoints_allies(integer) : "Time based point value for Allies" : 0
+	point_timedpoints_axis(integer) : "Time based point value for Axis" : 0
+	
+	point_default_owner(choices) : "Default Owner of the control point" : 0 =
+	[
+		0 : "Neither"
+		2 : "Allies"
+		3 : "Axis"
+	]
+	point_axis_capsound(sound) : "Sound Made when Axis captures" : ""
+	point_allies_capsound(sound) : "Sound Made when Allies captures" : ""
+	point_resetsound(sound) : "Sound Made when point resets" : ""
+
+	point_allies_model(studio) 	: "Allies Model" : "models/mapmodels/flags.mdl" : "Model when Allies own point"
+	point_allies_model_bodygroup(integer) : "Allies model bodygroup" : 1
+
+	point_axis_model(studio) 	: "Axis Model" : "models/mapmodels/flags.mdl" : "Model when Axis own point"
+	point_axis_model_bodygroup(integer) : "Axis model bodygroup" : 0
+
+	point_reset_model(studio) 	: "Reset Model" : "models/mapmodels/flags.mdl" : "Model when point reset"
+	point_reset_model_bodygroup(integer) : "Reset model bodygroup" : 3
+
+	output OnAlliesCap(void) : "Send when owner is changed to allies"
+	output OnAxisCap(void) : "Send when owner is changed to axis"
+	output OnCapReset(void) : "Send when owner is changed to neutral"
+	
+	output AlliesCapturePoint(void) : "Send when Allies capture this point"
+	output AxisCapturePoint(void) : "Send when Allies capture this point"
+
+	point_group(integer) : "Group Index" : 0
+
+	point_index(integer) : "Index of this point ( unique )" : 0
+
+	point_hud_icon_neutral(material)	: "Hud icon material when noone owns point" : "sprites/obj_icons/icon_obj_neutral"
+	point_hud_icon_axis(material)	: "Hud icon material when Axis own point" : "sprites/obj_icons/icon_obj_axis"
+	point_hud_icon_allies(material)	: "Hud icon material when Allies own point" : "sprites/obj_icons/icon_obj_allies"
+	point_hud_icon_timercap(material) : "Hud icon - bomb planted" : "sprites/obj_icons/icon_obj_neutral"
+	point_hud_icon_bombed(material) : "Hud icon - point destroyed" : "sprites/obj_icons/icon_obj_neutral"
+	
+	input HideModel(void) : "Hide the control point model"
+	input ShowModel(void) : "Show the control point model again"
+	
+	point_num_bombs(choices) : "Number of Bombs required to destroy" : 0 =
+	[
+		0 : "0"
+		1 : "1"
+		2 : "2"
+		3 : "3"
+	]
+]
+
+//-------------------------------------------------------------------------
+//
+// Solid Classes
+//
+//-------------------------------------------------------------------------
+
+// This is not in base.fgd, but is in dod.fgd, so any changes should be made to both files!
+@SolidClass = func_ladder : 
+	"Ladder. Players will be able to freely along this brush, as if it was a ladder. If you are using a model prop " +
+	"for the visual representation of the ladder in the map, apply the toolsinvisibleladder material to the " +
+	"func_ladder brush."
+[
+]
+
+@SolidClass base(EnableDisable,Targetname) = dod_capture_area : "Capture Area"
+[
+	area_allies_cancap(choices) : "Can Allies Cap?" : 1 = 
+	[
+		1 : "Yes"
+		0 : "No"
+	]
+
+	area_axis_cancap(choices) : "Can Axis Cap?" : 1 = 
+	[
+		1 : "Yes"
+		0 : "No"
+	]
+
+	area_allies_numcap(integer) : "Number of Allies to cap" : 1 
+	area_axis_numcap(integer) : "Number of Axis to cap" : 1 
+
+	area_time_to_cap(integer) : "Time to cap (sec)" : 5 
+
+	output OnAlliesStartCap(void) : "Sent when Allies start capture"
+	output OnAlliesBreakCap(void) : "Sent when Allies break capture"
+	output OnAlliesEndCap(void) : "Sent when Allies end capture"
+
+	output OnAxisStartCap(void) : "Sent when Axis start capture"
+	output OnAxisBreakCap(void) : "Sent when Axis break capture"
+	output OnAxisEndCap(void) : "Sent when Axis end capture"
+
+	output OnStartCap(void) : "Sent when either team starts capture"
+	output OnBreakCap(void) : "Sent when either team break capture"
+	output OnEndCap(void) : "Sent when either team end capture"
+
+	area_cap_point(target_source) : "Name of the control point this area is linked to" : ""
+]
+
+@PointClass base(EnableDisable,Angles,Targetname) studio("models/weapons/w_tnt_red.mdl") = dod_bomb_target : "Bomb Target"
+[
+	target_control_point(target_source)	: "Target CP" : ""
+	
+	bombing_team(choices) : "Bombing Team" : 2 =
+	[
+		2 : "U.S. Army"
+		3 : "Wermacht"
+	]
+		
+	output OnBombTargetActivated(void) : "Send when bomb target becomes active"
+	output OnBombTargetDeactivated(void) : "Send when bomb target becomes inactive"
+	output OnBombPlanted(void) : "Send when bomb is planted at this target"
+	output OnBombExploded(void) : "Send when timer expires and bomb explodes"
+	output OnBombDefused(void) : "Send when bomb is completely defused"
+	
+	add_timer_seconds(integer) : "Add To Timer (sec)" : 0 
+]
+
+@SolidClass base(EnableDisable,Targetname) = dod_bomb_dispenser : "Bomb Dispenser Area"
+[
+	dispense_team(choices) : "Team to give bombs to" : 0 = 
+	[
+		0 : "Both Teams"
+		2 : "U.S. Army Only"
+		3 : "Wermacht Only"
+	]
+]
+
+@SolidClass = func_team_wall : "Team Blocker Wall"
+[
+	blockteam(choices) : "Team to block" : 0 =
+	[
+		0 : "Neither"
+		2 : "U.S. Army Only"
+		3 : "Wermacht Only"
+	]
+]
+
+@SolidClass base(Targetname, Parentname, TeamNum) = func_teamblocker : 
+	"Walls that players of a certain team are unable to pass through" 
+[	
+	spawnflags(flags) =
+	[
+		2: "Don't show hint when touched" : 0
+	]
+]

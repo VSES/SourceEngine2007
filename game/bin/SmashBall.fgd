@@ -1,0 +1,423 @@
+//-------------------------------------------------------------------------
+//
+// Game data for Smashball.
+//
+//-------------------------------------------------------------------------
+
+@include "base.fgd"
+
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_deathmatch :
+	"This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_home :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_home_goalie :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_home_midfield :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_away :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_away_goalie :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_away_midfield :
+	"This entity indicates the position and facing direction at which the player will spawn during a Smashball game. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : 
+		"The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Combine"
+		3 : "Rebels"
+	]
+]
+
+@PointClass base(prop_physics) studioprop() sphere(fademindist) sphere(fademaxdist) = prop_physics_respawnable :
+	"This class is the same as prop_physics, except it respawns after it breaks"
+[
+	RespawnTime(float) : "Respawn Time" : 60 : "Ammount in seconds this prop will respawn after it breaks."
+]
+
+
+@PointClass base(Targetname) = info_ball_spawn : "Smashball Ball Spawn Point" [
+
+	spawningEnabled(choices) : "Enabled" : 1 : "When enabled, balls can be spawned from here." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	autoSpawnBalls(choices) : "Spawn Balls Automatically" : 1 : "True: Balls will spawn from here automatically as needed for the game mode.  False: Balls will only spawn when the SpawnBall input function is called." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+
+	// Inputs
+	input Enable(void) : "Enables the entity so that balls can be spawned (manually or automatically)."
+	input Disable(void) : "Disables the entity so that balls can't be spawned (manually or automatically)."
+	input SpawnBall(void) : "Spawn a ball if the entity is enabled."
+
+	// Outputs	
+	output OnSpawnBall(void) : "Fired when a ball has been spawned."
+]
+
+@PointClass base(Targetname) = grenade_ball : "Smashball Ball, you should not normally place this.  Use info_ball_spawn instead" [ ]
+
+@SolidClass base(Trigger) = trigger_cancel_hook : "A trigger volume to prevent hooking." [
+
+	team_id(choices) : "Team ID" : 0 : "Which team gets their hook cancelled" =
+	[
+		0 : "Both"
+		2 : "Home"
+		3 : "Away"
+	]
+
+]
+
+@SolidClass base(Trigger) = trigger_goal : "A trigger volume for the Smashball Goal." [
+
+	team_id(choices) : "Team ID" : 2 : "Which team this goal belongs to (2 or 3)" =
+	[
+		2 : "Home"
+		3 : "Away"
+	]
+
+	removeBallOnScore(choices) : "Remove Ball On Score" : 1 : "When a ball is used to score in Practice/Warmup Mode, this sets whether the ball continues to exist or is removed immediately." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	givePoints(choices) : "Award Points On Score" : 1 : "Sets whether points are given to the team and player on a score." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	giveAssists(choices) : "Award Assists On Score" : 1 : "Sets whether assists are given to the assisting players on a score." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	increaseThrill(choices) : "Increase Crowd Thrill On Score" : 1 : "Sets if the crowd's thrill level increases on a score." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	sendEvent(choices) : "Send Events On Score" : 1 : "Sets whether a global message is sent out announcing that the goal has been scored on." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	playSound(choices) : "Play Sound On Score" : 1 : "Sets if the score sound is played." =
+	[
+		1 : "True"
+		0 : "False"
+	]
+
+
+	pushdir(angle) : "Push Direction (Pitch Yaw Roll)" : "0 0 0" : "Angles indicating the direction to push friendly players."
+	speed(integer) : "Speed of Push" : 40 : "The speed at which to push entities away, in inches / second."
+
+	// Inputs
+	input SetRemoveBall(bool) : "Change the Remove Ball On Score setting."
+	input SetGivePoints(bool) : "Change the Give Points On Score setting."
+	input SetGiveAssists(bool) : "Change the Give Assists On Score setting."
+	input SetIncreaseThrill(bool) : "Change the Increase Crowd Thrill On Score setting."
+	input SetSendEvent(bool) : "Change the Send Event On Score setting."
+	input SetPlaySound(bool) : "Change the Play Sound On Score setting."
+	input SetPrimaryGoal(void) : "Set this goal as the main goal for this team.  This only affects blocked shots determination and where the ball indicator points."
+
+	// Outputs	
+	output OnScore(void) : "Fired when a goal has been scored."
+	output OnScoreShot(void) : "Fired on a shot."
+	output OnScoreRun(void) : "Fired on a run."
+	output OnTouchWithoutBall(void) : "Fired when a player touches the goal without the ball (but passes all other filters)."
+
+]
+
+@SolidClass base(Trigger, Targetname) = trigger_hurt_shock :
+	"A trigger volume that does shock damage to players that touch it."
+[
+	shockflags(choices) : "Shock Criticals" = 
+	[ 
+		1: "Force hook drop" 
+		2: "Force fumble"
+		3: "Force fumble and hook drop"
+		4: "Force knockout"
+		8: "Force death"
+
+	]
+	damagetype(choices) : "Damage Type" : 0 =
+	[
+		0 : "GENERIC"
+		1 : "CRUSH"
+		2 : "BULLET"
+		4 : "SLASH"
+		8 : "BURN"
+		16 : "FREEZE"
+		32 : "FALL"
+		64 : "BLAST"
+		128 : "CLUB"
+		256 : "SHOCK"
+		512 : "SONIC"
+		1024 : "ENERGYBEAM"
+		16384: "DROWN"
+		32768 : "PARALYSE"
+		65536 : "NERVEGAS"
+		131072 : "POISON"
+		262144 : "RADIATION"
+		524288 : "DROWNRECOVER"
+		1048576 : "CHEMICAL"
+		2097152 : "SLOWBURN"
+		4194304 : "SLOWFREEZE"
+	]
+
+	damage(integer) : "Shock Damage" : 10 : "The amount of shock damage done to entities that touch this trigger. The damage is done every half-second. See also 'Damage Model' for extra details on how damage can be dealt."
+	damagecap(integer) : "Shock Damage Cap" : 20 : "Maximum shock damage dealt per second. This field is only used if you select the Doubling w/Forgiveness damage model, via the spawnflag."
+
+	damagemodel(choices) : "Shock Damage Model" : 0 : "How shock damage is dealt. Normal always does the specified amount of damage each half second. Doubling starts with the specified amount and doubles it each time it hurts the toucher. Forgiveness means that if the toucher gets out of the trigger the damage will reset to the specified value. Good for making triggers that are deadly over time without having to cause massive damage on each touch." =
+	[
+		0 : "Normal"
+		1 : "Doubling w/forgiveness"
+	]
+	nodmgforce(choices) : "Zero Damage Force" : 0 : "Should the damaged entity receive no physics force from this trigger." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	// Inputs
+	input SetDamage(float) : "Set a new amount of shock damage for this trigger."
+	
+	// Outputs
+	output OnHurt(void) : "Fired whenever this trigger hurts something other than a player."
+	output OnHurtPlayer(void) : "Fired whenever this trigger hurts a player."
+	output OnFumble(void) : "Fired when a player fumbles the ball."
+	output OnHookDrop(void) : "Fired when a player is hook dropped."
+	output OnKnockout(void) : "Fired when a player is knocked out."
+	output OnKill(void) : "Fired when a player is killed."
+]
+
+@PointClass base(Targetname) = game_control_lock : "Locks player abilities" [
+
+	lockHook(choices) : "Lock Grappling Hook" : 0 = 
+	[
+		1: "True"
+		0: "False"
+	]
+
+	lockWeapons(choices) : "Lock Weapons" : 0 = 
+	[
+		1: "True"
+		0: "False"
+	]
+
+	lockTurbo(choices) : "Lock Turbo" : 0 = 
+	[
+		1: "True"
+		0: "False"
+	]
+
+	lockBallKey(choices) : "Lock Ball Key" : 0 = 
+	[
+		1: "True"
+		0: "False"
+	]
+
+	lockScope(choices) : "Players Affected by Lock" : 0 = 
+	[
+		0: "All"
+		2: "Home Team"
+		3: "Away Team"
+	]
+
+	// Inputs
+	input Enable(void) : "Enables all locks."
+	input Disable(void) : "Disables all locks."
+	input Toggle(void) : "Toggles all locks."
+
+]
+
+
+@PointClass base(PlayerClass, Targetname, Angles) studio("models/editor/playerstart.mdl") = info_bot_dummy :
+	"This spawns a dumb bot that is used in the training level."
+[
+	team(choices) : "Team" : 2 = 
+	[
+		2: "Home"
+		3: "Away"
+	]
+
+	position(choices) : "Position" : 1 = 
+	[
+		1: "Forward"
+		2: "Halfback"
+		3: "Fullback"
+		4: "Goalie"
+	]
+
+	sufferFumble(choices) : "Can Fumble" : 1 = 
+	[
+		1: "True"
+		0: "False"
+	]
+	sufferHookDrop(choices) : "Can Hook Drop" : 1 = 
+	[
+		1: "True"
+		0: "False"
+	]
+	sufferKnockout(choices) : "Can Be KOed" : 1 = 
+	[
+		1: "True"
+		0: "False"
+	]
+	sufferDeath(choices) : "Can Be Killed" : 1 = 
+	[
+		1: "True"
+		0: "False"
+	]
+
+	// Inputs
+	input Enable(void) : "Enables the bot."
+	input Disable(void) : "Disables the bot."
+	input Toggle(void) : "Toggles the bot."
+	input Pass(void) : "The bot will pass the ball to the nearest friendly player."
+	input GiveBall(void) : "Spawns a ball and gives it to the bot."
+	input Kill(void) : "Kills the bot."
+	input Remove(void) : "Removes the bot."
+
+	input Teleport(string) : "Teleport the bot to the named entity."
+	input Shoot(void) : "Shoot the ball at the named entity."
+	input SetShootTarget(string) : "Shoot the ball at the named entity."
+	input EnableBlocking(void) : "The bot will randomly block any ball that is near."
+	input DisableBlocking(void) : "The bot will stop blocking balls."
+	input EnableCharging(void) : "The bot will charge nearby players."
+	input DisableCharging(void) : "The bot will stop charging players."
+	input EnableDefending(string) : "The bot will stay near the named entity as if defending it."
+	input DisableDefending(void) : "The bot will stop defending."
+	input EnableScoring(void) : "The bot will go pickup the ball on its own."
+	input DisableScoring(void) : "The bot will not pickup the ball on its own."
+
+	// Outputs
+	output OnBallPickup(void) : "Fired when a player picks up the ball."
+	output OnPassReception(void) : "Fired when a player receives a pass."
+	output OnHurt(void) : "Fired whenever the bot is hurt."
+	output OnFumble(void) : "Fired when the bot fumbles the ball."
+	output OnHookDrop(void) : "Fired when the bot hook drops."
+	output OnKnockout(void) : "Fired when the bot is knocked out."
+	output OnKill(void) : "Fired when the bot is killed."
+]
+
+@PointClass base(Targetname) iconsprite("editor/info_target.vmt") = info_spec_camera :
+	"This entity serves as a camera position for the smashball auto director system when viewing a demo.  The director will switch between the best camera to view the action."
+[
+]
+
+@PointClass base(Targetname) = logic_round : "Interface to the internal game rules"
+[
+	forceForward(choices) : "Force Playing Forward" : 0 : "Force human players to play as forwards (ie for the tutorial level)" = 
+	[
+		0: "No"
+		1: "Yes"
+	]
+
+	// Outputs
+	output OnRoundBegin(void) : "Fired when a round starts."
+	output OnRoundEnd(integer) : "Fired when a round ends.  Returns an integer of the team that won the round."
+	output OnRoundPause(void) : "Fired when a round pauses."
+	output OnRoundUnpause(void) : "Fired when a round unpauses."
+	output OnBallPickup(integer) : "Fired when a ball is picked up.  Returns an integer of the team that picked it up."
+	output OnBallDrop(void) : "Fired when a ball is dropped."
+	output OnBallKill(void) : "Fired when a ball is removed."
+]
+
+@PointClass base(Parentname, Global, Angles) studioprop() = prop_billboard : 
+	"Smashball Billboard"
+[
+	model(studio) : "World model" : "models/props_smashball/advertboard01a.mdl"
+	code(choices) : "Location of the billboard" : 0 = 
+	[
+		0: "Goal Room"
+		1: "Chokepoint"
+		2: "Center"
+	]
+	dimensions(choices) : "Ratio of the billboard model (w x h)" : 1 = 
+	[
+		0: "1x1"
+		1: "1x2"
+		2: "2x1"
+	]
+	static(choices) : "Set what the billboard will display" : 0 = 
+	[
+		0: "Dynamic Ad"
+		1: "Static Image"
+	]
+
+	url(string) : "Image URL" : ""
+
+]
+
+@PointClass base(Targetname) = info_protip : 
+	"Smashball Protip"
+[
+	forceDisplay(choices) : "Force this protip to always display." : 1 = 
+	[
+		0: "False"
+		1: "True"
+	]
+	hudFlash(choices) : "Force a portion of the HUD to flash." : 0 = 
+	[
+		0: "None"
+		1: "Ball Radar"
+		2: "Pass Queue"
+		3: "Home Score"
+		4: "Away Score"
+		5: "Turbo Bar"
+		6: "Health Bar"
+	]
+
+	title(string) : "Protip title" : ""
+	text(string) : "Protip text" : ""
+
+	input DisplayToPlayer(void) : "Display the protip to the activator player."
+	input DisplayToTeam(void) : "Display the protip to the team the activator player is on."
+	input DisplayToOtherTeam(void) : "Display the protip to the team the activator player is not on."
+	input DisplayToHomeTeam(void) : "Display the protip to the home team."
+	input DisplayToAwayTeam(void) : "Display the protip to the away team."
+	input DisplayToAll(void) : "Display the protip to everyone."
+]
+
+@PointClass base(Targetname) iconsprite("editor/info_target.vmt") = info_crowd_pos :
+	""
+[
+]

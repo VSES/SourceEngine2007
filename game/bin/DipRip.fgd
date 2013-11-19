@@ -1,0 +1,144 @@
+//-------------------------------------------------------------------------
+//
+// Game data for D.I.P.R.I.P.
+//
+//-------------------------------------------------------------------------
+
+@include "halflife2.fgd"
+
+@BaseClass color(0 50 220) base(Targetname, Angles, Shadow) sphere(fademindist) sphere(fademaxdist) = DIPRIP_Item
+[
+    // === [Item] =============================================================
+	output OnPlayerTouch(void) : "Fires when the player touches this object"
+
+	fademindist(float) : "Start Fade Dist/Pixels" : -1 : "Distance at which the prop starts to fade (<0 = use fademaxdist). If 'Screen Space Fade' is selected, this represents the number of pixels wide covered by the prop when it starts to fade."
+	fademaxdist(float) : "End Fade Dist/Pixels" : 0 : "Maximum distance at which the prop is visible (0 = don't fade out). If 'Screen Space Fade' is selected, this represents the *minimum* number of pixels wide covered by the prop when it fades."
+	fadescale(float) : "Fade Scale" : 1 : "If you specify a fade in the worldspawn, or if the engine is running under dx7, then the engine will forcibly fade out props even if fademindist/fademaxdist isn't specified." +
+									      " This scale factor gives you some control over the fade. Using 0 here turns off the forcible fades."
+    // === [prop_dynamic_base] ================================================
+    DefaultAnim(string) : "Default Animation" : "idle" : "The name of the idle animation that this prop will revert to whenever it finishes a random or forced animation."
+	 RespawnTime(integer)  : "Respawn time" : 30 : "The amount of time that is needed to respawn (sec)"
+]
+
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_repair.mdl") = diprip_item_repairkit : "Repair Kit" []
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_repair.mdl") = diprip_item_big_repairkit : "Big Repair Kit" []
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_rockets.mdl")= diprip_item_ammo_rockets : "Rockets" []
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_mortar.mdl")= diprip_item_ammo_mortar_grenade : "Mortar Grenade" []
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_minigun.mdl")= diprip_item_ammo_minigun : "Minigun Ammo" []
+
+@PointClass base(DIPRIP_Item) studio("models/EXOR/Pickups/diprip_item_team.mdl")= diprip_item_ammo_team_pickup : "Team Pickup" [
+ team(choices) : "Team Color" : 2 : 
+		"Choose team color." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+ readFromScript(choices) : "Use Default Ammo Values" : 1 :
+ 		"Set this value to No if you want to override default ammo values." =
+ 	[
+ 		0 : "No"
+ 		1 : "Yes"
+ 	]
+ addOnStart(choices) : "Add ammos on start" : 0 :
+ 		"Set this value to No if you want to add ammos on start." =
+ 	[
+ 		0 : "No"
+ 		1 : "Yes"
+ 	]
+ minigun(integer)  : "Minigun ammo" : 100 : "The amount of minigun ammo this pickup should refill"
+ rockets(integer)  : "Rocket ammo" : 3 : "The amount of rocket ammo this pickup should refill"
+ mortar(integer)  : "Mortar ammo" : 2 : "The amount of mortar ammo this pickup should refill"
+]
+
+
+@PointClass base(Targetname)= diprip_objective: "Diprip objective" 
+[
+ TeamOwner(choices) : "Team Color" : 2 : 
+		"Choose team color." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+ GameType(choices) : "Game Type" : 0 : 
+		"Choose game type." =
+	[
+		0 : "Deathmatch"
+		1 : "Uranium Run"
+		2 : "Destruction"
+	]
+]
+
+@PointClass base(Targetname, Parentname)= diprip_objective_marker: "Diprip objective marker" 
+[
+ TeamOwner(choices) : "Team Color" : 2 : 
+		"Choose team color." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+]
+
+
+@SolidClass base(Targetname) = diprip_warm_up : "Diprip warm up"
+[
+ timer(integer)  : "Time" : 30 : "Time for warm up."
+]
+
+@SolidClass base(Targetname) = diprip_capturezone_CTF : "Diprip capture zone"
+[
+ teamzone(choices) : "Team Color" : 2 : 
+		"Choose team color." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+	output OnTrigger(void) : "Fired whenever someone brings a capture object to this object zone."
+]
+
+@SolidClass base(Targetname) = diprip_teamzone : "Diprip team zone"
+[
+ teamzoneowner(choices) : "Team Owner" : 2 : 
+		"Choose team owner." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+]
+
+@SolidClass base(Targetname) = diprip_capturezone_destruction : "Diprip capture zone"
+[
+ teamzone(choices) : "Team Color" : 2 : 
+		"Choose team color." =
+	[
+		2 : "team_blue"
+		3 : "team_red"
+	]
+	output OnDamageTrigger(void) : "Fired whenever someone brings a capture object to this object zone."
+	output OnLevelDestroyedTrigger(void) : "Fired whenever someone brings a capture object to this object zone."
+	life(integer)  : "Life" : 3 : "bla bla nie wiem jak to nazwac."
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/Ratmobile/Ratmobile.mdl") = diprip_start_team_blue:
+ "This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+ "info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/Ratmobile/Ratmobile.mdl") = diprip_start_team_red:
+ "This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+ "info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@PointClass base(PlayerClass, Angles) studio("models/Ratmobile/Ratmobile.mdl") = diprip_start_deathmatch :
+ "This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+ "info_player_deathmatch entities may be placed in a map."
+[
+]
+
+
+
+@PointClass base(Targetname) = diprip_gamerules : "Proxy entity for DIPRIP Gamerules"
+[	
+		input SetMapType(integer) : "Set map type"
+]

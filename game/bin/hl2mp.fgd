@@ -1,0 +1,51 @@
+//-------------------------------------------------------------------------
+//
+// Game data for Half-Life 2 Multiplayer.
+//
+//-------------------------------------------------------------------------
+
+@include "halflife2.fgd"
+
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_deathmatch :
+	"This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_combine :
+	"This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = info_player_rebel :
+	"This entity indicates the position and facing direction at which the player will spawn during a deathmatch map. Any number of "+
+	"info_player_deathmatch entities may be placed in a map."
+[
+]
+
+@FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : 
+		"The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Combine"
+		3 : "Rebels"
+	]
+]
+
+@PointClass base(prop_physics) studioprop() sphere(fademindist) sphere(fademaxdist) = prop_physics_respawnable :
+	"This class is the same as prop_physics, except it respawns after it breaks"
+[
+	RespawnTime(float) : "Respawn Time" : 60 : "Ammount in seconds this prop will respawn after it breaks."
+]
+
+
+@PointClass base(Weapon) studio("models/weapons/w_slam.mdl") = weapon_slam : "S.L.A.M. - Selectable Lightweight Attack Munition" []
+

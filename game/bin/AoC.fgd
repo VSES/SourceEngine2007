@@ -1,0 +1,924 @@
+@include "base.fgd"
+
+//-------------------------------------------------------------------------
+// Age of Chivalry Overview Marker base
+//-------------------------------------------------------------------------
+@BaseClass = OverviewMarker : "Age of Chivalry Overview Marker"+
+" Use this entity to place a marker on the overview map"+
+" Change the icon by triggering this entity with the SetIcon"+
+" input. The icon is a material has to be usable on a HUD."
+[
+ markername(string)  : "Agathia Markername" : "" : "Give the marker a name to be echoed on the map"
+ evilmarkername(string)  : "Mason Markername" : "" : "Give the marker a name to be echoed on the map"
+ icon(string) : "Agathia Icon (folder/iconname)"
+ evilicon(string) : "Mason Icon (folder/iconname)"
+ startstate(choices)  : "Icon Start State" : "1" : "Begin the round as enabled or disabled" =
+ [
+  0 : "Disabled"
+  1 : "Enabled"
+ ]
+ goodteamrender(choices) : "Render for Good Team (Deprecated)" : "1" : "Render this icon on the Overview for the Good team" =
+  [
+  0 : "Disabled"
+  1 : "Enabled"
+ ]
+ evilteamrender(choices) : "Render for Evil Team (Deprecated)" : "1" : "Render this icon on the Overview for the Evil team" =
+  [
+  0 : "Disabled"
+  1 : "Enabled"
+ ]
+ 
+ input EnableIcon(void)  : "Activates the marker, show on overview"
+ input DisableIcon(void)  : "Disables the marker, not shown on overview"
+ input ToggleIcon(void)  : "Toggles the marker"
+ input SetIcon(string) : "Set the icon to be displayed. (folder/iconname)"
+ input SetMarkerName(string) : "Give the marker a name to be echoed on the map"
+]
+
+
+//-------------------------------------------------------------------------
+// Age of Chivalry Trigger Objective base
+//-------------------------------------------------------------------------
+@BaseClass = ObjectiveTriggerBase : "Age of Chivalry Trigger Base. This base will implement all keys and IO used for objective triggers"
+[
+	DistributePoints(integer) : "Distribute Points?" : 0 : "Distributes the total amount of completion points amongst all touching players. 0 by default."
+
+	// Inputs
+	input TouchTest(void) : "Tests if the trigger is being touched and fires an output based on whether the value is true or false." 
+	input AwardPoints(void) : "Awards points to all players inside the trigger"
+	 
+	// Outputs
+	output OnTrigger(void) : "Fired whenever the trigger is activated."
+	output OnTouching(void) : "Fired when the TestTouch input is true (something is touching the trigger.)"
+	output OnNotTouching(void) : "Fired when the TestTouch input is not true (nothing is touching the trigger.)"
+	output OnLastPlayerExited(void) : "Fired when the last player who was touching the trigger from the filtered team leaves the trigger"
+	output OnFirstPlayerTouch(void) : "Fired when the first player from the filtered team enters the trigger"
+]
+
+
+
+//-------------------------------------------------------------------------
+// Age of Chivalry Objective Base
+//-------------------------------------------------------------------------
+@BaseClass = Objective : "Age of Chivalry Gameplay Objective" +
+	" This is the entity that the compass points too when active." +
+	" Make sure that both teams have at least one objective active all the time." +
+	" Trigger this entitys OnCompleted when a goal has been met."
+[
+	MasonDescription(string) : "Mason Description" : "" : "Description of objective to show for Mason Team"
+	AgathiaDescription(string) : "Agathia Description" : "" : "Description of Objective to show for Agathia Team"
+	CompletedSound(string) : "Completed Sound" : "" : "Sound to play when objective is Completed"
+	FailedSound(string) : "Failed Sound" : "" : "Sound to play when this objective is failed"
+	MasonSoundOnEnable(string) : "Mason Enable Sound [NOT IMPLEMENTED]" : "" : "Sound to play for Mason when this objective is Enabled"
+	AgathiaSoundOnEnable(string) : "Agathia Enable Sound [NOT IMPLEMENTED]" : "" : "Sound to play for Agathia when this objective is Enabled"
+	
+	StartEnabled(choices) : "Start State" : "1" : "Begin the round as enabled or disabled" = 
+	[
+		0 : "Disabled"
+		1 : "Enabled"
+	]
+	
+	AttackingTeam(choices) : "Attacking Team" : "3" : "Who is the attacking team" =
+	[
+		2 : "Agatha"
+		3 : "Mason"
+	]
+	
+	DefendingTeam(choices) : "Defending Team" : "2" : "Who is the attacking team" =
+	[
+		2 : "Agatha"
+		3 : "Mason"
+	]
+	
+	PrimaryObjective(choices) : "Primary Objective" : "1" : "Is this a Primary Objective" =
+	[
+		0 : "Secondary"
+		1 : "Primary"
+	]
+	
+	AwardPoints(choices) : "Award Points" : "1" : "Should this objective award points?" =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	ObjectiveType(choices) : "Objective Type" : "-1" : "The type of objective this is. Used for Achievement Progress" =
+	[
+		// MUST MATCH ENUM IN AOC_SHAREDDEFS.H
+		0 : "Other"
+		1 : "Flag (Carryable)"
+		2 : "Flag (Raisable)"
+		3 : "Bridge Board"
+		4 : "Capture Point"
+		5 : "Breakable"
+		6 : "Pushable"
+	]
+		
+	
+	PointsOnCompletion(integer) : "Completion Points" : 15 : "How many points do we award for completion of this objective"
+	PointsOnAssist(integer) : "Assist Points" : 5 : "How many points we award for someone who assisted to complete this objective"
+
+	output OnObjectiveCompleted(void): "Fired when this objective is completed."
+	output OnObjectiveEnabled(void) 	: "Fired when this objective is enabled."
+	output OnObjectiveDisabled(void) : "Fired when this objective is disabled."
+	output OnObjectiveMasonCompleted(void)	: "Fired when this objective is completed by Masons."
+	output OnObjectiveAgathaCompleted(void) 	: "Fired when this objective is completed by Agathia."
+	
+	input ObjectiveEnable(void) 	: "Activates the objective"
+	input ObjectiveDisable(void) : "Disables the objective"
+	input ObjectiveToggle(void) 	: "Toggle the objective on/off."
+	input ObjectiveComplete(void): "Completes the objective"
+]
+	
+
+
+@PointClass base(Targetname, Parentname) = point_message : 
+	"An entity that displays a text message in the world, at its origin."
+[
+	spawnflags(flags) =
+	[
+		1: "Start Disabled" : 0
+	]
+
+	message(string) : "Entity Message"
+	radius(integer) : "Show message radius" : 128 : "Distance the player must be within to see this message."
+	developeronly(choices) : "Developer Only?" : 0 : "If set, this message will only be visible when developer mode is on." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	// Inputs
+	input Enable(void) : "Start displaying the message text, if the player is within the message radius."
+	input Disable(void) : "Stop displaying the message text."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Generic Objective
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Targetname, Objective, OverviewMarker, Parentname) iconsprite("editor/objective.vmt") = aoc_objective_generic : "Age of Chivalry Generic Objective" +
+	" This is a generic Objective entity to use when other objective entities are not suitable." +
+	" Please make a request for a new entity that includes the specific attributes that you need!."
+[
+	// Empty	
+]
+
+//-------------------------------------------------------------------------
+//
+//  Age of Chivalry Spawnpoint
+//
+//-------------------------------------------------------------------------
+@PointClass base(PlayerClass, Angles) studio("models/editor/playerstart.mdl") = aoc_spawnpoint : "Spawnpoints" +
+	" are where players can actually spawn.  They have a Spawngroup Owner, because of the logic of where" +
+	" you spawn is decided by the spawngroup, then selected by the spawnpoints under that group.  Every" +
+	" spawn point should have an owner of a valid spawn group in the map."
+[
+	SpawngroupOwner(integer) : "Spawngroup Owner" : 0 : "ID of Spawngroup that owns this"
+]
+
+//-------------------------------------------------------------------------
+//
+//  Age of Chivalry Spawngroup
+//
+//-------------------------------------------------------------------------
+@PointClass base(Targetname) iconsprite("editor/spawngroup.vmt") = aoc_spawngroup : "Spawngroups have collections of spawn points.  Any spawnpoint" +
+	" whose owner # matches this spawn group's ID will become part of that spawngroup.  Players" +
+	" (or the game) choose a valid spawngroup to spawn at, and you actually spawn at one of the spawn" +
+	" POINTS in that group."
+[
+	UniqueID(integer) : "ID" : -1 : "Unique ID of this Spawngroup"
+	Timer(float)	: "Timer" :	"7.0" : "Time in seconds between respawns"
+
+	StartDisabled(choices) : "Start State" : "0" : "Begin the round as enabled or disabled" = 
+	[
+		0 : "Enabled"
+		1 : "Disabled"
+	]
+	
+	output OnEnabled(void) : "Fired when this spawn group is enabled."
+	output OnDisabled(void) : "Fired when this spawn group is disabled."
+	input Enable(void) : "Activates the spawn group"
+	input Disable(void) : "Disables the spawn group"
+	input Toggle(void) : "Toggle the spawn group on/off."
+	input SetTeam(integer) : "Manually sets the team to one side or the other."
+	input MoveSubscribersTo(integer) : "Move all players in this spawngroup to the new one specified."
+
+	// IMPORTANT: THIS NEEDS TO BE IDENTICAL TO THE #DEFINES IN SHAREDDEFS.H
+	Starting_Team(choices) : "Starting Team" : "0" : "The team this is assigned to when the map first loads." =
+	[
+		0 : "Unassigned"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+]
+
+//-------------------------------------------------------------------------
+//
+//  Age of Chivalry Level Camera
+//
+//-------------------------------------------------------------------------
+@PointClass base( Angles ) iconsprite("editor/levelcamera.vmt") = aoc_levelcamera : "This entity is a camera overlooking the map.  When players" +
+	" first connect, this is where they'll be looking through. " +
+	" You need one of these entities in per map, just pick a scenic spot to place it."
+[
+]
+
+//-------------------------------------------------------------------------
+//
+//  Age of Chivalry Dynamic Music trigger
+//
+//-------------------------------------------------------------------------
+@SolidClass base(Targetname) = aoc_dynamic_music : "Dynamic Music Trigger"+
+"This entity is not working, use ambient_generic instead."
+[
+	output OnStartTouch(void) : "Fired when someone has entered the trigger."
+	output OnEndTouch(void) : "Fired when someone has left the trigger."
+	// Mapping Tagged Fields
+	good_filename(sound) : "Good March" : "" : "Set this to your good team's anthem."
+	bad_filename(sound) : "Evil March" : "" : "Set this to your evil team's anthem."
+	battle_filename(sound) : "Battle Music" : "" : "Set this to your battle music."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Capturepoint Map Entity
+//
+//-------------------------------------------------------------------------
+@SolidClass base(Targetname, Objective, OverviewMarker, ObjectiveTriggerBase) = aoc_capturepoint : "AOC Capturepoint."
+[
+    // Mapping Tagged Fields
+	next(string) : "Next Objective" : "" : "Set this to the next objective's name."
+	evilprev(string) : "Previous Objective" : "" : "Set this to the previous Mason objective's name."
+	goodprev(string) : "Previous Objective" : "" : "Set this to the previous Agatha objective's name."
+    location(string) : "Location" : "" : "Set this to the name of this location to be echoed."
+	timer(float) : "Time To Capture" : "1.0" : "Set this to the time it takes to capture this point."
+	evilrecap(float) : "Mason Recapture" : "1.0" : "Set this to the time it takes Mason to recapture this point."
+	goodrecap(float) : "Agathia Recapture" : "1.0" : "Set this to the time it takes Agathia to recapture this point."
+	owner(choices) : "Starting Team" : "0" : "The team this is assigned to when the map first loads." =
+	[
+		0 : "Unassigned"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+	captureteam(choices) : "Capture Team" : "0" : "The team that can capture this point." =
+	[
+		0 : "Both Teams"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+	DistributePoints(integer) : "Distribute Points On Capture" : 1 : "Award full completion points to each player: 0; Distribute completion points equally to each player: 1 "
+
+	// Bad Guy Outputs
+	output OnBadGuyCapture(void) : "Fired when the Bad team captures this point."
+	output OnBadGuyStartTouch(void) : "Fired when the Bad team touches this point, if this point has not been captured."
+	output OnBadGuyEndTouch(void) : "Fired when the Bad team stops touching this point, if this point has not been captured."
+
+	//Good Guy Outputs
+	output OnGoodGuyCapture(void) : "Fired when the Good team captures this point."
+	output OnGoodGuyStartTouch(void) : "Fired when the Good team touches this point, if this point has not been captured."
+	output OnGoodGuyEndTouch(void) : "Fired when the Good team stops touching this point, if this point has not been captured."
+
+	// Misc. Outputs
+	output OnCapture(void) : "Fired when this point is captured."
+	output OnStartTouch(void) : "Fired when this point is touched, if this point has not been captured."
+	output OnEndTouch(void) : "Fired when a player stops touching this point, if this point has not been captured."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry End Map 
+//
+//-------------------------------------------------------------------------
+@PointClass base(Targetname) iconsprite("editor/endgame.vmt") = aoc_endmap : "Age of Chivalry End Game Entity"+
+"Trigger this entity from any other entity with the output of either EwilWins"+
+" or GoodWins. This ends the map and the winner map set in the map config is"+
+" started up depending on victor."
+[
+	input EvilWins(void) : "Ends the map, Evil team wins" 
+	input GoodWins(void) : "Ends the map, Good team wins" 
+]
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Team Filter
+//
+//-------------------------------------------------------------------------
+@FilterClass base(BaseFilter) iconsprite("editor/teamfilter.vmt") = filter_activator_team :
+	"A filter that filters by the team of the activator."
+[
+	filterteam(choices) : "Filter Team Number" : 2 : 
+		"The team number to filter by.  If the filter mode is Allow, only entities whose "+
+		"team number matches the given team will pass the filter. If the filter mode is Disallow, "+
+		"all entities EXCEPT those whose team number matches the given team will pass the filter." =
+	[
+		2 : "Good Team"
+		3 : "Evil Team"
+	]
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Prop Objective
+//
+//-------------------------------------------------------------------------
+@PointClass base(Targetname, BasePropPhysics, OverviewMarker) studioprop() sphere(fademindist) sphere(fademaxdist) = aoc_carryable :
+	"This entity can be used for Capture the flag type of games"+
+	", just select the model you wish to use with the entity and select the team"+
+	" that is able to pick it up. You can also set outputs when the entity is dropped"+
+	", picked up or returned to the original spawn point. The Prop objective should also have an ID that"+
+	" is checked in the aoc_captureobjective. Set the Player Attachment point and displacement where you want the object to be"+
+	" located at pickup on the thirdperson player model."+
+	" Find the attachementpoints in hlmv, examples: eyes, chest, forward."
+[
+
+	StartEnabled(choices) : "Start State" : "1" : "Begin the round as enabled or disabled" = 
+	[
+		0 : "Disabled"
+		1 : "Enabled"
+	]
+	
+	PlayerAttachPoint(string) : "Player Attach Point" : "" : "The name of the players attachment point."
+	PlayerAttachDistanceX(integer) : "Attach Distance X" : 0 : "Distance from attachment point. Red bone."
+	PlayerAttachDistanceY(integer) : "Attach Distance Y" : 0 : "Distance from attachment point. Green bone. "
+	PlayerAttachDistanceZ(integer) : "Attach Distance Z" : 0 : "Distance from attachment point. Blue bone"
+	PlayerAttachAngleRoll(integer) : "Attach Orientation: Roll" : 0 : "The attached objects X rotation."
+	PlayerAttachAnglePitch(integer) : "Attach Orientation: Pitch" : 0 : "The attached objects Y rotation."
+	PlayerAttachAngleYaw(integer) : "Attach Orientation: Yaw" : 0 : "The attached objects Z rotation."
+	ReturnTimer(float)	: "ReturnTimer" :	"10.0" : "Time in seconds until the objective returns to its origin."
+	CaptureID(integer) : "CaptureID" : 0 : "The ID that corresponds to the capture zone PropObjectiveID ."
+	DisplayName(string) : "Display Name" : "" : "The name of the objective. Displayed on Hud next to icon."
+	IconName(string) : "Hud Icon File Name" : "" : "The File name for the Hud Icon texture"
+	
+	DisableWeapons(choices) : "Disable Weapons" : 0 : "Set to true to disable use of weapon when holding this object." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	Team(choices) : "Team Number" : 0 : 
+		"Set this to team who can pickup this objective" =
+	[
+		0 : "Everybody"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+	
+	TrailEffectType(choices) : "Trail Effect Type" : 0 : 
+		"Sprite Trail effect" =
+	[
+		0 : "No effect"
+		1 : "White Lazer Sprite"
+		2 : "Smoke Sprite"
+		3 : "Blue Combine Ball Sprite"
+		4 : "Red Combine Ball Sprite"
+	]
+	
+	DefensePoints(integer) : "Defense Points" : 15 : "The number of points a player gets when they kill a player carrying this carryable"
+
+	// Inputs
+	input Return(void) : "Force a return of the objective."
+	input Drop(void) : "Force a player to drop the objective."
+	input Enable(void) : "Activates the objective"
+	input Disable(void) : "Disables the objective"
+	
+	//Outputs
+	output OnPickup(void) : "Fired when this prop is picked up."
+	output OnDropped(void) : "Fired when this objective is dropped."
+	output OnReturn(void) : "Fired when this objective is return to origin."
+	output OnEnabled(void) : "Fired when this objective is enabled."
+	output OnDisabled(void) : "Fired when this objective is disabled."
+
+
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Basic NPC
+//
+//-------------------------------------------------------------------------
+@NPCClass base(BaseNPC) studio("models/aoc_player/peasant1.mdl") = aoc_npc_basic : "Peasant"+
+	" A simple peasant model you can kill in the game."
+[
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Round timer
+//
+//-------------------------------------------------------------------------
+@PointClass base(Targetname) = round_timer : "Round Timer"+
+"This entity is not used. Use the logic_timer instead to fire endgame or"+
+" other time related triggers."
+[
+       threshold(float) : "Round duration" : "600.0" : "Length of the round."
+
+       //Outputs
+       output OnThreshold(void) : "Round time has expired"
+
+       //Inputs
+       input TurnOn(void) : "Starts the round timer."
+       input TurnOff(void) : "Shuts off the round timer."
+       input Toggle(void) : "Toggles the round timer."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Weapons
+//
+//-------------------------------------------------------------------------
+@BaseClass color(0 0 200) base(Targetname, Angles) sphere(fademindist) sphere(fademaxdist) = Weapon : "Pickupable Weapon"+
+"This entity is not supported, only for developing."+
+"This entity spawns a weapon at its location."
+[
+	spawnflags(Flags) =
+	[
+		1 : "Start constrained" : 0
+		2 : "Deny player pickup (reserve for NPC)" : 0
+		4 : "Not puntable by Gravity Gun" : 0
+	]
+
+	output OnPlayerUse(void) : "Fires when the player +uses this weapon"
+	output OnPlayerPickup(void) : "Fires when the player picks up this weapon"
+	output OnNPCPickup(void) : "Fires when an NPC picks up this weapon"
+
+	fademindist(float) : "Start Fade Dist/Pixels" : -1 : "Distance at which the prop starts to fade (<0 = use fademaxdist). If 'Screen Space Fade' is selected, this represents the number of pixels wide covered by the prop when it starts to fade."
+	fademaxdist(float) : "End Fade Dist/Pixels" : 0 : "Maximum distance at which the prop is visible (0 = don't fade out). If 'Screen Space Fade' is selected, this represents the *minimum* number of pixels wide covered by the prop when it fades."
+	fadescale(float) : "Fade Scale" : 1 : "If you specify a fade in the worldspawn, or if the engine is running under dx7, then the engine will forcibly fade out props even if fademindist/fademaxdist isn't specified." +
+												 " This scale factor gives you some control over the fade. Using 0 here turns off the forcible fades." +
+]
+
+
+@PointClass base(Weapon) studio("models/weapons/w_grenade.mdl") = weapon_oilpot : "Oilpot" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_halberd.mdl") = weapon_halberd : "Good Halberd" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_halberd2.mdl") = weapon_evil_halberd : "Evil Halberd" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_flamberge.mdl") = weapon_flamberge : "Flamberge" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_longbow.mdl") = weapon_longbow : "Longbow" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_mace.mdl") = weapon_mace : "Spiked Mace" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_sword_01.mdl") = weapon_mtest : "Longsword" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_shortsword.mdl") = weapon_shortsword : "Shortsword" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_doubleaxe.mdl") = weapon_doubleaxe : "DoubleAxe" []
+@PointClass base(Weapon) studio("models/aoc_weapon/W_boxing.mdl") = weapon_boxing : "Boxing" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_crossbow.mdl") = weapon_crossbow : "Crossbow" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_dagger1.mdl") = weapon_dagger : "Double Dagger" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_dagger2.mdl") = weapon_dagger2 : "Single Dagger" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_flail_evil_shield.mdl") = weapon_flail_evil_shield : "Evil Flail" []
+@PointClass base(Weapon) studio("models/aoc_weapon/w_flail_good_shield.mdl") = weapon_flail_good_shield : "Good Flail" []
+
+
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Siege entity
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Targetname,Angles,Parentname,EnableDisable) iconsprite("editor/siegespawner.vmt") = aoc_siegespawner : "AOC Siege Spawner"+
+"When triggered via SpawnProjectile, this entity shoots a flaming stone."+
+"Set the velocity for its speed and adjust the angles for the point to shoot at."+
+"This entity can also be parented to other moving objects. And its aim will change"+
+" with its parent. The Standard projectile isnt working, its supposed to fire an"+
+" arrow. But its still under development."
+[ 
+       //Inputs 
+       input SpawnProjectile(void) : "Shoots a projectile." 
+        
+       //Keyfields 
+       DamageType(choices): "Projectile Type" : 0: "Type of damage the projectile does" = 
+       [ 
+          0: "Undefined" 
+          1: "Explosive" 
+          2: "Standard" 
+       ]      
+ 
+           
+       SpawnSpeed(float) : "Velocity" : "0" : "Velocity of the projectile" 
+       SpawnDirection(angle) : "Angle" : "0 0 0" : "Specify the angle for the forward motion of the projectile" 
+        
+       //Outputs 
+       output OnSpawnProjectile(void) : "Projectile has been spawned" 
+      
+] 
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Ammo Crate
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Targetname, Angles) studio("models/items/ammocrate_grenade.mdl") = aoc_ammo_crate : "AoC Ammo Crate"+
+"Just place this model entity anywhere in the world. A player touching it will get his ammo restored."
+[
+	// Inputs
+	input Kill(void) : "Remove the ammo crate"
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Objective Message
+//
+//-------------------------------------------------------------------------
+
+@PointClass base(Targetname) iconsprite("editor/message.vmt") = aoc_objective_message : "AoC message for objectives" +
+"This can be used to display a floating text above something."+
+"Works equal to the developer floating text used in tutorial maps for standard SDK"+
+"With the difference that this message is shown even if developer 1 isnt set."+
+"The radius set the viewable distance for the message."
+[
+	team(choices) : "Starting Team" : "0" : "This is the team assigned to the message" =
+	[
+		0 : "Unassigned"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+
+	spawnflags(flags) =
+	[
+		1: "Start Disabled" : 0
+	]
+
+	message(string) : "Entity Message"
+	radius(integer) : "Show message radius" : 128 : "Distance the player must be within to see this message."
+	developeronly(choices) : "Developer Only?" : 0 : "If set, this message will only be visible when developer mode is on." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	// Inputs
+	input Enable(void) : "Start displaying the message text, if the player is within the message radius."
+	input Disable(void) : "Stop displaying the message text."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Kill Counter
+//
+//-------------------------------------------------------------------------
+@PointClass base(Targetname) iconsprite("editor/killcounter.vmt") = aoc_killcounter: "Kill Counter"+
+"This entity listens to player deaths per team and counts them."+
+"It fires an output for the first team who has hit the threshold"
+[
+   
+	maxvalue(integer) : "Maximum kill count" : 10 : "Amount of kills needed to fire output."
+	
+	m_bEnabled(choices) : "Starting State" : "0" : "Begin the round as enabled or disabled" = 
+	[
+		0 : "Enabled"
+		1 : "Disabled"
+	]
+
+       //Outputs
+       output OnMaxEvilValue(void) : "Evil team has hit max value"
+       output OnMaxGoodValue(void): "Good team has hit max value"
+
+       //Inputs
+       input StartCount(void) : "Starts the counter."
+       input StopCount(void) : "Shuts off the counter."
+       input Reset(void) : "Reset the count."
+]
+
+
+@PointClass base(Targetname, EnableDisable) = logic_achievement :
+	"Sends an achievement system related event from the map to the achievement system."
+[
+	//keyvalues
+	
+	AchievementEvent(choices) : "Achievement Event" : 0 : "Named event is sent to the achievement system when this entity receives a 'FireEvent' input." =
+	[
+		//"ACHIEVEMENT_EVENT_AOC_MAPTEST"		: "[AOC] Test Achievement	"
+		"ACHIEVEMENT_EVENT_AOC_ANIMAL_ABUSER"	: "[AOC] Animal Abuser."
+		"ACHIEVEMENT_EVENT_AOC_CARTPUSH"				: "[AOC] Dark Forest wagon."
+		"ACHIEVEMENT_EVENT_AOC_SIEGESECRET"			: "[AOC] Siege Secret Room."
+		"ACHIEVEMENT_EVENT_AOC_CHOPTREE"				: "[AOC] Timber!"
+		"ACHIEVEMENT_EVENT_AOC_PEASANTCHOP"			: "[AOC] Dark Forest peasant"
+		"ACHIEVEMENT_EVENT_AOC_TREBUCHET"				: "[AOC] Trebuchet."
+		"ACHIEVEMENT_EVENT_AOC_PRINCE"				: "[AOC] Siege Prince."
+		"ACHIEVEMENT_EVENT_AOC_PRISONER"	: "[AOC] Shore prisoner."
+		"ACHIEVEMENT_EVENT_AOC_VALLEYGRAVES"	: "[AOC] Valley graves."
+		"ACHIEVEMENT_EVENT_AOC_TOURNEYBOO"	: "[AOC] Tournament boo."
+		"ACHIEVEMENT_EVENT_AOC_HELMSBOMB"	: "[AOC] Helms deep bomb."
+		"ACHIEVEMENT_EVENT_AOC_KING_NOTHING" : "[AOC] King Nothing"
+		"ACHIEVEMENT_EVENT_AOC_JUMP_IN_THE_FIRE" : "[AOC] Jump in the Fire"
+		"ACHIEVEMENT_EVENT_AOC_NAVAL_BOMBARDMENT" : "[AOC] Naval Bombardment"
+		"ACHIEVEMENT_EVENT_AOC_INDEPENDENT_CONTRACTOR" : "[AOC] Independent contractor"
+		"ACHIEVEMENT_EVENT_AOC_ROLLING_STONES" : "[AOC] Rolling Stones"
+		"ACHIEVEMENT_EVENT_AOC_ROYAL_ASSASSIN" : "[AOC] Royal Assassin"
+		"ACHIEVEMENT_EVENT_AOC_LITLE_BUG_BLEW" : "[AOC] Little Bug Blew"
+
+	]
+
+	// Inputs
+	input Toggle(void) : "Toggle the relay between enabled and disabled."
+	input FireEvent(void) : "Tells the achievement system the specifed event has occured."
+	
+	// Outputs
+	output OnFired(void) : "When the event fires, this fires."
+]
+
+
+@PointClass base(Targetname, OverviewMarker, Parentname) = aoc_minimap_icon : "Age of Chivalry Gameplay Objective" +
+	"Entity to display a minimap icon"
+[
+]
+
+@SolidClass base(Targetname) = aoc_func_respawnarea:  
+	"Defines a respawn area in which a player can change classes and be instantly respawned"
+[
+	StartingTeam(choices) : "Owner Team" : "0" : "The team who this RespawnArea belongs to" =
+	[
+		0 : "Everybody"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+	
+	input SetTeam(integer) : "Manually sets the team to one side or the other."
+]
+
+@PointClass base(Targetname) iconsprite("editor/game_text.vmt") = aoc_quicktip : 
+	"An entity that displayes one of AOCs quick tips" 
+[
+
+	title(string) : "Title Text" : "" : "Title of the message"
+	message(string) : "Message Text" : "" : "Message to display"
+
+	// Inputs
+	input DisplayToActivator(void) : "Display the message text to the player that activated this entity"
+	input DisplayToAgathia(void) : "Displays the message to the Agathia team"
+	input DisplayToMason(void) : "Displays this message to the Mason team"
+	input DisplayToAll(void) : "Displays this message to all players"
+]
+
+
+@PointClass base(Targetname,EnableDisable) = team_round_timer :
+	"Round Timer. Timer starts paused by default."
+[
+	timer_length(integer) : "Timer length (in seconds)" : 600 : "Initial timer length."
+	max_length(integer) : "Max timer length (in seconds)" : 0 : "Maximum timer length (0 = no max). This value is used to ensure the timer never goes above this value when SetTime and AddTime are used."
+	
+	start_paused(choices) : "Start paused" : 1 : "Should the timer start paused? (will need to send a Resume input to start the timer if this is set)." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	setup_length(integer) : "Setup timer length (in seconds)" : 0 : "Length of setup time before the round begins and the timer starts to countdown the normal time. (0 = no setup time)  Setup time is run at the beginning of every round before the normal time begins."
+	
+	reset_time(choices) : "Reset time on round restart" : 0 : "Reset the timer time after a round restart.  This is not the setup time, but the normal round time." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	auto_countdown(choices) : "Use countdown sounds" : 1 : "Let the timer automatically count down the end of a round." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	show_in_hud(choices) : "Show timer in the HUD" : 1 : "Note: You can only show one timer in the HUD at a time." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	// Inputs	
+	input Pause(void) : "Pause the timer."
+	input Resume(void) : "Resume the timer."
+	input SetTime(integer) : "Set the timer to this value (in seconds)."
+	input AddTime(integer) : "Add time to the timer (in seconds). Added time cannot excede the max timer length."
+	input AddTeamTime(string) : "Input takes a string (space delimited) with the team number and the time to be added (in seconds) because of the team (2 for red, 3 for blue, and 0 for no team...but you could just use AddTime for that). Added time cannot excede the max timer length. Example: 2 600 (adds 10 minutes because of team red)" 
+	input Restart(void) : "Restart the timer."
+	input ShowInHUD(integer) : "Show this timer in the HUD (0 no, 1 yes)."
+	input SetMaxTime(integer) : "Set the max timer length to this value (in seconds). The timer's time will never excede this value."
+	input AutoCountdown(integer) : "Turn off/on the auto countdown feature (0 no, 1 yes)."
+	input SetSetupTime(integer) : "Set the setup time length to this value (in seconds)."
+		
+	// Outputs
+	output On5MinRemain(void) : "Sent when 5 minutes remain."
+	output On4MinRemain(void) : "Sent when 4 minutes remain."
+	output On3MinRemain(void) : "Sent when 3 minutes remain."
+	output On2MinRemain(void) : "Sent when 2 minutes remain."
+	output On1MinRemain(void) : "Sent when 1 minutes remain."
+	output On30SecRemain(void) : "Sent when 30 seconds remain."
+	output On10SecRemain(void) : "Sent when 10 seconds remain."
+	output On5SecRemain(void) : "Sent when 5 seconds remain."
+	output On4SecRemain(void) : "Sent when 4 seconds remain."
+	output On3SecRemain(void) : "Sent when 3 seconds remain."
+	output On2SecRemain(void) : "Sent when 2 seconds remain."
+	output On1SecRemain(void) : "Sent when 1 second remains."
+	
+	output OnRoundStart(void) : "Sent when the round starts."
+	output OnFinished(void) : "Sent when the timer is finished."
+	
+	output OnSetupStart(void) : "Sent when the setup time begins."
+	output OnSetupFinished(void) : "Sent when the setup time is finished."
+]
+
+//-------------------------------------------------------------------------
+//
+// Age of Chivalry Fists Only Trigger
+//
+//-------------------------------------------------------------------------
+@SolidClass base(Trigger) = trigger_fists_only : "Age of Chivalry Fists Only Trigger. Use this trigger to force players to only use fists within it's bounds."
+[
+]
+
+//-------------------------------------------------------------------------
+//
+// Tanks
+//
+//-------------------------------------------------------------------------
+@BaseClass base(Targetname, Parentname, Origin, Angles, RenderFields, Global, Shadow) = BaseTank
+[
+	spawnflags(flags) =
+	[
+		1 : "Active" : 0
+		16: "Only Direct" : 0
+		32: "Controllable" : 0
+		64: "Damage Kick" : 0
+	      1024: "NPC Controllable" : 0
+              2048: "NPC Set Controller" : 0
+	      4096: "Allow friendlies to hit player" : 0
+	     32768: "Non-solid." : 0
+	    131072: "Perfect accuracy every 3rd shot at player" : 0
+	]
+
+	control_volume(target_destination) : "Control Volume" : "" : "Name of a trigger the specifies the volume in which a player must be to control this tank."
+
+	// Mainly for use with 1009 team settings (game_team_master)
+	master(string) : "(Team) Master" 
+
+	yawrate(string) : "Yaw rate" : "30"
+	yawrange(string) : "Yaw range" : "180"
+	yawtolerance(string) : "Yaw tolerance" : "15"
+	pitchrate(string) : "Pitch rate" : "0"
+	pitchrange(string) : "Pitch range" : "0"
+	pitchtolerance(string) : "Pitch tolerance" : "5"
+	barrel(string) : "Barrel Length" : "0"
+	barrely(string) : "Barrel Horizontal" : "0"
+	barrelz(string) : "Barrel Vertical" : "0"
+	spritesmoke(sprite) : "Smoke Sprite" : ""
+	spriteflash(sprite) : "Flash Sprite" : ""
+	spritescale(string) : "Sprite scale" : "1"
+	rotatestartsound(sound) : "Rotate Start Sound" : ""
+	rotatesound(sound) : "Rotate Loop Sound" : ""
+	rotatestopsound(sound) : "Rotate Stop Sound" : ""
+	firerate(string) : "Rate of Fire" : "1"
+	bullet_damage(string) : "Damage Per Bullet" : "0" : "If set to 0, it'll use the base weapon bullet's damage."
+	bullet_damage_vs_player(string) : "Damage Per Bullet Vs Player" : "0" : "If set to 0, it'll use the Damage Per Bullet value."
+	persistence(string) : "Firing persistence" : "1" : "(Seconds) How long to keep firing at last known position after lose sight of target"
+	persistence2(string) : "Firing persistence2" : "0" : "(Seconds) After lost enemy and persistence time has passed, how long to occasionally fire at enemy's last known position"
+	firespread(choices) : "Bullet accuracy" : 0 =
+	[
+		0: "Perfect Shot"
+		1: "Small cone"
+		2: "Medium cone"
+		3: "Large cone"
+		4: "Extra-large cone"
+	]
+	minRange(string) : "Minmum target range" : "0"
+	maxRange(string) : "Maximum target range" : "0"
+	_minlight(string) : "Minimum light level"
+
+	gun_base_attach(string) : "Gun Base Attachment" : "" : "If Parent is specified, this is the attachment point on the parent to aim from."
+	gun_barrel_attach(string) : "Gun Barrel Attachment" : "" : "If Parent is specified, this is the attachment point on the parent to fire from. If you specify this, you'll want to specify the Gun Base Attachment too."
+	gun_yaw_pose_param(string) : "Gun Yaw Pose Param" : "" : "If Parent + the Gun Pitch Pose Param is specified, then the gun itself will be invisible and the func_tank will steer a gun on the parent using the pose parameters."
+	gun_yaw_pose_center(float) : "Gun Yaw Pose Center" : "0" : "The center yaw pose parameter of the gun on the parent"
+	gun_pitch_pose_param(string) : "Gun Pitch Pose Param" : "" : "If Parent + the Gun Yaw Pose Param is specified, then the gun itself will be invisible and the func_tank will steer a gun on the parent using the pose parameters."
+	gun_pitch_pose_center(float) : "Gun Pitch Pose Center" : "0" : "The center pitch pose parameter of the gun on the parent"
+
+	ammo_count(integer) : "Ammunition Count" : -1 : "Only applies to player use. -1 = unlimited ammo."
+
+	LeadTarget(choices) : "Lead Target" : "No" =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	npc_man_point(target_destination) : "NPC Man Point" : "" : "Point where NPC must stand to man this func_tank."
+	playergraceperiod(float) : "Post-NPC Attack Grace Period" : "0" : "If specified, NPC's manning this func tank won't fire at the player, after firing at a non-player, for this amount of time."
+	ignoregraceupto(float) : "Ignore Grace Upto" : "768" : "The player grace period is ignored if the player's under this distance from the func_tank."
+	playerlocktimebeforefire(float) : "Player Lock Time" : "0" : "The tank must have the player as a target for this amount of time before it's allowed to fire."
+
+	effecthandling(choices) : "Effect Handling" : 0 =
+	[
+		0 : "Use Individual Settings."
+		1 : "AR2"
+		2 : "Combine Cannon"
+	]
+
+	// Inputs
+	input Activate(void) : "Turn the tank on"
+	input Deactivate(void) : "Turn the tank off (go dormant)"
+	input SetFireRate(string) : "How fast to fire (0 = don't fire)"
+	input SetDamage(string) : "Set the Damage Per Bullet"
+	input SetTargetPosition(string) : "World position that I should aim at"
+	input SetTargetDir(vector) : "Direction to aim at."
+	input SetTargetEntityName(string) : "Name of entity I should follow/attack"
+	input SetTargetEntity(string) : "Entity I should follow/attack (output from other entity only)"
+	input ClearTargetEntity(void) : "Clear the entity I should be attacking."
+	input FindNPCToManTank(string) : "Find a nearby NPC to man this func_tank."
+	input StartFindingNPCs(void) : "Start searching for NPCs to man this func_tank."
+	input StopFindingNPCs(void) : "Stop searching for NPCs to man this func_tank."
+	input ForceNPCOff(void) : "Force the NPC manning this func_tank (if any) to leave."
+	input SetMaxRange(float) : "Set the max range of the func_tank."
+
+	// Outputs
+	output OnFire(void) : "Fires when the tank fires its bullets"
+	output OnAquireTarget(void) : "Fires when target is newly in range and can be shot"
+	output OnLoseTarget(void) : "Fires when when target goes out of range"
+	output OnAmmoDepleted(void) : "Fires when tank runs out of ammo"
+	output OnGotController(void) : "Fires when an NPC starts to control this tank. Players do NOT fire this input."
+	output OnLostController(void) : "Fires when the NPC controller of the tank stops controlling it. Players do NOT fire this input."
+	output OnGotPlayerController(void) : "Fires when a Player starts to control this tank. NPCs do NOT fire this input."
+	output OnLostPlayerController(void) : "Fires when the Player controller of the tank stops controlling it. NPCs do NOT fire this input."
+	output OnReadyToFire(void) : "Fires once when the tank is done waiting to fire between rounds"
+]
+
+@SolidClass base(BaseTank) = func_ballista : "Ballista"
+[
+	rocketspeed(float) : "Projectile speed" : 800 : "Speed the rocket will travel at."
+]
+
+
+@SolidClass base(BreakableBrush, Origin, RenderFields, Shadow, Objective, OverviewMarker) = aoc_objective_igniteable : "Age of Chivalry Igniteable Objective"
+[
+	minhealthdmg(integer) : "Min Damage to Hurt" : 0 : "The prop will ignore any damage events if the damage is less than this amount."
+
+	_minlight(string) : "Minimum Light Level" : : "The minimum level of ambient light that hits this brush."
+	physdamagescale(float) : "Physics Impact Damage Scale" : "1.0" : "Scales damage energy when this object is hit by a physics object. NOTE: 0 means this feature is disabled for backwards compatibility.\nSet to 1.0 for materials as strong as flesh, smaller numbers indicate stronger materials."
+	
+	DamageAssistThreshold(integer) : "Damage Assist Threshold" : 0 : "How much damage a player must do to this object before he is award an assist. Default is 0 (any amount of damage)"
+	BreaksRequired(integer) : "Breaks Required" : 1 : "How many times does this breakable have to be 'broken' in order for it to be completed? Default is 1"
+	
+	IgnitionTime(float) : "Ignition Time" : "5.0" : "How long this object stays ignited for"
+	FlameSize(float) : "Flame Size" : "5.0" : "Size of the fire"
+	DamagePerSecond(integer) : "Damage Per Second" : 1 : "How much damage per second this object should take while its lit"
+	
+]
+
+@SolidClass base(BreakableBrush, Origin, RenderFields, Shadow, Objective, OverviewMarker) = aoc_objective_breakable : "A brush entity that can be broken from damage, or an input." 
+[
+	minhealthdmg(integer) : "Min Damage to Hurt" : 0 : "The prop will ignore any damage events if the damage is less than this amount."
+
+	_minlight(string) : "Minimum Light Level" : : "The minimum level of ambient light that hits this brush."
+	physdamagescale(float) : "Physics Impact Damage Scale" : "1.0" : "Scales damage energy when this object is hit by a physics object. NOTE: 0 means this feature is disabled for backwards compatibility.\nSet to 1.0 for materials as strong as flesh, smaller numbers indicate stronger materials."
+	
+	DamageAssistThreshold(integer) : "Damage Assist Threshold" : 0 : "How much damage a player must do to this object before he is award an assist. Default is 0 (any amount of damage)"
+	BreaksRequired(integer) : "Breaks Required" : 1 : "How many times does this breakable have to be 'broken' in order for it to be completed? Default is 1"
+]
+
+
+@SolidClass base(Trigger, Objective, OverviewMarker, ObjectiveTriggerBase) = aoc_objective_trigger : "An AOC Objective that is a trigger"
+[
+	DistributePoints(integer) : "Distribute Points On Capture" : 1 : "Award full completion points to each player: 0; Distribute completion points equally to each player: 1 "
+	wait(integer) : "Delay Before Reset" : 1 : "Amount of time, in seconds, after the trigger_multiple has triggered before it can be triggered again. If set to -1, it will never trigger again (in which case you should just use a trigger_once)."
+]
+
+
+@SolidClass base(Trigger, Objective, OverviewMarker, ObjectiveTriggerBase) = aoc_objective_carryable_capture : "AOC Capture Zone."
+[
+    // Mapping Tagged Fields
+	Timer(float) : "Time To Capture" : "1.0" : "Set this to the time it takes to capture this point."
+	PropObjectiveID(integer) : "Prop ObjectiveID" : 0 : "Prop objective ID that will capture this objective. Zero equals disabled."
+	Blockers(integer) : "Blockers" : 0 : "Number of the other team players thats needed to block. Zero equals disabled."
+	Touchers(integer) : "Touchers" : 1 : "Number of players from own team neded to capture"
+	NumCapsForComplete(integer) : "Caps to Complete" : 1 : "Number of times this has to captured with a prop in order to be completed"
+
+	Team(choices) : "Starting Team" : "0" : "The team this is assigned to when the map first loads." =
+	[
+		0 : "Everybody"
+		2 : "Good Guys"
+		3 : "Evil Guys"
+	]
+	
+	PropObjectiveAction(choices) : "Prop Objective Actions" : "0" : "Action taken on the Prop Objective that activated the capture." =
+	[
+		0 : "Nothing"
+		1 : "Return(spawn)"
+		2 : "Remove(kill)"
+	]
+
+
+	// Outputs
+	output OnCapture(void) : "Fired when this point is captured."
+	output OnStartCapture(void) : "Fired when this point begins to be captured."
+	output OnCancelCapture(void) : "Fired when this point stops being captured."
+	output OnCapture1(void) : "Fired on the first capture"
+	output OnCapture2(void) : "Fired on the second capture"
+	output OnCapture3(void) : "Fired on the third capture"
+	output OnCapture4(void) : "Fired on the forth capture"
+	output OnCapture5(void) : "Fired on the fifth capture"
+
+	// Inputs
+	input StartTouch(void) : "When someone enters the capture point"
+	input EndTouch(void) : "When someone leaves the capture point"
+]

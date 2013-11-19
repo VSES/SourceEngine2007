@@ -1,0 +1,21 @@
+@include "base.fgd"
+@include "halflife2.fgd"
+
+@SolidClass = func_ladder : 
+	"Ladder. Players will be able to move freely along this brush, as if it was a ladder." +
+	"Apply the toolsinvisibleladder material to a func_ladder brush."
+[
+]
+
+@PointClass base(Targetname) = info_gamemode : "Defines the gamemode"
+[
+	GamemodeName(string) : "Gamemode Name" : "base" : "The gamemode (by name) to use"	
+]
+
+@PointClass base(Targetname, Origin) = lua_run : "Runs Lua Code"
+[
+	Code(string) : "Code" : "" : "Lua code to run when triggered"
+	
+	input RunCode(void) : "Run Code that was defined in the entity"
+	input RunPassedCode(string) : "Run code that was passed as a variable"
+]
