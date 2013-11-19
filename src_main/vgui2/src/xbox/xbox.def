@@ -1,3 +1,0 @@
-LIBRARY	vgui2_360.dll
-EXPORTS
-	CreateInterface		@1

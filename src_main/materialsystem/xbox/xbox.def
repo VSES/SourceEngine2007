@@ -1,3 +1,0 @@
-LIBRARY	materialsystem_360.dll
-EXPORTS
-	CreateInterface		@1

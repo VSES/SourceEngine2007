@@ -1,3 +1,0 @@
-LIBRARY	vxbdm_360.dll
-EXPORTS
-	GetConsoleInterface	@1

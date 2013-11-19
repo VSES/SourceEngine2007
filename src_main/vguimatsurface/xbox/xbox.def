@@ -1,3 +1,0 @@
-LIBRARY	vguimatsurface_360.dll
-EXPORTS
-	CreateInterface		@1

@@ -1,7 +1,0 @@
-EXEC = . ;
-
-SubDir P4 ;
-
-Main samplemain : samplemain.cc ;
-
-LinkLibraries samplemain : $(CLIENTLIB) $(RPCLIB) $(SUPPORTLIB) ;

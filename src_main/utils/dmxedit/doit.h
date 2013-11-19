@@ -1,3 +1,0 @@
-//
-// Write the script here
-//
