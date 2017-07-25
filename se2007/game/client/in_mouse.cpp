@@ -478,6 +478,7 @@ void CInput::ApplyMouse( QAngle& viewangles, CUserCmd *cmd, float mouse_x, float
 
 	// Finally, add mouse state to usercmd.
 	// NOTE:  Does rounding to int cause any issues?  ywb 1/17/04
+	// Yes it does, Sometimes usercmd recieves 0 (Atleast in CSGO, pls fix.).
 	cmd->mousedx = (int)mouse_x;
 	cmd->mousedy = (int)mouse_y;
 }
